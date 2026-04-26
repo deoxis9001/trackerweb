@@ -101,6 +101,13 @@ export function buildInventory(stateStore) {
       inv['Bomb Bag'] = Math.max(inv['Bomb Bag'] || 0, count)
       continue
     }
+    // PROGRESSIVE_BOOK : niveau 1=Red, 2=+Green, 3=+Blue
+    if (key === 'PROGRESSIVE_BOOK') {
+      if (count >= 1) inv['Red Book (Hyrulian Bestiary)'] = 1
+      if (count >= 2) inv['Green Book (Picori Legend)']   = 1
+      if (count >= 3) inv['Blue Book (History of Masks)'] = 1
+      continue
+    }
     // Le compteur BOTTLE représente N bouteilles distinctes
     if (key === 'BOTTLE') {
       for (let i = 1; i <= count; i++) inv[`Bottle ${i}`] = 1

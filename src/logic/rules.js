@@ -215,8 +215,14 @@ export const accessMinishWoodsTopLeft = (inv, s) =>
   hasAny("Flippers", "Roc's Cape")(inv) ||
   (accessLonLonRight(inv, s) && has("Cane of Pacci")(inv))
 
+const hasAllBooks = hasAll(
+  "Red Book (Hyrulian Bestiary)",
+  "Green Book (Picori Legend)",
+  "Blue Book (History of Masks)",
+)
+
 export const completeBookQuest = (inv) =>
-  hasAll("Ocarina", "Cane of Pacci", "Red Book", "Blue Book", "Green Book")(inv)
+  has("Ocarina")(inv) && has("Cane of Pacci")(inv) && hasAllBooks(inv)
 
 export const hasMaxHealth = (hearts) => (inv, s) => {
   if ((s.startingHearts || 3) >= hearts) return true
@@ -687,7 +693,7 @@ export const LOCATION_RULES = {
   "Town Well Left Chest": has("Mole Mitts"),
   "Town Bell HP": has("Roc's Cape"),
   "Town Waterfall Fusion Chest": has("Flippers"),
-  "Town Carlov NPC": (inv, s) => accessTownLeft(inv, s) && has("Carlov Medal")(inv),
+  "Town Carlov NPC": (inv, s) => accessTownLeft(inv, s),
   "South Field Tingle NPC": (inv, s) =>
     has("Cane of Pacci")(inv) && has("Tingle Trophy")(inv) &&
     (canPassTrees(inv, s) || smithCrest(inv, s)),
@@ -708,7 +714,7 @@ export const LOCATION_RULES = {
   "Town Fountain Small Chest": (inv, s) =>
     accessTownFountain(inv, s) && hasAny("Flippers", "Roc's Cape")(inv),
   "Town Fountain HP": (inv, s) => accessTownFountain(inv, s) && has("Roc's Cape")(inv),
-  "Town Library Yellow Minish NPC": completeBookQuest,
+  "Town Library Yellow Minish NPC": hasAllBooks,
   "Town Under Library Frozen Chest": hasAll("Ocarina", "Cane of Pacci", "Flippers", "Lantern"),
   "Town Under Library Big Chest": (inv, s) =>
     ((completeBookQuest(inv) && has("Grip Ring")(inv) &&
