@@ -147,8 +147,7 @@ export const lakeMinish = (inv, s) =>
   has("Pegasus Boots")(inv) ||
   (has("Ocarina")(inv) && has("Flippers")(inv) && trick('lake_minish')(inv, s))
 
-export const cabinSwim = (inv, s) =>
-  has("Flippers")(inv) && trick('cabin_swim')(inv, s)
+export const cabinSwim = (inv) => has("Flippers")(inv)
 
 export const fowPot = (inv, s) => has("Gust Jar")(inv) && trick('fow_pot')(inv, s)
 
@@ -227,7 +226,7 @@ export const completeBookQuest = (inv) =>
 export const hasMaxHealth = (hearts) => (inv, s) => {
   if ((s.startingHearts || 3) >= hearts) return true
   const containers = inv["Heart Container"] || 0
-  const pieces = inv["Heart Piece"] || 0
+  const pieces = inv["Piece of Heart"] || 0
   return (s.startingHearts || 3) + containers + Math.floor(pieces / 4) >= hearts
 }
 
@@ -259,14 +258,24 @@ const fallsCanFuse = (inv) =>
 
 export const cloudsHasFusion = (inv, s) =>
   s.goldFusionAccess === 'open' ||
-  hasAll("Fusion 01", "Fusion 02", "Fusion 03", "Fusion 04", "Fusion 05")(inv)
+  hasAll(
+    "Top Right Pinwheel",
+    "Bottom Left Pinwheel",
+    "Top Left Pinwheel",
+    "Middle Pinwheel",
+    "Bottom Right Pinwheel",
+  )(inv)
 
 export const swampsHasFusion = (inv, s) =>
   s.goldFusionAccess === 'open' ||
-  hasAll("Fusion 06", "Fusion 07", "Fusion 08")(inv)
+  hasAll(
+    "West Statue Bashes Floor",
+    "Middle Statue Bashes Floor",
+    "East Statue Bashes Floor",
+  )(inv)
 
 export const fallsHasFusion = (inv, s) =>
-  s.goldFusionAccess === 'open' || has("Fusion 09")(inv)
+  s.goldFusionAccess === 'open' || has("Veil Falls Kinstone Door Opens")(inv)
 
 // ─── Dungeon key helpers ──────────────────────────────────────────────────────
 
