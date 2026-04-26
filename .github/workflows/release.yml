@@ -1,0 +1,59 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install & build
+        run: |
+          npm install
+          npm run build
+
+      - name: Generate version
+        run: |
+          echo "VERSION=$(date +'%d.%m.%Y-%H:%M:%S')" >> $GITHUB_ENV
+          echo "TAG=$(date +'%d.%m.%Y-%H.%M.%S')" >> $GITHUB_ENV
+
+      - name: Create zip
+        run: |
+          cd dist
+          zip -r ../tmcr-tracker-${{ env.TAG }}.zip .
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}
+          name: ${{ env.VERSION }}
+          files: tmcr-tracker-${{ env.TAG }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to MinishCap_Site
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git clone --branch officiel --single-branch \
+            https://x-access-token:${GH_PAT}@github.com/deoxis9001/MinishCap_Site.git site-repo
+          rm -rf site-repo/tmcr-tracker
+          mkdir -p site-repo/tmcr-tracker
+          cp -r dist/. site-repo/tmcr-tracker/
+          cd site-repo
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add tmcr-tracker/
+          git diff --staged --quiet && echo "Nothing to deploy" || \
+            git commit -m "deploy: tmcr-tracker ${{ env.VERSION }}" && \
+            git push origin officiel
