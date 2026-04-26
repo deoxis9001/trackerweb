@@ -390,7 +390,7 @@ function onContextmenuPin(e, pin) {
   <div class="map-view">
 
     <!-- Overworld area selector -->
-    <div v-if="isDev && state.activeView === 'overworld'" class="floor-selector">
+    <div v-if="state.activeView === 'overworld'" class="floor-selector">
       <button
         :class="['floor-btn', { active: currentArea === null }]"
         @click.stop="setArea(null)"
