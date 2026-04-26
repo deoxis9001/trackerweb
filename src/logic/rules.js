@@ -561,9 +561,8 @@ export const REGION_RULES = {
       has("Lantern")(inv) && hasWeaponScissor(inv, s) && todKey(4)(inv),
     DUNGEON_TOD_CLEAR: (inv, s) =>
       (hasShield(inv, s) || hasSword(inv, s)) &&
-      hasAll("Lantern")(inv) &&
-      (has("Droplets West Switch")(inv) || false) &&
-      (has("Droplets East Switch")(inv) || false),
+      has("Lantern")(inv) &&
+      canSplit(2)(inv, s),
   },
   // PoW
   DUNGEON_POW_ENTRANCE: {

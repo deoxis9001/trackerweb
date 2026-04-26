@@ -11,6 +11,22 @@ for (const loc of locationsData) {
     ROOM_AREA_TO_DUNGEON[loc.room_area] = loc.dungeon
 }
 
+// event flags → item keys (version <= 0.3.1)
+const FUSE_EVENT_TO_KEY = {
+  fuse_01: 'FUSION_01', fuse_02: 'FUSION_02', fuse_03: 'FUSION_03',
+  fuse_04: 'FUSION_04', fuse_05: 'FUSION_05', fuse_06: 'FUSION_06',
+  fuse_07: 'FUSION_07', fuse_08: 'FUSION_08', fuse_09: 'FUSION_09',
+}
+
+function semverLe(v1, v2) {
+  const parse = v => (v || '0').split('.').map(Number)
+  const [a1, b1, c1] = parse(v1)
+  const [a2, b2, c2] = parse(v2)
+  if (a1 !== a2) return a1 < a2
+  if (b1 !== b2) return b1 < b2
+  return c1 <= c2
+}
+
 let pollTimer     = null
 let polling       = false
 let failStreak    = 0
@@ -35,6 +51,14 @@ async function poll() {
     for (const [k, v] of Object.entries(data)) {
       if (!k.startsWith('_')) items[k] = v
     }
+
+    // Version <= 0.3.1: map fuse_XX event flags to FUSION_XX item keys
+    if (semverLe(store.apVersion, '0.3.1')) {
+      for (const [event, key] of Object.entries(FUSE_EVENT_TO_KEY)) {
+        if (data[event]) items[key] = 1
+      }
+    }
+
     store.setAutotrackItems(items)
 
     if (Array.isArray(data._checked) && data._checked.length > 0) {

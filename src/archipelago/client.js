@@ -55,6 +55,7 @@ export async function connectToAP(server, port, slot, password = '') {
     const slotData = await client.login(`${server}:${port}`, slot, 'The Minish Cap', { password })
     const settingsStore = useSettingsStore()
     settingsStore.importFromSlotData(slotData)
+    store.apVersion = slotData.version ?? ''
 
     // Subscribe to room changes for auto tab switching
     const me = client.players.self

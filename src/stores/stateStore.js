@@ -27,6 +27,7 @@ export const useStateStore = defineStore('state', () => {
 
   // AP connection state
   const apConnected      = ref(false)
+  const apVersion        = ref('')        // slotData.version from AP login
   // Bizhawk NWA autotracking
   const bizhawkConnected = ref(false)
   const autotrackItems   = ref({})  // { itemKey: count } — set by bizhawk.js
@@ -246,6 +247,7 @@ export const useStateStore = defineStore('state', () => {
     visibleLocations,
     allRegions,
     apConnected,
+    apVersion,
     bizhawkConnected,
     autotrackItems,
     apServer,
