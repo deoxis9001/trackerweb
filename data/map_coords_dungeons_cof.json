@@ -1,0 +1,149 @@
+[
+  {
+    "id": 6029402,
+    "name": "CoF 1F Spike Beetle Big Chest",
+    "floor": "1F",
+    "x": 392,
+    "y": 92
+  },
+  {
+    "id": 6029403,
+    "name": "CoF 1F Item Top Left",
+    "floor": "1F",
+    "x": 135,
+    "y": 86
+  },
+  {
+    "id": 6029404,
+    "name": "CoF 1F Item Top Middle",
+    "floor": "1F",
+    "x": 135,
+    "y": 86
+  },
+  {
+    "id": 6029405,
+    "name": "CoF 1F Item Top Right",
+    "floor": "1F",
+    "x": 135,
+    "y": 86
+  },
+  {
+    "id": 6029406,
+    "name": "CoF 1F Item Bottom Left",
+    "floor": "1F",
+    "x": 135,
+    "y": 86
+  },
+  {
+    "id": 6029407,
+    "name": "CoF 1F Item Bottom Right",
+    "floor": "1F",
+    "x": 135,
+    "y": 86
+  },
+  {
+    "id": 6029408,
+    "name": "CoF B1 Hazy Room Big Chest",
+    "floor": "B1",
+    "x": 893,
+    "y": 804
+  },
+  {
+    "id": 6029409,
+    "name": "CoF B1 Hazy Room Small Chest",
+    "floor": "B1",
+    "x": 693,
+    "y": 999
+  },
+  {
+    "id": 6029410,
+    "name": "CoF B1 Rollobite Chest",
+    "floor": "B1",
+    "x": 368,
+    "y": 995
+  },
+  {
+    "id": 6029411,
+    "name": "CoF B1 Rollobite Pillar Chest",
+    "floor": "B1",
+    "x": 368,
+    "y": 825
+  },
+  {
+    "id": 6029412,
+    "name": "CoF B1 Spikey Chus Pillar Chest",
+    "floor": "B1",
+    "x": 730,
+    "y": 115
+  },
+  {
+    "id": 6029413,
+    "name": "CoF B1 HP",
+    "floor": "B1",
+    "x": 842,
+    "y": 554
+  },
+  {
+    "id": 6029414,
+    "name": "CoF B1 Spikey Chus Big Chest",
+    "floor": "B1",
+    "x": 860,
+    "y": 68
+  },
+  {
+    "id": 6029415,
+    "name": "CoF B2 Pre Lava North Chest",
+    "floor": "B2",
+    "x": 450,
+    "y": 265
+  },
+  {
+    "id": 6029416,
+    "name": "CoF B2 Pre Lava South Chest",
+    "floor": "B2",
+    "x": 475,
+    "y": 345
+  },
+  {
+    "id": 6029417,
+    "name": "CoF B2 Lava Room Blade Chest",
+    "floor": "B2",
+    "x": 1600,
+    "y": 120
+  },
+  {
+    "id": 6029418,
+    "name": "CoF B2 Lava Room Right Chest",
+    "floor": "B2",
+    "x": 1295,
+    "y": 665
+  },
+  {
+    "id": 6029419,
+    "name": "CoF B2 Lava Room Left Chest",
+    "floor": "B2",
+    "x": 750,
+    "y": 665
+  },
+  {
+    "id": 6029420,
+    "name": "CoF B2 Lava Room Big Chest",
+    "floor": "B2",
+    "x": 895,
+    "y": 400
+  },
+  {
+    "id": 6029421,
+    "name": "CoF Boss Item",
+    "floor": "B3",
+    "x": 165,
+    "y": 55
+  },
+  {
+    "id": 6029422,
+    "name": "CoF Prize",
+    "floor": "B3",
+    "x": 165,
+    "y": 55
+  }
+]

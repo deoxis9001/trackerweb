@@ -1,12 +1,72 @@
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+
+const isDev = import.meta.env.DEV
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { computeAccessibility, buildInventory } from '../logic/accessibility'
-import mapCoordsRaw from '../../data/map_coords.json'
+import mapCoordsRaw        from '../../data/map_coords.json'
+import overworldAreaCoords from '../../data/map_coords_overworld_areas.json'
+
+import dungeonCoordsDws from '../../data/map_coords_dungeons_dws.json'
+import dungeonCoordsCof from '../../data/map_coords_dungeons_cof.json'
+import dungeonCoordsRc  from '../../data/map_coords_dungeons_rc.json'
+import dungeonCoordsFow from '../../data/map_coords_dungeons_fow.json'
+import dungeonCoordsTod from '../../data/map_coords_dungeons_tod.json'
+import dungeonCoordsPow from '../../data/map_coords_dungeons_pow.json'
+import dungeonCoordsDhc from '../../data/map_coords_dungeons_dhc.json'
 
 const state    = useStateStore()
 const settings = useSettingsStore()
+
+// ── Overworld area metadata ───────────────────────────────────────────────────
+const OVERWORLD_AREAS = [
+  'castle','clouds','crenel','falls','hills','hylia','lonlon',
+  'minishwoods','northfield','ruins','southfield','swamp',
+  'town','trilby','valley','westernwoods',
+]
+
+const AREA_LABELS = {
+  castle: 'Castle', clouds: 'Clouds', crenel: 'Crenel', falls: 'Falls',
+  hills: 'Hills', hylia: 'Hylia', lonlon: 'Lon Lon',
+  minishwoods: 'Minish Woods', northfield: 'N. Field', ruins: 'Ruins',
+  southfield: 'S. Field', swamp: 'Swamp', town: 'Town',
+  trilby: 'Trilby', valley: 'Valley', westernwoods: 'W. Woods',
+}
+
+// area → list of {id, x, y}
+const areaCoordById = {}
+for (const e of overworldAreaCoords) {
+  if (!areaCoordById[e.area]) areaCoordById[e.area] = {}
+  if (!areaCoordById[e.area][e.id]) areaCoordById[e.area][e.id] = []
+  areaCoordById[e.area][e.id].push({ x: e.x, y: e.y })
+}
+
+// current overworld area (null = full map)
+const currentArea = ref(null)
+
+// ── Dungeon metadata ──────────────────────────────────────────────────────────
+const DUNGEON_MAP_NAMES = { RC: 'rc', DWS: 'dws', CoF: 'cof', FoW: 'fow', ToD: 'tod', PoW: 'pow', DHC: 'dhc' }
+
+const DUNGEON_FLOORS = {
+  dws: ['B2', 'B1', '1F'],
+  cof: ['B3', 'B2', 'B1', '1F'],
+  rc:  ['rc'],
+  fow: ['1F', '2F', '3F'],
+  tod: ['B3', 'B2', 'B1'],
+  pow: ['1F', '2F', '3F', '4F', '5F'],
+  dhc: ['B2', 'B1', '1F', '2F', '3F', '4F', 'Sanc'],
+}
+
+const DUNGEON_COORDS_RAW = {
+  dws: dungeonCoordsDws,
+  cof: dungeonCoordsCof,
+  rc:  dungeonCoordsRc,
+  fow: dungeonCoordsFow,
+  tod: dungeonCoordsTod,
+  pow: dungeonCoordsPow,
+  dhc: dungeonCoordsDhc,
+}
 
 // ── Container + fitted image size ─────────────────────────────────────────────
 const containerEl = ref(null)
@@ -21,7 +81,6 @@ function onMapLoad(e) {
   naturalH.value = e.target.naturalHeight || 2060
 }
 
-// Compute fitted dimensions preserving aspect ratio
 const fittedW = computed(() => {
   if (!containerW.value || !containerH.value) return 0
   const scale = Math.min(
@@ -36,6 +95,25 @@ const fittedH = computed(() => {
   if (!fittedW.value) return 0
   return Math.round(fittedW.value * naturalH.value / naturalW.value)
 })
+
+// ── Mouse coords on image ─────────────────────────────────────────────────────
+const mouseImgX = ref(null)
+const mouseImgY = ref(null)
+
+function onMousemoveMap(e) {
+  const rect    = containerEl.value?.getBoundingClientRect()
+  if (!rect || !fittedW.value) return
+  const offsetX = (containerW.value - fittedW.value) / 2
+  const offsetY = (containerH.value - fittedH.value) / 2
+  const imgX = (e.clientX - rect.left - offsetX - panX.value) / zoom.value
+  const imgY = (e.clientY - rect.top  - offsetY - panY.value) / zoom.value
+  mouseImgX.value = Math.round(imgX)
+  mouseImgY.value = Math.round(imgY)
+}
+function onMouseleaveMap() {
+  mouseImgX.value = null
+  mouseImgY.value = null
+}
 
 // ── Zoom & Pan ────────────────────────────────────────────────────────────────
 const zoom     = ref(1)
@@ -63,7 +141,6 @@ function onWheel(e) {
   const newZoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, zoom.value * factor))
   if (newZoom === zoom.value) return
 
-  // keep the point under the cursor fixed
   const offsetX = (containerW.value - fittedW.value) / 2
   const offsetY = (containerH.value - fittedH.value) / 2
   const uwX = (cx - offsetX - panX.value) / zoom.value
@@ -98,9 +175,6 @@ function resetView() {
   panY.value = 0
 }
 
-// reset when switching maps
-watch(() => state.activeView, resetView)
-
 let ro
 onMounted(() => {
   ro = new ResizeObserver(entries => {
@@ -126,41 +200,115 @@ const accessibility = computed(() => {
   return computeAccessibility(inv, settings)
 })
 
-// ── Build pin groups (cluster same-coord locations) ───────────────────────────
-const DUNGEON_MAP_NAMES = { RC: 'rc', DWS: 'dws', CoF: 'cof', FoW: 'fow', ToD: 'tod', PoW: 'pow', DHC: 'dhc' }
-
+// ── Map name + floor selection ────────────────────────────────────────────────
 const mapName = computed(() => {
   if (state.activeView === 'overworld') return 'map'
   return DUNGEON_MAP_NAMES[state.activeView] || 'map'
 })
 
-// Group coords by id → array (locations can appear on multiple maps)
+const currentFloor = ref(null)
+
+const availableFloors = computed(() => DUNGEON_FLOORS[mapName.value] ?? [])
+
+watch(() => state.activeView, (view) => {
+  resetView()
+  const dname = DUNGEON_MAP_NAMES[view]
+  currentFloor.value = dname ? (DUNGEON_FLOORS[dname]?.[0] ?? null) : null
+  if (view === 'overworld') currentArea.value = state.activeZone ?? null
+}, { immediate: true })
+
+watch(() => state.activeZone, (zone) => {
+  if (state.activeView === 'overworld') {
+    currentArea.value = zone
+    resetView()
+  }
+})
+
+function setFloor(floor) {
+  currentFloor.value = floor
+  resetView()
+}
+
+const useFloors = computed(() => settings.autoTabDungeons === 'etage')
+
+function setArea(area) {
+  currentArea.value = area
+  state.activeZone = area
+  resetView()
+}
+
+// ── Map image path ────────────────────────────────────────────────────────────
+const mapSrc = computed(() => {
+  const base = import.meta.env.BASE_URL
+  if (mapName.value === 'map') {
+    if (currentArea.value) return `${base}images/maps/overworld/${currentArea.value}.png`
+    return `${base}images/maps/overworld.png`
+  }
+  if (useFloors.value && currentFloor.value) return `${base}images/maps/dungeons/${mapName.value}/${currentFloor.value}.png`
+  return `${base}images/maps/${mapName.value}.png`
+})
+
+// ── Coord indexes ─────────────────────────────────────────────────────────────
+// All coords indexed by id (used by overview mode for dungeons too)
 const coordsByIdAll = {}
 for (const e of mapCoordsRaw) {
   if (!coordsByIdAll[e.id]) coordsByIdAll[e.id] = []
   coordsByIdAll[e.id].push(e)
 }
 
+// Overworld: from map_coords.json (map === 'map')
+const overworldCoordById = {}
+for (const e of mapCoordsRaw) {
+  if (e.map !== 'map') continue
+  if (!overworldCoordById[e.id]) overworldCoordById[e.id] = []
+  overworldCoordById[e.id].push(e)
+}
+
+// Dungeons: from per-dungeon floor files
+const dungeonCoordById = {}
+for (const [dname, raw] of Object.entries(DUNGEON_COORDS_RAW)) {
+  dungeonCoordById[dname] = {}
+  for (const e of raw) {
+    if (!dungeonCoordById[dname][e.id]) dungeonCoordById[dname][e.id] = []
+    dungeonCoordById[dname][e.id].push(e)
+  }
+}
+
+// ── Build pin groups ──────────────────────────────────────────────────────────
 const pins = computed(() => {
   if (!fittedW.value) return []
 
-  const scaleX = fittedW.value  / naturalW.value
-  const scaleY = fittedH.value  / naturalH.value
+  const scaleX   = fittedW.value / naturalW.value
+  const scaleY   = fittedH.value / naturalH.value
+  const dname    = mapName.value
+  const isDungeon = dname !== 'map'
+  const floor    = currentFloor.value
 
   const byCoord = {}
   for (const loc of state.visibleLocations) {
     if (loc.id == null) continue
-    const coordList = coordsByIdAll[loc.id] || []
-    const coords = coordList.filter(c => c.map === mapName.value)
 
-    for (const coord of coords) {
+    let coordList
+    if (!isDungeon && currentArea.value) {
+      // Overworld area zoom
+      const byId = areaCoordById[currentArea.value] || {}
+      coordList = (byId[loc.id] || []).map(c => ({ ...c, map: 'area' }))
+    } else if (!isDungeon) {
+      coordList = overworldCoordById[loc.id] || []
+    } else if (useFloors.value) {
+      const byId = dungeonCoordById[dname] || {}
+      coordList = (byId[loc.id] || []).filter(c => c.floor === floor && c.x > 0 && c.y > 0)
+    } else {
+      // overview mode: use map_coords.json dungeon entries
+      coordList = (coordsByIdAll[loc.id] || []).filter(c => c.map === dname)
+    }
+
+    for (const coord of coordList) {
       const key = `${coord.x}:${coord.y}`
-      if (!byCoord[key]) {
-        byCoord[key] = {
-          x: Math.round(coord.x * scaleX),
-          y: Math.round(coord.y * scaleY),
-          locs: [],
-        }
+      if (!byCoord[key]) byCoord[key] = {
+        x: Math.round(coord.x * scaleX),
+        y: Math.round(coord.y * scaleY),
+        locs: [],
       }
       byCoord[key].locs.push(loc)
     }
@@ -212,18 +360,14 @@ function hintColorForLocs(locs) {
     if (best === null || s > best) best = s
   }
   if (best === null) return null
-  if (best >= 30) return '#fce070'  // priority → gold
-  if (best >= 20) return '#ff5050'  // avoid → red
-  return '#ffffff'                   // unspecified / noPriority → white
+  if (best >= 30) return '#fce070'
+  if (best >= 20) return '#ff5050'
+  return '#ffffff'
 }
 
-// ── Hover pin → alimente ItemGrid ────────────────────────────────────────────
-function showTooltip(e, pin) {
-  state.hoveredPinLocs = pin.locs
-}
-function hideTooltip() {
-  state.hoveredPinLocs = []
-}
+// ── Hover pin ─────────────────────────────────────────────────────────────────
+function showTooltip(e, pin) { state.hoveredPinLocs = pin.locs }
+function hideTooltip()       { state.hoveredPinLocs = [] }
 
 // ── Click: check / right-click: uncheck ──────────────────────────────────────
 function checkPin(pin) {
@@ -231,32 +375,51 @@ function checkPin(pin) {
     if (!state.isChecked(loc.id)) state.toggleLocation(loc.id)
   }
 }
-
 function uncheckPin(pin) {
   for (const loc of pin.locs) {
     if (state.isChecked(loc.id)) state.toggleLocation(loc.id)
   }
 }
-
 function onContextmenuPin(e, pin) {
   if (pin.locs.some(l => state.isChecked(l.id))) uncheckPin(pin)
 }
-
-// ── Map image path ────────────────────────────────────────────────────────────
-const mapSrc = computed(() => {
-  const name = mapName.value === 'map' ? 'overworld' : mapName.value
-  return `${import.meta.env.BASE_URL}images/maps/${name}.png`
-})
 
 </script>
 
 <template>
   <div class="map-view">
+
+    <!-- Overworld area selector -->
+    <div v-if="state.activeView === 'overworld'" class="floor-selector">
+      <button
+        :class="['floor-btn', { active: currentArea === null }]"
+        @click.stop="setArea(null)"
+      >Full Map</button>
+      <button
+        v-for="area in OVERWORLD_AREAS"
+        :key="area"
+        :class="['floor-btn', { active: currentArea === area }]"
+        @click.stop="setArea(area)"
+      >{{ AREA_LABELS[area] }}</button>
+    </div>
+
+    <!-- Floor selector (dungeons only, when mode = étage) -->
+    <div v-else-if="useFloors && availableFloors.length > 1" class="floor-selector">
+      <button
+        v-for="floor in availableFloors"
+        :key="floor"
+        :class="['floor-btn', { active: currentFloor === floor }]"
+        @click.stop="setFloor(floor)"
+      >{{ floor }}</button>
+    </div>
+
     <div
       ref="containerEl"
       class="map-container"
       :style="{ cursor: dragging ? 'grabbing' : 'grab' }"
       @mousedown="onMousedown"
+      @mousemove="onMousemoveMap"
+      @mouseleave="onMouseleaveMap"
     >
 
       <!-- Wrapper explicitly sized to the fitted image dimensions -->
@@ -305,7 +468,6 @@ const mapSrc = computed(() => {
               filter="url(#halo-blur)"
               pointer-events="none"
             />
-            <!-- Forme originale avec bandes horizontales (1, 2 ou 3 couleurs) -->
             <defs>
               <clipPath :id="`pc-${pin.x}-${pin.y}`">
                 <rect
@@ -320,10 +482,7 @@ const mapSrc = computed(() => {
               </clipPath>
             </defs>
 
-            <!-- Sections clippées à la forme -->
             <g :clip-path="`url(#pc-${pin.x}-${pin.y})`" :opacity="pin.allChecked ? 0.4 : 0.9">
-              <!-- 3 couleurs : 3 secteurs égaux (120°) depuis le centre, clippés à la forme -->
-              <!-- Rayons à 0°, 120°, 240° depuis le haut (R=30) : (0,-30), (+26,+15), (-26,+15) -->
               <template v-if="pin.segments.length === 3">
                 <polygon
                   :points="`${pin.x},${pin.y} ${pin.x},${pin.y-30} ${pin.x+26},${pin.y+15}`"
@@ -338,7 +497,6 @@ const mapSrc = computed(() => {
                   :fill="PIN_COLOR[pin.segments[2].status]"
                 />
               </template>
-              <!-- 2 couleurs : découpe diagonale -->
               <template v-else-if="pin.segments.length === 2">
                 <polygon
                   :points="`${pin.x+7},${pin.y-7} ${pin.x-7},${pin.y-7} ${pin.x-7},${pin.y+7}`"
@@ -349,7 +507,6 @@ const mapSrc = computed(() => {
                   :fill="PIN_COLOR[pin.segments[1].status]"
                 />
               </template>
-              <!-- 1 couleur : plein -->
               <rect
                 v-else
                 :x="pin.x - 20" :y="pin.y - 20"
@@ -358,7 +515,6 @@ const mapSrc = computed(() => {
               />
             </g>
 
-            <!-- Contour (fill none, noir) -->
             <rect
               v-if="state.activeView !== 'overworld' || pin.type === 'location'"
               :x="pin.x - 7" :y="pin.y - 7" width="14" height="14"
@@ -393,6 +549,12 @@ const mapSrc = computed(() => {
         </svg>
       </div>
 
+      <!-- Mouse coords (dev only) -->
+      <div
+        v-if="isDev && mouseImgX !== null"
+        class="mouse-coords"
+      >{{ mouseImgX }}, {{ mouseImgY }}</div>
+
       <!-- Reset zoom button -->
       <button
         v-if="zoom !== 1 || panX !== 0 || panY !== 0"
@@ -409,9 +571,39 @@ const mapSrc = computed(() => {
 .map-view {
   flex: 1;
   display: flex;
+  flex-direction: column;
   overflow: hidden;
   position: relative;
   min-height: 0;
+}
+
+.floor-selector {
+  display: flex;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--bg-panel, #1a1008);
+  border-bottom: 1px solid var(--border, #5a3a10);
+  flex-shrink: 0;
+}
+
+.floor-btn {
+  padding: 3px 10px;
+  background: transparent;
+  border: 1px solid var(--border, #5a3a10);
+  color: var(--text, #d4a84b);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: background 0.15s, color 0.15s;
+}
+.floor-btn:hover {
+  background: var(--bg-hover, #2a1a08);
+}
+.floor-btn.active {
+  background: var(--accent, #5a3a10);
+  color: #fff;
+  border-color: var(--accent-bright, #d4a84b);
 }
 
 .map-container {
@@ -455,6 +647,20 @@ const mapSrc = computed(() => {
 }
 .pin-group:hover .pin {
   transform: scale(1.28);
+}
+
+.mouse-coords {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-family: monospace;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  pointer-events: none;
 }
 
 .zoom-reset {

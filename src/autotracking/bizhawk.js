@@ -1,5 +1,7 @@
 import { useStateStore } from '../stores/stateStore'
+import { useSettingsStore } from '../stores/settingsStore'
 import locationsData from '../../data/locations.json'
+import roomAreaToZoneRaw from '../../data/room_area_to_zone.json'
 
 const BRIDGE_URL = 'http://localhost:65399'
 const POLL_MS    = 1000
@@ -9,6 +11,12 @@ const ROOM_AREA_TO_DUNGEON = {}
 for (const loc of locationsData) {
   if (loc.dungeon && loc.room_area != null && !(loc.room_area in ROOM_AREA_TO_DUNGEON))
     ROOM_AREA_TO_DUNGEON[loc.room_area] = loc.dungeon
+}
+
+// room_area (16-bit) → overworld zone string
+const ROOM_AREA_TO_ZONE = {}
+for (const [k, v] of Object.entries(roomAreaToZoneRaw)) {
+  ROOM_AREA_TO_ZONE[Number(k)] = v
 }
 
 // event flags → item keys (version <= 0.3.1)
@@ -67,8 +75,16 @@ async function poll() {
 
     const roomArea = data._room_area
     if (roomArea) {
-      const dungeon = ROOM_AREA_TO_DUNGEON[roomArea] ?? null
-      store.setActiveView(dungeon ?? 'overworld')
+      const settings = useSettingsStore()
+      const dungeon  = ROOM_AREA_TO_DUNGEON[roomArea] ?? null
+      if (dungeon && settings.autoTabDungeons !== 'non') {
+        store.setActiveView(dungeon)
+        store.setActiveZone(null)
+      } else if (!dungeon && settings.autoTabOverworld !== 'non') {
+        store.setActiveView('overworld')
+        const zone = ROOM_AREA_TO_ZONE[roomArea] ?? null
+        store.setActiveZone(zone)
+      }
     }
   } catch {
     failStreak++

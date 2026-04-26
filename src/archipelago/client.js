@@ -2,6 +2,12 @@ import { Client } from 'archipelago.js'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import apTables from '../../data/ap_tables.json'
+import roomAreaToZoneRaw from '../../data/room_area_to_zone.json'
+
+const ROOM_AREA_TO_ZONE = {}
+for (const [k, v] of Object.entries(roomAreaToZoneRaw)) {
+  ROOM_AREA_TO_ZONE[Number(k)] = v
+}
 
 // Low byte of room_area_id → dungeon key. Derived from room_mapping.lua (authoritative).
 // Covers all rooms including corridors/boss rooms without chests.
@@ -63,8 +69,15 @@ export async function connectToAP(server, port, slot, password = '') {
       [`tmc_room_${me.team}_${me.slot}`],
       (_key, roomAreaId) => {
         if (!roomAreaId) return
-        const dungeon = AREA_BYTE_TO_DUNGEON[roomAreaId & 0xFF] ?? null
-        store.setActiveView(dungeon ?? 'overworld')
+        const settings = useSettingsStore()
+        const dungeon  = AREA_BYTE_TO_DUNGEON[roomAreaId & 0xFF] ?? null
+        if (dungeon && settings.autoTabDungeons !== 'non') {
+          store.setActiveView(dungeon)
+          store.setActiveZone(null)
+        } else if (!dungeon && settings.autoTabOverworld !== 'non') {
+          store.setActiveView('overworld')
+          store.setActiveZone(ROOM_AREA_TO_ZONE[roomAreaId] ?? null)
+        }
       }
     )
 
