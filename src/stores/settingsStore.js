@@ -290,21 +290,33 @@ export const useSettingsStore = defineStore('settings', () => {
     if (o.progressive_shield     != null) progressiveShield.value    = Boolean(o.progressive_shield)
     if (o.progressive_scroll     != null) progressiveScroll.value    = Boolean(o.progressive_scroll)
 
-    // Dungeon warps
-    if (o.dungeon_warp_dws != null) warpDWS.value = o.dungeon_warp_dws
-    if (o.dungeon_warp_cof != null) warpCoF.value = o.dungeon_warp_cof
-    if (o.dungeon_warp_fow != null) warpFoW.value = o.dungeon_warp_fow
-    if (o.dungeon_warp_tod != null) warpToD.value = o.dungeon_warp_tod
-    if (o.dungeon_warp_pow != null) warpPoW.value = o.dungeon_warp_pow
-    if (o.dungeon_warp_dhc != null) warpDHC.value = o.dungeon_warp_dhc
+    // Dungeon warps — read from sd.options first, fall back to top-level sd
+    const rawWarpDWS = o.dungeon_warp_dws ?? sd.dungeon_warp_dws
+    const rawWarpCoF = o.dungeon_warp_cof ?? sd.dungeon_warp_cof
+    const rawWarpFoW = o.dungeon_warp_fow ?? sd.dungeon_warp_fow
+    const rawWarpToD = o.dungeon_warp_tod ?? sd.dungeon_warp_tod
+    const rawWarpPoW = o.dungeon_warp_pow ?? sd.dungeon_warp_pow
+    const rawWarpDHC = o.dungeon_warp_dhc ?? sd.dungeon_warp_dhc
+    if (rawWarpDWS != null) warpDWS.value = rawWarpDWS
+    if (rawWarpCoF != null) warpCoF.value = rawWarpCoF
+    if (rawWarpFoW != null) warpFoW.value = rawWarpFoW
+    if (rawWarpToD != null) warpToD.value = rawWarpToD
+    if (rawWarpPoW != null) warpPoW.value = rawWarpPoW
+    if (rawWarpDHC != null) warpDHC.value = rawWarpDHC
 
-    // Wind crests
-    if (o.wind_crest_crenel       != null) windCrestCrenel.value      = Boolean(o.wind_crest_crenel)
-    if (o.wind_crest_falls        != null) windCrestFalls.value       = Boolean(o.wind_crest_falls)
-    if (o.wind_crest_clouds       != null) windCrestClouds.value      = Boolean(o.wind_crest_clouds)
-    if (o.wind_crest_castor       != null) windCrestCastor.value      = Boolean(o.wind_crest_castor)
-    if (o.wind_crest_south_field  != null) windCrestSouthField.value  = Boolean(o.wind_crest_south_field)
-    if (o.wind_crest_minish_woods != null) windCrestMinishWoods.value = Boolean(o.wind_crest_minish_woods)
+    // Wind crests — same dual lookup
+    const rawCrenel  = o.wind_crest_crenel       ?? sd.wind_crest_crenel
+    const rawFalls   = o.wind_crest_falls         ?? sd.wind_crest_falls
+    const rawClouds  = o.wind_crest_clouds        ?? sd.wind_crest_clouds
+    const rawCastor  = o.wind_crest_castor        ?? sd.wind_crest_castor
+    const rawSmith   = o.wind_crest_south_field   ?? sd.wind_crest_south_field
+    const rawMinish  = o.wind_crest_minish_woods  ?? sd.wind_crest_minish_woods
+    if (rawCrenel != null) windCrestCrenel.value      = Boolean(rawCrenel)
+    if (rawFalls  != null) windCrestFalls.value        = Boolean(rawFalls)
+    if (rawClouds != null) windCrestClouds.value       = Boolean(rawClouds)
+    if (rawCastor != null) windCrestCastor.value       = Boolean(rawCastor)
+    if (rawSmith  != null) windCrestSouthField.value   = Boolean(rawSmith)
+    if (rawMinish != null) windCrestMinishWoods.value  = Boolean(rawMinish)
 
     // Kinstone multipliers
     if (o.clouds_kinstone_multiplier != null) cloudKinstoneMultiplier.value = o.clouds_kinstone_multiplier
