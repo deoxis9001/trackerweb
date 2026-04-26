@@ -350,6 +350,27 @@ const FUSION_OPTIONS = [
           in the checklist and left panel. Enabling this option shows them.
           Map pins are never hidden.
         </p>
+
+        <div class="setting-row" style="margin-top:10px">
+          <label>Auto tab — Dungeons</label>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.autoTabDungeons === 'non' }]"      @click="s.autoTabDungeons = 'non'">Off</button>
+            <button :class="['opt-btn', { active: s.autoTabDungeons === 'overview' }]" @click="s.autoTabDungeons = 'overview'">Overview</button>
+            <button :class="['opt-btn', { active: s.autoTabDungeons === 'etage' }]"    @click="s.autoTabDungeons = 'etage'">Floor</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label>Auto tab — Overworld</label>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.autoTabOverworld === 'non' }]" @click="s.autoTabOverworld = 'non'">Off</button>
+            <button :class="['opt-btn', { active: s.autoTabOverworld === 'oui' }]" @click="s.autoTabOverworld = 'oui'">On</button>
+          </div>
+        </div>
+        <p class="hint-block">
+          Controls whether the map switches automatically when you change area (autotracking / AP).
+          <b>Floor</b> shows individual floor maps in dungeons.
+          <b>Overview</b> shows the full dungeon overview map.
+        </p>
       </section>
     </div>
 
@@ -537,6 +558,33 @@ const FUSION_OPTIONS = [
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text);
+}
+.btn-group { display: flex; gap: 4px; }
+.opt-btn {
+  padding: 3px 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+}
+.opt-btn:hover { background: var(--bg-hover, #2a1a08); }
+.opt-btn.active {
+  background: var(--accent, #5a3a10);
+  color: #fff;
+  border-color: var(--accent-bright, #d4a84b);
 }
 
 .hint-block {

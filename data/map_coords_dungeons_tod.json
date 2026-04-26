@@ -1,0 +1,296 @@
+[
+  {
+    "id": 6029475,
+    "name": "Droplets Entrance B2 East Iceblock",
+    "floor": "B2",
+    "x": 1225,
+    "y": 80
+  },
+  {
+    "id": 6029476,
+    "name": "Droplets Entrance B2 West Iceblock",
+    "floor": "B2",
+    "x": 905,
+    "y": 110
+  },
+  {
+    "id": 6029477,
+    "name": "Droplets Left Path B1 Underpass Item1",
+    "floor": "B1",
+    "x": 422,
+    "y": 1160
+  },
+  {
+    "id": 6029478,
+    "name": "Droplets Left Path B1 Underpass Item2",
+    "floor": "B1",
+    "x": 422,
+    "y": 1160
+  },
+  {
+    "id": 6029479,
+    "name": "Droplets Left Path B1 Underpass Item3",
+    "floor": "B1",
+    "x": 422,
+    "y": 1160
+  },
+  {
+    "id": 6029480,
+    "name": "Droplets Left Path B1 Underpass Item4",
+    "floor": "B1",
+    "x": 422,
+    "y": 1160
+  },
+  {
+    "id": 6029481,
+    "name": "Droplets Left Path B1 Underpass Item5",
+    "floor": "B1",
+    "x": 422,
+    "y": 1160
+  },
+  {
+    "id": 6029482,
+    "name": "Droplets Left Path B1 Waterfall Big Chest",
+    "floor": "B1",
+    "x": 472,
+    "y": 1270
+  },
+  {
+    "id": 6029483,
+    "name": "Droplets Left Path B1 Waterfall Underwater 1",
+    "floor": "B1",
+    "x": 102,
+    "y": 695
+  },
+  {
+    "id": 6029484,
+    "name": "Droplets Left Path B1 Waterfall Underwater 2",
+    "floor": "B1",
+    "x": 102,
+    "y": 695
+  },
+  {
+    "id": 6029485,
+    "name": "Droplets Left Path B1 Waterfall Underwater 3",
+    "floor": "B1",
+    "x": 102,
+    "y": 695
+  },
+  {
+    "id": 6029486,
+    "name": "Droplets Left Path B1 Waterfall Underwater 4",
+    "floor": "B1",
+    "x": 102,
+    "y": 695
+  },
+  {
+    "id": 6029487,
+    "name": "Droplets Left Path B1 Waterfall Underwater 5",
+    "floor": "B1",
+    "x": 102,
+    "y": 695
+  },
+  {
+    "id": 6029488,
+    "name": "Droplets Left Path B1 Waterfall Underwater 6",
+    "floor": "B1",
+    "x": 102,
+    "y": 695
+  },
+  {
+    "id": 6029489,
+    "name": "Droplets Left Path B2 Waterfall Underwater 1",
+    "floor": "B2",
+    "x": 600,
+    "y": 1185
+  },
+  {
+    "id": 6029490,
+    "name": "Droplets Left Path B2 Waterfall Underwater 2",
+    "floor": "B2",
+    "x": 600,
+    "y": 1185
+  },
+  {
+    "id": 6029491,
+    "name": "Droplets Left Path B2 Waterfall Underwater 3",
+    "floor": "B2",
+    "x": 600,
+    "y": 1185
+  },
+  {
+    "id": 6029492,
+    "name": "Droplets Left Path B2 Waterfall Underwater 4",
+    "floor": "B2",
+    "x": 600,
+    "y": 1185
+  },
+  {
+    "id": 6029493,
+    "name": "Droplets Left Path B2 Waterfall Underwater 5",
+    "floor": "B2",
+    "x": 600,
+    "y": 1185
+  },
+  {
+    "id": 6029494,
+    "name": "Droplets Left Path B2 Waterfall Underwater 6",
+    "floor": "B2",
+    "x": 600,
+    "y": 1185
+  },
+  {
+    "id": 6029495,
+    "name": "Droplets Left Path B2 Underwater Pot",
+    "floor": "B2",
+    "x": 910,
+    "y": 1390
+  },
+  {
+    "id": 6029496,
+    "name": "Droplets Left Path B2 Ice Madderpillar Big Chest",
+    "floor": "B2",
+    "x": 1505,
+    "y": 1185
+  },
+  {
+    "id": 6029497,
+    "name": "Droplets Left Path B2 Ice Plain Frozen Chest",
+    "floor": "B2",
+    "x": 1110,
+    "y": 945
+  },
+  {
+    "id": 6029498,
+    "name": "Droplets Left Path B2 Ice Plain Chest",
+    "floor": "B2",
+    "x": 1000,
+    "y": 800
+  },
+  {
+    "id": 6029499,
+    "name": "Droplets Left Path B2 Lilypad Corner Frozen Chest",
+    "floor": "B2",
+    "x": 695,
+    "y": 995
+  },
+  {
+    "id": 6029500,
+    "name": "Droplets Right Path B1 1st Chest",
+    "floor": "B1",
+    "x": 1207,
+    "y": 710
+  },
+  {
+    "id": 6029501,
+    "name": "Droplets Right Path B1 2nd Chest",
+    "floor": "B1",
+    "x": 1412,
+    "y": 890
+  },
+  {
+    "id": 6029502,
+    "name": "Droplets Right Path B1 Pot",
+    "floor": "B1",
+    "x": 1512,
+    "y": 1125
+  },
+  {
+    "id": 6029503,
+    "name": "Droplets Right Path B3 Frozen Chest",
+    "floor": "B3",
+    "x": 120,
+    "y": 105
+  },
+  {
+    "id": 6029504,
+    "name": "Droplets Right Path B1 Blu Chu Big Chest",
+    "floor": "B1",
+    "x": 1172,
+    "y": 1355
+  },
+  {
+    "id": 6029505,
+    "name": "Droplets Right Path B2 Frozen Chest",
+    "floor": "B2",
+    "x": 1385,
+    "y": 1205
+  },
+  {
+    "id": 6029506,
+    "name": "Droplets Right Path B2 Dark Maze Bottom Chest",
+    "floor": "B2",
+    "x": 1895,
+    "y": 1090
+  },
+  {
+    "id": 6029507,
+    "name": "Droplets Right Path B2 Mulldozers Item Drop",
+    "floor": "B2",
+    "x": 1670,
+    "y": 945
+  },
+  {
+    "id": 6029508,
+    "name": "Droplets Right Path B2 Dark Maze Top Right Chest",
+    "floor": "B2",
+    "x": 1990,
+    "y": 690
+  },
+  {
+    "id": 6029509,
+    "name": "Droplets Right Path B2 Dark Maze Top Left Chest",
+    "floor": "B2",
+    "x": 1850,
+    "y": 770
+  },
+  {
+    "id": 6029510,
+    "name": "Droplets Right Path B2 Underpass Item1",
+    "floor": "B2",
+    "x": 1450,
+    "y": 487
+  },
+  {
+    "id": 6029511,
+    "name": "Droplets Right Path B2 Underpass Item2",
+    "floor": "B2",
+    "x": 1450,
+    "y": 487
+  },
+  {
+    "id": 6029512,
+    "name": "Droplets Right Path B2 Underpass Item3",
+    "floor": "B2",
+    "x": 1450,
+    "y": 487
+  },
+  {
+    "id": 6029513,
+    "name": "Droplets Right Path B2 Underpass Item4",
+    "floor": "B2",
+    "x": 1450,
+    "y": 487
+  },
+  {
+    "id": 6029514,
+    "name": "Droplets Right Path B2 Underpass Item5",
+    "floor": "B2",
+    "x": 1450,
+    "y": 487
+  },
+  {
+    "id": 6029515,
+    "name": "Droplets Boss Item",
+    "floor": "B1",
+    "x": 775,
+    "y": 1225
+  },
+  {
+    "id": 6029516,
+    "name": "Droplets Prize",
+    "floor": "B1",
+    "x": 775,
+    "y": 1225
+  }
+]
