@@ -81,11 +81,7 @@ function openBroadcastRegions() {
     </div>
 
     <div class="nav-right">
-      <button
-        :class="['settings-btn', store.showRegionPopup && 'active']"
-        @click="store.toggleRegionPopup()"
-        title="Régions accessibles"
-      >Régions</button>
+
       <button class="settings-btn" @click="openBroadcastItems()" title="Broadcast items">📡 Items</button>
       <button v-if="isDev" class="settings-btn" @click="openBroadcastRegions()" title="Broadcast régions [dev]">📡 Régions</button>
       <button
