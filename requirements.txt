@@ -1,0 +1,2 @@
+# Only needed to run scripts/extract_tmc_data.py
+# No Archipelago dependency required

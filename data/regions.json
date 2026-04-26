@@ -1,0 +1,583 @@
+[
+  {
+    "key": "MENU",
+    "name": "Menu",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 0
+  },
+  {
+    "key": "SOUTH_FIELD",
+    "name": "South Field",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 8
+  },
+  {
+    "key": "SOUTH_PUDDLE",
+    "name": "South Puddle",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 15
+  },
+  {
+    "key": "HYRULE_TOWN",
+    "name": "Hyrule Town",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 72
+  },
+  {
+    "key": "NORTH_FIELD",
+    "name": "North Field",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 8
+  },
+  {
+    "key": "CASTLE_EXTERIOR",
+    "name": "Castle Exterior",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 8
+  },
+  {
+    "key": "EASTERN_HILLS",
+    "name": "Eastern Hills",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 9
+  },
+  {
+    "key": "LONLON",
+    "name": "LonLon",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 12
+  },
+  {
+    "key": "LOWER_FALLS",
+    "name": "Lower Falls",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 8
+  },
+  {
+    "key": "LAKE_HYLIA_NORTH",
+    "name": "Lake Hylia North",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 19
+  },
+  {
+    "key": "LAKE_HYLIA_SOUTH",
+    "name": "Lake Hylia South",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 4
+  },
+  {
+    "key": "MINISH_WOODS",
+    "name": "Minish Woods",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 15
+  },
+  {
+    "key": "BELARI",
+    "name": "Belari area",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 7
+  },
+  {
+    "key": "TRILBY_HIGHLANDS",
+    "name": "Trilby Highlands",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 7
+  },
+  {
+    "key": "WESTERN_WOODS",
+    "name": "Western Woods",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 46
+  },
+  {
+    "key": "CRENEL_BASE",
+    "name": "Crenel Base",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 10
+  },
+  {
+    "key": "CRENEL",
+    "name": "Crenel",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 22
+  },
+  {
+    "key": "MELARI",
+    "name": "Melari",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 10
+  },
+  {
+    "key": "CASTOR_WILDS",
+    "name": "Castor Wilds",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 25
+  },
+  {
+    "key": "WIND_RUINS",
+    "name": "Ruins",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 11
+  },
+  {
+    "key": "ROYAL_VALLEY",
+    "name": "Royal Valley",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 4
+  },
+  {
+    "key": "GRAVEYARD",
+    "name": "Graveyard",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 5
+  },
+  {
+    "key": "DUNGEON_RC",
+    "name": "Dungeon RC",
+    "dungeon": "RC",
+    "is_dungeon_region": true,
+    "location_count": 4
+  },
+  {
+    "key": "DUNGEON_RC_CLEAR",
+    "name": "Dungeon RC Clear",
+    "dungeon": "RC",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "FALLS_ENTRANCE",
+    "name": "Falls Entrance",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 4
+  },
+  {
+    "key": "MIDDLE_FALLS",
+    "name": "Middle Falls",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 3
+  },
+  {
+    "key": "UPPER_FALLS",
+    "name": "Upper Falls",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 21
+  },
+  {
+    "key": "CLOUDS",
+    "name": "Clouds",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 22
+  },
+  {
+    "key": "WIND_TRIBE",
+    "name": "Wind Tribe",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 6
+  },
+  {
+    "key": "DUNGEON_DWS_ENTRANCE",
+    "name": "Deepwood Shrine Entrance",
+    "dungeon": "DWS",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "DUNGEON_DWS_BARREL",
+    "name": "Deepwood Shrine Barrel Area",
+    "dungeon": "DWS",
+    "is_dungeon_region": true,
+    "location_count": 3
+  },
+  {
+    "key": "DUNGEON_DWS_MULLDOZER",
+    "name": "Deepwood Shrine East Side through locked door",
+    "dungeon": "DWS",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_DWS_BACK_HALF",
+    "name": "Deepwood Shrine Back Half",
+    "dungeon": "DWS",
+    "is_dungeon_region": true,
+    "location_count": 7
+  },
+  {
+    "key": "DUNGEON_DWS_BLUE_WARP",
+    "name": "Deepwood Shrine Blue Warp",
+    "dungeon": "DWS",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_DWS_RED_WARP",
+    "name": "Deepwood Shrine Red Warp",
+    "dungeon": "DWS",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_DWS_CLEAR",
+    "name": "Deepwood Shrine Clear",
+    "dungeon": "DWS",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "DUNGEON_COF_ENTRANCE",
+    "name": "Cave of Flames Entrance",
+    "dungeon": "CoF",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_COF_MAIN",
+    "name": "Cave of Flames After Spikey Beetles",
+    "dungeon": "CoF",
+    "is_dungeon_region": true,
+    "location_count": 10
+  },
+  {
+    "key": "DUNGEON_COF_MINECART",
+    "name": "Cave of Flames After Minecart 2nd path",
+    "dungeon": "CoF",
+    "is_dungeon_region": true,
+    "location_count": 3
+  },
+  {
+    "key": "DUNGEON_COF_BLUE_WARP",
+    "name": "Cave of Flames Blue Warp",
+    "dungeon": "CoF",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_COF_LAVA_BASEMENT",
+    "name": "Cave of Flames Lava Basement",
+    "dungeon": "CoF",
+    "is_dungeon_region": true,
+    "location_count": 6
+  },
+  {
+    "key": "DUNGEON_COF_CLEAR",
+    "name": "Cave of Flames Clear",
+    "dungeon": "CoF",
+    "is_dungeon_region": true,
+    "location_count": 3
+  },
+  {
+    "key": "DUNGEON_FOW_ENTRANCE",
+    "name": "Fortress of Winds Entrance",
+    "dungeon": "FoW",
+    "is_dungeon_region": true,
+    "location_count": 22
+  },
+  {
+    "key": "DUNGEON_FOW_EYEGORE",
+    "name": "Fortress of Winds Past Eyegores",
+    "dungeon": "FoW",
+    "is_dungeon_region": true,
+    "location_count": 5
+  },
+  {
+    "key": "DUNGEON_FOW_BLUE_WARP",
+    "name": "Fortress of Winds Blue warp",
+    "dungeon": "FoW",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "DUNGEON_FOW_CLEAR",
+    "name": "Fortress of Winds Clear",
+    "dungeon": "FoW",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "DUNGEON_TOD_ENTRANCE",
+    "name": "Temple of Droplets Entrance",
+    "dungeon": "ToD",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "DUNGEON_TOD_MAIN",
+    "name": "Temple of Droplets After Big key",
+    "dungeon": "ToD",
+    "is_dungeon_region": true,
+    "location_count": 29
+  },
+  {
+    "key": "DUNGEON_TOD_LEFT_BASEMENT",
+    "name": "Temple of Droplets Left Basement",
+    "dungeon": "ToD",
+    "is_dungeon_region": true,
+    "location_count": 4
+  },
+  {
+    "key": "DUNGEON_TOD_DARK_MAZE_END",
+    "name": "Temple of Droplets Dark Maze End",
+    "dungeon": "ToD",
+    "is_dungeon_region": true,
+    "location_count": 5
+  },
+  {
+    "key": "DUNGEON_TOD_WEST_SWITCH_LEDGE",
+    "name": "Temple of Droplets West Switch Ledge",
+    "dungeon": "ToD",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_TOD_EAST_SWITCH",
+    "name": "Temple of Droplets East Switch",
+    "dungeon": "ToD",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_TOD_WEST_SWITCH",
+    "name": "Temple of Droplets West Switch",
+    "dungeon": "ToD",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_TOD_CLEAR",
+    "name": "Temple of Droplets Clear",
+    "dungeon": "ToD",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "DUNGEON_POW_ENTRANCE",
+    "name": "Palace of Winds Entrance",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_POW_OUT_1F",
+    "name": "Palace of Winds 1st Half 1F",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "DUNGEON_POW_OUT_2F",
+    "name": "Palace of Winds 1st Half 2F",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 5
+  },
+  {
+    "key": "DUNGEON_POW_OUT_3F",
+    "name": "Palace of Winds 1st Half 3F",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_POW_OUT_4F",
+    "name": "Palace of Winds 1st Half 4F",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_POW_OUT_5F",
+    "name": "Palace of Winds 1st Half 5F",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 3
+  },
+  {
+    "key": "DUNGEON_POW_BLUE_WARP",
+    "name": "Palace of Winds Blue warp",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_POW_IN_1F",
+    "name": "Palace of Winds 2nd Half 1F",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_POW_IN_2F",
+    "name": "Palace of Winds 2nd Half 2F",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "DUNGEON_POW_IN_3F",
+    "name": "Palace of Winds 2nd Half 3F",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "DUNGEON_POW_IN_3F_SWITCH",
+    "name": "Palace of Winds 2nd Half 3F Switch",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_POW_IN_4F",
+    "name": "Palace of Winds 2nd Half 4F",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "DUNGEON_POW_RED_WARP",
+    "name": "Palace of Winds Red warp",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_POW_IN_5F",
+    "name": "Palace of Winds 2nd Half 5F",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_POW_IN_4F_END",
+    "name": "Palace of Winds 2nd Half 4F End Maze",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_POW_IN_5F_END",
+    "name": "Palace of Winds 2nd Half 5F End Chest",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_POW_CLEAR",
+    "name": "Palace of Winds Clear",
+    "dungeon": "PoW",
+    "is_dungeon_region": true,
+    "location_count": 2
+  },
+  {
+    "key": "SANCTUARY",
+    "name": "Sanctuary",
+    "dungeon": "DHC",
+    "is_dungeon_region": true,
+    "location_count": 4
+  },
+  {
+    "key": "STAINED_GLASS",
+    "name": "Sanctuary - Stained Glass",
+    "dungeon": "DHC",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_DHC_B1_WEST",
+    "name": "Dark Hyrule Castle Basement Sanctuary Entrance",
+    "dungeon": "DHC",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_DHC_B2",
+    "name": "Dark Hyrule Castle Basement Jail",
+    "dungeon": "DHC",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_DHC_ENTRANCE",
+    "name": "Dark Hyrule Castle Main Entrance",
+    "dungeon": "DHC",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_DHC_B1_EAST",
+    "name": "Dark Hyrule Castle Basement Canon Puzzle",
+    "dungeon": "DHC",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_DHC_1F",
+    "name": "Dark Hyrule Castle Throne Room",
+    "dungeon": "DHC",
+    "is_dungeon_region": true,
+    "location_count": 1
+  },
+  {
+    "key": "DUNGEON_DHC_OUTSIDE",
+    "name": "Dark Hyrule Castle Outside",
+    "dungeon": "DHC",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_DHC_RED_WARP",
+    "name": "Dark Hyrule Castle Red Warp",
+    "dungeon": "DHC",
+    "is_dungeon_region": true,
+    "location_count": 0
+  },
+  {
+    "key": "DUNGEON_DHC_BLUE_WARP",
+    "name": "Dark Hyrule Castle Blue Warp",
+    "dungeon": "DHC",
+    "is_dungeon_region": true,
+    "location_count": 5
+  },
+  {
+    "key": "VAATI_FIGHT",
+    "name": "Vaati Fight",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 0
+  },
+  {
+    "key": "FUSIONS",
+    "name": "Fusion",
+    "dungeon": null,
+    "is_dungeon_region": false,
+    "location_count": 91
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "name": "tmcr-tracker-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "archipelago.js": "^2.0.4",
+    "bootstrap": "^5.3.8",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.23",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "vite": "^7.2.1"
+  }
+}

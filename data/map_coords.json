@@ -1,0 +1,5726 @@
+[
+  {
+    "id": 6029000,
+    "name": "South Field Smith House Chest",
+    "map": "map",
+    "x": 1427,
+    "y": 1918
+  },
+  {
+    "id": 6029001,
+    "name": "South Field Smith House Left Item",
+    "map": "map",
+    "x": 1427,
+    "y": 1918
+  },
+  {
+    "id": 6029002,
+    "name": "South Field Smith House Right Item",
+    "map": "map",
+    "x": 1427,
+    "y": 1918
+  },
+  {
+    "id": 6029003,
+    "name": "South Field Puddle Fusion Item Top Left",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029004,
+    "name": "South Field Puddle Fusion Item Top Middle Left",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029005,
+    "name": "South Field Puddle Fusion Item Top Middle",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029006,
+    "name": "South Field Puddle Fusion Item Top Middle Right",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029007,
+    "name": "South Field Puddle Fusion Item Top Right",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029008,
+    "name": "South Field Puddle Fusion Item Center Left",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029009,
+    "name": "South Field Puddle Fusion Item Center Middle Left",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029010,
+    "name": "South Field Puddle Fusion Item Center Middle",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029011,
+    "name": "South Field Puddle Fusion Item Center Middle Right",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029012,
+    "name": "South Field Puddle Fusion Item Center Right",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029013,
+    "name": "South Field Puddle Fusion Item Bottom Left",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029014,
+    "name": "South Field Puddle Fusion Item Bottom Middle Left",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029015,
+    "name": "South Field Puddle Fusion Item Bottom Middle",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029016,
+    "name": "South Field Puddle Fusion Item Bottom Middle Right",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029017,
+    "name": "South Field Puddle Fusion Item Bottom Right",
+    "map": "map",
+    "x": 1049,
+    "y": 1842
+  },
+  {
+    "id": 6029018,
+    "name": "South Field Fusion Chest",
+    "map": "map",
+    "x": 1507,
+    "y": 1892
+  },
+  {
+    "id": 6029019,
+    "name": "South Field Tree Fusion Item",
+    "map": "map",
+    "x": 1608,
+    "y": 2018
+  },
+  {
+    "id": 6029020,
+    "name": "South Field Minish Size Water Hole Item",
+    "map": "map",
+    "x": 1241,
+    "y": 1798
+  },
+  {
+    "id": 6029021,
+    "name": "South Field Tingle NPC",
+    "map": "map",
+    "x": 1624,
+    "y": 1837
+  },
+  {
+    "id": 6029022,
+    "name": "Town Cafe Lady NPC",
+    "map": "map",
+    "x": 1262,
+    "y": 1510
+  },
+  {
+    "id": 6029023,
+    "name": "Town Shop 80 Item",
+    "map": "map",
+    "x": 1390,
+    "y": 1510
+  },
+  {
+    "id": 6029024,
+    "name": "Town Shop 300 Item",
+    "map": "map",
+    "x": 1390,
+    "y": 1510
+  },
+  {
+    "id": 6029025,
+    "name": "Town Shop 600 Item",
+    "map": "map",
+    "x": 1390,
+    "y": 1510
+  },
+  {
+    "id": 6029026,
+    "name": "Town Shop 600 Item 2",
+    "map": "map",
+    "x": 1390,
+    "y": 1510
+  },
+  {
+    "id": 6029027,
+    "name": "Town Shop Behind Counter Item",
+    "map": "map",
+    "x": 1390,
+    "y": 1510
+  },
+  {
+    "id": 6029028,
+    "name": "Town Shop Attic Chest",
+    "map": "map",
+    "x": 1390,
+    "y": 1510
+  },
+  {
+    "id": 6029029,
+    "name": "Town Bakery Attic Chest",
+    "map": "map",
+    "x": 1431,
+    "y": 1325
+  },
+  {
+    "id": 6029030,
+    "name": "Town Inn Backdoor HP",
+    "map": "map",
+    "x": 1616,
+    "y": 1257
+  },
+  {
+    "id": 6029031,
+    "name": "Town Inn Ledge Chest",
+    "map": "map",
+    "x": 1571,
+    "y": 1357
+  },
+  {
+    "id": 6029032,
+    "name": "Town Inn Pot",
+    "map": "map",
+    "x": 1570,
+    "y": 1310
+  },
+  {
+    "id": 6029032,
+    "name": "Town Inn Pot",
+    "map": "map",
+    "x": 1592,
+    "y": 1414
+  },
+  {
+    "id": 6029033,
+    "name": "Town Well Right Chest",
+    "map": "map",
+    "x": 1538,
+    "y": 1210
+  },
+  {
+    "id": 6029034,
+    "name": "Town Goron Merchant 1 Left",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029035,
+    "name": "Town Goron Merchant 1 Middle",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029036,
+    "name": "Town Goron Merchant 1 Right",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029037,
+    "name": "Town Goron Merchant 2 Left",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029038,
+    "name": "Town Goron Merchant 2 Middle",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029039,
+    "name": "Town Goron Merchant 2 Right",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029040,
+    "name": "Town Goron Merchant 3 Left",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029041,
+    "name": "Town Goron Merchant 3 Middle",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029042,
+    "name": "Town Goron Merchant 3 Right",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029043,
+    "name": "Town Goron Merchant 4 Left",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029044,
+    "name": "Town Goron Merchant 4 Middle",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029045,
+    "name": "Town Goron Merchant 4 Right",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029046,
+    "name": "Town Goron Merchant 5 Left",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029047,
+    "name": "Town Goron Merchant 5 Middle",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029048,
+    "name": "Town Goron Merchant 5 Right",
+    "map": "map",
+    "x": 1352,
+    "y": 1350
+  },
+  {
+    "id": 6029049,
+    "name": "Town Dojo NPC Sword",
+    "map": "map",
+    "x": 1198,
+    "y": 1618
+  },
+  {
+    "id": 6029050,
+    "name": "Town Dojo NPC Green Sword",
+    "map": "map",
+    "x": 1198,
+    "y": 1618
+  },
+  {
+    "id": 6029051,
+    "name": "Town Dojo NPC Boots + Sword",
+    "map": "map",
+    "x": 1198,
+    "y": 1618
+  },
+  {
+    "id": 6029052,
+    "name": "Town Dojo NPC Cape + Sword",
+    "map": "map",
+    "x": 1198,
+    "y": 1618
+  },
+  {
+    "id": 6029053,
+    "name": "Town Well Top Chest",
+    "map": "map",
+    "x": 1464,
+    "y": 1115
+  },
+  {
+    "id": 6029054,
+    "name": "Town School Roof Chest",
+    "map": "map",
+    "x": 1475,
+    "y": 1070
+  },
+  {
+    "id": 6029055,
+    "name": "Town School Path Fusion Chest",
+    "map": "map",
+    "x": 1602,
+    "y": 1067
+  },
+  {
+    "id": 6029056,
+    "name": "Town School Path Left Chest",
+    "map": "map",
+    "x": 1602,
+    "y": 1067
+  },
+  {
+    "id": 6029057,
+    "name": "Town School Path Middle Chest",
+    "map": "map",
+    "x": 1602,
+    "y": 1067
+  },
+  {
+    "id": 6029058,
+    "name": "Town School Path Right Chest",
+    "map": "map",
+    "x": 1602,
+    "y": 1067
+  },
+  {
+    "id": 6029059,
+    "name": "Town School Path HP",
+    "map": "map",
+    "x": 1602,
+    "y": 1067
+  },
+  {
+    "id": 6029060,
+    "name": "Town Digging Top Chest",
+    "map": "map",
+    "x": 1475,
+    "y": 1277
+  },
+  {
+    "id": 6029061,
+    "name": "Town Digging Right Chest",
+    "map": "map",
+    "x": 1475,
+    "y": 1277
+  },
+  {
+    "id": 6029062,
+    "name": "Town Digging Left Chest",
+    "map": "map",
+    "x": 1475,
+    "y": 1277
+  },
+  {
+    "id": 6029063,
+    "name": "Town Well Left Chest",
+    "map": "map",
+    "x": 1475,
+    "y": 1277
+  },
+  {
+    "id": 6029064,
+    "name": "Town Bell HP",
+    "map": "map",
+    "x": 1325,
+    "y": 1205
+  },
+  {
+    "id": 6029065,
+    "name": "Town Waterfall Fusion Chest",
+    "map": "map",
+    "x": 1150,
+    "y": 1271
+  },
+  {
+    "id": 6029066,
+    "name": "Town Carlov NPC",
+    "map": "map",
+    "x": 1043,
+    "y": 1603
+  },
+  {
+    "id": 6029067,
+    "name": "Town Well Bottom Chest",
+    "map": "map",
+    "x": 1497,
+    "y": 1435
+  },
+  {
+    "id": 6029068,
+    "name": "Town Cuccos Lv 1",
+    "map": "map",
+    "x": 1550,
+    "y": 1600
+  },
+  {
+    "id": 6029069,
+    "name": "Town Cuccos Lv 2",
+    "map": "map",
+    "x": 1550,
+    "y": 1600
+  },
+  {
+    "id": 6029070,
+    "name": "Town Cuccos Lv 3",
+    "map": "map",
+    "x": 1550,
+    "y": 1600
+  },
+  {
+    "id": 6029071,
+    "name": "Town Cuccos Lv 4",
+    "map": "map",
+    "x": 1550,
+    "y": 1600
+  },
+  {
+    "id": 6029072,
+    "name": "Town Cuccos Lv 5",
+    "map": "map",
+    "x": 1550,
+    "y": 1600
+  },
+  {
+    "id": 6029073,
+    "name": "Town Cuccos Lv 6",
+    "map": "map",
+    "x": 1550,
+    "y": 1600
+  },
+  {
+    "id": 6029074,
+    "name": "Town Cuccos Lv 7",
+    "map": "map",
+    "x": 1550,
+    "y": 1600
+  },
+  {
+    "id": 6029075,
+    "name": "Town Cuccos Lv 8",
+    "map": "map",
+    "x": 1550,
+    "y": 1600
+  },
+  {
+    "id": 6029076,
+    "name": "Town Cuccos Lv 9",
+    "map": "map",
+    "x": 1550,
+    "y": 1600
+  },
+  {
+    "id": 6029077,
+    "name": "Town Cuccos Lv 10",
+    "map": "map",
+    "x": 1550,
+    "y": 1600
+  },
+  {
+    "id": 6029078,
+    "name": "Town Jullieta Item",
+    "map": "map",
+    "x": 1550,
+    "y": 1524
+  },
+  {
+    "id": 6029079,
+    "name": "Town Simulation Chest",
+    "map": "map",
+    "x": 1220,
+    "y": 1385
+  },
+  {
+    "id": 6029080,
+    "name": "Town Shoe Shop NPC",
+    "map": "map",
+    "x": 1220,
+    "y": 1342
+  },
+  {
+    "id": 6029081,
+    "name": "Town Music House Left Chest",
+    "map": "map",
+    "x": 1220,
+    "y": 1427
+  },
+  {
+    "id": 6029082,
+    "name": "Town Music House Middle Chest",
+    "map": "map",
+    "x": 1220,
+    "y": 1427
+  },
+  {
+    "id": 6029083,
+    "name": "Town Music House Right Chest",
+    "map": "map",
+    "x": 1220,
+    "y": 1427
+  },
+  {
+    "id": 6029084,
+    "name": "Town Music House HP",
+    "map": "map",
+    "x": 1220,
+    "y": 1427
+  },
+  {
+    "id": 6029085,
+    "name": "Town Well Pillar Chest",
+    "map": "map",
+    "x": 1497,
+    "y": 1435
+  },
+  {
+    "id": 6029086,
+    "name": "Town Dr Left Attic Item",
+    "map": "map",
+    "x": 1028,
+    "y": 1405
+  },
+  {
+    "id": 6029087,
+    "name": "Town Fountain Big Chest",
+    "map": "map",
+    "x": 1238,
+    "y": 1275
+  },
+  {
+    "id": 6029088,
+    "name": "Town Fountain Small Chest",
+    "map": "map",
+    "x": 1238,
+    "y": 1275
+  },
+  {
+    "id": 6029089,
+    "name": "Town Fountain HP",
+    "map": "map",
+    "x": 1238,
+    "y": 1275
+  },
+  {
+    "id": 6029090,
+    "name": "Town Library Yellow Minish NPC",
+    "map": "map",
+    "x": 1199,
+    "y": 1060
+  },
+  {
+    "id": 6029091,
+    "name": "Town Under Library Frozen Chest",
+    "map": "map",
+    "x": 1139,
+    "y": 1065
+  },
+  {
+    "id": 6029092,
+    "name": "Town Under Library Big Chest",
+    "map": "map",
+    "x": 1139,
+    "y": 1065
+  },
+  {
+    "id": 6029093,
+    "name": "Town Under Library Underwater",
+    "map": "map",
+    "x": 1139,
+    "y": 1065
+  },
+  {
+    "id": 6029094,
+    "name": "North Field Dig Spot",
+    "map": "map",
+    "x": 1235,
+    "y": 795
+  },
+  {
+    "id": 6029095,
+    "name": "North Field HP",
+    "map": "map",
+    "x": 1177,
+    "y": 628
+  },
+  {
+    "id": 6029095,
+    "name": "North Field HP",
+    "map": "map",
+    "x": 1198,
+    "y": 808
+  },
+  {
+    "id": 6029096,
+    "name": "North Field Tree Fusion Top Left Chest",
+    "map": "map",
+    "x": 1278,
+    "y": 677
+  },
+  {
+    "id": 6029097,
+    "name": "North Field Tree Fusion Top Right Chest",
+    "map": "map",
+    "x": 1374,
+    "y": 677
+  },
+  {
+    "id": 6029098,
+    "name": "North Field Tree Fusion Bottom Left Chest",
+    "map": "map",
+    "x": 1278,
+    "y": 740
+  },
+  {
+    "id": 6029099,
+    "name": "North Field Tree Fusion Bottom Right Chest",
+    "map": "map",
+    "x": 1374,
+    "y": 740
+  },
+  {
+    "id": 6029100,
+    "name": "North Field Tree Fusion Center Big Chest",
+    "map": "map",
+    "x": 1326,
+    "y": 690
+  },
+  {
+    "id": 6029101,
+    "name": "North Field Waterfall Fusion Dojo NPC",
+    "map": "map",
+    "x": 1124,
+    "y": 805
+  },
+  {
+    "id": 6029102,
+    "name": "Castle Moat Left Chest",
+    "map": "map",
+    "x": 1017,
+    "y": 452
+  },
+  {
+    "id": 6029103,
+    "name": "Castle Moat Right Chest",
+    "map": "map",
+    "x": 1102,
+    "y": 452
+  },
+  {
+    "id": 6029104,
+    "name": "Castle Golden Rope",
+    "map": "map",
+    "x": 1610,
+    "y": 300
+  },
+  {
+    "id": 6029105,
+    "name": "Castle Right Fountain Fusion HP",
+    "map": "map",
+    "x": 1506,
+    "y": 170
+  },
+  {
+    "id": 6029106,
+    "name": "Castle Dojo HP",
+    "map": "map",
+    "x": 1612,
+    "y": 375
+  },
+  {
+    "id": 6029107,
+    "name": "Castle Dojo NPC",
+    "map": "map",
+    "x": 1612,
+    "y": 375
+  },
+  {
+    "id": 6029108,
+    "name": "Castle Right Fountain Fusion Minish Hole Chest",
+    "map": "map",
+    "x": 1506,
+    "y": 170
+  },
+  {
+    "id": 6029109,
+    "name": "Castle Left Fountain Fusion Minish Hole Chest",
+    "map": "map",
+    "x": 1144,
+    "y": 152
+  },
+  {
+    "id": 6029112,
+    "name": "Hills Golden Rope",
+    "map": "map",
+    "x": 1730,
+    "y": 1730
+  },
+  {
+    "id": 6029113,
+    "name": "Hills Fusion Chest",
+    "map": "map",
+    "x": 1794,
+    "y": 1688
+  },
+  {
+    "id": 6029114,
+    "name": "Hills Beanstalk Fusion Left Chest",
+    "map": "map",
+    "x": 1710,
+    "y": 1805
+  },
+  {
+    "id": 6029115,
+    "name": "Hills Beanstalk Fusion HP",
+    "map": "map",
+    "x": 1710,
+    "y": 1805
+  },
+  {
+    "id": 6029116,
+    "name": "Hills Beanstalk Fusion Right Chest",
+    "map": "map",
+    "x": 1710,
+    "y": 1805
+  },
+  {
+    "id": 6029117,
+    "name": "Hills Bomb Cave Chest",
+    "map": "map",
+    "x": 1773,
+    "y": 1903
+  },
+  {
+    "id": 6029118,
+    "name": "Minish Great Fairy NPC",
+    "map": "map",
+    "x": 2055,
+    "y": 1485
+  },
+  {
+    "id": 6029119,
+    "name": "Hills Farm Dig Cave Item",
+    "map": "map",
+    "x": 1699,
+    "y": 1563
+  },
+  {
+    "id": 6029120,
+    "name": "Lon Lon Ranch Pot",
+    "map": "map",
+    "x": 1871,
+    "y": 1221
+  },
+  {
+    "id": 6029121,
+    "name": "Lon Lon Puddle Fusion Big Chest",
+    "map": "map",
+    "x": 1996,
+    "y": 1152
+  },
+  {
+    "id": 6029122,
+    "name": "Lon Lon Cave Chest",
+    "map": "map",
+    "x": 1816,
+    "y": 1095
+  },
+  {
+    "id": 6029123,
+    "name": "Lon Lon Cave Secret Chest",
+    "map": "map",
+    "x": 1816,
+    "y": 1095
+  },
+  {
+    "id": 6029124,
+    "name": "Lon Lon Path Fusion Chest",
+    "map": "map",
+    "x": 1980,
+    "y": 1045
+  },
+  {
+    "id": 6029125,
+    "name": "Lon Lon Path HP",
+    "map": "map",
+    "x": 1980,
+    "y": 1045
+  },
+  {
+    "id": 6029126,
+    "name": "Lon Lon Dig Spot",
+    "map": "map",
+    "x": 1868,
+    "y": 975
+  },
+  {
+    "id": 6029127,
+    "name": "Lon Lon North Minish Crack Chest",
+    "map": "map",
+    "x": 2039,
+    "y": 814
+  },
+  {
+    "id": 6029128,
+    "name": "Lon Lon Goron Cave Fusion Small Chest",
+    "map": "map",
+    "x": 1751,
+    "y": 1372
+  },
+  {
+    "id": 6029129,
+    "name": "Lon Lon Goron Cave Fusion Big Chest",
+    "map": "map",
+    "x": 1751,
+    "y": 1372
+  },
+  {
+    "id": 6029130,
+    "name": "Falls Lower Lon Lon Fusion Chest",
+    "map": "map",
+    "x": 1773,
+    "y": 826
+  },
+  {
+    "id": 6029131,
+    "name": "Falls Lower HP",
+    "map": "map",
+    "x": 1932,
+    "y": 762
+  },
+  {
+    "id": 6029132,
+    "name": "Falls Lower Waterfall Fusion Dojo NPC",
+    "map": "map",
+    "x": 1826,
+    "y": 689
+  },
+  {
+    "id": 6029133,
+    "name": "Falls Lower Rock Item1",
+    "map": "map",
+    "x": 1905,
+    "y": 543
+  },
+  {
+    "id": 6029134,
+    "name": "Falls Lower Rock Item2",
+    "map": "map",
+    "x": 1905,
+    "y": 543
+  },
+  {
+    "id": 6029135,
+    "name": "Falls Lower Rock Item3",
+    "map": "map",
+    "x": 1905,
+    "y": 543
+  },
+  {
+    "id": 6029136,
+    "name": "Falls Lower Dig Cave Left Chest",
+    "map": "map",
+    "x": 1943,
+    "y": 533
+  },
+  {
+    "id": 6029137,
+    "name": "Falls Lower Dig Cave Right Chest",
+    "map": "map",
+    "x": 1943,
+    "y": 533
+  },
+  {
+    "id": 6029138,
+    "name": "Hylia Sunken HP",
+    "map": "map",
+    "x": 2294,
+    "y": 827
+  },
+  {
+    "id": 6029139,
+    "name": "Hylia Dog NPC",
+    "map": "map",
+    "x": 2332,
+    "y": 842
+  },
+  {
+    "id": 6029140,
+    "name": "Hylia Small Island HP",
+    "map": "map",
+    "x": 2491,
+    "y": 959
+  },
+  {
+    "id": 6029141,
+    "name": "Hylia Cape Cave Top Right",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029142,
+    "name": "Hylia Cape Cave Bottom Left",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029143,
+    "name": "Hylia Cape Cave Top Left",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029144,
+    "name": "Hylia Cape Cave Top Middle",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029145,
+    "name": "Hylia Cape Cave Right",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029146,
+    "name": "Hylia Cape Cave Bottom Right",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029147,
+    "name": "Hylia Cape Cave Bottom Middle",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029148,
+    "name": "Hylia Cape Cave Lon Lon HP",
+    "map": "map",
+    "x": 2017,
+    "y": 878
+  },
+  {
+    "id": 6029149,
+    "name": "Hylia Beanstalk Fusion Left Chest",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029150,
+    "name": "Hylia Beanstalk Fusion HP",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029151,
+    "name": "Hylia Beanstalk Fusion Right Chest",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029152,
+    "name": "Hylia Middle Island Fusion Dig Cave Chest",
+    "map": "map",
+    "x": 2464,
+    "y": 1127
+  },
+  {
+    "id": 6029154,
+    "name": "Hylia Bottom HP",
+    "map": "map",
+    "x": 2423,
+    "y": 1326
+  },
+  {
+    "id": 6029155,
+    "name": "Hylia Dojo HP",
+    "map": "map",
+    "x": 2311,
+    "y": 1262
+  },
+  {
+    "id": 6029156,
+    "name": "Hylia Dojo NPC",
+    "map": "map",
+    "x": 2311,
+    "y": 1262
+  },
+  {
+    "id": 6029157,
+    "name": "Hylia Crack Fusion Librari NPC",
+    "map": "map",
+    "x": 2241,
+    "y": 1145
+  },
+  {
+    "id": 6029158,
+    "name": "Hylia North Minish Hole Chest",
+    "map": "map",
+    "x": 2603,
+    "y": 862
+  },
+  {
+    "id": 6029159,
+    "name": "Hylia South Minish Hole Chest",
+    "map": "map",
+    "x": 2614,
+    "y": 1480
+  },
+  {
+    "id": 6029160,
+    "name": "Hylia Cabin Path Fusion Chest",
+    "map": "map",
+    "x": 2592,
+    "y": 1335
+  },
+  {
+    "id": 6029161,
+    "name": "Hylia Mayor Cabin Item",
+    "map": "map",
+    "x": 2587,
+    "y": 1395
+  },
+  {
+    "id": 6029162,
+    "name": "Minish Woods Golden Octo",
+    "map": "map",
+    "x": 2200,
+    "y": 1550
+  },
+  {
+    "id": 6029163,
+    "name": "Minish Woods Witch Hut Item",
+    "map": "map",
+    "x": 2449,
+    "y": 1487
+  },
+  {
+    "id": 6029164,
+    "name": "Witch Digging Cave Chest",
+    "map": "map",
+    "x": 2358,
+    "y": 1373
+  },
+  {
+    "id": 6029164,
+    "name": "Witch Digging Cave Chest",
+    "map": "map",
+    "x": 2315,
+    "y": 1607
+  },
+  {
+    "id": 6029165,
+    "name": "Minish Woods North Fusion Chest",
+    "map": "map",
+    "x": 2049,
+    "y": 1571
+  },
+  {
+    "id": 6029166,
+    "name": "Minish Woods Top HP",
+    "map": "map",
+    "x": 2114,
+    "y": 1645
+  },
+  {
+    "id": 6029167,
+    "name": "Minish Woods West Fusion Chest",
+    "map": "map",
+    "x": 2114,
+    "y": 1677
+  },
+  {
+    "id": 6029168,
+    "name": "Minish Woods Like Like Digging Cave Left Chest",
+    "map": "map",
+    "x": 2379,
+    "y": 1650
+  },
+  {
+    "id": 6029169,
+    "name": "Minish Woods Like Like Digging Cave Right Chest",
+    "map": "map",
+    "x": 2379,
+    "y": 1650
+  },
+  {
+    "id": 6029170,
+    "name": "Minish Woods East Fusion Chest",
+    "map": "map",
+    "x": 2582,
+    "y": 1826
+  },
+  {
+    "id": 6029171,
+    "name": "Minish Woods South Fusion Chest",
+    "map": "map",
+    "x": 2422,
+    "y": 1923
+  },
+  {
+    "id": 6029172,
+    "name": "Minish Woods Bottom HP",
+    "map": "map",
+    "x": 2252,
+    "y": 1901
+  },
+  {
+    "id": 6029173,
+    "name": "Minish Woods Crack Fusion Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 2083
+  },
+  {
+    "id": 6029174,
+    "name": "Minish Woods Minish Path Fusion Chest",
+    "map": "map",
+    "x": 2295,
+    "y": 2050
+  },
+  {
+    "id": 6029175,
+    "name": "Minish Village Barrel House Item",
+    "map": "map",
+    "x": 2295,
+    "y": 2000
+  },
+  {
+    "id": 6029176,
+    "name": "Minish Village HP",
+    "map": "map",
+    "x": 2295,
+    "y": 2000
+  },
+  {
+    "id": 6029178,
+    "name": "Minish Woods Bomb Minish NPC 1",
+    "map": "map",
+    "x": 2187,
+    "y": 1968
+  },
+  {
+    "id": 6029179,
+    "name": "Minish Woods Bomb Minish NPC 2",
+    "map": "map",
+    "x": 2187,
+    "y": 1968
+  },
+  {
+    "id": 6029180,
+    "name": "Minish Woods Post Village Fusion Chest",
+    "map": "map",
+    "x": 2038,
+    "y": 1879
+  },
+  {
+    "id": 6029181,
+    "name": "Minish Woods Flipper Hole Middle Chest",
+    "map": "map",
+    "x": 2049,
+    "y": 1797
+  },
+  {
+    "id": 6029182,
+    "name": "Minish Woods Flipper Hole Right Chest",
+    "map": "map",
+    "x": 2049,
+    "y": 1797
+  },
+  {
+    "id": 6029183,
+    "name": "Minish Woods Flipper Hole Left Chest",
+    "map": "map",
+    "x": 2049,
+    "y": 1797
+  },
+  {
+    "id": 6029184,
+    "name": "Minish Woods Flipper Hole HP",
+    "map": "map",
+    "x": 2049,
+    "y": 1797
+  },
+  {
+    "id": 6029185,
+    "name": "Trilby Middle Fusion Chest",
+    "map": "map",
+    "x": 857,
+    "y": 1092
+  },
+  {
+    "id": 6029186,
+    "name": "Trilby Top Fusion Chest",
+    "map": "map",
+    "x": 932,
+    "y": 837
+  },
+  {
+    "id": 6029187,
+    "name": "Trilby Dig Cave Left Chest",
+    "map": "map",
+    "x": 730,
+    "y": 957
+  },
+  {
+    "id": 6029188,
+    "name": "Trilby Dig Cave Right Chest",
+    "map": "map",
+    "x": 730,
+    "y": 957
+  },
+  {
+    "id": 6029189,
+    "name": "Trilby Dig Cave Water Fusion Chest",
+    "map": "map",
+    "x": 846,
+    "y": 957
+  },
+  {
+    "id": 6029190,
+    "name": "Trilby Scrub NPC",
+    "map": "map",
+    "x": 857,
+    "y": 1212
+  },
+  {
+    "id": 6029191,
+    "name": "Trilby Bomb Cave Chest",
+    "map": "map",
+    "x": 762,
+    "y": 1170
+  },
+  {
+    "id": 6029192,
+    "name": "Trilby Puddle Fusion Item Top Left",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029193,
+    "name": "Trilby Puddle Fusion Item Top Middle Left",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029194,
+    "name": "Trilby Puddle Fusion Item Top Middle",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029195,
+    "name": "Trilby Puddle Fusion Item Top Middle Right",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029196,
+    "name": "Trilby Puddle Fusion Item Top Right",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029197,
+    "name": "Trilby Puddle Fusion Item Center Left",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029198,
+    "name": "Trilby Puddle Fusion Item Center Middle Left",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029199,
+    "name": "Trilby Puddle Fusion Item Center Middle",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029200,
+    "name": "Trilby Puddle Fusion Item Center Middle Right",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029201,
+    "name": "Trilby Puddle Fusion Item Center Right",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029202,
+    "name": "Trilby Puddle Fusion Item Bottom Left",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029203,
+    "name": "Trilby Puddle Fusion Item Bottom Middle Left",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029204,
+    "name": "Trilby Puddle Fusion Item Bottom Middle",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029205,
+    "name": "Trilby Puddle Fusion Item Bottom Middle Right",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029206,
+    "name": "Trilby Puddle Fusion Item Bottom Right",
+    "map": "map",
+    "x": 708,
+    "y": 1257
+  },
+  {
+    "id": 6029207,
+    "name": "Western Woods Fusion Chest",
+    "map": "map",
+    "x": 826,
+    "y": 1603
+  },
+  {
+    "id": 6029208,
+    "name": "Western Woods Tree Fusion HP",
+    "map": "map",
+    "x": 778,
+    "y": 1765
+  },
+  {
+    "id": 6029209,
+    "name": "Western Woods Top Dig 1",
+    "map": "map",
+    "x": 804,
+    "y": 1473
+  },
+  {
+    "id": 6029210,
+    "name": "Western Woods Top Dig 2",
+    "map": "map",
+    "x": 804,
+    "y": 1473
+  },
+  {
+    "id": 6029211,
+    "name": "Western Woods Top Dig 3",
+    "map": "map",
+    "x": 804,
+    "y": 1473
+  },
+  {
+    "id": 6029212,
+    "name": "Western Woods Top Dig 4",
+    "map": "map",
+    "x": 804,
+    "y": 1473
+  },
+  {
+    "id": 6029213,
+    "name": "Western Woods Top Dig 5",
+    "map": "map",
+    "x": 804,
+    "y": 1473
+  },
+  {
+    "id": 6029214,
+    "name": "Western Woods Top Dig 6",
+    "map": "map",
+    "x": 804,
+    "y": 1473
+  },
+  {
+    "id": 6029215,
+    "name": "Western Woods Percy Fusion Moblin",
+    "map": "map",
+    "x": 767,
+    "y": 1915
+  },
+  {
+    "id": 6029216,
+    "name": "Western Woods Percy Fusion Percy",
+    "map": "map",
+    "x": 767,
+    "y": 1915
+  },
+  {
+    "id": 6029217,
+    "name": "Western Woods Bottom Dig 1",
+    "map": "map",
+    "x": 947,
+    "y": 1781
+  },
+  {
+    "id": 6029218,
+    "name": "Western Woods Bottom Dig 2",
+    "map": "map",
+    "x": 947,
+    "y": 1781
+  },
+  {
+    "id": 6029219,
+    "name": "Western Woods Golden Octo",
+    "map": "map",
+    "x": 920,
+    "y": 1920
+  },
+  {
+    "id": 6029220,
+    "name": "Western Woods Beanstalk Fusion Chest",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029221,
+    "name": "Western Woods Beanstalk Fusion Item 1",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029222,
+    "name": "Western Woods Beanstalk Fusion Item 2",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029223,
+    "name": "Western Woods Beanstalk Fusion Item 3",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029224,
+    "name": "Western Woods Beanstalk Fusion Item 4",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029225,
+    "name": "Western Woods Beanstalk Fusion Item 5",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029226,
+    "name": "Western Woods Beanstalk Fusion Item 6",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029227,
+    "name": "Western Woods Beanstalk Fusion Item 7",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029228,
+    "name": "Western Woods Beanstalk Fusion Item 8",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029229,
+    "name": "Western Woods Beanstalk Fusion Item 9",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029230,
+    "name": "Western Woods Beanstalk Fusion Item 10",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029231,
+    "name": "Western Woods Beanstalk Fusion Item 11",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029232,
+    "name": "Western Woods Beanstalk Fusion Item 12",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029233,
+    "name": "Western Woods Beanstalk Fusion Item 13",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029234,
+    "name": "Western Woods Beanstalk Fusion Item 14",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029235,
+    "name": "Western Woods Beanstalk Fusion Item 15",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029236,
+    "name": "Western Woods Beanstalk Fusion Item 16",
+    "map": "map",
+    "x": 710,
+    "y": 1975
+  },
+  {
+    "id": 6029237,
+    "name": "Crenel Base Entrance Vine",
+    "map": "map",
+    "x": 527,
+    "y": 1037
+  },
+  {
+    "id": 6029238,
+    "name": "Crenel Base Fairy Cave Item Left",
+    "map": "map",
+    "x": 442,
+    "y": 829
+  },
+  {
+    "id": 6029239,
+    "name": "Crenel Base Fairy Cave Item Middle",
+    "map": "map",
+    "x": 442,
+    "y": 829
+  },
+  {
+    "id": 6029240,
+    "name": "Crenel Base Fairy Cave Item Right",
+    "map": "map",
+    "x": 442,
+    "y": 829
+  },
+  {
+    "id": 6029241,
+    "name": "Crenel Base Green Water Fusion Chest",
+    "map": "map",
+    "x": 585,
+    "y": 940
+  },
+  {
+    "id": 6029242,
+    "name": "Crenel Base West Fusion Chest",
+    "map": "map",
+    "x": 80,
+    "y": 858
+  },
+  {
+    "id": 6029243,
+    "name": "Crenel Base Water Cave Left Chest",
+    "map": "map",
+    "x": 37,
+    "y": 733
+  },
+  {
+    "id": 6029244,
+    "name": "Crenel Base Water Cave Right Chest",
+    "map": "map",
+    "x": 37,
+    "y": 733
+  },
+  {
+    "id": 6029245,
+    "name": "Crenel Base Water Cave HP",
+    "map": "map",
+    "x": 37,
+    "y": 733
+  },
+  {
+    "id": 6029246,
+    "name": "Crenel Base Minish Vine Hole Chest",
+    "map": "map",
+    "x": 304,
+    "y": 818
+  },
+  {
+    "id": 6029247,
+    "name": "Crenel Base Minish Crack Chest",
+    "map": "map",
+    "x": 229,
+    "y": 857
+  },
+  {
+    "id": 6029248,
+    "name": "Crenel Vine Top Golden Tektite",
+    "map": "map",
+    "x": 300,
+    "y": 730
+  },
+  {
+    "id": 6029249,
+    "name": "Crenel Bridge Cave Chest",
+    "map": "map",
+    "x": 559,
+    "y": 617
+  },
+  {
+    "id": 6029250,
+    "name": "Crenel Fairy Cave HP",
+    "map": "map",
+    "x": 112,
+    "y": 605
+  },
+  {
+    "id": 6029251,
+    "name": "Crenel Below CoF Golden Tektite",
+    "map": "map",
+    "x": 425,
+    "y": 470
+  },
+  {
+    "id": 6029252,
+    "name": "Crenel Scrub NPC",
+    "map": "map",
+    "x": 581,
+    "y": 467
+  },
+  {
+    "id": 6029253,
+    "name": "Crenel Dojo Left Chest",
+    "map": "map",
+    "x": 602,
+    "y": 372
+  },
+  {
+    "id": 6029254,
+    "name": "Crenel Dojo Right Chest",
+    "map": "map",
+    "x": 602,
+    "y": 372
+  },
+  {
+    "id": 6029255,
+    "name": "Crenel Dojo HP",
+    "map": "map",
+    "x": 602,
+    "y": 372
+  },
+  {
+    "id": 6029256,
+    "name": "Crenel Dojo NPC",
+    "map": "map",
+    "x": 602,
+    "y": 372
+  },
+  {
+    "id": 6029257,
+    "name": "Crenel Great Fairy NPC",
+    "map": "map",
+    "x": 218,
+    "y": 477
+  },
+  {
+    "id": 6029258,
+    "name": "Crenel Climb Fusion Chest",
+    "map": "map",
+    "x": 123,
+    "y": 399
+  },
+  {
+    "id": 6029259,
+    "name": "Crenel Dig Cave HP",
+    "map": "map",
+    "x": 37,
+    "y": 212
+  },
+  {
+    "id": 6029260,
+    "name": "Crenel Beanstalk Fusion HP",
+    "map": "map",
+    "x": 100,
+    "y": 20
+  },
+  {
+    "id": 6029261,
+    "name": "Crenel Beanstalk Fusion Item 1",
+    "map": "map",
+    "x": 100,
+    "y": 20
+  },
+  {
+    "id": 6029262,
+    "name": "Crenel Beanstalk Fusion Item 2",
+    "map": "map",
+    "x": 100,
+    "y": 20
+  },
+  {
+    "id": 6029263,
+    "name": "Crenel Beanstalk Fusion Item 3",
+    "map": "map",
+    "x": 100,
+    "y": 20
+  },
+  {
+    "id": 6029264,
+    "name": "Crenel Beanstalk Fusion Item 4",
+    "map": "map",
+    "x": 100,
+    "y": 20
+  },
+  {
+    "id": 6029265,
+    "name": "Crenel Beanstalk Fusion Item 5",
+    "map": "map",
+    "x": 100,
+    "y": 20
+  },
+  {
+    "id": 6029266,
+    "name": "Crenel Beanstalk Fusion Item 6",
+    "map": "map",
+    "x": 100,
+    "y": 20
+  },
+  {
+    "id": 6029267,
+    "name": "Crenel Beanstalk Fusion Item 7",
+    "map": "map",
+    "x": 100,
+    "y": 20
+  },
+  {
+    "id": 6029268,
+    "name": "Crenel Beanstalk Fusion Item 8",
+    "map": "map",
+    "x": 100,
+    "y": 20
+  },
+  {
+    "id": 6029269,
+    "name": "Crenel Rain Path Fusion Chest",
+    "map": "map",
+    "x": 490,
+    "y": 101
+  },
+  {
+    "id": 6029270,
+    "name": "Crenel Upper Block Chest",
+    "map": "map",
+    "x": 517,
+    "y": 319
+  },
+  {
+    "id": 6029271,
+    "name": "Crenel Mines Path Fusion Chest",
+    "map": "map",
+    "x": 410,
+    "y": 329
+  },
+  {
+    "id": 6029272,
+    "name": "Melari Mines: Left Dig",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029273,
+    "name": "Melari Mines: Center Dig",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029274,
+    "name": "Melari Mines: Bottom Left Dig",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029275,
+    "name": "Melari Mines: Bottom Middle Dig",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029276,
+    "name": "Melari Mines: Bottom Right Dig",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029277,
+    "name": "Melari Mines: Top Right Dig",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029278,
+    "name": "Melari Mines: Top Middle Dig",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029279,
+    "name": "Melari Mines: Top Left Dig",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029281,
+    "name": "Swamp Butterfly Fusion Item",
+    "map": "map",
+    "x": 283,
+    "y": 1463
+  },
+  {
+    "id": 6029282,
+    "name": "Swamp Center Cave Darknut Chest",
+    "map": "map",
+    "x": 283,
+    "y": 1403
+  },
+  {
+    "id": 6029283,
+    "name": "Swamp Center Chest",
+    "map": "map",
+    "x": 144,
+    "y": 1412
+  },
+  {
+    "id": 6029284,
+    "name": "Swamp Golden Rope",
+    "map": "map",
+    "x": 400,
+    "y": 1230
+  },
+  {
+    "id": 6029285,
+    "name": "Swamp Near Waterfall Cave HP",
+    "map": "map",
+    "x": 645,
+    "y": 1158
+  },
+  {
+    "id": 6029286,
+    "name": "Swamp Waterfall Fusion Dojo NPC",
+    "map": "map",
+    "x": 612,
+    "y": 1158
+  },
+  {
+    "id": 6029287,
+    "name": "Swamp North Cave Chest",
+    "map": "map",
+    "x": 432,
+    "y": 1160
+  },
+  {
+    "id": 6029288,
+    "name": "Swamp Digging Cave Left Chest",
+    "map": "map",
+    "x": 517,
+    "y": 1393
+  },
+  {
+    "id": 6029289,
+    "name": "Swamp Digging Cave Right Chest",
+    "map": "map",
+    "x": 517,
+    "y": 1393
+  },
+  {
+    "id": 6029290,
+    "name": "Swamp Underwater Top",
+    "map": "map",
+    "x": 655,
+    "y": 1560
+  },
+  {
+    "id": 6029291,
+    "name": "Swamp Underwater Middle",
+    "map": "map",
+    "x": 655,
+    "y": 1560
+  },
+  {
+    "id": 6029292,
+    "name": "Swamp Underwater Bottom",
+    "map": "map",
+    "x": 655,
+    "y": 1560
+  },
+  {
+    "id": 6029293,
+    "name": "Swamp South Cave Chest",
+    "map": "map",
+    "x": 484,
+    "y": 1724
+  },
+  {
+    "id": 6029294,
+    "name": "Swamp Dojo HP",
+    "map": "map",
+    "x": 37,
+    "y": 1610
+  },
+  {
+    "id": 6029295,
+    "name": "Swamp Dojo NPC",
+    "map": "map",
+    "x": 37,
+    "y": 1610
+  },
+  {
+    "id": 6029296,
+    "name": "Swamp Minish Fusion North Crack Chest",
+    "map": "map",
+    "x": 133,
+    "y": 1167
+  },
+  {
+    "id": 6029297,
+    "name": "Swamp Minish Mulldozer Big Chest",
+    "map": "map",
+    "x": 28,
+    "y": 1178
+  },
+  {
+    "id": 6029298,
+    "name": "Swamp Minish Fusion North West Crack Chest",
+    "map": "map",
+    "x": 28,
+    "y": 1178
+  },
+  {
+    "id": 6029299,
+    "name": "Swamp Minish Fusion West Crack Chest",
+    "map": "map",
+    "x": 37,
+    "y": 1326
+  },
+  {
+    "id": 6029300,
+    "name": "Swamp Minish Fusion Vine Crack Chest",
+    "map": "map",
+    "x": 240,
+    "y": 1603
+  },
+  {
+    "id": 6029301,
+    "name": "Swamp Minish Fusion Water Hole Chest",
+    "map": "map",
+    "x": 634,
+    "y": 1628
+  },
+  {
+    "id": 6029302,
+    "name": "Swamp Minish Fusion Water Hole HP",
+    "map": "map",
+    "x": 634,
+    "y": 1628
+  },
+  {
+    "id": 6029303,
+    "name": "Ruins Butterfly Fusion Item",
+    "map": "map",
+    "x": 26,
+    "y": 1847
+  },
+  {
+    "id": 6029304,
+    "name": "Ruins Bomb Cave Chest",
+    "map": "map",
+    "x": 133,
+    "y": 1798
+  },
+  {
+    "id": 6029305,
+    "name": "Ruins Minish Home Chest",
+    "map": "map",
+    "x": 48,
+    "y": 2019
+  },
+  {
+    "id": 6029306,
+    "name": "Ruins Pillars Fusion Chest",
+    "map": "map",
+    "x": 250,
+    "y": 2061
+  },
+  {
+    "id": 6029307,
+    "name": "Ruins Bean Stalk Fusion Big Chest",
+    "map": "map",
+    "x": 209,
+    "y": 1780
+  },
+  {
+    "id": 6029308,
+    "name": "Ruins Crack Fusion Chest",
+    "map": "map",
+    "x": 293,
+    "y": 1954
+  },
+  {
+    "id": 6029309,
+    "name": "Ruins Minish Cave HP",
+    "map": "map",
+    "x": 197,
+    "y": 2014
+  },
+  {
+    "id": 6029310,
+    "name": "Ruins Armos Kill Left Chest",
+    "map": "map",
+    "x": 554,
+    "y": 1942
+  },
+  {
+    "id": 6029311,
+    "name": "Ruins Armos Kill Right Chest",
+    "map": "map",
+    "x": 554,
+    "y": 1942
+  },
+  {
+    "id": 6029312,
+    "name": "Ruins Golden Octo",
+    "map": "map",
+    "x": 520,
+    "y": 2070
+  },
+  {
+    "id": 6029313,
+    "name": "Ruins Near Dungeon Fusion Chest",
+    "map": "map",
+    "x": 645,
+    "y": 1869
+  },
+  {
+    "id": 6029315,
+    "name": "Valley Pre Valley Fusion Chest",
+    "map": "map",
+    "x": 1059,
+    "y": 527
+  },
+  {
+    "id": 6029316,
+    "name": "Valley Great Fairy NPC",
+    "map": "map",
+    "x": 943,
+    "y": 584
+  },
+  {
+    "id": 6029317,
+    "name": "Valley Lost Woods Chest",
+    "map": "map",
+    "x": 750,
+    "y": 650
+  },
+  {
+    "id": 6029317,
+    "name": "Valley Lost Woods Chest",
+    "map": "map",
+    "x": 751,
+    "y": 568
+  },
+  {
+    "id": 6029318,
+    "name": "Valley Dampe NPC",
+    "map": "map",
+    "x": 948,
+    "y": 405
+  },
+  {
+    "id": 6029319,
+    "name": "Valley Graveyard Butterfly Fusion Item",
+    "map": "map",
+    "x": 708,
+    "y": 272
+  },
+  {
+    "id": 6029320,
+    "name": "Valley Graveyard Left Fusion Chest",
+    "map": "map",
+    "x": 709,
+    "y": 186
+  },
+  {
+    "id": 6029321,
+    "name": "Valley Graveyard Left Grave HP",
+    "map": "map",
+    "x": 730,
+    "y": 229
+  },
+  {
+    "id": 6029322,
+    "name": "Valley Graveyard Right Fusion Chest",
+    "map": "map",
+    "x": 954,
+    "y": 187
+  },
+  {
+    "id": 6029323,
+    "name": "Valley Graveyard Right Grave Fusion Chest",
+    "map": "map",
+    "x": 932,
+    "y": 229
+  },
+  {
+    "id": 6029325,
+    "name": "Crypt Gibdo Left Item",
+    "map": "map",
+    "x": 830,
+    "y": 165
+  },
+  {
+    "id": 6029326,
+    "name": "Crypt Gibdo Right Item",
+    "map": "map",
+    "x": 830,
+    "y": 165
+  },
+  {
+    "id": 6029327,
+    "name": "Crypt Left Item",
+    "map": "map",
+    "x": 830,
+    "y": 165
+  },
+  {
+    "id": 6029328,
+    "name": "Crypt Right Item",
+    "map": "map",
+    "x": 830,
+    "y": 165
+  },
+  {
+    "id": 6029329,
+    "name": "Crypt Prize",
+    "map": "map",
+    "x": 830,
+    "y": 165
+  },
+  {
+    "id": 6029330,
+    "name": "Falls Entrance HP",
+    "map": "map",
+    "x": 1762,
+    "y": 533
+  },
+  {
+    "id": 6029331,
+    "name": "Falls Water Dig Cave Fusion HP",
+    "map": "map",
+    "x": 1815,
+    "y": 550
+  },
+  {
+    "id": 6029332,
+    "name": "Falls Water Dig Cave Fusion Chest",
+    "map": "map",
+    "x": 1815,
+    "y": 550
+  },
+  {
+    "id": 6029333,
+    "name": "Falls 1st Cave Chest",
+    "map": "map",
+    "x": 1805,
+    "y": 435
+  },
+  {
+    "id": 6029334,
+    "name": "Falls Cliff Chest",
+    "map": "map",
+    "x": 1794,
+    "y": 367
+  },
+  {
+    "id": 6029335,
+    "name": "Falls South Dig Spot",
+    "map": "map",
+    "x": 1869,
+    "y": 647
+  },
+  {
+    "id": 6029336,
+    "name": "Falls Golden Tektite",
+    "map": "map",
+    "x": 1830,
+    "y": 275
+  },
+  {
+    "id": 6029337,
+    "name": "Falls North Dig Spot",
+    "map": "map",
+    "x": 1890,
+    "y": 250
+  },
+  {
+    "id": 6029338,
+    "name": "Falls Rock Fusion Chest",
+    "map": "map",
+    "x": 1890,
+    "y": 250
+  },
+  {
+    "id": 6029339,
+    "name": "Falls Waterfall Fusion HP",
+    "map": "map",
+    "x": 1698,
+    "y": 155
+  },
+  {
+    "id": 6029340,
+    "name": "Falls Rupee Cave Top Top",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029341,
+    "name": "Falls Rupee Cave Top Left",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029342,
+    "name": "Falls Rupee Cave Top Middle",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029343,
+    "name": "Falls Rupee Cave Top Right",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029344,
+    "name": "Falls Rupee Cave Top Bottom",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029345,
+    "name": "Falls Rupee Cave Side Top",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029346,
+    "name": "Falls Rupee Cave Side Left",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029347,
+    "name": "Falls Rupee Cave Side Right",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029348,
+    "name": "Falls Rupee Cave Side Bottom",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029349,
+    "name": "Falls Rupee Cave Underwater Top Left",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029350,
+    "name": "Falls Rupee Cave Underwater Top Right",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029351,
+    "name": "Falls Rupee Cave Underwater Middle Left",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029352,
+    "name": "Falls Rupee Cave Underwater Middle Right",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029353,
+    "name": "Falls Rupee Cave Underwater Bottom Left",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029354,
+    "name": "Falls Rupee Cave Underwater Bottom Right",
+    "map": "map",
+    "x": 1772,
+    "y": 266
+  },
+  {
+    "id": 6029355,
+    "name": "Falls Top Cave Bomb Wall Chest",
+    "map": "map",
+    "x": 1847,
+    "y": 180
+  },
+  {
+    "id": 6029356,
+    "name": "Falls Top Cave Chest",
+    "map": "map",
+    "x": 1847,
+    "y": 180
+  },
+  {
+    "id": 6029357,
+    "name": "Falls Biggoron Item",
+    "map": "map",
+    "x": 1875,
+    "y": 50
+  },
+  {
+    "id": 6029358,
+    "name": "Clouds Free Chest",
+    "map": "map",
+    "x": 3290,
+    "y": 450
+  },
+  {
+    "id": 6029359,
+    "name": "Clouds North East Dig Spot",
+    "map": "map",
+    "x": 3300,
+    "y": 175
+  },
+  {
+    "id": 6029360,
+    "name": "Clouds North Shark Kill",
+    "map": "map",
+    "x": 2997,
+    "y": 837
+  },
+  {
+    "id": 6029361,
+    "name": "Clouds North West Right Chest",
+    "map": "map",
+    "x": 2730,
+    "y": 150
+  },
+  {
+    "id": 6029362,
+    "name": "Clouds North West Left Chest",
+    "map": "map",
+    "x": 2730,
+    "y": 150
+  },
+  {
+    "id": 6029363,
+    "name": "Clouds North West Dig Spot",
+    "map": "map",
+    "x": 2730,
+    "y": 150
+  },
+  {
+    "id": 6029364,
+    "name": "Clouds North West Bottom Chest",
+    "map": "map",
+    "x": 2710,
+    "y": 260
+  },
+  {
+    "id": 6029365,
+    "name": "Clouds South Left Chest",
+    "map": "map",
+    "x": 2731,
+    "y": 677
+  },
+  {
+    "id": 6029366,
+    "name": "Clouds South Dig Spot",
+    "map": "map",
+    "x": 2677,
+    "y": 744
+  },
+  {
+    "id": 6029367,
+    "name": "Clouds South Middle Chest",
+    "map": "map",
+    "x": 2869,
+    "y": 579
+  },
+  {
+    "id": 6029368,
+    "name": "Clouds South Middle Dig Spot",
+    "map": "map",
+    "x": 2920,
+    "y": 550
+  },
+  {
+    "id": 6029369,
+    "name": "Clouds South Shark Kill",
+    "map": "map",
+    "x": 3029,
+    "y": 1294
+  },
+  {
+    "id": 6029370,
+    "name": "Clouds South Right Chest",
+    "map": "map",
+    "x": 3007,
+    "y": 579
+  },
+  {
+    "id": 6029371,
+    "name": "Clouds South Right Dig Spot",
+    "map": "map",
+    "x": 3150,
+    "y": 720
+  },
+  {
+    "id": 6029372,
+    "name": "Clouds South East Bottom Dig Spot",
+    "map": "map",
+    "x": 3290,
+    "y": 710
+  },
+  {
+    "id": 6029373,
+    "name": "Clouds South East Top Dig Spot",
+    "map": "map",
+    "x": 3300,
+    "y": 600
+  },
+  {
+    "id": 6029374,
+    "name": "Wind Tribe 1F Left Chest",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029375,
+    "name": "Wind Tribe 1F Right Chest",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029376,
+    "name": "Wind Tribe 2F Chest",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029377,
+    "name": "Wind Tribe 2F Gregal NPC 1",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029378,
+    "name": "Wind Tribe 2F Gregal NPC 2",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029379,
+    "name": "Wind Tribe 3F Left Chest",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029380,
+    "name": "Wind Tribe 3F Center Chest",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029381,
+    "name": "Wind Tribe 3F Right Chest",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029382,
+    "name": "Wind Tribe 4F Left Chest",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029383,
+    "name": "Wind Tribe 4F Right Chest",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029374,
+    "name": "Wind Tribe 1F Left Chest",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029375,
+    "name": "Wind Tribe 1F Right Chest",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029376,
+    "name": "Wind Tribe 2F Chest",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029377,
+    "name": "Wind Tribe 2F Gregal NPC 1",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029378,
+    "name": "Wind Tribe 2F Gregal NPC 2",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029379,
+    "name": "Wind Tribe 3F Left Chest",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029380,
+    "name": "Wind Tribe 3F Center Chest",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029381,
+    "name": "Wind Tribe 3F Right Chest",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029382,
+    "name": "Wind Tribe 4F Left Chest",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029383,
+    "name": "Wind Tribe 4F Right Chest",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029385,
+    "name": "Deepwood 2F Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029386,
+    "name": "Deepwood 1F Slug Torches Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029387,
+    "name": "Deepwood 1F Barrel Room Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029388,
+    "name": "Deepwood 1F West Big Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029389,
+    "name": "Deepwood 1F West Statue Puzzle Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029390,
+    "name": "Deepwood 1F East Mulldozer Fight Item",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029391,
+    "name": "Deepwood 1F North East Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029392,
+    "name": "Deepwood B1 Switch Room Big Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029393,
+    "name": "Deepwood B1 Switch Room Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029394,
+    "name": "Deepwood 1F Blue Warp HP",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029395,
+    "name": "Deepwood 1F Blue Warp Left Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029396,
+    "name": "Deepwood 1F Blue Warp Right Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029397,
+    "name": "Deepwood 1F Madderpillar Big Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029398,
+    "name": "Deepwood 1F Madderpillar HP",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029399,
+    "name": "Deepwood B1 West Big Chest",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029400,
+    "name": "Deepwood Boss Item",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029401,
+    "name": "Deepwood Prize",
+    "map": "map",
+    "x": 2284,
+    "y": 1842
+  },
+  {
+    "id": 6029402,
+    "name": "CoF 1F Spike Beetle Big Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029403,
+    "name": "CoF 1F Item Top Left",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029404,
+    "name": "CoF 1F Item Top Middle",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029405,
+    "name": "CoF 1F Item Top Right",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029406,
+    "name": "CoF 1F Item Bottom Left",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029407,
+    "name": "CoF 1F Item Bottom Right",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029408,
+    "name": "CoF B1 Hazy Room Big Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029409,
+    "name": "CoF B1 Hazy Room Small Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029410,
+    "name": "CoF B1 Rollobite Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029411,
+    "name": "CoF B1 Rollobite Pillar Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029412,
+    "name": "CoF B1 Spikey Chus Pillar Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029413,
+    "name": "CoF B1 HP",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029414,
+    "name": "CoF B1 Spikey Chus Big Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029415,
+    "name": "CoF B2 Pre Lava North Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029416,
+    "name": "CoF B2 Pre Lava South Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029417,
+    "name": "CoF B2 Lava Room Blade Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029418,
+    "name": "CoF B2 Lava Room Right Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029419,
+    "name": "CoF B2 Lava Room Left Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029420,
+    "name": "CoF B2 Lava Room Big Chest",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029421,
+    "name": "CoF Boss Item",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029422,
+    "name": "CoF Prize",
+    "map": "map",
+    "x": 325,
+    "y": 233
+  },
+  {
+    "id": 6029423,
+    "name": "Crenel Melari Dungeon Reward",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029424,
+    "name": "Fortress Entrance 1F Left Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029425,
+    "name": "Fortress Entrance 1F Left Wizzrobe Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029426,
+    "name": "Fortress Entrance 1F Right Item",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029427,
+    "name": "Fortress Left 2F Dig Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029428,
+    "name": "Fortress Left 2F Item 1",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029429,
+    "name": "Fortress Left 2F Item 2",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029450,
+    "name": "Fortress Left 2F Item 3",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029451,
+    "name": "Fortress Left 2F Item 4",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029452,
+    "name": "Fortress Left 2F Item 5",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029453,
+    "name": "Fortress Left 2F Item 6",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029454,
+    "name": "Fortress Left 2F Item 7",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029455,
+    "name": "Fortress Left 3F Switch Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029456,
+    "name": "Fortress Left 3F Eyegore Big Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029457,
+    "name": "Fortress Left 3F Item Drop",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029458,
+    "name": "Fortress Middle 2F Big Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029459,
+    "name": "Fortress Middle 2F Statue Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029460,
+    "name": "Fortress Right 2F Left Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029461,
+    "name": "Fortress Right 2F Right Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029462,
+    "name": "Fortress Right 2F Dig Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029463,
+    "name": "Fortress Right 3F Dig Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029464,
+    "name": "Fortress Right 3F Item Drop",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029465,
+    "name": "Fortress Entrance 1F Right HP",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029466,
+    "name": "Fortress Back Left Big Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029467,
+    "name": "Fortress Back Left Small Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029468,
+    "name": "Fortress Back Right Statue Item Drop",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029469,
+    "name": "Fortress Back Right Minish Item Drop",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029470,
+    "name": "Fortress Back Right Dig Room Top Pot",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029471,
+    "name": "Fortress Back Right Dig Room Bottom Pot",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029472,
+    "name": "Fortress Back Right Big Chest",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029473,
+    "name": "Fortress Boss Item",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029474,
+    "name": "Fortress Prize",
+    "map": "map",
+    "x": 591,
+    "y": 1777
+  },
+  {
+    "id": 6029475,
+    "name": "Droplets Entrance B2 East Iceblock",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029476,
+    "name": "Droplets Entrance B2 West Iceblock",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029477,
+    "name": "Droplets Left Path B1 Underpass Item1",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029478,
+    "name": "Droplets Left Path B1 Underpass Item2",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029479,
+    "name": "Droplets Left Path B1 Underpass Item3",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029480,
+    "name": "Droplets Left Path B1 Underpass Item4",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029481,
+    "name": "Droplets Left Path B1 Underpass Item5",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029482,
+    "name": "Droplets Left Path B1 Waterfall Big Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029483,
+    "name": "Droplets Left Path B1 Waterfall Underwater 1",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029484,
+    "name": "Droplets Left Path B1 Waterfall Underwater 2",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029485,
+    "name": "Droplets Left Path B1 Waterfall Underwater 3",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029486,
+    "name": "Droplets Left Path B1 Waterfall Underwater 4",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029487,
+    "name": "Droplets Left Path B1 Waterfall Underwater 5",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029488,
+    "name": "Droplets Left Path B1 Waterfall Underwater 6",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029489,
+    "name": "Droplets Left Path B2 Waterfall Underwater 1",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029490,
+    "name": "Droplets Left Path B2 Waterfall Underwater 2",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029491,
+    "name": "Droplets Left Path B2 Waterfall Underwater 3",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029492,
+    "name": "Droplets Left Path B2 Waterfall Underwater 4",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029493,
+    "name": "Droplets Left Path B2 Waterfall Underwater 5",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029494,
+    "name": "Droplets Left Path B2 Waterfall Underwater 6",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029495,
+    "name": "Droplets Left Path B2 Underwater Pot",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029496,
+    "name": "Droplets Left Path B2 Ice Madderpillar Big Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029497,
+    "name": "Droplets Left Path B2 Ice Plain Frozen Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029498,
+    "name": "Droplets Left Path B2 Ice Plain Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029499,
+    "name": "Droplets Left Path B2 Lilypad Corner Frozen Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029500,
+    "name": "Droplets Right Path B1 1st Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029501,
+    "name": "Droplets Right Path B1 2nd Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029502,
+    "name": "Droplets Right Path B1 Pot",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029503,
+    "name": "Droplets Right Path B3 Frozen Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029504,
+    "name": "Droplets Right Path B1 Blu Chu Big Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029505,
+    "name": "Droplets Right Path B2 Frozen Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029506,
+    "name": "Droplets Right Path B2 Dark Maze Bottom Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029507,
+    "name": "Droplets Right Path B2 Mulldozers Item Drop",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029508,
+    "name": "Droplets Right Path B2 Dark Maze Top Right Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029509,
+    "name": "Droplets Right Path B2 Dark Maze Top Left Chest",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029510,
+    "name": "Droplets Right Path B2 Underpass Item1",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029511,
+    "name": "Droplets Right Path B2 Underpass Item2",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029512,
+    "name": "Droplets Right Path B2 Underpass Item3",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029513,
+    "name": "Droplets Right Path B2 Underpass Item4",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029514,
+    "name": "Droplets Right Path B2 Underpass Item5",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029515,
+    "name": "Droplets Boss Item",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029516,
+    "name": "Droplets Prize",
+    "map": "map",
+    "x": 2337,
+    "y": 1060
+  },
+  {
+    "id": 6029517,
+    "name": "Palace 1st Half 1F Grate Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029518,
+    "name": "Palace 1st Half 1F Wizzrobe Big Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029519,
+    "name": "Palace 1st Half 2F Item1",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029520,
+    "name": "Palace 1st Half 2F Item2",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029521,
+    "name": "Palace 1st Half 2F Item3",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029522,
+    "name": "Palace 1st Half 2F Item4",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029523,
+    "name": "Palace 1st Half 2F Item5",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029524,
+    "name": "Palace 1st Half 3F Pot Puzzle Item Drop",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029525,
+    "name": "Palace 1st Half 4F Bow Moblins Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029526,
+    "name": "Palace 1st Half 5F Ball And Chain Soldiers Item Drop",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029527,
+    "name": "Palace 1st Half 5F Fan Loop Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029528,
+    "name": "Palace 1st Half 5F Big Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029529,
+    "name": "Palace 2nd Half 1F Dark Room Big Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029530,
+    "name": "Palace 2nd Half 1F Dark Room Small Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029531,
+    "name": "Palace 2nd Half 2F Many Rollers Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029532,
+    "name": "Palace 2nd Half 2F Twin Wizzrobes Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029533,
+    "name": "Palace 2nd Half 3F Fire Wizzrobes Big Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029534,
+    "name": "Palace 2nd Half 4F HP",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029535,
+    "name": "Palace 2nd Half 4F Switch Hit Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029536,
+    "name": "Palace 2nd Half 5F Bombarossa Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029537,
+    "name": "Palace 2nd Half 4F Block Maze Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029538,
+    "name": "Palace 2nd Half 5F Right Side Chest",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029539,
+    "name": "Palace Boss Item",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029540,
+    "name": "Palace Prize",
+    "map": "map",
+    "x": 2304,
+    "y": 245
+  },
+  {
+    "id": 6029541,
+    "name": "Sanctuary Pedestal Item1",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029542,
+    "name": "Sanctuary Pedestal Item2",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029543,
+    "name": "Sanctuary Pedestal Item3",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029544,
+    "name": "DHC B2 King",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029545,
+    "name": "DHC B1 Big Chest",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029546,
+    "name": "DHC 1F Blade Chest",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029547,
+    "name": "DHC 1F Throne Big Chest",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029548,
+    "name": "DHC 3F North West Chest",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029549,
+    "name": "DHC 3F North East Chest",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029550,
+    "name": "DHC 3F South West Chest",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029551,
+    "name": "DHC 3F South East Chest",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029552,
+    "name": "DHC 2F Blue Warp Big Chest",
+    "map": "map",
+    "x": 1326,
+    "y": 164
+  },
+  {
+    "id": 6029110,
+    "name": "Pedestal Requirement Reward",
+    "map": "dhc",
+    "x": 3090,
+    "y": 1480
+  },
+  {
+    "id": 6029325,
+    "name": "Crypt Gibdo Left Item",
+    "map": "rc",
+    "x": 257,
+    "y": 808
+  },
+  {
+    "id": 6029326,
+    "name": "Crypt Gibdo Right Item",
+    "map": "rc",
+    "x": 347,
+    "y": 808
+  },
+  {
+    "id": 6029327,
+    "name": "Crypt Left Item",
+    "map": "rc",
+    "x": 145,
+    "y": 87
+  },
+  {
+    "id": 6029328,
+    "name": "Crypt Right Item",
+    "map": "rc",
+    "x": 450,
+    "y": 87
+  },
+  {
+    "id": 6029329,
+    "name": "Crypt Prize",
+    "map": "rc",
+    "x": 895,
+    "y": 110
+  },
+  {
+    "id": 6029385,
+    "name": "Deepwood 2F Chest",
+    "map": "dws",
+    "x": 152,
+    "y": 1137
+  },
+  {
+    "id": 6029386,
+    "name": "Deepwood 1F Slug Torches Chest",
+    "map": "dws",
+    "x": 786,
+    "y": 1054
+  },
+  {
+    "id": 6029387,
+    "name": "Deepwood 1F Barrel Room Chest",
+    "map": "dws",
+    "x": 622,
+    "y": 299
+  },
+  {
+    "id": 6029388,
+    "name": "Deepwood 1F West Big Chest",
+    "map": "dws",
+    "x": 410,
+    "y": 280
+  },
+  {
+    "id": 6029389,
+    "name": "Deepwood 1F West Statue Puzzle Chest",
+    "map": "dws",
+    "x": 145,
+    "y": 570
+  },
+  {
+    "id": 6029390,
+    "name": "Deepwood 1F East Mulldozer Fight Item",
+    "map": "dws",
+    "x": 1425,
+    "y": 330
+  },
+  {
+    "id": 6029391,
+    "name": "Deepwood 1F North East Chest",
+    "map": "dws",
+    "x": 1040,
+    "y": 140
+  },
+  {
+    "id": 6029392,
+    "name": "Deepwood B1 Switch Room Big Chest",
+    "map": "dws",
+    "x": 1635,
+    "y": 730
+  },
+  {
+    "id": 6029393,
+    "name": "Deepwood B1 Switch Room Chest",
+    "map": "dws",
+    "x": 1450,
+    "y": 795
+  },
+  {
+    "id": 6029394,
+    "name": "Deepwood 1F Blue Warp HP",
+    "map": "dws",
+    "x": 785,
+    "y": 60
+  },
+  {
+    "id": 6029395,
+    "name": "Deepwood 1F Blue Warp Left Chest",
+    "map": "dws",
+    "x": 665,
+    "y": 60
+  },
+  {
+    "id": 6029396,
+    "name": "Deepwood 1F Blue Warp Right Chest",
+    "map": "dws",
+    "x": 665,
+    "y": 60
+  },
+  {
+    "id": 6029397,
+    "name": "Deepwood 1F Madderpillar Big Chest",
+    "map": "dws",
+    "x": 420,
+    "y": 115
+  },
+  {
+    "id": 6029398,
+    "name": "Deepwood 1F Madderpillar HP",
+    "map": "dws",
+    "x": 480,
+    "y": 320
+  },
+  {
+    "id": 6029399,
+    "name": "Deepwood B1 West Big Chest",
+    "map": "dws",
+    "x": 1155,
+    "y": 775
+  },
+  {
+    "id": 6029400,
+    "name": "Deepwood Boss Item",
+    "map": "dws",
+    "x": 245,
+    "y": 820
+  },
+  {
+    "id": 6029401,
+    "name": "Deepwood Prize",
+    "map": "dws",
+    "x": 245,
+    "y": 820
+  },
+  {
+    "id": 6029402,
+    "name": "CoF 1F Spike Beetle Big Chest",
+    "map": "cof",
+    "x": 2260,
+    "y": 1005
+  },
+  {
+    "id": 6029403,
+    "name": "CoF 1F Item Top Left",
+    "map": "cof",
+    "x": 2004,
+    "y": 993
+  },
+  {
+    "id": 6029404,
+    "name": "CoF 1F Item Top Middle",
+    "map": "cof",
+    "x": 2004,
+    "y": 993
+  },
+  {
+    "id": 6029405,
+    "name": "CoF 1F Item Top Right",
+    "map": "cof",
+    "x": 2004,
+    "y": 993
+  },
+  {
+    "id": 6029406,
+    "name": "CoF 1F Item Bottom Left",
+    "map": "cof",
+    "x": 2004,
+    "y": 993
+  },
+  {
+    "id": 6029407,
+    "name": "CoF 1F Item Bottom Right",
+    "map": "cof",
+    "x": 2004,
+    "y": 993
+  },
+  {
+    "id": 6029408,
+    "name": "CoF B1 Hazy Room Big Chest",
+    "map": "cof",
+    "x": 893,
+    "y": 1096
+  },
+  {
+    "id": 6029409,
+    "name": "CoF B1 Hazy Room Small Chest",
+    "map": "cof",
+    "x": 693,
+    "y": 1291
+  },
+  {
+    "id": 6029410,
+    "name": "CoF B1 Rollobite Chest",
+    "map": "cof",
+    "x": 370,
+    "y": 1390
+  },
+  {
+    "id": 6029411,
+    "name": "CoF B1 Rollobite Pillar Chest",
+    "map": "cof",
+    "x": 370,
+    "y": 1120
+  },
+  {
+    "id": 6029412,
+    "name": "CoF B1 Spikey Chus Pillar Chest",
+    "map": "cof",
+    "x": 730,
+    "y": 410
+  },
+  {
+    "id": 6029413,
+    "name": "CoF B1 HP",
+    "map": "cof",
+    "x": 840,
+    "y": 850
+  },
+  {
+    "id": 6029414,
+    "name": "CoF B1 Spikey Chus Big Chest",
+    "map": "cof",
+    "x": 860,
+    "y": 340
+  },
+  {
+    "id": 6029415,
+    "name": "CoF B2 Pre Lava North Chest",
+    "map": "cof",
+    "x": 1220,
+    "y": 270
+  },
+  {
+    "id": 6029416,
+    "name": "CoF B2 Pre Lava South Chest",
+    "map": "cof",
+    "x": 1270,
+    "y": 340
+  },
+  {
+    "id": 6029417,
+    "name": "CoF B2 Lava Room Blade Chest",
+    "map": "cof",
+    "x": 2370,
+    "y": 120
+  },
+  {
+    "id": 6029418,
+    "name": "CoF B2 Lava Room Right Chest",
+    "map": "cof",
+    "x": 2050,
+    "y": 665
+  },
+  {
+    "id": 6029419,
+    "name": "CoF B2 Lava Room Left Chest",
+    "map": "cof",
+    "x": 1520,
+    "y": 665
+  },
+  {
+    "id": 6029420,
+    "name": "CoF B2 Lava Room Big Chest",
+    "map": "cof",
+    "x": 1665,
+    "y": 400
+  },
+  {
+    "id": 6029421,
+    "name": "CoF Boss Item",
+    "map": "cof",
+    "x": 1380,
+    "y": 1200
+  },
+  {
+    "id": 6029422,
+    "name": "CoF Prize",
+    "map": "cof",
+    "x": 1380,
+    "y": 1200
+  },
+  {
+    "id": 6029424,
+    "name": "Fortress Entrance 1F Left Chest",
+    "map": "fow",
+    "x": 250,
+    "y": 1115
+  },
+  {
+    "id": 6029425,
+    "name": "Fortress Entrance 1F Left Wizzrobe Chest",
+    "map": "fow",
+    "x": 200,
+    "y": 970
+  },
+  {
+    "id": 6029426,
+    "name": "Fortress Entrance 1F Right Item",
+    "map": "fow",
+    "x": 1111,
+    "y": 1114
+  },
+  {
+    "id": 6029427,
+    "name": "Fortress Left 2F Dig Chest",
+    "map": "fow",
+    "x": 1805,
+    "y": 870
+  },
+  {
+    "id": 6029428,
+    "name": "Fortress Left 2F Item 1",
+    "map": "fow",
+    "x": 1688,
+    "y": 992
+  },
+  {
+    "id": 6029429,
+    "name": "Fortress Left 2F Item 2",
+    "map": "fow",
+    "x": 1688,
+    "y": 992
+  },
+  {
+    "id": 6029450,
+    "name": "Fortress Left 2F Item 3",
+    "map": "fow",
+    "x": 1688,
+    "y": 992
+  },
+  {
+    "id": 6029451,
+    "name": "Fortress Left 2F Item 4",
+    "map": "fow",
+    "x": 1688,
+    "y": 992
+  },
+  {
+    "id": 6029452,
+    "name": "Fortress Left 2F Item 5",
+    "map": "fow",
+    "x": 1688,
+    "y": 992
+  },
+  {
+    "id": 6029453,
+    "name": "Fortress Left 2F Item 6",
+    "map": "fow",
+    "x": 1688,
+    "y": 992
+  },
+  {
+    "id": 6029454,
+    "name": "Fortress Left 2F Item 7",
+    "map": "fow",
+    "x": 1920,
+    "y": 993
+  },
+  {
+    "id": 6029455,
+    "name": "Fortress Left 3F Switch Chest",
+    "map": "fow",
+    "x": 295,
+    "y": 725
+  },
+  {
+    "id": 6029456,
+    "name": "Fortress Left 3F Eyegore Big Chest",
+    "map": "fow",
+    "x": 125,
+    "y": 305
+  },
+  {
+    "id": 6029457,
+    "name": "Fortress Left 3F Item Drop",
+    "map": "fow",
+    "x": 485,
+    "y": 460
+  },
+  {
+    "id": 6029458,
+    "name": "Fortress Middle 2F Big Chest",
+    "map": "fow",
+    "x": 2075,
+    "y": 610
+  },
+  {
+    "id": 6029459,
+    "name": "Fortress Middle 2F Statue Chest",
+    "map": "fow",
+    "x": 2030,
+    "y": 995
+  },
+  {
+    "id": 6029460,
+    "name": "Fortress Right 2F Left Chest",
+    "map": "fow",
+    "x": 2285,
+    "y": 675
+  },
+  {
+    "id": 6029461,
+    "name": "Fortress Right 2F Right Chest",
+    "map": "fow",
+    "x": 2415,
+    "y": 675
+  },
+  {
+    "id": 6029462,
+    "name": "Fortress Right 2F Dig Chest",
+    "map": "fow",
+    "x": 2190,
+    "y": 1060
+  },
+  {
+    "id": 6029463,
+    "name": "Fortress Right 3F Dig Chest",
+    "map": "fow",
+    "x": 795,
+    "y": 710
+  },
+  {
+    "id": 6029464,
+    "name": "Fortress Right 3F Item Drop",
+    "map": "fow",
+    "x": 900,
+    "y": 460
+  },
+  {
+    "id": 6029465,
+    "name": "Fortress Entrance 1F Right HP",
+    "map": "fow",
+    "x": 1110,
+    "y": 935
+  },
+  {
+    "id": 6029466,
+    "name": "Fortress Back Left Big Chest",
+    "map": "fow",
+    "x": 1765,
+    "y": 260
+  },
+  {
+    "id": 6029467,
+    "name": "Fortress Back Left Small Chest",
+    "map": "fow",
+    "x": 1900,
+    "y": 260
+  },
+  {
+    "id": 6029468,
+    "name": "Fortress Back Right Statue Item Drop",
+    "map": "fow",
+    "x": 2665,
+    "y": 230
+  },
+  {
+    "id": 6029469,
+    "name": "Fortress Back Right Minish Item Drop",
+    "map": "fow",
+    "x": 2430,
+    "y": 280
+  },
+  {
+    "id": 6029470,
+    "name": "Fortress Back Right Dig Room Top Pot",
+    "map": "fow",
+    "x": 2480,
+    "y": 930
+  },
+  {
+    "id": 6029471,
+    "name": "Fortress Back Right Dig Room Bottom Pot",
+    "map": "fow",
+    "x": 2365,
+    "y": 1080
+  },
+  {
+    "id": 6029472,
+    "name": "Fortress Back Right Big Chest",
+    "map": "fow",
+    "x": 2680,
+    "y": 480
+  },
+  {
+    "id": 6029473,
+    "name": "Fortress Boss Item",
+    "map": "fow",
+    "x": 660,
+    "y": 55
+  },
+  {
+    "id": 6029474,
+    "name": "Fortress Prize",
+    "map": "fow",
+    "x": 660,
+    "y": 55
+  },
+  {
+    "id": 6029475,
+    "name": "Droplets Entrance B2 East Iceblock",
+    "map": "tod",
+    "x": 1225,
+    "y": 110
+  },
+  {
+    "id": 6029476,
+    "name": "Droplets Entrance B2 West Iceblock",
+    "map": "tod",
+    "x": 905,
+    "y": 140
+  },
+  {
+    "id": 6029477,
+    "name": "Droplets Left Path B1 Underpass Item1",
+    "map": "tod",
+    "x": 690,
+    "y": 2815
+  },
+  {
+    "id": 6029478,
+    "name": "Droplets Left Path B1 Underpass Item2",
+    "map": "tod",
+    "x": 690,
+    "y": 2815
+  },
+  {
+    "id": 6029479,
+    "name": "Droplets Left Path B1 Underpass Item3",
+    "map": "tod",
+    "x": 690,
+    "y": 2815
+  },
+  {
+    "id": 6029480,
+    "name": "Droplets Left Path B1 Underpass Item4",
+    "map": "tod",
+    "x": 690,
+    "y": 2815
+  },
+  {
+    "id": 6029481,
+    "name": "Droplets Left Path B1 Underpass Item5",
+    "map": "tod",
+    "x": 690,
+    "y": 2815
+  },
+  {
+    "id": 6029482,
+    "name": "Droplets Left Path B1 Waterfall Big Chest",
+    "map": "tod",
+    "x": 740,
+    "y": 2925
+  },
+  {
+    "id": 6029483,
+    "name": "Droplets Left Path B1 Waterfall Underwater 1",
+    "map": "tod",
+    "x": 370,
+    "y": 2350
+  },
+  {
+    "id": 6029484,
+    "name": "Droplets Left Path B1 Waterfall Underwater 2",
+    "map": "tod",
+    "x": 370,
+    "y": 2350
+  },
+  {
+    "id": 6029485,
+    "name": "Droplets Left Path B1 Waterfall Underwater 3",
+    "map": "tod",
+    "x": 370,
+    "y": 2350
+  },
+  {
+    "id": 6029486,
+    "name": "Droplets Left Path B1 Waterfall Underwater 4",
+    "map": "tod",
+    "x": 370,
+    "y": 2350
+  },
+  {
+    "id": 6029487,
+    "name": "Droplets Left Path B1 Waterfall Underwater 5",
+    "map": "tod",
+    "x": 370,
+    "y": 2350
+  },
+  {
+    "id": 6029488,
+    "name": "Droplets Left Path B1 Waterfall Underwater 6",
+    "map": "tod",
+    "x": 370,
+    "y": 2350
+  },
+  {
+    "id": 6029489,
+    "name": "Droplets Left Path B2 Waterfall Underwater 1",
+    "map": "tod",
+    "x": 600,
+    "y": 1215
+  },
+  {
+    "id": 6029490,
+    "name": "Droplets Left Path B2 Waterfall Underwater 2",
+    "map": "tod",
+    "x": 600,
+    "y": 1215
+  },
+  {
+    "id": 6029491,
+    "name": "Droplets Left Path B2 Waterfall Underwater 3",
+    "map": "tod",
+    "x": 600,
+    "y": 1215
+  },
+  {
+    "id": 6029492,
+    "name": "Droplets Left Path B2 Waterfall Underwater 4",
+    "map": "tod",
+    "x": 600,
+    "y": 1215
+  },
+  {
+    "id": 6029493,
+    "name": "Droplets Left Path B2 Waterfall Underwater 5",
+    "map": "tod",
+    "x": 600,
+    "y": 1215
+  },
+  {
+    "id": 6029494,
+    "name": "Droplets Left Path B2 Waterfall Underwater 6",
+    "map": "tod",
+    "x": 600,
+    "y": 1215
+  },
+  {
+    "id": 6029495,
+    "name": "Droplets Left Path B2 Underwater Pot",
+    "map": "tod",
+    "x": 910,
+    "y": 1420
+  },
+  {
+    "id": 6029496,
+    "name": "Droplets Left Path B2 Ice Madderpillar Big Chest",
+    "map": "tod",
+    "x": 1505,
+    "y": 1215
+  },
+  {
+    "id": 6029497,
+    "name": "Droplets Left Path B2 Ice Plain Frozen Chest",
+    "map": "tod",
+    "x": 1110,
+    "y": 975
+  },
+  {
+    "id": 6029498,
+    "name": "Droplets Left Path B2 Ice Plain Chest",
+    "map": "tod",
+    "x": 1000,
+    "y": 830
+  },
+  {
+    "id": 6029499,
+    "name": "Droplets Left Path B2 Lilypad Corner Frozen Chest",
+    "map": "tod",
+    "x": 695,
+    "y": 1025
+  },
+  {
+    "id": 6029500,
+    "name": "Droplets Right Path B1 1st Chest",
+    "map": "tod",
+    "x": 1475,
+    "y": 2365
+  },
+  {
+    "id": 6029501,
+    "name": "Droplets Right Path B1 2nd Chest",
+    "map": "tod",
+    "x": 1680,
+    "y": 2545
+  },
+  {
+    "id": 6029502,
+    "name": "Droplets Right Path B1 Pot",
+    "map": "tod",
+    "x": 1780,
+    "y": 2780
+  },
+  {
+    "id": 6029503,
+    "name": "Droplets Right Path B3 Frozen Chest",
+    "map": "tod",
+    "x": 1720,
+    "y": 1440
+  },
+  {
+    "id": 6029504,
+    "name": "Droplets Right Path B1 Blu Chu Big Chest",
+    "map": "tod",
+    "x": 1440,
+    "y": 3010
+  },
+  {
+    "id": 6029505,
+    "name": "Droplets Right Path B2 Frozen Chest",
+    "map": "tod",
+    "x": 1385,
+    "y": 1235
+  },
+  {
+    "id": 6029506,
+    "name": "Droplets Right Path B2 Dark Maze Bottom Chest",
+    "map": "tod",
+    "x": 1895,
+    "y": 1120
+  },
+  {
+    "id": 6029507,
+    "name": "Droplets Right Path B2 Mulldozers Item Drop",
+    "map": "tod",
+    "x": 1670,
+    "y": 975
+  },
+  {
+    "id": 6029508,
+    "name": "Droplets Right Path B2 Dark Maze Top Right Chest",
+    "map": "tod",
+    "x": 1990,
+    "y": 720
+  },
+  {
+    "id": 6029509,
+    "name": "Droplets Right Path B2 Dark Maze Top Left Chest",
+    "map": "tod",
+    "x": 1850,
+    "y": 800
+  },
+  {
+    "id": 6029510,
+    "name": "Droplets Right Path B2 Underpass Item1",
+    "map": "tod",
+    "x": 1450,
+    "y": 517
+  },
+  {
+    "id": 6029511,
+    "name": "Droplets Right Path B2 Underpass Item2",
+    "map": "tod",
+    "x": 1450,
+    "y": 517
+  },
+  {
+    "id": 6029512,
+    "name": "Droplets Right Path B2 Underpass Item3",
+    "map": "tod",
+    "x": 1450,
+    "y": 517
+  },
+  {
+    "id": 6029513,
+    "name": "Droplets Right Path B2 Underpass Item4",
+    "map": "tod",
+    "x": 1450,
+    "y": 517
+  },
+  {
+    "id": 6029514,
+    "name": "Droplets Right Path B2 Underpass Item5",
+    "map": "tod",
+    "x": 1450,
+    "y": 517
+  },
+  {
+    "id": 6029515,
+    "name": "Droplets Boss Item",
+    "map": "tod",
+    "x": 1040,
+    "y": 2875
+  },
+  {
+    "id": 6029516,
+    "name": "Droplets Prize",
+    "map": "tod",
+    "x": 1040,
+    "y": 2875
+  },
+  {
+    "id": 6029517,
+    "name": "Palace 1st Half 1F Grate Chest",
+    "map": "pow",
+    "x": 630,
+    "y": 90
+  },
+  {
+    "id": 6029518,
+    "name": "Palace 1st Half 1F Wizzrobe Big Chest",
+    "map": "pow",
+    "x": 120,
+    "y": 215
+  },
+  {
+    "id": 6029519,
+    "name": "Palace 1st Half 2F Item1",
+    "map": "pow",
+    "x": 1930,
+    "y": 383
+  },
+  {
+    "id": 6029520,
+    "name": "Palace 1st Half 2F Item2",
+    "map": "pow",
+    "x": 1930,
+    "y": 383
+  },
+  {
+    "id": 6029521,
+    "name": "Palace 1st Half 2F Item3",
+    "map": "pow",
+    "x": 1930,
+    "y": 383
+  },
+  {
+    "id": 6029522,
+    "name": "Palace 1st Half 2F Item4",
+    "map": "pow",
+    "x": 1930,
+    "y": 383
+  },
+  {
+    "id": 6029523,
+    "name": "Palace 1st Half 2F Item5",
+    "map": "pow",
+    "x": 1930,
+    "y": 383
+  },
+  {
+    "id": 6029524,
+    "name": "Palace 1st Half 3F Pot Puzzle Item Drop",
+    "map": "pow",
+    "x": 3720,
+    "y": 535
+  },
+  {
+    "id": 6029525,
+    "name": "Palace 1st Half 4F Bow Moblins Chest",
+    "map": "pow",
+    "x": 585,
+    "y": 1645
+  },
+  {
+    "id": 6029526,
+    "name": "Palace 1st Half 5F Ball And Chain Soldiers Item Drop",
+    "map": "pow",
+    "x": 2385,
+    "y": 2125
+  },
+  {
+    "id": 6029527,
+    "name": "Palace 1st Half 5F Fan Loop Chest",
+    "map": "pow",
+    "x": 2110,
+    "y": 2075
+  },
+  {
+    "id": 6029528,
+    "name": "Palace 1st Half 5F Big Chest",
+    "map": "pow",
+    "x": 2140,
+    "y": 1865
+  },
+  {
+    "id": 6029529,
+    "name": "Palace 2nd Half 1F Dark Room Big Chest",
+    "map": "pow",
+    "x": 775,
+    "y": 627
+  },
+  {
+    "id": 6029530,
+    "name": "Palace 2nd Half 1F Dark Room Small Chest",
+    "map": "pow",
+    "x": 600,
+    "y": 520
+  },
+  {
+    "id": 6029531,
+    "name": "Palace 2nd Half 2F Many Rollers Chest",
+    "map": "pow",
+    "x": 1595,
+    "y": 825
+  },
+  {
+    "id": 6029532,
+    "name": "Palace 2nd Half 2F Twin Wizzrobes Chest",
+    "map": "pow",
+    "x": 2090,
+    "y": 695
+  },
+  {
+    "id": 6029533,
+    "name": "Palace 2nd Half 3F Fire Wizzrobes Big Chest",
+    "map": "pow",
+    "x": 3400,
+    "y": 355
+  },
+  {
+    "id": 6029534,
+    "name": "Palace 2nd Half 4F HP",
+    "map": "pow",
+    "x": 425,
+    "y": 1660
+  },
+  {
+    "id": 6029535,
+    "name": "Palace 2nd Half 4F Switch Hit Chest",
+    "map": "pow",
+    "x": 710,
+    "y": 1915
+  },
+  {
+    "id": 6029536,
+    "name": "Palace 2nd Half 5F Bombarossa Chest",
+    "map": "pow",
+    "x": 2625,
+    "y": 1820
+  },
+  {
+    "id": 6029537,
+    "name": "Palace 2nd Half 4F Block Maze Chest",
+    "map": "pow",
+    "x": 950,
+    "y": 1660
+  },
+  {
+    "id": 6029538,
+    "name": "Palace 2nd Half 5F Right Side Chest",
+    "map": "pow",
+    "x": 3340,
+    "y": 1870
+  },
+  {
+    "id": 6029539,
+    "name": "Palace Boss Item",
+    "map": "pow",
+    "x": 3010,
+    "y": 1580
+  },
+  {
+    "id": 6029540,
+    "name": "Palace Prize",
+    "map": "pow",
+    "x": 3010,
+    "y": 1580
+  },
+  {
+    "id": 6029541,
+    "name": "Sanctuary Pedestal Item1",
+    "map": "dhc",
+    "x": 3090,
+    "y": 1480
+  },
+  {
+    "id": 6029542,
+    "name": "Sanctuary Pedestal Item2",
+    "map": "dhc",
+    "x": 3090,
+    "y": 1480
+  },
+  {
+    "id": 6029543,
+    "name": "Sanctuary Pedestal Item3",
+    "map": "dhc",
+    "x": 3090,
+    "y": 1480
+  },
+  {
+    "id": 6029544,
+    "name": "DHC B2 King",
+    "map": "dhc",
+    "x": 3295,
+    "y": 110
+  },
+  {
+    "id": 6029545,
+    "name": "DHC B1 Big Chest",
+    "map": "dhc",
+    "x": 3090,
+    "y": 1800
+  },
+  {
+    "id": 6029546,
+    "name": "DHC 1F Blade Chest",
+    "map": "dhc",
+    "x": 2265,
+    "y": 870
+  },
+  {
+    "id": 6029547,
+    "name": "DHC 1F Throne Big Chest",
+    "map": "dhc",
+    "x": 2230,
+    "y": 70
+  },
+  {
+    "id": 6029548,
+    "name": "DHC 3F North West Chest",
+    "map": "dhc",
+    "x": 220,
+    "y": 130
+  },
+  {
+    "id": 6029549,
+    "name": "DHC 3F North East Chest",
+    "map": "dhc",
+    "x": 1305,
+    "y": 135
+  },
+  {
+    "id": 6029550,
+    "name": "DHC 3F South West Chest",
+    "map": "dhc",
+    "x": 220,
+    "y": 1490
+  },
+  {
+    "id": 6029551,
+    "name": "DHC 3F South East Chest",
+    "map": "dhc",
+    "x": 1315,
+    "y": 1490
+  },
+  {
+    "id": 6029552,
+    "name": "DHC 2F Blue Warp Big Chest",
+    "map": "dhc",
+    "x": 765,
+    "y": 225
+  },
+  {
+    "id": 6029601,
+    "map": "map",
+    "x": 3275,
+    "y": 850
+  },
+  {
+    "id": 6029602,
+    "map": "map",
+    "x": 2858,
+    "y": 1270
+  },
+  {
+    "id": 6029603,
+    "map": "map",
+    "x": 2700,
+    "y": 830
+  },
+  {
+    "id": 6029604,
+    "map": "map",
+    "x": 3150,
+    "y": 1110
+  },
+  {
+    "id": 6029605,
+    "map": "map",
+    "x": 3274,
+    "y": 1277
+  },
+  {
+    "id": 6029606,
+    "map": "map",
+    "x": 75,
+    "y": 1700
+  },
+  {
+    "id": 6029607,
+    "map": "map",
+    "x": 75,
+    "y": 1700
+  },
+  {
+    "id": 6029608,
+    "map": "map",
+    "x": 75,
+    "y": 1700
+  },
+  {
+    "id": 6029609,
+    "map": "map",
+    "x": 1700,
+    "y": 453
+  },
+  {
+    "id": 6029629,
+    "name": "South Waterfall to Grimblade in Veil Falls open",
+    "map": "map",
+    "x": 1612,
+    "y": 375
+  },
+  {
+    "id": 6029676,
+    "name": "Southeast Tree in Western Wood Fixed",
+    "map": "map",
+    "x": 1613,
+    "y": 175
+  },
+  {
+    "id": 6029619,
+    "name": "North Waterfall in Veil Falls opens",
+    "map": "map",
+    "x": 2970,
+    "y": 1110
+  },
+  {
+    "id": 6029619,
+    "name": "North Waterfall in Veil Falls opens",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029619,
+    "name": "North Waterfall in Veil Falls opens",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029674,
+    "name": "Golden Tektite in Veil Falls",
+    "map": "map",
+    "x": 2970,
+    "y": 1110
+  },
+  {
+    "id": 6029674,
+    "name": "Golden Tektite in Veil Falls",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029674,
+    "name": "Golden Tektite in Veil Falls",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029673,
+    "name": "Golden Rope in Castor Wilds",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029673,
+    "name": "Golden Rope in Castor Wilds",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029672,
+    "name": "Northern Tree in Western Wood fixed",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029672,
+    "name": "Northern Tree in Western Wood fixed",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029697,
+    "name": "Blue S Kinstone Chest spawns in Veil Falls",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029697,
+    "name": "Blue S Kinstone Chest spawns in Veil Falls",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029692,
+    "name": "Chest northwest of Graveyard",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029692,
+    "name": "Chest northwest of Graveyard",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029693,
+    "name": "Chest northeast of Graveyard",
+    "map": "map",
+    "x": 2305,
+    "y": 360
+  },
+  {
+    "id": 6029693,
+    "name": "Chest northeast of Graveyard",
+    "map": "map",
+    "x": 1379,
+    "y": 1826
+  },
+  {
+    "id": 6029679,
+    "name": "Crenel Spring Minish Path Chest",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029667,
+    "name": "Chest in Crenel Rainy Minish Path",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029659,
+    "name": "Golden Tektite in Mount Crenel South",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029626,
+    "name": "Mount Crenel Beanstalk",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029656,
+    "name": "Minish Woods Southwest Chest",
+    "map": "map",
+    "x": 385,
+    "y": 357
+  },
+  {
+    "id": 6029612,
+    "name": "Waterfall in Castor Wilds opens",
+    "map": "map",
+    "x": 602,
+    "y": 372
+  },
+  {
+    "id": 6029647,
+    "name": "6th Goron Joins",
+    "map": "map",
+    "x": 37,
+    "y": 212
+  },
+  {
+    "id": 6029699,
+    "name": "Northwest chest in Crenel Base",
+    "map": "map",
+    "x": 229,
+    "y": 857
+  },
+  {
+    "id": 6029624,
+    "name": "Castle Garden East Fountain",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029645,
+    "name": "Removed vines outside castle tree",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029653,
+    "name": "Castle Garden West Fountain",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029654,
+    "name": "Hyrule Town School Minish Path Chest",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029657,
+    "name": "Minish Woods Middle Chest",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029695,
+    "name": "Chest near entrance to Royal Valley",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029655,
+    "name": "Minish Woods Minish Path Chest",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029660,
+    "name": "Golden Rope in Castle Garden",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029668,
+    "name": "Minish Woods West Chest above pond",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029670,
+    "name": "Minish Woods East Chest",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029671,
+    "name": "Minish Woods West Chest below pond",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029678,
+    "name": "Minish Hole near pond to Minish Village",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029696,
+    "name": "Chest in north edge of Lon Lon Ranch",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029680,
+    "name": "Lon Lon Ranch Minish Path Chest",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029683,
+    "name": "Chest near Link's House",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029685,
+    "name": "Golden Rope near Farm",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029686,
+    "name": "Golden Octorok near Witch's Hut",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029688,
+    "name": "Drained Water West of South Hyrule",
+    "map": "map",
+    "x": 2680,
+    "y": 1700
+  },
+  {
+    "id": 6029643,
+    "name": "5th Goron Joins",
+    "map": "map",
+    "x": 1699,
+    "y": 1563
+  },
+  {
+    "id": 6029646,
+    "name": "Eastern Hills Beanstalk",
+    "map": "map",
+    "x": 1705,
+    "y": 2000
+  },
+  {
+    "id": 6029698,
+    "name": "Chest in middle of Crenel Wall",
+    "map": "map",
+    "x": 1795,
+    "y": 1570
+  },
+  {
+    "id": 6029641,
+    "name": "1st Goron Opens Cave",
+    "map": "map",
+    "x": 1795,
+    "y": 1570
+  },
+  {
+    "id": 6029621,
+    "name": "Waterfall outside castle opens",
+    "map": "map",
+    "x": 2311,
+    "y": 1262
+  },
+  {
+    "id": 6029642,
+    "name": "3rd Goron Joins",
+    "map": "map",
+    "x": 2464,
+    "y": 862
+  },
+  {
+    "id": 6029681,
+    "name": "Mayor's Cabin Minish Path Chest",
+    "map": "map",
+    "x": 2332,
+    "y": 842
+  },
+  {
+    "id": 6029684,
+    "name": "Golden Octorok in Wind Ruins",
+    "map": "map",
+    "x": 2241,
+    "y": 1145
+  },
+  {
+    "id": 6029684,
+    "name": "Golden Octorok in Wind Ruins",
+    "map": "map",
+    "x": 2464,
+    "y": 1086
+  },
+  {
+    "id": 6029684,
+    "name": "Golden Octorok in Wind Ruins",
+    "map": "map",
+    "x": 1199,
+    "y": 1060
+  },
+  {
+    "id": 6029684,
+    "name": "Golden Octorok in Wind Ruins",
+    "map": "map",
+    "x": 1230,
+    "y": 1125
+  },
+  {
+    "id": 6029617,
+    "name": "Removed vines near Castor Wilds tree",
+    "map": "map",
+    "x": 2264,
+    "y": 1074
+  },
+  {
+    "id": 6029690,
+    "name": "Bottom Right Tree Outside Castle Open",
+    "map": "map",
+    "x": 2350,
+    "y": 960
+  },
+  {
+    "id": 6029669,
+    "name": "Chest in Melari's Mine Minish Path",
+    "map": "map",
+    "x": 2350,
+    "y": 960
+  },
+  {
+    "id": 6029635,
+    "name": "Lake Hylia Beanstalk",
+    "map": "map",
+    "x": 2620,
+    "y": 970
+  },
+  {
+    "id": 6029651,
+    "name": "Goron Merchant appears",
+    "map": "map",
+    "x": 1751,
+    "y": 1372
+  },
+  {
+    "id": 6029614,
+    "name": "Biggoron wakes up",
+    "map": "map",
+    "x": 1751,
+    "y": 1372
+  },
+  {
+    "id": 6029664,
+    "name": "Top Right Tree Outside Castle Open",
+    "map": "map",
+    "x": 1800,
+    "y": 980
+  },
+  {
+    "id": 6029638,
+    "name": "4th Goron Joins",
+    "map": "map",
+    "x": 2358,
+    "y": 1373
+  },
+  {
+    "id": 6029638,
+    "name": "4th Goron Joins",
+    "map": "map",
+    "x": 2315,
+    "y": 1607
+  },
+  {
+    "id": 6029631,
+    "name": "Platform to Veil Falls cave appears",
+    "map": "map",
+    "x": 2295,
+    "y": 2000
+  },
+  {
+    "id": 6029618,
+    "name": "Hole in Lake Hylia to Librari opens",
+    "map": "map",
+    "x": 2295,
+    "y": 2000
+  },
+  {
+    "id": 6029628,
+    "name": "Belari creates Remote Bomb",
+    "map": "map",
+    "x": 2295,
+    "y": 2000
+  },
+  {
+    "id": 6029675,
+    "name": "North Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 2295,
+    "y": 2000
+  },
+  {
+    "id": 6029675,
+    "name": "North Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 1199,
+    "y": 1060
+  },
+  {
+    "id": 6029675,
+    "name": "North Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 1230,
+    "y": 1125
+  },
+  {
+    "id": 6029675,
+    "name": "North Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 1030,
+    "y": 1295
+  },
+  {
+    "id": 6029687,
+    "name": "West Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 2295,
+    "y": 2000
+  },
+  {
+    "id": 6029687,
+    "name": "West Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 1199,
+    "y": 1060
+  },
+  {
+    "id": 6029687,
+    "name": "West Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 1230,
+    "y": 1125
+  },
+  {
+    "id": 6029687,
+    "name": "West Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 1030,
+    "y": 1295
+  },
+  {
+    "id": 6029662,
+    "name": "Middle Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 2295,
+    "y": 2000
+  },
+  {
+    "id": 6029662,
+    "name": "Middle Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 1199,
+    "y": 1060
+  },
+  {
+    "id": 6029662,
+    "name": "Middle Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 1230,
+    "y": 1125
+  },
+  {
+    "id": 6029662,
+    "name": "Middle Minish Leaf in Castor Wilds",
+    "map": "map",
+    "x": 1030,
+    "y": 1295
+  },
+  {
+    "id": 6029610,
+    "name": "Bomb Bag chest in Wind Ruins",
+    "map": "map",
+    "x": 2187,
+    "y": 1968
+  },
+  {
+    "id": 6029661,
+    "name": "Golden Octorok in Western Wood",
+    "map": "map",
+    "x": 2330,
+    "y": 1710
+  },
+  {
+    "id": 6029691,
+    "name": "Minish Hole near Bow in Castor Wilds",
+    "map": "map",
+    "x": 2330,
+    "y": 1710
+  },
+  {
+    "id": 6029700,
+    "name": "Wind Ruins Chest in middle of pillars",
+    "map": "map",
+    "x": 1600,
+    "y": 740
+  },
+  {
+    "id": 6029623,
+    "name": "Wind Ruins Beanstalk",
+    "map": "map",
+    "x": 48,
+    "y": 2019
+  },
+  {
+    "id": 6029689,
+    "name": "Top Left Tree Outside Castle Open",
+    "map": "map",
+    "x": 1624,
+    "y": 1837
+  },
+  {
+    "id": 6029613,
+    "name": "Golden Tektite in Mount Crenel Middle",
+    "map": "map",
+    "x": 1624,
+    "y": 1837
+  },
+  {
+    "id": 6029622,
+    "name": "Bottle chest near Farm",
+    "map": "map",
+    "x": 1427,
+    "y": 1918
+  },
+  {
+    "id": 6029682,
+    "name": "Trilby Highlands North Chest",
+    "map": "map",
+    "x": 1427,
+    "y": 1918
+  },
+  {
+    "id": 6029620,
+    "name": "Syrup makes red potion",
+    "map": "map",
+    "x": 1047,
+    "y": 1936
+  },
+  {
+    "id": 6029639,
+    "name": "Removed vines in Minish Woods",
+    "map": "map",
+    "x": 350,
+    "y": 1165
+  },
+  {
+    "id": 6029627,
+    "name": "Gorman rents blue house",
+    "map": "map",
+    "x": 1570,
+    "y": 1310
+  },
+  {
+    "id": 6029627,
+    "name": "Gorman rents blue house",
+    "map": "map",
+    "x": 1592,
+    "y": 1414
+  },
+  {
+    "id": 6029632,
+    "name": "Wind Ruins Joy Butterfly (Arrows)",
+    "map": "map",
+    "x": 1570,
+    "y": 1310
+  },
+  {
+    "id": 6029632,
+    "name": "Wind Ruins Joy Butterfly (Arrows)",
+    "map": "map",
+    "x": 1592,
+    "y": 1414
+  },
+  {
+    "id": 6029625,
+    "name": "Graveyard Joy Butterfly (Swim)",
+    "map": "map",
+    "x": 1570,
+    "y": 1310
+  },
+  {
+    "id": 6029625,
+    "name": "Graveyard Joy Butterfly (Swim)",
+    "map": "map",
+    "x": 1592,
+    "y": 1414
+  },
+  {
+    "id": 6029616,
+    "name": "Castor Wilds Joy Butterfly (Dig)",
+    "map": "map",
+    "x": 1570,
+    "y": 1310
+  },
+  {
+    "id": 6029616,
+    "name": "Castor Wilds Joy Butterfly (Dig)",
+    "map": "map",
+    "x": 1592,
+    "y": 1414
+  },
+  {
+    "id": 6029694,
+    "name": "Trilby Highlands Chest in rocks",
+    "map": "map",
+    "x": 1464,
+    "y": 1115
+  },
+  {
+    "id": 6029634,
+    "name": "Platform to West Hyrule cave appears",
+    "map": "map",
+    "x": 1199,
+    "y": 1060
+  },
+  {
+    "id": 6029634,
+    "name": "Platform to West Hyrule cave appears",
+    "map": "map",
+    "x": 1230,
+    "y": 1125
+  },
+  {
+    "id": 6029652,
+    "name": "Platform to Lake Hylia cave appears",
+    "map": "map",
+    "x": 1262,
+    "y": 1510
+  },
+  {
+    "id": 6029650,
+    "name": "Removed vines in tree near Link's House",
+    "map": "map",
+    "x": 1262,
+    "y": 1510
+  },
+  {
+    "id": 6029611,
+    "name": "Mutoh builds new house",
+    "map": "map",
+    "x": 1030,
+    "y": 1050
+  },
+  {
+    "id": 6029615,
+    "name": "Portal to Cloud Tops open",
+    "map": "map",
+    "x": 1100,
+    "y": 1221
+  },
+  {
+    "id": 6029630,
+    "name": "Drained Water in Lon Lon Ranch",
+    "map": "map",
+    "x": 1465,
+    "y": 1210
+  },
+  {
+    "id": 6029644,
+    "name": "Marcy in Post Office",
+    "map": "map",
+    "x": 1325,
+    "y": 1275
+  },
+  {
+    "id": 6029633,
+    "name": "Tree to Percy's house fixed",
+    "map": "map",
+    "x": 725,
+    "y": 1390
+  },
+  {
+    "id": 6029677,
+    "name": "Bottom Left Tree Outside Castle Open",
+    "map": "map",
+    "x": 795,
+    "y": 855
+  },
+  {
+    "id": 6029637,
+    "name": "2nd Goron Joins",
+    "map": "map",
+    "x": 730,
+    "y": 957
+  },
+  {
+    "id": 6029663,
+    "name": "Drained water in Western Wood",
+    "map": "map",
+    "x": 700,
+    "y": 825
+  },
+  {
+    "id": 6029648,
+    "name": "Grave Open",
+    "map": "map",
+    "x": 948,
+    "y": 405
+  },
+  {
+    "id": 6029665,
+    "name": "Minish Hole in Wind Ruins",
+    "map": "map",
+    "x": 948,
+    "y": 405
+  },
+  {
+    "id": 6029666,
+    "name": "Hyrule Town Waterfall Open",
+    "map": "map",
+    "x": 932,
+    "y": 229
+  },
+  {
+    "id": 6029658,
+    "name": "Middle tree in Western Wood fixed",
+    "map": "map",
+    "x": 932,
+    "y": 229
+  },
+  {
+    "id": 6029649,
+    "name": "Borlov adds new difficulty",
+    "map": "map",
+    "x": 755,
+    "y": 300
+  },
+  {
+    "id": 6029640,
+    "name": "Spookter leaves Hyrule Town",
+    "map": "map",
+    "x": 755,
+    "y": 300
+  },
+  {
+    "id": 6029636,
+    "name": "South Hyrule Beanstalk",
+    "map": "map",
+    "x": 800,
+    "y": 2005
+  }
+]

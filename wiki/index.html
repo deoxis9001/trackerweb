@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TMC Tracker – Wiki</title>
+<style>
+  :root {
+    --bg: #0f1428;
+    --bg2: #151d35;
+    --border: #2a3560;
+    --accent: #6eb0ff;
+    --text: #d4deff;
+    --muted: #7888aa;
+    --green: #4caf50;
+    --yellow: #ffca28;
+    --red: #f44336;
+    --code-bg: #0a0f22;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
+  .layout { display: flex; min-height: 100vh; }
+  nav { width: 240px; flex-shrink: 0; background: var(--bg2); border-right: 1px solid var(--border); padding: 20px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+  nav .logo { font-size: 16px; font-weight: 700; color: var(--accent); padding: 0 16px 16px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+  nav a { display: block; padding: 6px 16px; color: var(--muted); text-decoration: none; font-size: 13px; border-left: 2px solid transparent; transition: all 0.15s; }
+  nav a:hover, nav a.active { color: var(--text); border-left-color: var(--accent); background: rgba(110,176,255,0.06); }
+  nav .nav-group { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; padding: 12px 16px 4px; }
+  main { flex: 1; padding: 32px 40px; max-width: 900px; }
+  h1 { font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  h2 { font-size: 18px; font-weight: 700; color: var(--accent); margin: 36px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 14px; font-weight: 700; color: var(--text); margin: 20px 0 8px; }
+  p { margin-bottom: 12px; color: var(--text); }
+  ul, ol { margin: 0 0 12px 20px; }
+  li { margin-bottom: 4px; }
+  code { background: var(--code-bg); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 12px; color: #a8d8ff; }
+  pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; overflow-x: auto; margin-bottom: 16px; }
+  pre code { background: none; border: none; padding: 0; font-size: 12px; color: var(--text); }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+  th { background: var(--bg2); padding: 8px 12px; text-align: left; color: var(--accent); font-size: 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 6px 12px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .tag { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .tag.req { background: #2a3a5a; color: #7ab0ff; }
+  .tag.opt { background: #2a3a2a; color: #7ac47a; }
+  .tag.bool { background: #3a2a3a; color: #c47acc; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .callout { background: rgba(110,176,255,0.08); border-left: 3px solid var(--accent); padding: 10px 14px; border-radius: 0 6px 6px 0; margin-bottom: 16px; font-size: 13px; }
+  .section { margin-bottom: 48px; }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav>
+  <div class="logo">TMC Tracker – Wiki</div>
+  <div class="nav-group">Données</div>
+  <a href="#locations">locations.json</a>
+  <a href="#regions">regions.json</a>
+  <a href="#map_coords">map_coords.json</a>
+  <a href="#items">items.json</a>
+  <a href="#ap_tables">ap_tables.json</a>
+  <div class="nav-group">Logique</div>
+  <a href="#rules">rules.js – helpers</a>
+  <a href="#accessibility">accessibility.js</a>
+  <a href="#settings">settingsStore – champs</a>
+  <div class="nav-group">Tracker</div>
+  <a href="#itemimages">itemImages.js</a>
+  <a href="#pinshapes">Formes des pins</a>
+</nav>
+
+<main>
+  <h1>TMC Randomizer Tracker – Wiki</h1>
+  <p>Documentation interne des structures JSON et des fonctions utilisées dans le tracker.</p>
+
+  <!-- ─────────────────────────────────────────────── LOCATIONS ── -->
+  <div class="section" id="locations">
+    <h2>data/locations.json</h2>
+    <p>Liste de toutes les locations du randomizer. Chaque entrée correspond à un check.</p>
+    <pre><code>{
+  "id":          6029402,          // Identifiant numérique unique AP
+  "name":        "CoF 1F Spike Beetle Big Chest",
+  "region_key":  "COF_1F",        // Clé de région (correspond à regions.json)
+  "region_name": "Cave of Flame", // Nom lisible de la région
+  "dungeon":     "CoF",           // Null si hors donjon ; sinon: DWS/CoF/FoW/ToD/PoW/DHC/RC
+  "pools": ["chest"]              // Tableau de pools (voir tableau ci-dessous)
+}</code></pre>
+
+    <h3>Valeurs de <code>pools</code></h3>
+    <table>
+      <tr><th>Valeur</th><th>Description</th></tr>
+      <tr><td><code>chest</code></td><td>Coffre standard</td></tr>
+      <tr><td><code>hp</code></td><td>Quart de cœur / conteneur</td></tr>
+      <tr><td><code>element</code></td><td>Récompense d'élément (Fire, Water…)</td></tr>
+      <tr><td><code>shop</code></td><td>Item de boutique</td></tr>
+      <tr><td><code>scrub</code></td><td>Business Scrub</td></tr>
+      <tr><td><code>fairy</code></td><td>Fée</td></tr>
+      <tr><td><code>scroll</code></td><td>Scroll (dojo des marais)</td></tr>
+      <tr><td><code>butterfly</code></td><td>Papillon de Joie</td></tr>
+      <tr><td><code>dig</code></td><td>Fouille</td></tr>
+      <tr><td><code>water</code></td><td>Coffre sous-marin</td></tr>
+      <tr><td><code>pot</code></td><td>Pot</td></tr>
+      <tr><td><code>enemy</code></td><td>Drop ennemi doré</td></tr>
+      <tr><td><code>fuse_gold</code></td><td>Fusion Kinstone Or</td></tr>
+      <tr><td><code>fuse_red</code></td><td>Fusion Kinstone Rouge</td></tr>
+      <tr><td><code>fuse_green</code></td><td>Fusion Kinstone Vert</td></tr>
+      <tr><td><code>fuse_blue</code></td><td>Fusion Kinstone Bleu</td></tr>
+      <tr><td><code>rupee</code></td><td>Rupee (rupee-sanity)</td></tr>
+    </table>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── REGIONS ── -->
+  <div class="section" id="regions">
+    <h2>data/regions.json</h2>
+    <p>Graphe de régions utilisé pour le BFS d'accessibilité.</p>
+    <pre><code>{
+  "key":              "COF_1F",
+  "name":             "Cave of Flame 1F",
+  "dungeon":          "CoF",       // null si hors donjon
+  "is_dungeon_region": true
+}</code></pre>
+    <p>Les transitions entre régions sont définies dans <code>src/logic/rules.js</code> via <code>REGION_RULES</code> :</p>
+    <pre><code>REGION_RULES = {
+  "MENU": {
+    "SOUTH_FIELD": null,   // null = toujours accessible
+    "COF_ENTRANCE": (inv, s) => has("Bomb Bag")(inv) || has("Gust Jar")(inv),
+    ...
+  }
+}</code></pre>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── MAP_COORDS ── -->
+  <div class="section" id="map_coords">
+    <h2>data/map_coords.json</h2>
+    <p>Coordonnées pixel de chaque location sur les images de carte. Une location peut avoir plusieurs entrées (overworld + intérieur donjon).</p>
+    <pre><code>{
+  "id":   6029402,               // Correspond à locations.json id
+  "name": "CoF 1F Spike Beetle Big Chest",
+  "map":  "cof",                 // Nom de la carte (voir tableau ci-dessous)
+  "x":    2260,                  // Position X en pixels (origine image naturelle)
+  "y":    1005                   // Position Y en pixels
+}</code></pre>
+
+    <h3>Valeurs de <code>map</code></h3>
+    <table>
+      <tr><th>Valeur</th><th>Image</th><th>Dimensions</th></tr>
+      <tr><td><code>map</code></td><td>public/images/maps/overworld.png</td><td>3300 × 2060</td></tr>
+      <tr><td><code>cof</code></td><td>public/images/maps/cof.png</td><td>2449 × 1519</td></tr>
+      <tr><td><code>dws</code></td><td>public/images/maps/dws.png</td><td>1745 × 1474</td></tr>
+      <tr><td><code>fow</code></td><td>public/images/maps/fow.png</td><td>2750 × 1290</td></tr>
+      <tr><td><code>tod</code></td><td>public/images/maps/tod.png</td><td>2032 × 3111</td></tr>
+      <tr><td><code>pow</code></td><td>public/images/maps/pow.png</td><td>4000 × 2500</td></tr>
+      <tr><td><code>dhc</code></td><td>public/images/maps/dhc.png</td><td>3600 × 2132</td></tr>
+      <tr><td><code>rc</code></td><td>public/images/maps/rc.png</td><td>1176 × 896</td></tr>
+    </table>
+    <div class="callout">Les coordonnées sont exprimées dans le repère de l'image <strong>à sa taille naturelle</strong>. MapView.vue les scale dynamiquement selon la taille du conteneur.</div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── ITEMS ── -->
+  <div class="section" id="items">
+    <h2>data/items.json</h2>
+    <p>Table de correspondance clé AP → nom d'item utilisé dans l'inventaire logique.</p>
+    <pre><code>{
+  "key":  "PROGRESSIVE_SWORD",      // Clé interne (correspond à ITEM_IMAGES dans itemImages.js)
+  "name": "Progressive Sword",      // Nom AP exact (utilisé dans buildInventory)
+  "ap_id": 64001                    // ID AP numérique (optionnel)
+}</code></pre>
+    <div class="callout">Le champ <code>name</code> doit correspondre <strong>exactement</strong> au nom utilisé dans <code>rules.js</code> via la fonction <code>has(name)</code>. Toute divergence silencieuse provoque des checks toujours rouges.</div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── AP_TABLES ── -->
+  <div class="section" id="ap_tables">
+    <h2>data/ap_tables.json</h2>
+    <p>Tables de correspondance AP ID → nom, pour le décodage des items reçus en temps réel.</p>
+    <pre><code>{
+  "items": {
+    "64001": "Progressive Sword",   // ap_id (string) → nom item
+    ...
+  },
+  "locations": {
+    "6029402": "CoF 1F Spike Beetle Big Chest",
+    ...
+  }
+}</code></pre>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── RULES ── -->
+  <div class="section" id="rules">
+    <h2>src/logic/rules.js – helpers</h2>
+    <p>Toutes les règles d'accessibilité sont des fonctions <code>(inv, settings) => boolean</code>.</p>
+
+    <h3>Fonctions de base</h3>
+    <table>
+      <tr><th>Fonction</th><th>Signature</th><th>Description</th></tr>
+      <tr><td><code>has(name, n=1)</code></td><td><code>(inv) =&gt; bool</code></td><td>Retourne true si <code>inv[name] &gt;= n</code> (par défaut n=1)</td></tr>
+      <tr><td><code>always</code></td><td><code>() =&gt; true</code></td><td>Règle toujours vraie (transitions libres)</td></tr>
+      <tr><td><code>trick(key)</code></td><td><code>(inv, s) =&gt; bool</code></td><td>Retourne <code>s.hasTrick(key)</code></td></tr>
+    </table>
+
+    <h3>Helpers d'armes / capacités</h3>
+    <table>
+      <tr><th>Fonction</th><th>Description</th></tr>
+      <tr><td><code>hasSword(inv, s)</code></td><td>Possède au moins une épée (progressive ou individuelle)</td></tr>
+      <tr><td><code>hasShield(inv, s)</code></td><td>Possède un bouclier (ou <code>s.progressiveShield &gt;= 1</code>)</td></tr>
+      <tr><td><code>hasMirrorShield(inv, s)</code></td><td>Possède le Mirror Shield (ou <code>s.progressiveShield &gt;= 2</code>)</td></tr>
+      <tr><td><code>hasBombWeapon(inv, s)</code></td><td>Possède Bomb Bag (ou <code>s.weaponBomb &gt; 0</code>)</td></tr>
+      <tr><td><code>hasBow(inv, s)</code></td><td>Possède Arc ou Light Arrow (ou progressif ou <code>s.weaponBow</code>)</td></tr>
+      <tr><td><code>hasLightArrows(inv, s)</code></td><td>Light Arrow (ou progressive bow niveau 2)</td></tr>
+      <tr><td><code>hasBoomerang(inv, s)</code></td><td>Boomerang ou Magic Boomerang (ou progressif niveau 1)</td></tr>
+      <tr><td><code>hasGustWeapon(inv, s)</code></td><td>Gust Jar = arme (<code>s.weaponGust</code> ou possède Gust Jar)</td></tr>
+      <tr><td><code>hasLanternWeapon(inv, s)</code></td><td>Lanterne = arme (<code>s.weaponLantern</code> ou possède Lantern)</td></tr>
+      <tr><td><code>hasWeapon(inv, s)</code></td><td>Épée OU Arc OU Bomb Bag (arme quelconque)</td></tr>
+      <tr><td><code>hasWeaponBoss(inv, s)</code></td><td>Épée OU Bomb Bag (arme valide contre boss)</td></tr>
+      <tr><td><code>hasBottle(inv)</code></td><td>Possède au moins une Bouteille (Bottle 1–4 ou Bottle (Null))</td></tr>
+      <tr><td><code>canSpin(inv, s)</code></td><td>Possède une épée ET le Spin Attack</td></tr>
+      <tr><td><code>canBeam(inv, s)</code></td><td>Possède épée ET Sword Beam ou Peril Beam</td></tr>
+      <tr><td><code>hasSpin(inv, s)</code></td><td>Spin Attack disponible (progressif ou individuel)</td></tr>
+      <tr><td><code>hasFastSpin(inv, s)</code></td><td>Fast Spin disponible</td></tr>
+      <tr><td><code>hasFastSplit(inv, s)</code></td><td>Fast Split disponible</td></tr>
+      <tr><td><code>hasGreatSpin(inv, s)</code></td><td>Great Spin disponible</td></tr>
+      <tr><td><code>hasLongSpin(inv, s)</code></td><td>Long Spin disponible</td></tr>
+    </table>
+
+    <h3>Logique progressive scrolls</h3>
+    <pre><code>// En mode progressif, scrollLevel retourne inv["Progressive Spin Scroll"]
+// En mode individuel, retourne 99 (les checks individuels s'appliquent)
+const scrollLevel = (inv, s) =>
+  s.progressiveScroll ? (inv["Progressive Spin Scroll"] || 0) : 99
+
+hasSpin      = (inv, s) => has("Spin Attack")(inv)       || scrollLevel(inv, s) >= 1
+hasFastSpin  = (inv, s) => has("Fast Spin Scroll")(inv)  || scrollLevel(inv, s) >= 2
+hasFastSplit = (inv, s) => has("Fast Split Scroll")(inv) || scrollLevel(inv, s) >= 3
+hasGreatSpin = (inv, s) => has("Greatspin")(inv)         || scrollLevel(inv, s) >= 4
+hasLongSpin  = (inv, s) => has("Long Spin")(inv)         || scrollLevel(inv, s) >= 5</code></pre>
+
+    <h3>Structure REGION_RULES</h3>
+    <pre><code>export const REGION_RULES = {
+  "MENU": {
+    "REGION_A": null,                    // null = libre
+    "REGION_B": always,                  // sentinel = libre
+    "REGION_C": (inv, s) => hasSword(inv, s),
+    "REGION_D": (inv, s) => hasSword(inv, s) || trick("my_trick")(inv, s),
+  },
+  "REGION_A": {
+    "REGION_E": (inv, s) => has("Bomb Bag")(inv),
+  }
+}</code></pre>
+
+    <h3>Structure LOCATION_RULES</h3>
+    <pre><code>export const LOCATION_RULES = {
+  "Nom exact de la location": (inv, s) => /* condition */ true,
+  // Si absent → toujours accessible (règle implicite = always)
+}</code></pre>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── ACCESSIBILITY ── -->
+  <div class="section" id="accessibility">
+    <h2>src/logic/accessibility.js</h2>
+    <p>Algorithme en 3 passes pour calculer l'état de chaque location.</p>
+
+    <h3>buildInventory(stateStore)</h3>
+    <p>Construit l'inventaire logique depuis les items reçus AP + items manuels.</p>
+    <table>
+      <tr><th>Cas spécial</th><th>Comportement</th></tr>
+      <tr><td><code>PROGRESSIVE_SPIN_SCROLL</code></td><td>→ <code>inv["Progressive Spin Scroll"] += count</code></td></tr>
+      <tr><td><code>PROGRESSIVE_BOMB_BAG</code></td><td>→ <code>inv["Bomb Bag"] += count</code></td></tr>
+      <tr><td><code>PROGRESSIVE_WALLET</code></td><td>→ <code>inv["Big Wallet"] += count</code></td></tr>
+      <tr><td><code>HEART_TOTAL</code></td><td>→ <code>inv["Heart Container"] += count</code></td></tr>
+      <tr><td><code>BOTTLE</code> (count N)</td><td>→ <code>inv["Bottle 1"]…inv["Bottle N"] = 1</code></td></tr>
+    </table>
+
+    <h3>computeAccessibility(inv, settings)</h3>
+    <p>Retourne <code>Map&lt;id, status&gt;</code> avec 3 statuts :</p>
+    <table>
+      <tr><th>Status</th><th>Couleur</th><th>Condition</th></tr>
+      <tr><td><code>accessible</code></td><td style="color:#4caf50">■ vert</td><td>Région atteignable + règle vraie avec inventaire actuel + settings actuels</td></tr>
+      <tr><td><code>out_of_logic</code></td><td style="color:#ffca28">■ jaune</td><td>Accessible avec inventaire actuel + tous les tricks activés (mais pas avec les settings actuels)</td></tr>
+      <tr><td><code>inaccessible</code></td><td style="color:#f44336">■ rouge</td><td>Ni accessible, ni out_of_logic</td></tr>
+    </table>
+
+    <h3>Les 3 passes BFS</h3>
+    <pre><code>// Passe 1 : inventaire actuel + settings actuels → accessible
+const reachable         = reachableRegions(inv, settings)
+
+// Passe 2 : inventaire actuel + TOUS les tricks → OOL candidat
+const reachableOOL      = reachableRegions(inv, allTricks)
+
+// Passe 3 : inventaire VIDE + TOUS les tricks (calculé, réservé pour usage futur)
+const reachableOOLEmpty = reachableRegions({}, allTricks)
+
+// Résultat
+if (inLogic) → 'accessible'
+else if (ool) → 'out_of_logic'
+else          → 'inaccessible'</code></pre>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── SETTINGS ── -->
+  <div class="section" id="settings">
+    <h2>settingsStore.js – champs utilisés dans rules.js</h2>
+    <p>Les règles accèdent aux settings via le paramètre <code>s</code>.</p>
+    <table>
+      <tr><th>Champ</th><th>Type</th><th>Utilisation dans rules</th></tr>
+      <tr><td><code>s.hasTrick(key)</code></td><td>function</td><td>Vérifie si un trick est coché</td></tr>
+      <tr><td><code>s.progressiveSword</code></td><td>bool</td><td>Mode épée progressive</td></tr>
+      <tr><td><code>s.progressiveShield</code></td><td>bool</td><td>Mode bouclier progressif</td></tr>
+      <tr><td><code>s.progressiveBow</code></td><td>bool</td><td>Mode arc progressif</td></tr>
+      <tr><td><code>s.progressiveBoomerang</code></td><td>bool</td><td>Mode boomerang progressif</td></tr>
+      <tr><td><code>s.progressiveScroll</code></td><td>bool</td><td>Scrolls progressifs (active scrollLevel)</td></tr>
+      <tr><td><code>s.weaponBow</code></td><td>bool</td><td>L'arc compte comme arme (pas de requis)</td></tr>
+      <tr><td><code>s.weaponBomb</code></td><td>0/1/2</td><td>0=sac requis, 1=bombes gratuites, 2=+boss</td></tr>
+      <tr><td><code>s.weaponGust</code></td><td>bool</td><td>Pot à Vent = arme</td></tr>
+      <tr><td><code>s.weaponLantern</code></td><td>bool</td><td>Lanterne = arme</td></tr>
+      <tr><td><code>s.startingHearts</code></td><td>1–20</td><td>Cœurs de départ (défaut 3), utilisé dans <code>hasMaxHealth</code></td></tr>
+      <tr><td><code>s.biggoron</code></td><td>'disabled'/'shield'/'mirror_shield'</td><td>Condition pour l'item Biggoron</td></tr>
+      <tr><td><code>s.goal</code></td><td>'vaati'/'pedestal'</td><td>Objectif final</td></tr>
+      <tr><td><code>s.dhcAccess</code></td><td>'closed'/'pedestal'/'open'</td><td>Condition d'accès DHC</td></tr>
+      <tr><td><code>s.pedElements</code></td><td>0–4</td><td>Éléments requis pour le piédestal</td></tr>
+      <tr><td><code>s.pedSwords</code></td><td>0–5</td><td>Tier d'épée requis</td></tr>
+      <tr><td><code>s.shuffleElements</code></td><td>string</td><td>Où trouver les éléments</td></tr>
+      <tr><td><code>s.dungeonSmallKeys</code></td><td>string</td><td>Placement petites clés</td></tr>
+      <tr><td><code>s.goldFusionAccess</code></td><td>'closed'/'vanilla'/'combined'/'open'</td><td>Accès fusions Or</td></tr>
+      <tr><td><code>s.warpDWS</code> / <code>s.warpCoF</code> / <code>s.warpFoW</code> / <code>s.warpToD</code> / <code>s.warpPoW</code> / <code>s.warpDHC</code></td><td>0–3</td><td>Warps disponibles par donjon (0=aucun, 1=bleu, 2=rouge, 3=les deux)</td></tr>
+      <tr><td><code>s.windCrest*</code></td><td>bool</td><td>Crêtes de vent débloquées dès le départ</td></tr>
+      <tr><td><code>s.showInaccessible</code></td><td>bool</td><td>Affiche les locations rouges dans les listes</td></tr>
+    </table>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── ITEM IMAGES ── -->
+  <div class="section" id="itemimages">
+    <h2>src/metadata/itemImages.js</h2>
+
+    <h3>ITEM_IMAGES</h3>
+    <p>Dictionnaire <code>clé → image(s)</code> pour les cellules de la grille.</p>
+    <pre><code>// Item simple (toggle on/off)
+LANTERN: "Lamp.png"
+
+// Item progressif (tableau d'images, clic = niveau suivant)
+PROGRESSIVE_SWORD: ["Smith's Sword.png", "Green Sword.png", "Red Sword.png", "Blue Sword.png", "Four Sword.png"]
+
+// Item compteur (ITEM_MAX_COUNT requis, clic = +1 % max+1)
+BOTTLE: "Empty Bottle.png"   // + ITEM_MAX_COUNT.BOTTLE = 4
+
+// Compteur automatique (PROGRESSIVE_COUNT_SCROLL)
+// Non cliquable, affiche le nombre de scrolls actifs
+PROGRESSIVE_COUNT_SCROLL: "Tiger Scroll.png"</code></pre>
+
+    <h3>ITEM_MAX_COUNT</h3>
+    <p>Définit le maximum pour les items compteurs. Si absent → l'item est un toggle (0/1) ou progressif (tableau).</p>
+
+    <h3>Grilles de la UI</h3>
+    <table>
+      <tr><th>Export</th><th>Utilisation</th></tr>
+      <tr><td><code>SWORD_GRID_PROGRESSIVE</code></td><td>Ligne épée en mode progressif</td></tr>
+      <tr><td><code>SWORD_GRID_NOT_PROGRESSIVE</code></td><td>Ligne épée en mode individuel</td></tr>
+      <tr><td><code>INVENTORY_GRID</code></td><td>Lignes inventaire principal</td></tr>
+      <tr><td><code>QUEST_GRID</code></td><td>Items de quête</td></tr>
+      <tr><td><code>SCROLL_GRID</code></td><td>Scrolls et capacités d'épée</td></tr>
+      <tr><td><code>ELEMENT_GRID</code></td><td>4 éléments</td></tr>
+      <tr><td><code>FUSION_GRID</code></td><td>Kinstones (filtré par settings)</td></tr>
+      <tr><td><code>DUNGEON_ITEM_ROWS</code></td><td>Colonnes donjon (clés, carte, boussole)</td></tr>
+    </table>
+  </div>
+
+  <!-- ─────────────────────────────────────────────── PIN SHAPES ── -->
+  <div class="section" id="pinshapes">
+    <h2>Formes des pins sur la carte</h2>
+    <table>
+      <tr><th>Forme</th><th>Condition</th><th>Signification</th></tr>
+      <tr><td>Carré <code>&lt;rect&gt;</code></td><td><code>pin.type === 'location'</code> <strong>ou</strong> vue donjon</td><td>Location standard</td></tr>
+      <tr><td>Cercle <code>&lt;circle&gt;</code></td><td><code>pin.type === 'fused'</code> (overworld only)</td><td>Fusion Kinstone ("Fused with…")</td></tr>
+      <tr><td>Chapeau <code>&lt;path&gt;</code></td><td><code>pin.type === 'dungeon'</code> (overworld only)</td><td>Entrée de donjon</td></tr>
+    </table>
+    <p>Sur les maps de donjons (DWS, CoF, etc.), tous les pins sont des carrés quelle que soit leur nature.</p>
+
+    <h3>Couleurs</h3>
+    <table>
+      <tr><th>Statut</th><th>Couleur</th><th>Hex</th></tr>
+      <tr><td>accessible</td><td style="color:#4caf50">■</td><td><code>#4caf50</code></td></tr>
+      <tr><td>out_of_logic</td><td style="color:#ffca28">■</td><td><code>#ffca28</code></td></tr>
+      <tr><td>inaccessible</td><td style="color:#f44336">■</td><td><code>#f44336</code></td></tr>
+      <tr><td>checked</td><td style="color:#444466">■</td><td><code>#444466</code> (opacité réduite)</td></tr>
+    </table>
+  </div>
+
+</main>
+</div>
+</body>
+</html>
