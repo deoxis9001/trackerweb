@@ -122,6 +122,7 @@ export const useStateStore = defineStore('state', () => {
     const goronMatch = loc.name.match(/^Town Goron Merchant (\d+)/)
     if (goronMatch) return parseInt(goronMatch[1]) <= (settings.goronSets ?? 0)
 
+    if (loc.region_key === 'SANCTUARY')        return !!settings.shuffleSanctuary
     if (loc.name === 'Falls Biggoron Item')    return settings.biggoron !== 'disabled'
     if (loc.name === 'Town Shop 600 Item 2')   return !!settings.extraShopItem
 

@@ -67,6 +67,7 @@ export const useSettingsStore = defineStore('settings', () => {
   const goronSets         = ref(0)          // 0–5
   const goronJPPrices     = ref(false)
   const extraShopItem     = ref(false)
+  const shuffleSanctuary  = ref(false)      // not yet in AP — disabled by default
   const pedReward         = ref('none')     // 'none' | 'dhc_big_key' | 'random_item'
 
   // ── Difficulty ────────────────────────────────────────────────────────────────
@@ -140,7 +141,7 @@ export const useSettingsStore = defineStore('settings', () => {
       shuffleGoldEnemies: shuffleGoldEnemies.value,
       biggoron: biggoron.value, cuccoRounds: cuccoRounds.value,
       goronSets: goronSets.value, goronJPPrices: goronJPPrices.value,
-      extraShopItem: extraShopItem.value, pedReward: pedReward.value,
+      extraShopItem: extraShopItem.value, shuffleSanctuary: shuffleSanctuary.value, pedReward: pedReward.value,
       startingHearts: startingHearts.value, heartContainers: heartContainers.value,
       pieceOfHearts: pieceOfHearts.value, earlyWeapon: earlyWeapon.value,
       weaponBow: weaponBow.value, weaponBomb: weaponBomb.value,
@@ -173,7 +174,7 @@ export const useSettingsStore = defineStore('settings', () => {
       shuffleElements, dungeonSmallKeys, dungeonBigKeys, dungeonMaps, dungeonCompasses,
       nonElementDungeons,
       rupeesanity, shufflePots, shuffleDigging, shuffleUnderwater, shuffleGoldEnemies,
-      biggoron, cuccoRounds, goronSets, goronJPPrices, extraShopItem, pedReward,
+      biggoron, cuccoRounds, goronSets, goronJPPrices, extraShopItem, shuffleSanctuary, pedReward,
       startingHearts, heartContainers, pieceOfHearts, earlyWeapon,
       weaponBow, weaponBomb, weaponGust, weaponLantern,
       progressiveSword, progressiveBow, progressiveBoomerang, progressiveShield,
@@ -372,7 +373,7 @@ export const useSettingsStore = defineStore('settings', () => {
     shuffleElements, dungeonSmallKeys, dungeonBigKeys, dungeonMaps, dungeonCompasses,
     nonElementDungeons,
     rupeesanity, shufflePots, shuffleDigging, shuffleUnderwater, shuffleGoldEnemies,
-    biggoron, cuccoRounds, goronSets, goronJPPrices, extraShopItem, pedReward,
+    biggoron, cuccoRounds, goronSets, goronJPPrices, extraShopItem, shuffleSanctuary, pedReward,
     startingHearts, heartContainers, pieceOfHearts, earlyWeapon,
     weaponBow, weaponBomb, weaponGust, weaponLantern,
     progressiveSword, progressiveBow, progressiveBoomerang, progressiveShield,
