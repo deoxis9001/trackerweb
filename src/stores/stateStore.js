@@ -228,6 +228,18 @@ export const useStateStore = defineStore('state', () => {
     autotrackItems.value = items
   }
 
+  const showChat     = ref(false)
+  const chatMessages = ref([])  // { text, nodes }[]
+
+  function addChatMessage(msg) {
+    chatMessages.value.push(msg)
+    if (chatMessages.value.length > 300) chatMessages.value.shift()
+  }
+
+  function clearChat() {
+    chatMessages.value = []
+  }
+
   return {
     allItems,
     allLocations,
@@ -265,6 +277,10 @@ export const useStateStore = defineStore('state', () => {
     toggleRegionPopup,
     locationHints,
     setLocationHints,
+    showChat,
+    chatMessages,
+    addChatMessage,
+    clearChat,
     updateLocationHint,
     setAutotrackItems,
     saveState,

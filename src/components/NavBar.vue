@@ -89,6 +89,11 @@ function openBroadcastRegions() {
       <button class="settings-btn" @click="openBroadcastItems()" title="Broadcast items">📡 Items</button>
       <button v-if="isDev" class="settings-btn" @click="openBroadcastRegions()" title="Broadcast régions [dev]">📡 Régions</button>
       <button
+        v-if="store.apConnected"
+        :class="['settings-btn', store.showChat && 'active']"
+        @click="store.showChat = !store.showChat"
+      >💬 Chat</button>
+      <button
         :class="['settings-btn', store.showSettings && 'active']"
         @click="store.toggleSettings()"
       >⚙ Settings</button>

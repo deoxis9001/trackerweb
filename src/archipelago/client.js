@@ -47,6 +47,10 @@ export async function connectToAP(server, port, slot, password = '') {
     store.setLocationHints({})
   })
 
+  client.messages.on('message', (text, nodes) => {
+    store.addChatMessage({ text, nodes })
+  })
+
   try {
     const slotData = await client.login(`${server}:${port}`, slot, 'The Minish Cap', { password })
     const settingsStore = useSettingsStore()

@@ -18,6 +18,15 @@
         </div>
       </div>
 
+      <!-- Chat window -->
+      <div v-if="store.showChat && store.apConnected" class="chat-popup">
+        <div class="chat-popup-header">
+          <span>Chat AP</span>
+          <button class="popup-close" @click="store.showChat = false">✕</button>
+        </div>
+        <APChat />
+      </div>
+
       <!-- Region popup -->
       <div v-if="store.showRegionPopup" class="region-popup">
         <div class="region-popup-header">
@@ -36,6 +45,7 @@ import { useRoute } from 'vue-router'
 import NavBar from './components/NavBar.vue'
 import SettingsView from './views/SettingsView.vue'
 import RegionGuide from './components/RegionGuide.vue'
+import APChat from './components/APChat.vue'
 import { useStateStore } from './stores/stateStore'
 
 const store = useStateStore()
@@ -49,6 +59,7 @@ function onKeydown(e) {
   if (e.key === 'Escape') {
     if (store.showSettings)    store.showSettings    = false
     if (store.showRegionPopup) store.showRegionPopup = false
+    if (store.showChat)        store.showChat        = false
   }
 }
 onMounted(() => window.addEventListener('keydown', onKeydown))
@@ -153,6 +164,37 @@ body {
   border-radius: 4px;
 }
 .modal-close:hover { color: var(--text); background: var(--bg-card); }
+
+.chat-popup {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 500;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 420px;
+  height: 320px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  background: var(--bg-dark);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
 
 .region-popup {
   position: fixed;
