@@ -116,6 +116,8 @@ export const useSettingsStore = defineStore('settings', () => {
 
   // ── Tracker Display ───────────────────────────────────────────────────────────
   const showInaccessible = ref(false)
+  const autoTabDungeons  = ref('etage')   // 'non' | 'overview' | 'etage'
+  const autoTabOverworld = ref('oui')     // 'non' | 'oui'
 
   // ── Quality of Life ───────────────────────────────────────────────────────────
   const ocarinaOnSelect      = ref(true)
@@ -162,6 +164,8 @@ export const useSettingsStore = defineStore('settings', () => {
       bootsAsMinish: bootsAsMinish.value, bigOctoManipulation: bigOctoManipulation.value,
       replicaTODBossDoor: replicaTODBossDoor.value, trapsEnabled: trapsEnabled.value,
       showInaccessible: showInaccessible.value,
+      autoTabDungeons: autoTabDungeons.value,
+      autoTabOverworld: autoTabOverworld.value,
     }
   }
 
@@ -186,7 +190,7 @@ export const useSettingsStore = defineStore('settings', () => {
       windCrestSouthField, windCrestMinishWoods,
       ocarinaOnSelect, bootsOnL, bootsAsMinish, bigOctoManipulation,
       replicaTODBossDoor, trapsEnabled,
-      showInaccessible,
+      showInaccessible, autoTabDungeons, autoTabOverworld,
     }
     for (const [k, r] of Object.entries(refs)) {
       if (s[k] != null) r.value = s[k]
@@ -397,7 +401,7 @@ export const useSettingsStore = defineStore('settings', () => {
     windCrestSouthField, windCrestMinishWoods,
     ocarinaOnSelect, bootsOnL, bootsAsMinish, bigOctoManipulation,
     replicaTODBossDoor, trapsEnabled,
-    showInaccessible,
+    showInaccessible, autoTabDungeons, autoTabOverworld,
     exportSettings, importSettings, importFromSlotData, save, load,
   }
 })

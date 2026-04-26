@@ -1,0 +1,121 @@
+[
+  {
+    "id": 6029385,
+    "name": "Deepwood 2F Chest",
+    "floor": "B2",
+    "x": 70,
+    "y": 400
+  },
+  {
+    "id": 6029386,
+    "name": "Deepwood 1F Slug Torches Chest",
+    "floor": "1F",
+    "x": 779,
+    "y": 1054
+  },
+  {
+    "id": 6029387,
+    "name": "Deepwood 1F Barrel Room Chest",
+    "floor": "1F",
+    "x": 615,
+    "y": 299
+  },
+  {
+    "id": 6029388,
+    "name": "Deepwood 1F West Big Chest",
+    "floor": "1F",
+    "x": 403,
+    "y": 280
+  },
+  {
+    "id": 6029389,
+    "name": "Deepwood 1F West Statue Puzzle Chest",
+    "floor": "1F",
+    "x": 138,
+    "y": 570
+  },
+  {
+    "id": 6029390,
+    "name": "Deepwood 1F East Mulldozer Fight Item",
+    "floor": "1F",
+    "x": 1418,
+    "y": 330
+  },
+  {
+    "id": 6029391,
+    "name": "Deepwood 1F North East Chest",
+    "floor": "1F",
+    "x": 1033,
+    "y": 140
+  },
+  {
+    "id": 6029392,
+    "name": "Deepwood B1 Switch Room Big Chest",
+    "floor": "B1",
+    "x": 656,
+    "y": 45
+  },
+  {
+    "id": 6029393,
+    "name": "Deepwood B1 Switch Room Chest",
+    "floor": "B1",
+    "x": 471,
+    "y": 115
+  },
+  {
+    "id": 6029394,
+    "name": "Deepwood 1F Blue Warp HP",
+    "floor": "1F",
+    "x": 778,
+    "y": 60
+  },
+  {
+    "id": 6029395,
+    "name": "Deepwood 1F Blue Warp Left Chest",
+    "floor": "1F",
+    "x": 658,
+    "y": 60
+  },
+  {
+    "id": 6029396,
+    "name": "Deepwood 1F Blue Warp Right Chest",
+    "floor": "1F",
+    "x": 658,
+    "y": 60
+  },
+  {
+    "id": 6029397,
+    "name": "Deepwood 1F Madderpillar Big Chest",
+    "floor": "1F",
+    "x": 413,
+    "y": 115
+  },
+  {
+    "id": 6029398,
+    "name": "Deepwood 1F Madderpillar HP",
+    "floor": "1F",
+    "x": 473,
+    "y": 320
+  },
+  {
+    "id": 6029399,
+    "name": "Deepwood B1 West Big Chest",
+    "floor": "B1",
+    "x": 176,
+    "y": 95
+  },
+  {
+    "id": 6029400,
+    "name": "Deepwood Boss Item",
+    "floor": "B2",
+    "x": 166,
+    "y": 83
+  },
+  {
+    "id": 6029401,
+    "name": "Deepwood Prize",
+    "floor": "B2",
+    "x": 166,
+    "y": 83
+  }
+]

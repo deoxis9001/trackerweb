@@ -1,0 +1,170 @@
+[
+  {
+    "id": 6029517,
+    "name": "Palace 1st Half 1F Grate Chest",
+    "floor": "1F",
+    "x": 630,
+    "y": 90
+  },
+  {
+    "id": 6029518,
+    "name": "Palace 1st Half 1F Wizzrobe Big Chest",
+    "floor": "1F",
+    "x": 120,
+    "y": 215
+  },
+  {
+    "id": 6029519,
+    "name": "Palace 1st Half 2F Item1",
+    "floor": "2F",
+    "x": 440,
+    "y": 383
+  },
+  {
+    "id": 6029520,
+    "name": "Palace 1st Half 2F Item2",
+    "floor": "2F",
+    "x": 440,
+    "y": 383
+  },
+  {
+    "id": 6029521,
+    "name": "Palace 1st Half 2F Item3",
+    "floor": "2F",
+    "x": 440,
+    "y": 383
+  },
+  {
+    "id": 6029522,
+    "name": "Palace 1st Half 2F Item4",
+    "floor": "2F",
+    "x": 440,
+    "y": 383
+  },
+  {
+    "id": 6029523,
+    "name": "Palace 1st Half 2F Item5",
+    "floor": "2F",
+    "x": 440,
+    "y": 383
+  },
+  {
+    "id": 6029524,
+    "name": "Palace 1st Half 3F Pot Puzzle Item Drop",
+    "floor": "3F",
+    "x": 920,
+    "y": 535
+  },
+  {
+    "id": 6029525,
+    "name": "Palace 1st Half 4F Bow Moblins Chest",
+    "floor": "4F",
+    "x": 585,
+    "y": 260
+  },
+  {
+    "id": 6029526,
+    "name": "Palace 1st Half 5F Ball And Chain Soldiers Item Drop",
+    "floor": "5F",
+    "x": 840,
+    "y": 735
+  },
+  {
+    "id": 6029527,
+    "name": "Palace 1st Half 5F Fan Loop Chest",
+    "floor": "5F",
+    "x": 570,
+    "y": 685
+  },
+  {
+    "id": 6029528,
+    "name": "Palace 1st Half 5F Big Chest",
+    "floor": "5F",
+    "x": 600,
+    "y": 480
+  },
+  {
+    "id": 6029529,
+    "name": "Palace 2nd Half 1F Dark Room Big Chest",
+    "floor": "1F",
+    "x": 775,
+    "y": 627
+  },
+  {
+    "id": 6029530,
+    "name": "Palace 2nd Half 1F Dark Room Small Chest",
+    "floor": "1F",
+    "x": 600,
+    "y": 520
+  },
+  {
+    "id": 6029531,
+    "name": "Palace 2nd Half 2F Many Rollers Chest",
+    "floor": "2F",
+    "x": 105,
+    "y": 825
+  },
+  {
+    "id": 6029532,
+    "name": "Palace 2nd Half 2F Twin Wizzrobes Chest",
+    "floor": "2F",
+    "x": 600,
+    "y": 695
+  },
+  {
+    "id": 6029533,
+    "name": "Palace 2nd Half 3F Fire Wizzrobes Big Chest",
+    "floor": "3F",
+    "x": 600,
+    "y": 355
+  },
+  {
+    "id": 6029534,
+    "name": "Palace 2nd Half 4F HP",
+    "floor": "4F",
+    "x": 425,
+    "y": 275
+  },
+  {
+    "id": 6029535,
+    "name": "Palace 2nd Half 4F Switch Hit Chest",
+    "floor": "4F",
+    "x": 710,
+    "y": 530
+  },
+  {
+    "id": 6029536,
+    "name": "Palace 2nd Half 5F Bombarossa Chest",
+    "floor": "5F",
+    "x": 1080,
+    "y": 430
+  },
+  {
+    "id": 6029537,
+    "name": "Palace 2nd Half 4F Block Maze Chest",
+    "floor": "4F",
+    "x": 950,
+    "y": 275
+  },
+  {
+    "id": 6029538,
+    "name": "Palace 2nd Half 5F Right Side Chest",
+    "floor": "5F",
+    "x": 1800,
+    "y": 480
+  },
+  {
+    "id": 6029539,
+    "name": "Palace Boss Item",
+    "floor": "5F",
+    "x": 1470,
+    "y": 190
+  },
+  {
+    "id": 6029540,
+    "name": "Palace Prize",
+    "floor": "5F",
+    "x": 1470,
+    "y": 190
+  }
+]

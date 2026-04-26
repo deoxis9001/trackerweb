@@ -47,6 +47,7 @@ export const useStateStore = defineStore('state', () => {
 
   // Active map/view
   const activeView      = ref('overworld')  // 'overworld' | dungeon key
+  const activeZone      = ref(null)         // overworld sub-area, null = full map
   const activePanel     = ref('map')        // 'map' | 'checklist'
   const hoveredPinLocs  = ref([])           // locations du pin survolé sur la map
   const showSettings      = ref(false)
@@ -214,6 +215,10 @@ export const useStateStore = defineStore('state', () => {
     saveState()
   }
 
+  function setActiveZone(zone) {
+    activeZone.value = zone
+  }
+
   function setActivePanel(panel) {
     activePanel.value = panel
   }
@@ -258,7 +263,7 @@ export const useStateStore = defineStore('state', () => {
     checkedLocations,
     receivedItems,
     manualItems,
-    activeView,
+    activeView, activeZone, setActiveZone,
     activePanel,
     hoveredPinLocs,
     locationById,
