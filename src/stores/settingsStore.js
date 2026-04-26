@@ -116,8 +116,8 @@ export const useSettingsStore = defineStore('settings', () => {
 
   // ── Tracker Display ───────────────────────────────────────────────────────────
   const showInaccessible = ref(false)
-  const autoTabDungeons  = ref('etage')   // 'non' | 'overview' | 'etage'
-  const autoTabOverworld = ref('oui')     // 'non' | 'oui'
+  const autoTabDungeons  = ref('overview') // 'non' | 'overview' | 'etage'
+  const autoTabOverworld = ref('non')     // 'non' | 'oui'
 
   // ── Quality of Life ───────────────────────────────────────────────────────────
   const ocarinaOnSelect      = ref(true)
