@@ -13,16 +13,27 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
+      - name: Generate data & rules
+        run: |
+          python scripts/extract_tmc_data.py
+          python scripts/gen_rules.py
+
       - name: Install & build
         run: |
           npm install
-          npm run build
+          npm run build:ci
 
       - name: Generate version
         run: |

@@ -4,8 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "generate": "py scripts/extract_tmc_data.py && py scripts/gen_rules.py",
+    "predev": "npm run generate",
     "dev": "vite",
+    "prebuild": "npm run generate",
     "build": "vite build",
+    "build:ci": "vite build",
+    "prealpha": "npm run generate",
+    "alpha": "vite build --mode alpha",
     "preview": "vite preview"
   },
   "dependencies": {

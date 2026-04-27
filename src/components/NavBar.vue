@@ -1,11 +1,43 @@
 <script setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStateStore } from '../stores/stateStore'
+import { useSettingsStore } from '../stores/settingsStore'
 import { disconnectFromAP } from '../archipelago/client'
 
-const store  = useStateStore()
-const router = useRouter()
-const isDev  = import.meta.env.DEV
+const store    = useStateStore()
+const settings = useSettingsStore()
+const router   = useRouter()
+const isDev    = import.meta.env.DEV
+
+const entrancePicker = ref(null)
+
+function onDungeonTabClick(slot) {
+  if (!settings.dungeonEntranceShuffle) {
+    store.setActiveView(slot)
+    return
+  }
+  const assigned = store.dungeonEntranceMap[slot]
+  if (assigned) {
+    store.setActiveView(assigned)
+    entrancePicker.value = null
+  } else {
+    entrancePicker.value = entrancePicker.value === slot ? null : slot
+  }
+}
+
+function onDungeonTabRightClick(e, slot) {
+  if (!settings.dungeonEntranceShuffle) return
+  e.preventDefault()
+  store.clearDungeonEntrance(slot)
+  entrancePicker.value = null
+}
+
+function assignEntrance(slot, target) {
+  store.setDungeonEntrance(slot, target)
+  store.setActiveView(target)
+  entrancePicker.value = null
+}
 
 function handleReset() {
   disconnectFromAP()
@@ -53,12 +85,27 @@ function openBroadcastRegions() {
         :class="['tab', store.activeView === 'overworld' && 'active']"
         @click="store.setActiveView('overworld')"
       >Overworld</button>
-      <button
+      <div
         v-for="dungeon in store.dungeonRegions"
         :key="dungeon"
-        :class="['tab', store.activeView === dungeon && 'active']"
-        @click="store.setActiveView(dungeon)"
-      >{{ dungeon }}</button>
+        class="dungeon-tab-wrap"
+      >
+        <button
+          :class="['tab', (settings.dungeonEntranceShuffle ? store.dungeonEntranceMap[dungeon] && store.activeView === store.dungeonEntranceMap[dungeon] : store.activeView === dungeon) && 'active', settings.dungeonEntranceShuffle && store.dungeonEntranceMap[dungeon] && 'mapped']"
+          @click="onDungeonTabClick(dungeon)"
+          @contextmenu="onDungeonTabRightClick($event, dungeon)"
+        >
+          {{ dungeon }}<template v-if="settings.dungeonEntranceShuffle && store.dungeonEntranceMap[dungeon]">→{{ store.dungeonEntranceMap[dungeon] }}</template>
+        </button>
+        <div v-if="entrancePicker === dungeon" class="entrance-picker">
+          <button
+            v-for="d in store.dungeonRegions"
+            :key="d"
+            :class="['ep-btn', { active: store.dungeonEntranceMap[dungeon] === d }]"
+            @click="assignEntrance(dungeon, d)"
+          >{{ d }}</button>
+        </div>
+      </div>
     </div>
 
     <div class="panel-tabs">
@@ -150,6 +197,45 @@ function openBroadcastRegions() {
   gap: 3px;
   flex-wrap: wrap;
 }
+
+.dungeon-tab-wrap {
+  position: relative;
+}
+
+.tab.mapped {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.entrance-picker {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: #2e1a08;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 4px;
+  min-width: 70px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+.ep-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+.ep-btn:hover { background: rgba(212,136,42,0.2); color: var(--text); }
+.ep-btn.active { background: var(--accent-soft); color: var(--text); border-color: var(--accent); }
 
 .tab {
   background: rgba(255,255,255,0.05);

@@ -1,1143 +1,654 @@
 [
   {
-    "key": "PROGRESSIVE_SCROLL",
-    "name": "Progressive Spin Scroll",
-    "classification": "progression",
     "item_id": 1284,
-    "category": "ability"
+    "key": "PROGRESSIVE_SCROLL"
   },
   {
-    "key": "SMITHS_SWORD",
-    "name": "Smith's Sword",
-    "classification": "progression",
     "item_id": 256,
-    "category": "sword"
+    "key": "SMITHS_SWORD"
   },
   {
-    "key": "WHITE_SWORD_GREEN",
-    "name": "White Sword",
-    "classification": "progression",
     "item_id": 512,
-    "category": "sword"
+    "key": "WHITE_SWORD_GREEN"
   },
   {
-    "key": "WHITE_SWORD_RED",
-    "name": "White Sword (Two Elements)",
-    "classification": "progression",
     "item_id": 768,
-    "category": "sword"
+    "key": "WHITE_SWORD_RED"
   },
   {
-    "key": "WHITE_SWORD_BLUE",
-    "name": "White Sword (Three Elements)",
-    "classification": "progression",
     "item_id": 1024,
-    "category": "sword"
+    "key": "WHITE_SWORD_BLUE"
   },
   {
-    "key": "FOUR_SWORD",
-    "name": "Four Sword",
-    "classification": "progression",
     "item_id": 1536,
-    "category": "sword"
+    "key": "FOUR_SWORD"
   },
   {
-    "key": "PROGRESSIVE_SWORD",
-    "name": "Progressive Sword",
-    "classification": "progression",
     "item_id": 1280,
-    "category": "sword"
+    "key": "PROGRESSIVE_SWORD"
   },
   {
-    "key": "BOMB",
-    "name": "Bomb",
-    "classification": "progression",
     "item_id": 1792,
-    "category": "weapon"
+    "key": "BOMB"
   },
   {
-    "key": "REMOTE_BOMB",
-    "name": "Remote Bomb",
-    "classification": "useful",
     "item_id": 2048,
-    "category": "weapon"
+    "key": "REMOTE_BOMB"
   },
   {
-    "key": "BOW",
-    "name": "Bow",
-    "classification": "progression",
     "item_id": 2304,
-    "category": "weapon"
+    "key": "BOW"
   },
   {
-    "key": "LIGHT_ARROW",
-    "name": "Light Arrow",
-    "classification": "progression",
     "item_id": 2560,
-    "category": "weapon"
+    "key": "LIGHT_ARROW"
   },
   {
-    "key": "PROGRESSIVE_BOW",
-    "name": "Progressive Bow",
-    "classification": "progression",
     "item_id": 1281,
-    "category": "weapon"
+    "key": "PROGRESSIVE_BOW"
   },
   {
-    "key": "BOOMERANG",
-    "name": "Boomerang",
-    "classification": "progression",
     "item_id": 2816,
-    "category": "weapon"
+    "key": "BOOMERANG"
   },
   {
-    "key": "MAGIC_BOOMERANG",
-    "name": "Magic Boomerang",
-    "classification": "progression",
     "item_id": 3072,
-    "category": "weapon"
+    "key": "MAGIC_BOOMERANG"
   },
   {
-    "key": "PROGRESSIVE_BOOMERANG",
-    "name": "Progressive Boomerang",
-    "classification": "progression",
     "item_id": 1282,
-    "category": "weapon"
+    "key": "PROGRESSIVE_BOOMERANG"
   },
   {
-    "key": "SHIELD",
-    "name": "Shield",
-    "classification": "progression",
     "item_id": 3328,
-    "category": "shield"
+    "key": "SHIELD"
   },
   {
-    "key": "MIRROR_SHIELD",
-    "name": "Mirror Shield",
-    "classification": "progression",
     "item_id": 3584,
-    "category": "shield"
+    "key": "MIRROR_SHIELD"
   },
   {
-    "key": "PROGRESSIVE_SHIELD",
-    "name": "Progressive Shield",
-    "classification": "progression",
     "item_id": 1283,
-    "category": "shield"
+    "key": "PROGRESSIVE_SHIELD"
   },
   {
-    "key": "LANTERN",
-    "name": "Lantern",
-    "classification": "progression",
     "item_id": 3840,
-    "category": "weapon"
+    "key": "LANTERN"
   },
   {
-    "key": "GUST_JAR",
-    "name": "Gust Jar",
-    "classification": "progression",
     "item_id": 4352,
-    "category": "weapon"
+    "key": "GUST_JAR"
   },
   {
-    "key": "CANE_OF_PACCI",
-    "name": "Cane of Pacci",
-    "classification": "progression",
     "item_id": 4608,
-    "category": "weapon"
+    "key": "CANE_OF_PACCI"
   },
   {
-    "key": "MOLE_MITTS",
-    "name": "Mole Mitts",
-    "classification": "progression",
     "item_id": 4864,
-    "category": "weapon"
+    "key": "MOLE_MITTS"
   },
   {
-    "key": "ROCS_CAPE",
-    "name": "Roc's Cape",
-    "classification": "progression",
     "item_id": 5120,
-    "category": "weapon"
+    "key": "ROCS_CAPE"
   },
   {
-    "key": "PEGASUS_BOOTS",
-    "name": "Pegasus Boots",
-    "classification": "progression",
     "item_id": 5376,
-    "category": "weapon"
+    "key": "PEGASUS_BOOTS"
   },
   {
-    "key": "FIRE_ROD",
-    "name": "Fire Rod",
-    "classification": "progression",
     "item_id": 5632,
-    "category": "weapon"
+    "key": "FIRE_ROD"
   },
   {
-    "key": "OCARINA",
-    "name": "Ocarina",
-    "classification": "progression",
     "item_id": 5888,
-    "category": "weapon"
+    "key": "OCARINA"
   },
   {
-    "key": "BOTTLE_1",
-    "name": "Bottle 1",
-    "classification": "progression",
     "item_id": 7168,
-    "category": "bottle"
+    "key": "BOTTLE_1"
   },
   {
-    "key": "BOTTLE_2",
-    "name": "Bottle 2",
-    "classification": "progression",
     "item_id": 7424,
-    "category": "bottle"
+    "key": "BOTTLE_2"
   },
   {
-    "key": "BOTTLE_3",
-    "name": "Bottle 3",
-    "classification": "progression",
     "item_id": 7680,
-    "category": "bottle"
+    "key": "BOTTLE_3"
   },
   {
-    "key": "BOTTLE_4",
-    "name": "Bottle 4",
-    "classification": "progression",
     "item_id": 7936,
-    "category": "bottle"
+    "key": "BOTTLE_4"
   },
   {
-    "key": "EMPTY_BOTTLE",
-    "name": "Bottle (Empty)",
-    "classification": "progression",
     "item_id": 7200,
-    "category": "bottle"
+    "key": "EMPTY_BOTTLE"
   },
   {
-    "key": "LON_LON_BUTTER",
-    "name": "Bottle (Lon Lon Butter)",
-    "classification": "progression",
     "item_id": 7201,
-    "category": "bottle"
+    "key": "LON_LON_BUTTER"
   },
   {
-    "key": "LON_LON_MILK",
-    "name": "Bottle (Lon Lon Milk)",
-    "classification": "progression",
     "item_id": 7202,
-    "category": "bottle"
+    "key": "LON_LON_MILK"
   },
   {
-    "key": "LON_LON_MILK_HALF",
-    "name": "Bottle (Lon Lon Milk (1/2))",
-    "classification": "progression",
     "item_id": 7203,
-    "category": "bottle"
+    "key": "LON_LON_MILK_HALF"
   },
   {
-    "key": "RED_POTION",
-    "name": "Bottle (Red Potion)",
-    "classification": "progression",
     "item_id": 7204,
-    "category": "bottle"
+    "key": "RED_POTION"
   },
   {
-    "key": "BLUE_POTION",
-    "name": "Bottle (Blue Potion)",
-    "classification": "progression",
     "item_id": 7205,
-    "category": "bottle"
+    "key": "BLUE_POTION"
   },
   {
-    "key": "WATER",
-    "name": "Bottle (Water)",
-    "classification": "progression",
     "item_id": 7206,
-    "category": "bottle"
+    "key": "WATER"
   },
   {
-    "key": "MINERAL_WATER",
-    "name": "Bottle (Mineral Water)",
-    "classification": "progression",
     "item_id": 7207,
-    "category": "bottle"
+    "key": "MINERAL_WATER"
   },
   {
-    "key": "BOTTLED_FAIRY",
-    "name": "Bottle (Bottled Fairy)",
-    "classification": "progression",
     "item_id": 7208,
-    "category": "bottle"
+    "key": "BOTTLED_FAIRY"
   },
   {
-    "key": "RED_PICOLYTE",
-    "name": "Bottle (Red Picolyte)",
-    "classification": "progression",
     "item_id": 7209,
-    "category": "bottle"
+    "key": "RED_PICOLYTE"
   },
   {
-    "key": "ORANGE_PICOLYTE",
-    "name": "Bottle (Orange Picolyte)",
-    "classification": "progression",
     "item_id": 7210,
-    "category": "bottle"
+    "key": "ORANGE_PICOLYTE"
   },
   {
-    "key": "YELLOW_PICOLYTE",
-    "name": "Bottle (Yellow Picolyte)",
-    "classification": "progression",
     "item_id": 7211,
-    "category": "bottle"
+    "key": "YELLOW_PICOLYTE"
   },
   {
-    "key": "GREEN_PICOLYTE",
-    "name": "Bottle (Green Picolyte)",
-    "classification": "progression",
     "item_id": 7212,
-    "category": "bottle"
+    "key": "GREEN_PICOLYTE"
   },
   {
-    "key": "BLUE_PICOLYTE",
-    "name": "Bottle (Blue Picolyte)",
-    "classification": "progression",
     "item_id": 7213,
-    "category": "bottle"
+    "key": "BLUE_PICOLYTE"
   },
   {
-    "key": "WHITE_PICOLYTE",
-    "name": "Bottle (White Picolyte)",
-    "classification": "progression",
     "item_id": 7214,
-    "category": "bottle"
+    "key": "WHITE_PICOLYTE"
   },
   {
-    "key": "NAYRU_CHARM",
-    "name": "Bottle (Nayru Charm)",
-    "classification": "progression",
     "item_id": 7215,
-    "category": "bottle"
+    "key": "NAYRU_CHARM"
   },
   {
-    "key": "FARORE_CHARM",
-    "name": "Bottle (Farore Charm)",
-    "classification": "progression",
     "item_id": 7216,
-    "category": "bottle"
+    "key": "FARORE_CHARM"
   },
   {
-    "key": "DINS_CHARM",
-    "name": "Bottle (Dins Charm)",
-    "classification": "progression",
     "item_id": 7217,
-    "category": "bottle"
+    "key": "DINS_CHARM"
   },
   {
-    "key": "SMITH_SWORD_QUEST",
-    "name": "Smith Sword (Quest)",
-    "classification": "filler",
     "item_id": 13312,
-    "category": "quest"
+    "key": "SMITH_SWORD_QUEST"
   },
   {
-    "key": "BROKEN_PICORI_BLADE",
-    "name": "Broken Picori Blade",
-    "classification": "filler",
     "item_id": 13568,
-    "category": "quest"
+    "key": "BROKEN_PICORI_BLADE"
   },
   {
-    "key": "DOG_FOOD",
-    "name": "Dog Food",
-    "classification": "progression",
     "item_id": 13824,
-    "category": "quest"
+    "key": "DOG_FOOD"
   },
   {
-    "key": "LONLON_KEY",
-    "name": "LonLon Key",
-    "classification": "progression",
     "item_id": 14080,
-    "category": "quest"
+    "key": "LONLON_KEY"
   },
   {
-    "key": "WAKEUP_MUSHROOM",
-    "name": "Wakeup Mushroom",
-    "classification": "progression",
     "item_id": 14336,
-    "category": "quest"
+    "key": "WAKEUP_MUSHROOM"
   },
   {
-    "key": "RED_BOOK",
-    "name": "Red Book (Hyrulian Bestiary)",
-    "classification": "progression",
     "item_id": 14592,
-    "category": "quest"
+    "key": "RED_BOOK"
   },
   {
-    "key": "GREEN_BOOK",
-    "name": "Green Book (Picori Legend)",
-    "classification": "progression",
     "item_id": 14848,
-    "category": "quest"
+    "key": "GREEN_BOOK"
   },
   {
-    "key": "BLUE_BOOK",
-    "name": "Blue Book (History of Masks)",
-    "classification": "progression",
     "item_id": 15104,
-    "category": "quest"
+    "key": "BLUE_BOOK"
   },
   {
-    "key": "GRAVEYARD_KEY",
-    "name": "Graveyard Key",
-    "classification": "progression",
     "item_id": 15360,
-    "category": "quest"
+    "key": "GRAVEYARD_KEY"
   },
   {
-    "key": "TINGLE_TROPHY",
-    "name": "Tingle Trophy",
-    "classification": "progression",
     "item_id": 15616,
-    "category": "quest"
+    "key": "TINGLE_TROPHY"
   },
   {
-    "key": "CARLOV_MEDAL",
-    "name": "Carlov Medal",
-    "classification": "progression",
     "item_id": 15872,
-    "category": "quest"
+    "key": "CARLOV_MEDAL"
   },
   {
-    "key": "SHELLS",
-    "name": "Shells",
-    "classification": "filler",
     "item_id": 16128,
-    "category": "quest"
+    "key": "SHELLS"
   },
   {
-    "key": "EARTH_ELEMENT",
-    "name": "Earth Element",
-    "classification": "progression",
     "item_id": 16384,
-    "category": "element"
+    "key": "EARTH_ELEMENT"
   },
   {
-    "key": "FIRE_ELEMENT",
-    "name": "Fire Element",
-    "classification": "progression",
     "item_id": 16640,
-    "category": "element"
+    "key": "FIRE_ELEMENT"
   },
   {
-    "key": "WATER_ELEMENT",
-    "name": "Water Element",
-    "classification": "progression",
     "item_id": 16896,
-    "category": "element"
+    "key": "WATER_ELEMENT"
   },
   {
-    "key": "WIND_ELEMENT",
-    "name": "Wind Element",
-    "classification": "progression",
     "item_id": 17152,
-    "category": "element"
+    "key": "WIND_ELEMENT"
   },
   {
-    "key": "GRIP_RING",
-    "name": "Grip Ring",
-    "classification": "progression",
     "item_id": 17408,
-    "category": "upgrade"
+    "key": "GRIP_RING"
   },
   {
-    "key": "POWER_BRACELETS",
-    "name": "Power Bracelets",
-    "classification": "progression",
     "item_id": 17664,
-    "category": "upgrade"
+    "key": "POWER_BRACELETS"
   },
   {
-    "key": "FLIPPERS",
-    "name": "Flippers",
-    "classification": "progression",
     "item_id": 17920,
-    "category": "weapon"
+    "key": "FLIPPERS"
   },
   {
-    "key": "HYRULE_MAP",
-    "name": "Hyrule Map",
-    "classification": "progression",
     "item_id": 18176,
-    "category": "upgrade"
+    "key": "HYRULE_MAP"
   },
   {
-    "key": "SPIN_ATTACK",
-    "name": "Spin Attack",
-    "classification": "progression",
     "item_id": 18432,
-    "category": "ability"
+    "key": "SPIN_ATTACK"
   },
   {
-    "key": "ROLL_ATTACK",
-    "name": "Roll Attack",
-    "classification": "progression",
     "item_id": 18688,
-    "category": "ability"
+    "key": "ROLL_ATTACK"
   },
   {
-    "key": "DASH_ATTACK",
-    "name": "Dash Attack",
-    "classification": "progression",
     "item_id": 18944,
-    "category": "ability"
+    "key": "DASH_ATTACK"
   },
   {
-    "key": "ROCK_BREAKER",
-    "name": "Rock Breaker",
-    "classification": "progression",
     "item_id": 19200,
-    "category": "ability"
+    "key": "ROCK_BREAKER"
   },
   {
-    "key": "SWORD_BEAM",
-    "name": "Sword Beam",
-    "classification": "progression",
     "item_id": 19456,
-    "category": "ability"
+    "key": "SWORD_BEAM"
   },
   {
-    "key": "GREATSPIN",
-    "name": "Greatspin",
-    "classification": "progression",
     "item_id": 19712,
-    "category": "ability"
+    "key": "GREATSPIN"
   },
   {
-    "key": "DOWNTHRUST",
-    "name": "DownThrust",
-    "classification": "progression",
     "item_id": 19968,
-    "category": "ability"
+    "key": "DOWNTHRUST"
   },
   {
-    "key": "PERIL_BEAM",
-    "name": "Peril Beam",
-    "classification": "progression",
     "item_id": 20224,
-    "category": "ability"
+    "key": "PERIL_BEAM"
   },
   {
-    "key": "RUPEES_1",
-    "name": "1 Rupee",
-    "classification": "filler",
     "item_id": 21504,
-    "category": "filler"
+    "key": "RUPEES_1"
   },
   {
-    "key": "RUPEES_5",
-    "name": "5 Rupees",
-    "classification": "filler",
     "item_id": 21760,
-    "category": "filler"
+    "key": "RUPEES_5"
   },
   {
-    "key": "RUPEES_20",
-    "name": "20 Rupees",
-    "classification": "filler",
     "item_id": 22016,
-    "category": "filler"
+    "key": "RUPEES_20"
   },
   {
-    "key": "RUPEES_50",
-    "name": "50 Rupees",
-    "classification": "filler",
     "item_id": 22272,
-    "category": "filler"
+    "key": "RUPEES_50"
   },
   {
-    "key": "RUPEES_100",
-    "name": "100 Rupees",
-    "classification": "filler",
     "item_id": 22528,
-    "category": "filler"
+    "key": "RUPEES_100"
   },
   {
-    "key": "RUPEES_200",
-    "name": "200 Rupees",
-    "classification": "filler",
     "item_id": 22784,
-    "category": "filler"
+    "key": "RUPEES_200"
   },
   {
-    "key": "JABBER_NUT",
-    "name": "Jabber Nut",
-    "classification": "progression",
     "item_id": 23296,
-    "category": "quest"
+    "key": "JABBER_NUT"
   },
   {
-    "key": "KINSTONE_GOLD_CLOUD",
-    "name": "Kinstone Cloud Tops",
-    "classification": "progression",
     "item_id": 23653,
-    "category": "kinstone"
+    "key": "KINSTONE_GOLD_CLOUD"
   },
   {
-    "key": "KINSTONE_GOLD_SWAMP",
-    "name": "Kinstone Swamp",
-    "classification": "progression",
     "item_id": 23658,
-    "category": "kinstone"
+    "key": "KINSTONE_GOLD_SWAMP"
   },
   {
-    "key": "KINSTONE_GOLD_FALLS",
-    "name": "Kinstone Falls",
-    "classification": "progression",
     "item_id": 23661,
-    "category": "kinstone"
+    "key": "KINSTONE_GOLD_FALLS"
   },
   {
-    "key": "KINSTONE_RED_W",
-    "name": "Kinstone Red W",
-    "classification": "progression",
     "item_id": 23662,
-    "category": "kinstone"
+    "key": "KINSTONE_RED_W"
   },
   {
-    "key": "KINSTONE_RED_ANGLE",
-    "name": "Kinstone Red >",
-    "classification": "progression",
     "item_id": 23663,
-    "category": "kinstone"
+    "key": "KINSTONE_RED_ANGLE"
   },
   {
-    "key": "KINSTONE_RED_E",
-    "name": "Kinstone Red E",
-    "classification": "progression",
     "item_id": 23664,
-    "category": "kinstone"
+    "key": "KINSTONE_RED_E"
   },
   {
-    "key": "KINSTONE_BLUE_L",
-    "name": "Kinstone Blue L",
-    "classification": "progression",
     "item_id": 23665,
-    "category": "kinstone"
+    "key": "KINSTONE_BLUE_L"
   },
   {
-    "key": "KINSTONE_BLUE_6",
-    "name": "Kinstone Blue 6",
-    "classification": "progression",
     "item_id": 23666,
-    "category": "kinstone"
+    "key": "KINSTONE_BLUE_6"
   },
   {
-    "key": "KINSTONE_GREEN_ANGLE",
-    "name": "Kinstone Green <",
-    "classification": "progression",
     "item_id": 23667,
-    "category": "kinstone"
+    "key": "KINSTONE_GREEN_ANGLE"
   },
   {
-    "key": "KINSTONE_GREEN_SQUARE",
-    "name": "Kinstone Green [",
-    "classification": "progression",
     "item_id": 23668,
-    "category": "kinstone"
+    "key": "KINSTONE_GREEN_SQUARE"
   },
   {
-    "key": "KINSTONE_GREEN_P",
-    "name": "Kinstone Green P",
-    "classification": "progression",
     "item_id": 23669,
-    "category": "kinstone"
+    "key": "KINSTONE_GREEN_P"
   },
   {
-    "key": "BOMB_REFILL_5",
-    "name": "5 Bomb Refill",
-    "classification": "filler",
     "item_id": 23808,
-    "category": "filler"
+    "key": "BOMB_REFILL_5"
   },
   {
-    "key": "ARROW_REFILL_5",
-    "name": "5 Arrow Refill",
-    "classification": "filler",
     "item_id": 24064,
-    "category": "filler"
+    "key": "ARROW_REFILL_5"
   },
   {
-    "key": "HEART_REFILL",
-    "name": "Recovery Heart",
-    "classification": "filler",
     "item_id": 24320,
-    "category": "filler"
+    "key": "HEART_REFILL"
   },
   {
-    "key": "FAIRY_REFILL",
-    "name": "Fairy Refill",
-    "classification": "filler",
     "item_id": 24576,
-    "category": "filler"
+    "key": "FAIRY_REFILL"
   },
   {
-    "key": "SHELLS_30",
-    "name": "30 Shells",
-    "classification": "filler",
     "item_id": 24832,
-    "category": "filler"
+    "key": "SHELLS_30"
   },
   {
-    "key": "HEART_CONTAINER",
-    "name": "Heart Container",
-    "classification": "progression",
     "item_id": 25088,
-    "category": "upgrade"
+    "key": "HEART_CONTAINER"
   },
   {
-    "key": "HEART_PIECE",
-    "name": "Piece of Heart",
-    "classification": "progression",
     "item_id": 25344,
-    "category": "upgrade"
+    "key": "HEART_PIECE"
   },
   {
-    "key": "BIG_WALLET",
-    "name": "Big Wallet",
-    "classification": "progression",
     "item_id": 25600,
-    "category": "upgrade"
+    "key": "BIG_WALLET"
   },
   {
-    "key": "BOMB_BAG",
-    "name": "Bomb Bag",
-    "classification": "progression",
     "item_id": 25856,
-    "category": "upgrade"
+    "key": "BOMB_BAG"
   },
   {
-    "key": "QUIVER",
-    "name": "Quiver",
-    "classification": "useful",
     "item_id": 26112,
-    "category": "upgrade"
+    "key": "QUIVER"
   },
   {
-    "key": "FIGURINE",
-    "name": "Figurine",
-    "classification": "progression",
     "item_id": 26368,
-    "category": "filler"
+    "key": "FIGURINE"
   },
   {
-    "key": "BRIOCHE",
-    "name": "Brioche",
-    "classification": "filler",
     "item_id": 26624,
-    "category": "filler"
+    "key": "BRIOCHE"
   },
   {
-    "key": "CROISSANT",
-    "name": "Croissant",
-    "classification": "filler",
     "item_id": 26880,
-    "category": "filler"
+    "key": "CROISSANT"
   },
   {
-    "key": "PIE",
-    "name": "Pie",
-    "classification": "filler",
     "item_id": 27136,
-    "category": "filler"
+    "key": "PIE"
   },
   {
-    "key": "CAKE",
-    "name": "Cake",
-    "classification": "filler",
     "item_id": 27392,
-    "category": "filler"
+    "key": "CAKE"
   },
   {
-    "key": "BOMB_REFILL_10",
-    "name": "10 Bomb Refill",
-    "classification": "filler",
     "item_id": 27648,
-    "category": "filler"
+    "key": "BOMB_REFILL_10"
   },
   {
-    "key": "BOMB_REFILL_30",
-    "name": "30 Bomb Refill",
-    "classification": "filler",
     "item_id": 27904,
-    "category": "filler"
+    "key": "BOMB_REFILL_30"
   },
   {
-    "key": "ARROW_REFILL_10",
-    "name": "10 Arrow Refill",
-    "classification": "filler",
     "item_id": 28160,
-    "category": "filler"
+    "key": "ARROW_REFILL_10"
   },
   {
-    "key": "ARROW_REFILL_30",
-    "name": "30 Arrow Refill",
-    "classification": "filler",
     "item_id": 28416,
-    "category": "filler"
+    "key": "ARROW_REFILL_30"
   },
   {
-    "key": "BOW_BUTTERFLY",
-    "name": "Bow Butterfly",
-    "classification": "useful",
     "item_id": 28672,
-    "category": "butterfly"
+    "key": "BOW_BUTTERFLY"
   },
   {
-    "key": "DIG_BUTTERFLY",
-    "name": "Dig Butterfly",
-    "classification": "useful",
     "item_id": 28928,
-    "category": "butterfly"
+    "key": "DIG_BUTTERFLY"
   },
   {
-    "key": "SWIM_BUTTERFLY",
-    "name": "Swim Butterfly",
-    "classification": "useful",
     "item_id": 29184,
-    "category": "butterfly"
+    "key": "SWIM_BUTTERFLY"
   },
   {
-    "key": "FAST_SPIN_SCROLL",
-    "name": "Fast Spin Scroll",
-    "classification": "progression",
     "item_id": 29440,
-    "category": "ability"
+    "key": "FAST_SPIN_SCROLL"
   },
   {
-    "key": "FAST_SPLIT_SCROLL",
-    "name": "Fast Split Scroll",
-    "classification": "progression",
     "item_id": 29696,
-    "category": "ability"
+    "key": "FAST_SPLIT_SCROLL"
   },
   {
-    "key": "LONG_SPIN",
-    "name": "Long Spin",
-    "classification": "progression",
     "item_id": 29952,
-    "category": "ability"
+    "key": "LONG_SPIN"
   },
   {
-    "key": "TRAP_ICE",
-    "name": "Freeze Trap",
-    "classification": "trap",
     "item_id": 6912,
-    "category": "trap"
+    "key": "TRAP_ICE"
   },
   {
-    "key": "TRAP_FIRE",
-    "name": "Burn Trap",
-    "classification": "trap",
     "item_id": 6913,
-    "category": "trap"
+    "key": "TRAP_FIRE"
   },
   {
-    "key": "TRAP_ZAP",
-    "name": "Zap Trap",
-    "classification": "trap",
     "item_id": 6914,
-    "category": "trap"
+    "key": "TRAP_ZAP"
   },
   {
-    "key": "TRAP_BOMB",
-    "name": "Bomb Trap",
-    "classification": "trap",
     "item_id": 6915,
-    "category": "trap"
+    "key": "TRAP_BOMB"
   },
   {
-    "key": "TRAP_MONEY",
-    "name": "Rupee Trap",
-    "classification": "trap",
     "item_id": 6916,
-    "category": "trap"
+    "key": "TRAP_MONEY"
   },
   {
-    "key": "TRAP_STINK",
-    "name": "Stink Trap",
-    "classification": "trap",
     "item_id": 6917,
-    "category": "trap"
+    "key": "TRAP_STINK"
   },
   {
-    "key": "TRAP_ROPE",
-    "name": "Rope Trap",
-    "classification": "trap",
     "item_id": 6918,
-    "category": "trap"
+    "key": "TRAP_ROPE"
   },
   {
-    "key": "TRAP_BAT",
-    "name": "Bat Trap",
-    "classification": "trap",
     "item_id": 6919,
-    "category": "trap"
+    "key": "TRAP_BAT"
   },
   {
-    "key": "TRAP_LIKE",
-    "name": "LikeLike Trap",
-    "classification": "trap",
     "item_id": 6920,
-    "category": "trap"
+    "key": "TRAP_LIKE"
   },
   {
-    "key": "TRAP_CURSE",
-    "name": "Curse Trap",
-    "classification": "trap",
     "item_id": 6921,
-    "category": "trap"
+    "key": "TRAP_CURSE"
   },
   {
-    "key": "DUNGEON_MAP_DWS",
-    "name": "Dungeon Map (DWS)",
-    "classification": "useful",
     "item_id": 20504,
-    "category": "dungeon"
+    "key": "DUNGEON_MAP_DWS"
   },
   {
-    "key": "DUNGEON_MAP_COF",
-    "name": "Dungeon Map (CoF)",
-    "classification": "useful",
     "item_id": 20505,
-    "category": "dungeon"
+    "key": "DUNGEON_MAP_COF"
   },
   {
-    "key": "DUNGEON_MAP_FOW",
-    "name": "Dungeon Map (FoW)",
-    "classification": "useful",
     "item_id": 20506,
-    "category": "dungeon"
+    "key": "DUNGEON_MAP_FOW"
   },
   {
-    "key": "DUNGEON_MAP_TOD",
-    "name": "Dungeon Map (ToD)",
-    "classification": "useful",
     "item_id": 20507,
-    "category": "dungeon"
+    "key": "DUNGEON_MAP_TOD"
   },
   {
-    "key": "DUNGEON_MAP_POW",
-    "name": "Dungeon Map (PoW)",
-    "classification": "useful",
     "item_id": 20508,
-    "category": "dungeon"
+    "key": "DUNGEON_MAP_POW"
   },
   {
-    "key": "DUNGEON_MAP_DHC",
-    "name": "Dungeon Map (DHC)",
-    "classification": "useful",
     "item_id": 20509,
-    "category": "dungeon"
+    "key": "DUNGEON_MAP_DHC"
   },
   {
-    "key": "DUNGEON_COMPASS_DWS",
-    "name": "Dungeon Compass (DWS)",
-    "classification": "useful",
     "item_id": 20760,
-    "category": "dungeon"
+    "key": "DUNGEON_COMPASS_DWS"
   },
   {
-    "key": "DUNGEON_COMPASS_COF",
-    "name": "Dungeon Compass (CoF)",
-    "classification": "useful",
     "item_id": 20761,
-    "category": "dungeon"
+    "key": "DUNGEON_COMPASS_COF"
   },
   {
-    "key": "DUNGEON_COMPASS_FOW",
-    "name": "Dungeon Compass (FoW)",
-    "classification": "useful",
     "item_id": 20762,
-    "category": "dungeon"
+    "key": "DUNGEON_COMPASS_FOW"
   },
   {
-    "key": "DUNGEON_COMPASS_TOD",
-    "name": "Dungeon Compass (ToD)",
-    "classification": "useful",
     "item_id": 20763,
-    "category": "dungeon"
+    "key": "DUNGEON_COMPASS_TOD"
   },
   {
-    "key": "DUNGEON_COMPASS_POW",
-    "name": "Dungeon Compass (PoW)",
-    "classification": "useful",
     "item_id": 20764,
-    "category": "dungeon"
+    "key": "DUNGEON_COMPASS_POW"
   },
   {
-    "key": "DUNGEON_COMPASS_DHC",
-    "name": "Dungeon Compass (DHC)",
-    "classification": "useful",
     "item_id": 20765,
-    "category": "dungeon"
+    "key": "DUNGEON_COMPASS_DHC"
   },
   {
-    "key": "BIG_KEY_DWS",
-    "name": "Big Key (DWS)",
-    "classification": "progression",
     "item_id": 21016,
-    "category": "dungeon"
+    "key": "BIG_KEY_DWS"
   },
   {
-    "key": "BIG_KEY_COF",
-    "name": "Big Key (CoF)",
-    "classification": "progression",
     "item_id": 21017,
-    "category": "dungeon"
+    "key": "BIG_KEY_COF"
   },
   {
-    "key": "BIG_KEY_FOW",
-    "name": "Big Key (FoW)",
-    "classification": "progression",
     "item_id": 21018,
-    "category": "dungeon"
+    "key": "BIG_KEY_FOW"
   },
   {
-    "key": "BIG_KEY_TOD",
-    "name": "Big Key (ToD)",
-    "classification": "progression",
     "item_id": 21019,
-    "category": "dungeon"
+    "key": "BIG_KEY_TOD"
   },
   {
-    "key": "BIG_KEY_POW",
-    "name": "Big Key (PoW)",
-    "classification": "progression",
     "item_id": 21020,
-    "category": "dungeon"
+    "key": "BIG_KEY_POW"
   },
   {
-    "key": "BIG_KEY_DHC",
-    "name": "Big Key (DHC)",
-    "classification": "progression",
     "item_id": 21021,
-    "category": "dungeon"
+    "key": "BIG_KEY_DHC"
   },
   {
-    "key": "SMALL_KEY_DWS",
-    "name": "Small Key (DWS)",
-    "classification": "progression",
     "item_id": 21272,
-    "category": "dungeon"
+    "key": "SMALL_KEY_DWS"
   },
   {
-    "key": "SMALL_KEY_COF",
-    "name": "Small Key (CoF)",
-    "classification": "progression",
     "item_id": 21273,
-    "category": "dungeon"
+    "key": "SMALL_KEY_COF"
   },
   {
-    "key": "SMALL_KEY_FOW",
-    "name": "Small Key (FoW)",
-    "classification": "progression",
     "item_id": 21274,
-    "category": "dungeon"
+    "key": "SMALL_KEY_FOW"
   },
   {
-    "key": "SMALL_KEY_TOD",
-    "name": "Small Key (ToD)",
-    "classification": "progression",
     "item_id": 21275,
-    "category": "dungeon"
+    "key": "SMALL_KEY_TOD"
   },
   {
-    "key": "SMALL_KEY_POW",
-    "name": "Small Key (PoW)",
-    "classification": "progression",
     "item_id": 21276,
-    "category": "dungeon"
+    "key": "SMALL_KEY_POW"
   },
   {
-    "key": "SMALL_KEY_DHC",
-    "name": "Small Key (DHC)",
-    "classification": "progression",
     "item_id": 21277,
-    "category": "dungeon"
+    "key": "SMALL_KEY_DHC"
   },
   {
-    "key": "SMALL_KEY_RC",
-    "name": "Small Key (RC)",
-    "classification": "progression",
     "item_id": 21278,
-    "category": "dungeon"
+    "key": "SMALL_KEY_RC"
   },
   {
-    "key": "FUSION_01",
-    "name": "Top Right Pinwheel",
-    "classification": "progression",
     "item_id": 61953,
-    "category": "fusion"
+    "key": "FUSION_01"
   },
   {
-    "key": "FUSION_02",
-    "name": "Bottom Left Pinwheel",
-    "classification": "progression",
     "item_id": 61954,
-    "category": "fusion"
+    "key": "FUSION_02"
   },
   {
-    "key": "FUSION_03",
-    "name": "Top Left Pinwheel",
-    "classification": "progression",
     "item_id": 61955,
-    "category": "fusion"
+    "key": "FUSION_03"
   },
   {
-    "key": "FUSION_04",
-    "name": "Middle Pinwheel",
-    "classification": "progression",
     "item_id": 61956,
-    "category": "fusion"
+    "key": "FUSION_04"
   },
   {
-    "key": "FUSION_05",
-    "name": "Bottom Right Pinwheel",
-    "classification": "progression",
     "item_id": 61957,
-    "category": "fusion"
+    "key": "FUSION_05"
   },
   {
-    "key": "FUSION_06",
-    "name": "West Statue Bashes Floor",
-    "classification": "progression",
     "item_id": 61958,
-    "category": "fusion"
+    "key": "FUSION_06"
   },
   {
-    "key": "FUSION_07",
-    "name": "Middle Statue Bashes Floor",
-    "classification": "progression",
     "item_id": 61959,
-    "category": "fusion"
+    "key": "FUSION_07"
   },
   {
-    "key": "FUSION_08",
-    "name": "East Statue Bashes Floor",
-    "classification": "progression",
     "item_id": 61960,
-    "category": "fusion"
+    "key": "FUSION_08"
   },
   {
-    "key": "FUSION_09",
-    "name": "Veil Falls Kinstone Door Opens",
-    "classification": "progression",
     "item_id": 61961,
-    "category": "fusion"
+    "key": "FUSION_09"
   }
 ]

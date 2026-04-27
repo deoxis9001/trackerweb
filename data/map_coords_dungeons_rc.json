@@ -1,37 +1,52 @@
 [
   {
     "id": 6029325,
-    "name": "Crypt Gibdo Left Item",
-    "floor": "rc",
-    "x": 257,
-    "y": 808
+    "location": [
+      {
+        "map": "rc",
+        "x": 257,
+        "y": 808
+      }
+    ]
   },
   {
     "id": 6029326,
-    "name": "Crypt Gibdo Right Item",
-    "floor": "rc",
-    "x": 347,
-    "y": 808
+    "location": [
+      {
+        "map": "rc",
+        "x": 347,
+        "y": 808
+      }
+    ]
   },
   {
     "id": 6029327,
-    "name": "Crypt Left Item",
-    "floor": "rc",
-    "x": 145,
-    "y": 87
+    "location": [
+      {
+        "map": "rc",
+        "x": 145,
+        "y": 87
+      }
+    ]
   },
   {
     "id": 6029328,
-    "name": "Crypt Right Item",
-    "floor": "rc",
-    "x": 450,
-    "y": 87
+    "location": [
+      {
+        "map": "rc",
+        "x": 450,
+        "y": 87
+      }
+    ]
   },
   {
     "id": 6029329,
-    "name": "Crypt Prize",
-    "floor": "rc",
-    "x": 895,
-    "y": 110
+    "location": [
+      {
+        "map": "rc",
+        "x": 895,
+        "y": 110
+      }
+    ]
   }
 ]
