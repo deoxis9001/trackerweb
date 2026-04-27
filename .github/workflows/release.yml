@@ -25,10 +25,11 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Generate data & rules
+      - name: Generate data, rules & changelog
         run: |
           python scripts/extract_tmc_data.py
           python scripts/gen_rules.py
+          python scripts/gen_changelog.py
 
       - name: Install & build
         run: |

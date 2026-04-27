@@ -1,0 +1,123 @@
+[
+  {
+    "date": "27.04.2026",
+    "commits": [
+      {
+        "type": "feat",
+        "title": "auto-generate changelog from git log at build time"
+      },
+      {
+        "type": "feat",
+        "title": "add changelog page with discrete footer link"
+      },
+      {
+        "type": "feat",
+        "title": "système de hints AP via item notes + logos AP colorés",
+        "details": [
+          "Remplace l'ancien système de hints (halos colorés/badges snowflake) par des item notes sur les pins",
+          "Ajoute 5 logos AP colorés (rouge/blanc/jaune/bleu/vert) comme items sélectionnables",
+          "Les hints AP sont mappés automatiquement par flags : progression=jaune, trap=rouge, useful=bleu, junk=blanc",
+          "Supprime les notes quand une location est cochée",
+          "Réorganise la grille PICKER_ITEMS en 6×8",
+          "Ajoute les Kinstones generiques (rouge/bleu/vert/or) et les clés dans le picker",
+          "Met à jour le submodule TMC-APWorld"
+        ]
+      },
+      {
+        "type": "feat",
+        "title": "auto-generate data & logic from TMC-APWorld submodule at build time",
+        "details": [
+          "Add SubModule/TMC-APWorld git submodule (branch dev)",
+          "Add scripts/gen_rules.py: transpile APWorld rules.py → rules_generated.js via AST",
+          "Add scripts/migrate_coords.py: convert map coords to {id, location:[{map,x,y}]} format",
+          "Split overworld coords into per-area JSON files (import.meta.glob in MapView)",
+          "Refactor scripts/extract_tmc_data.py: generate location_meta.json, names.json, ap_tables.json",
+          "Update package.json: prebuild/predev run generate pipeline (extract + gen_rules)",
+          "Add build:ci script (vite build without prebuild, for GitHub Actions)",
+          "Fix CI workflow: checkout submodules, setup-python, run scripts explicitly",
+          "Update accessibility.js: import REGION_RULES/LOCATION_RULES from rules_generated.js",
+          "Remove scripts/extract_map_coords.py and src_info/ (no longer needed)"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "26.04.2026",
+    "commits": [
+      {
+        "type": "fix",
+        "title": "show overworld area selector for all users"
+      },
+      {
+        "type": "fix",
+        "title": "show Régions button only in dev mode"
+      },
+      {
+        "type": "fix",
+        "title": "remove Régions button from navbar"
+      },
+      {
+        "type": "fix",
+        "title": "hide overworld area selector buttons outside dev mode"
+      },
+      {
+        "type": "fix",
+        "title": "change default auto tab settings (dungeons: overview, overworld: off)"
+      },
+      {
+        "type": "feat",
+        "title": "dungeon floor maps, overworld area zones, auto tab switching, autotrack item fix",
+        "details": [
+          "Add per-floor map coords JSON for all 7 dungeons (DWS, CoF, FoW, ToD, RC, PoW, DHC)",
+          "Add overworld area zone coords (16 zones) and sub-map images from reference tracker",
+          "Add room_area_to_zone.json for room_area → overworld zone mapping",
+          "MapView: floor selector for dungeons, area selector for overworld, mouse coords (dev only)",
+          "Settings: Auto tab Dungeons (Off/Overview/Floor) and Auto tab Overworld (Off/On)",
+          "bizhawk.js / client.js: auto-switch active view and zone on room change",
+          "ItemGrid: fix autotrack items not displaying (key name mapping for BOMB_BAG, WALLET, BOTTLE)",
+          "stateStore: add activeZone ref and setActiveZone action"
+        ]
+      },
+      {
+        "type": "fix",
+        "title": "read dungeon warps and wind crests from both sd.options and top-level sd"
+      },
+      {
+        "type": "feat",
+        "title": "hide sanctuary items by default (not yet in AP)"
+      },
+      {
+        "type": "fix",
+        "title": "ToD Big Octo needs canSplit(2); version-aware fuse event mapping for bizhawk <= 0.3.1"
+      },
+      {
+        "type": "fix",
+        "title": "fusion item names, heart piece name, cabin swim no longer a trick"
+      },
+      {
+        "type": "fix",
+        "title": "Library Yellow needs only 3 books; fix book names to match AP table; map PROGRESSIVE_BOOK; fix Carlov NPC"
+      },
+      {
+        "type": "feat",
+        "title": "add AP chat panel"
+      },
+      {
+        "type": "ci",
+        "title": "add contents:write permission for release creation"
+      },
+      {
+        "type": "chore",
+        "title": "add vite-plugin-singlefile dependency"
+      },
+      {
+        "type": "ci",
+        "title": "add build & release workflow + fix image base paths"
+      },
+      {
+        "type": "other",
+        "title": "Initial commit — TMC Archipelago tracker web"
+      }
+    ]
+  }
+]
