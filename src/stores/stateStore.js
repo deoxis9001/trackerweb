@@ -81,8 +81,18 @@ export const useStateStore = defineStore('state', () => {
     dungeonEntranceMap.value = {}
   }
 
-  // AP hints: locationId → hint status (0=unspecified,10=noPriority,20=avoid,30=priority,40=found)
-  const locationHints   = ref({})
+  // Manual item notes: locationId → itemKey (persisted)
+  const locationNotes = ref({})
+
+  // AP hint-derived notes: locationId → itemKey (not persisted, cleared on disconnect)
+  const apLocationItems = ref({})
+
+  // Raw slot_data from AP login (for dev panel)
+  const rawSlotData = ref({})
+
+  // AP players: slot → name
+  const apPlayers = ref({})
+
 
   function toggleSettings()     { showSettings.value    = !showSettings.value }
   function toggleRegionPopup()  { showRegionPopup.value = !showRegionPopup.value }
@@ -174,6 +184,7 @@ export const useStateStore = defineStore('state', () => {
         checkedLocations:  [...checkedLocations.value],
         receivedItems:     receivedItems.value,
         manualItems:       manualItems.value,
+        locationNotes:     locationNotes.value,
         activeView:        activeView.value,
         apServer:          apServer.value,
         apPort:            apPort.value,
@@ -196,6 +207,7 @@ export const useStateStore = defineStore('state', () => {
       if (s.apPort  != null)   apPort.value            = s.apPort
       if (s.apSlot)            apSlot.value            = s.apSlot
       if (s.dungeonEntranceMap) dungeonEntranceMap.value = s.dungeonEntranceMap
+      if (s.locationNotes)     locationNotes.value     = s.locationNotes
     } catch {}
   }
 
@@ -212,6 +224,11 @@ export const useStateStore = defineStore('state', () => {
       checkedLocations.value.delete(id)
     } else {
       checkedLocations.value.add(id)
+      if (locationNotes.value[id] != null) {
+        const next = { ...locationNotes.value }
+        delete next[id]
+        locationNotes.value = next
+      }
     }
     saveState()
   }
@@ -221,7 +238,17 @@ export const useStateStore = defineStore('state', () => {
   }
 
   function markLocationsChecked(ids) {
-    for (const id of ids) checkedLocations.value.add(Number(id))
+    const notesToClear = []
+    for (const id of ids) {
+      const n = Number(id)
+      checkedLocations.value.add(n)
+      if (locationNotes.value[n] != null) notesToClear.push(n)
+    }
+    if (notesToClear.length) {
+      const next = { ...locationNotes.value }
+      for (const n of notesToClear) delete next[n]
+      locationNotes.value = next
+    }
     saveState()
   }
 
@@ -237,6 +264,8 @@ export const useStateStore = defineStore('state', () => {
     checkedLocations.value = new Set()
     receivedItems.value = []
     manualItems.value = {}
+    locationNotes.value = {}
+    dungeonEntranceMap.value = {}
     saveState()
   }
 
@@ -253,17 +282,34 @@ export const useStateStore = defineStore('state', () => {
     activePanel.value = panel
   }
 
-  function setLocationHints(map) {
-    locationHints.value = map
-  }
-
-  function updateLocationHint(locId, status) {
-    locationHints.value = { ...locationHints.value, [locId]: status }
-  }
-
   function setAutotrackItems(items) {
     autotrackItems.value = items
   }
+
+  function setApLocationItems(map) {
+    apLocationItems.value = map ?? {}
+  }
+
+  function setLocationNote(id, itemKey) {
+    locationNotes.value = { ...locationNotes.value, [Number(id)]: itemKey }
+    saveState()
+  }
+  function clearLocationNote(id) {
+    const next = { ...locationNotes.value }
+    delete next[Number(id)]
+    locationNotes.value = next
+    saveState()
+  }
+
+  function setRawSlotData(data) {
+    rawSlotData.value = data ?? {}
+  }
+
+  function setApPlayers(map) {
+    apPlayers.value = map
+  }
+
+  const showDevPanel = ref(false)
 
   const showChat     = ref(false)
   const chatMessages = ref([])  // { text, nodes }[]
@@ -314,14 +360,21 @@ export const useStateStore = defineStore('state', () => {
     toggleSettings,
     showRegionPopup,
     toggleRegionPopup,
-    locationHints,
-    setLocationHints,
+    locationNotes,
+    setLocationNote,
+    clearLocationNote,
+    apLocationItems,
+    setApLocationItems,
     showChat,
     chatMessages,
     addChatMessage,
     clearChat,
-    updateLocationHint,
     setAutotrackItems,
+    rawSlotData,
+    setRawSlotData,
+    apPlayers,
+    setApPlayers,
+    showDevPanel,
     saveState,
     loadState,
   }

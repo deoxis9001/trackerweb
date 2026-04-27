@@ -3,7 +3,9 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { viteSingleFile } from 'vite-plugin-singlefile'
 
-export default defineConfig({
+const outDirs = { alpha: 'dist/alpha', dev: 'dist/dev' }
+
+export default defineConfig(({ mode }) => ({
   base: './',
   plugins: [vue(), viteSingleFile()],
   resolve: {
@@ -13,7 +15,7 @@ export default defineConfig({
   },
   publicDir: 'public',
   build: {
-    outDir: 'dist',
+    outDir: outDirs[mode] ?? 'dist',
     emptyOutDir: true,
   },
-})
+}))

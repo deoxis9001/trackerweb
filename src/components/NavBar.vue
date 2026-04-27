@@ -3,7 +3,8 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
-import { disconnectFromAP } from '../archipelago/client'
+import { disconnectFromAP, resyncFromAP } from '../archipelago/client'
+import ArchipelagoLogo from './ArchipelagoLogo.vue'
 
 const store    = useStateStore()
 const settings = useSettingsStore()
@@ -40,8 +41,12 @@ function assignEntrance(slot, target) {
 }
 
 function handleReset() {
-  disconnectFromAP()
-  store.resetTracker()
+  if (store.apConnected) {
+    resyncFromAP()
+  } else {
+    disconnectFromAP()
+    store.resetTracker()
+  }
 }
 
 function openBroadcastItems() {
@@ -123,11 +128,16 @@ function openBroadcastRegions() {
 
     <div class="ap-status">
       <button class="tab reset-btn" @click="handleReset()">Reset</button>
-      <span v-if="store.apConnected" class="connected">● AP</span>
-      <span v-else class="disconnected">○ Offline</span>
+      <ArchipelagoLogo :size="22" :active="store.apConnected" :title="store.apConnected ? 'Connected' : 'Offline'"/>
     </div>
 
     <div class="nav-right">
+      <button
+        v-if="isDev"
+        :class="['settings-btn', store.showDevPanel && 'active']"
+        @click="store.showDevPanel = !store.showDevPanel"
+        title="Dev panel"
+      >🛠 Dev</button>
       <button
         v-if="isDev"
         :class="['settings-btn', store.showRegionPopup && 'active']"
@@ -269,9 +279,7 @@ function openBroadcastRegions() {
 
 .nav-right { margin-left: auto; flex-shrink: 0; }
 
-.connected    { color: var(--accent); font-size: 12px; font-weight: 600; }
-.disconnected { color: var(--text-muted); font-size: 12px; }
-.ap-status    { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.ap-status { display: flex; align-items: center; gap: 8px; }
 
 .reset-btn { color: #e04040; border-color: #6a2020; }
 .reset-btn:hover { background: #6a2020; color: var(--text); border-color: #e04040; }

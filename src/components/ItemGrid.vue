@@ -137,7 +137,10 @@ function clickCompositeRight(key) {
 function badgedHas(key)    { return getCount(BADGED_DEFS[key].base) > 0 }
 function badgeActive(key)  { return (store.manualItems[BADGED_DEFS[key].badge] ?? 0) > 0 }
 function imgSrcBadged(key) { return imgSrc(BADGED_DEFS[key].base) }
-function badgeImgSrc(key)  { return `${import.meta.env.BASE_URL}images/items/${BADGED_DEFS[key].badgeImg}` }
+function badgeImgSrc(key) {
+  if (key === 'BOMBS_AND_REMOTE') return `${import.meta.env.BASE_URL}images/items/overlay_remote.png`
+  return `${import.meta.env.BASE_URL}images/items/${BADGED_DEFS[key].badgeImg}`
+}
 
 function clickBadgedBase(key) {
   const { base, loop } = BADGED_DEFS[key]
@@ -266,20 +269,6 @@ function onRightClickLoc(e, loc) {
   if (store.isChecked(loc.id)) store.toggleLocation(loc.id)
 }
 
-function locHintColor(loc) {
-  const s = store.locationHints[loc.id]
-  if (s == null) return null
-  if (s >= 30) return '#fce070'
-  if (s >= 20) return '#ff5050'
-  return '#ffffff'
-}
-
-const hoveredAccessible = computed(() => {
-  if (store.activeView !== 'overworld') return []
-  return store.hoveredPinLocs.filter(loc =>
-    !store.isChecked(loc.id) && accessibility.value.get(loc.id) === 'accessible'
-  )
-})
 
 // ── Sections computed from settings ──────────────────────────────────────────
 
@@ -496,25 +485,6 @@ const gridSections = computed(() => {
         <span class="loc-count">{{ mapLocations.filter(l => store.isChecked(l.id)).length }}/{{ mapLocations.length }}</span>
       </div>
       <div class="loc-list">
-        <!-- Locations accessibles du pin survolé (overworld seulement) -->
-        <template v-if="hoveredAccessible.length">
-          <div
-            v-for="loc in hoveredAccessible"
-            :key="'hov-' + loc.id"
-            class="loc-row loc-hovered"
-            @click="!store.isChecked(loc.id) && store.toggleLocation(loc.id)"
-            @contextmenu="onRightClickLoc($event, loc)"
-          >
-            <span class="loc-dot" style="color: #4caf50">●</span>
-            <span class="loc-name">{{ loc.name }}</span>
-            <span
-              v-if="locHintColor(loc) && !store.isChecked(loc.id)"
-              class="hint-pip"
-              :style="{ background: locHintColor(loc), boxShadow: `0 0 5px 1px ${locHintColor(loc)}` }"
-            />
-          </div>
-          <div class="loc-hovered-sep" />
-        </template>
 
         <template v-if="store.activeView !== 'overworld'">
           <!-- Donjon : liste plate -->
@@ -527,11 +497,6 @@ const gridSections = computed(() => {
           >
             <span class="loc-dot" :style="{ color: locListColor(loc) }">●</span>
             <span class="loc-name">{{ loc.name }}</span>
-            <span
-              v-if="locHintColor(loc) && !store.isChecked(loc.id)"
-              class="hint-pip"
-              :style="{ background: locHintColor(loc), boxShadow: `0 0 5px 1px ${locHintColor(loc)}` }"
-            />
           </div>
         </template>
 
@@ -553,11 +518,6 @@ const gridSections = computed(() => {
               >
                 <span class="loc-dot" :style="{ color: locListColor(loc) }">●</span>
                 <span class="loc-name">{{ loc.name }}</span>
-                <span
-                  v-if="locHintColor(loc) && !store.isChecked(loc.id)"
-                  class="hint-pip"
-                  :style="{ background: locHintColor(loc), boxShadow: `0 0 5px 1px ${locHintColor(loc)}` }"
-                />
               </div>
             </template>
           </div>
@@ -731,7 +691,6 @@ const gridSections = computed(() => {
 
 .loc-dot  { font-size: 8px; flex-shrink: 0; }
 .loc-name { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hint-pip { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
 .loc-group { margin-bottom: 1px; }
 

@@ -27,6 +27,18 @@
         <APChat />
       </div>
 
+      <!-- Dev panel -->
+      <div
+        v-if="store.showDevPanel"
+        class="settings-overlay"
+        @click.self="store.showDevPanel = false"
+      >
+        <div class="settings-modal">
+          <button class="modal-close" @click="store.showDevPanel = false">✕</button>
+          <DevPanel />
+        </div>
+      </div>
+
       <!-- Region popup -->
       <div v-if="store.showRegionPopup" class="region-popup">
         <div class="region-popup-header">
@@ -46,6 +58,7 @@ import NavBar from './components/NavBar.vue'
 import SettingsView from './views/SettingsView.vue'
 import RegionGuide from './components/RegionGuide.vue'
 import APChat from './components/APChat.vue'
+import DevPanel from './components/DevPanel.vue'
 import { useStateStore } from './stores/stateStore'
 
 const store = useStateStore()
@@ -60,6 +73,7 @@ function onKeydown(e) {
     if (store.showSettings)    store.showSettings    = false
     if (store.showRegionPopup) store.showRegionPopup = false
     if (store.showChat)        store.showChat        = false
+    if (store.showDevPanel)    store.showDevPanel    = false
   }
 }
 onMounted(() => window.addEventListener('keydown', onKeydown))

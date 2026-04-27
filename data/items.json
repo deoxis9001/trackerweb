@@ -650,5 +650,9 @@
   {
     "item_id": 61961,
     "key": "FUSION_09"
+  },
+  {
+    "item_id": 65535,
+    "key": "OOL"
   }
 ]
