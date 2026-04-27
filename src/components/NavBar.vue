@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { disconnectFromAP, resyncFromAP } from '../archipelago/client'
@@ -9,11 +9,17 @@ import ArchipelagoLogo from './ArchipelagoLogo.vue'
 const store    = useStateStore()
 const settings = useSettingsStore()
 const router   = useRouter()
+const route    = useRoute()
 const isDev    = import.meta.env.DEV
+
+function goToTracker() {
+  if (route.path !== '/') router.push('/')
+}
 
 const entrancePicker = ref(null)
 
 function onDungeonTabClick(slot) {
+  goToTracker()
   if (!settings.dungeonEntranceShuffle) {
     store.setActiveView(slot)
     return
@@ -88,7 +94,7 @@ function openBroadcastRegions() {
     <div class="map-tabs">
       <button
         :class="['tab', store.activeView === 'overworld' && 'active']"
-        @click="store.setActiveView('overworld')"
+        @click="goToTracker(); store.setActiveView('overworld')"
       >Overworld</button>
       <div
         v-for="dungeon in store.dungeonRegions"
@@ -116,11 +122,11 @@ function openBroadcastRegions() {
     <div class="panel-tabs">
       <button
         :class="['tab', store.activePanel === 'map' && 'active']"
-        @click="store.setActivePanel('map')"
+        @click="goToTracker(); store.setActivePanel('map')"
       >Map</button>
       <button
         :class="['tab', store.activePanel === 'checklist' && 'active']"
-        @click="store.setActivePanel('checklist')"
+        @click="goToTracker(); store.setActivePanel('checklist')"
       >List</button>
     </div>
 
