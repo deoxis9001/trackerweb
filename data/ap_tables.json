@@ -162,7 +162,8 @@
     "61958": "West Statue Bashes Floor",
     "61959": "Middle Statue Bashes Floor",
     "61960": "East Statue Bashes Floor",
-    "61961": "Veil Falls Kinstone Door Opens"
+    "61961": "Veil Falls Kinstone Door Opens",
+    "65535": "OUT_OF_LOGIC"
   },
   "locations": {
     "6029000": "South Field Smith House Chest",

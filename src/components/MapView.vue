@@ -5,6 +5,8 @@ const isDev = import.meta.env.DEV
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { computeAccessibility, buildInventory } from '../logic/accessibility'
+import { ITEM_IMAGES } from '../metadata/itemImages'
+import ItemNotePicker from './ItemNotePicker.vue'
 const overworldAreaModules = import.meta.glob('../../data/map_coords_overworld_*.json', { eager: true })
 
 import dungeonCoordsDws from '../../data/map_coords_dungeons_dws.json'
@@ -208,12 +210,16 @@ onMounted(() => {
   containerEl.value?.addEventListener('wheel', onWheel, { passive: false })
   window.addEventListener('mousemove', onMousemove)
   window.addEventListener('mouseup',   onMouseup)
+  window.addEventListener('keydown',   onKeydown)
+  window.addEventListener('click',     closePopup)
 })
 onUnmounted(() => {
   ro?.disconnect()
   containerEl.value?.removeEventListener('wheel', onWheel)
   window.removeEventListener('mousemove', onMousemove)
   window.removeEventListener('mouseup',   onMouseup)
+  window.removeEventListener('keydown',   onKeydown)
+  window.removeEventListener('click',     closePopup)
 })
 
 // ── Accessibility computation ─────────────────────────────────────────────────
@@ -351,7 +357,7 @@ const pins = computed(() => {
     tooltip:    pin.locs.map(l => l.name).join('\n'),
     type:       pinType(pin.locs),
     segments:   pinSegments(pin.locs),
-    hintColor:  hintColorForLocs(pin.locs),
+    noteImg:    noteImgSrcForLocs(pin.locs),
   }))
 
   // Door pins for unassigned dungeon entrances (entrance shuffle mode, full overworld only)
@@ -408,36 +414,219 @@ const PIN_COLOR = {
   checked:      '#3e2408',
 }
 
-function hintColorForLocs(locs) {
-  let best = null
+function noteImgSrcForLocs(locs) {
   for (const loc of locs) {
-    const s = state.locationHints[loc.id]
-    if (s == null) continue
-    if (best === null || s > best) best = s
+    const key = state.locationNotes[loc.id] ?? state.apLocationItems[loc.id]
+    if (!key) continue
+    const img = ITEM_IMAGES[key]
+    if (!img) continue
+    const file = Array.isArray(img) ? img[0] : img
+    return `${import.meta.env.BASE_URL}images/items/${file}`
   }
-  if (best === null) return null
-  if (best >= 30) return '#fce070'
-  if (best >= 20) return '#ff5050'
-  return '#ffffff'
+  return null
 }
+
 
 // ── Hover pin ─────────────────────────────────────────────────────────────────
 function showTooltip(e, pin) { state.hoveredPinLocs = pin.locs }
 function hideTooltip()       { state.hoveredPinLocs = [] }
 
-// ── Click: check / right-click: uncheck ──────────────────────────────────────
-function checkPin(pin) {
-  for (const loc of pin.locs) {
-    if (!state.isChecked(loc.id)) state.toggleLocation(loc.id)
+
+// ── Pin popup ─────────────────────────────────────────────────────────────────
+const clickedPin = ref(null)
+const popupPos   = ref({ x: 0, y: 0 })
+
+const popupStyle = computed(() => {
+  const gap  = 14
+  const maxH = 400
+  const clickY = popupPos.value.y
+  let x = popupPos.value.x + gap
+  if (x + 210 > window.innerWidth) x = popupPos.value.x - 210 - gap
+
+  const roomBelow = window.innerHeight - clickY - 4
+  if (roomBelow < maxH) {
+    // not enough room below → open upward from click point
+    return {
+      left:      x + 'px',
+      top:       'auto',
+      bottom:    (window.innerHeight - clickY) + 'px',
+      maxHeight: Math.min(clickY - 4, maxH) + 'px',
+    }
+  }
+  return {
+    left:      x + 'px',
+    top:       Math.max(4, clickY) + 'px',
+    bottom:    'auto',
+    maxHeight: maxH + 'px',
+  }
+})
+
+function openPinPopup(e, pin) {
+  e.stopPropagation()
+  if (clickedPin.value === pin) { clickedPin.value = null; return }
+  clickedPin.value = pin
+  popupPos.value = { x: e.clientX, y: e.clientY }
+  state.hoveredPinLocs = pin.locs
+}
+
+function closePopup() {
+  clickedPin.value = null
+  notePickerPin.value = null
+  state.hoveredPinLocs = []
+}
+
+function onKeydown(e) { if (e.key === 'Escape') closePopup() }
+
+// Group locations with suffix pattern "Name Item1", "Name Item2" → one row
+function locBaseName(name) {
+  return name.replace(/\s+(?:Item\s*)?\d+$/, '').trim()
+}
+
+const popupGroups = computed(() => {
+  if (!clickedPin.value) return []
+  const groups = new Map()
+  for (const loc of clickedPin.value.locs) {
+    const base = locBaseName(loc.name)
+    if (!groups.has(base)) groups.set(base, [])
+    groups.get(base).push(loc)
+  }
+  return [...groups.values()].map(locs => {
+    const checked  = locs.filter(l => state.isChecked(l.id)).length
+    const unchecked = locs.filter(l => !state.isChecked(l.id))
+    const status   = unchecked.length === 0 ? 'checked'
+      : unchecked.some(l => (accessibility.value.get(l.id) ?? 'inaccessible') === 'accessible')   ? 'accessible'
+      : unchecked.some(l => (accessibility.value.get(l.id) ?? 'inaccessible') === 'out_of_logic') ? 'out_of_logic'
+      : 'inaccessible'
+    const name = locs.length > 1 ? locBaseName(locs[0].name) : locs[0].name
+    return { name, locs, checked, total: locs.length, status }
+  })
+})
+
+function toggleGroup(group) {
+  const allChecked = group.checked === group.total
+  for (const loc of group.locs) {
+    const c = state.isChecked(loc.id)
+    if (allChecked && c) state.toggleLocation(loc.id)
+    else if (!allChecked && !c) state.toggleLocation(loc.id)
   }
 }
+
+// ── Popup sub-area grouping (dungeons) ────────────────────────────────────────
+function isFloorCode(w) {
+  return /^B\d+$/i.test(w) || /^\d+F$/i.test(w) || w === 'Sanc'
+}
+
+function parseSubArea(name, regionName) {
+  let rest = name
+  if (regionName && rest.startsWith(regionName + ' '))
+    rest = rest.slice(regionName.length + 1)
+  const words = rest.split(' ')
+  const fi = words.findIndex(isFloorCode)
+  if (fi >= 0) return {
+    subArea: words.slice(0, fi + 1).join(' '),
+    shortName: words.slice(fi + 1).join(' ') || rest,
+  }
+  return { subArea: null, shortName: rest }
+}
+
+function groupStatus(locs) {
+  const unchecked = locs.filter(l => !state.isChecked(l.id))
+  if (!unchecked.length) return 'checked'
+  if (unchecked.some(l => (accessibility.value.get(l.id) ?? 'inaccessible') === 'accessible'))    return 'accessible'
+  if (unchecked.some(l => (accessibility.value.get(l.id) ?? 'inaccessible') === 'out_of_logic')) return 'out_of_logic'
+  return 'inaccessible'
+}
+
+const popupSubAreas = computed(() => {
+  if (!clickedPin.value) return null
+  const locs = clickedPin.value.locs
+  if (!locs.some(l => l.dungeon != null)) return null
+
+  // Common dungeon name prefix across all loc names
+  const names = locs.map(l => l.name)
+  let prefix = names[0] ?? ''
+  for (const name of names.slice(1)) {
+    while (prefix && !name.startsWith(prefix)) {
+      const sp = prefix.lastIndexOf(' ')
+      prefix = sp >= 0 ? prefix.slice(0, sp) : ''
+    }
+  }
+  const regionName = prefix.trim()
+
+  const grouped = new Map()
+  const flat = []
+  for (const loc of locs) {
+    const { subArea } = parseSubArea(loc.name, regionName)
+    if (subArea != null) {
+      if (!grouped.has(subArea)) grouped.set(subArea, [])
+      grouped.get(subArea).push(loc)
+    } else {
+      flat.push(loc)
+    }
+  }
+  if (grouped.size === 0) return null
+  return {
+    regionName,
+    groups: [...grouped.entries()].map(([name, ls]) => ({
+      name, locs: ls,
+      checked: ls.filter(l => state.isChecked(l.id)).length,
+      total: ls.length,
+      status: groupStatus(ls),
+    })),
+    flat,
+  }
+})
+
+function shortPopupName(locName, regionName) {
+  return parseSubArea(locName, regionName).shortName
+}
+
+const collapsedPopupSubs = ref(new Set())
+function togglePopupSub(key) {
+  if (collapsedPopupSubs.value.has(key)) collapsedPopupSubs.value.delete(key)
+  else collapsedPopupSubs.value.add(key)
+}
+
 function uncheckPin(pin) {
   for (const loc of pin.locs) {
     if (state.isChecked(loc.id)) state.toggleLocation(loc.id)
   }
 }
 function onContextmenuPin(e, pin) {
-  if (pin.locs.some(l => state.isChecked(l.id))) uncheckPin(pin)
+  e.preventDefault()
+  if (clickedPin.value) { closePopup(); return }
+  uncheckPin(pin)
+}
+
+// ── Note picker ───────────────────────────────────────────────────────────────
+const notePickerPin = ref(null)
+const notePickerPos = ref({ x: 0, y: 0 })
+
+const notePickerStyle = computed(() => {
+  const gap = 14
+  let x = notePickerPos.value.x + gap
+  let y = notePickerPos.value.y
+  if (x + 270 > window.innerWidth)  x = notePickerPos.value.x - 270 - gap
+  if (y + 320 > window.innerHeight) y = window.innerHeight - 320
+  return { left: x + 'px', top: Math.max(4, y) + 'px' }
+})
+
+function openNotePicker(e, pin) {
+  e.stopPropagation()
+  notePickerPin.value = pin
+  notePickerPos.value = { x: e.clientX, y: e.clientY }
+}
+
+function onNoteSelect(key) {
+  if (!notePickerPin.value) return
+  for (const loc of notePickerPin.value.locs) state.setLocationNote(loc.id, key)
+  notePickerPin.value = null
+}
+
+function onNoteClear() {
+  if (!notePickerPin.value) return
+  for (const loc of notePickerPin.value.locs) state.clearLocationNote(loc.id)
+  notePickerPin.value = null
 }
 
 </script>
@@ -500,11 +689,7 @@ function onContextmenuPin(e, pin) {
         />
 
         <svg class="pin-overlay" :width="fittedW" :height="fittedH">
-          <defs>
-            <filter id="halo-blur" x="-100%" y="-100%" width="300%" height="300%">
-              <feGaussianBlur stdDeviation="4"/>
-            </filter>
-          </defs>
+          <defs></defs>
           <!-- Door pins (entrance shuffle, unassigned) -->
           <g
             v-for="pin in pins.filter(p => p.isDoor)"
@@ -523,21 +708,11 @@ function onContextmenuPin(e, pin) {
             v-for="pin in pins.filter(p => !p.isDoor)"
             :key="`${pin.x}:${pin.y}`"
             class="pin-group"
-            @click="checkPin(pin)"
+            @click="openPinPopup($event, pin)"
             @contextmenu="onContextmenuPin($event, pin)"
             @mouseenter="showTooltip($event, pin)"
             @mouseleave="hideTooltip"
           >
-            <!-- Hint halo -->
-            <circle
-              v-if="pin.hintColor && !pin.allChecked"
-              :cx="pin.x" :cy="pin.y"
-              r="12"
-              :fill="pin.hintColor"
-              opacity="0.75"
-              filter="url(#halo-blur)"
-              pointer-events="none"
-            />
             <defs>
               <clipPath :id="`pc-${pin.x}-${pin.y}`">
                 <rect
@@ -615,6 +790,18 @@ function onContextmenuPin(e, pin) {
               fill="#fff"
               pointer-events="none"
             />
+
+            <!-- Item note badge (bottom-left of pin) -->
+            <image
+              v-if="pin.noteImg"
+              :href="pin.noteImg"
+              :x="pin.x - 17"
+              :y="pin.y + 3"
+              width="12"
+              height="12"
+              pointer-events="none"
+              style="image-rendering: pixelated"
+            />
           </g>
         </svg>
       </div>
@@ -633,6 +820,97 @@ function onContextmenuPin(e, pin) {
       >↺</button>
 
     </div>
+
+    <!-- Pin popup -->
+    <Teleport to="body">
+      <div v-if="clickedPin" class="pin-popup" :style="popupStyle" @click.stop @contextmenu.prevent>
+
+        <!-- Mode donjon : sous-groupage par étage -->
+        <template v-if="popupSubAreas">
+
+          <!-- Locations sans code de floor (Boss, Prize…) -->
+          <div
+            v-for="loc in popupSubAreas.flat"
+            :key="loc.id"
+            :class="['popup-row', { 'popup-row--checked': state.isChecked(loc.id) }]"
+            @click="state.toggleLocation(loc.id)"
+          >
+            <span class="popup-dot" :style="{ background: PIN_COLOR[state.isChecked(loc.id) ? 'checked' : (accessibility.get(loc.id) ?? 'inaccessible')] }"></span>
+            <span class="popup-name">{{ shortPopupName(loc.name, popupSubAreas.regionName) }}</span>
+            <span v-if="state.isChecked(loc.id)" class="popup-check">✓</span>
+            <button :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs([loc]) }]"
+              @click.stop="openNotePicker($event, { locs: [loc] })" title="Annoter un item">
+              <img v-if="noteImgSrcForLocs([loc])" :src="noteImgSrcForLocs([loc])" class="popup-note-img" />
+            </button>
+          </div>
+
+          <!-- Sous-zones par étage -->
+          <div v-for="sg in popupSubAreas.groups" :key="sg.name">
+            <div class="popup-subarea-header" @click="togglePopupSub(sg.name)">
+              <span class="popup-subarea-toggle">{{ collapsedPopupSubs.has(sg.name) ? '▶' : '▼' }}</span>
+              <span class="popup-subarea-name">{{ sg.name }}</span>
+              <span class="popup-count">{{ sg.checked }}/{{ sg.total }}</span>
+              <button :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs(sg.locs) }]"
+                @click.stop="openNotePicker($event, { locs: sg.locs })" title="Annoter un item">
+                <img v-if="noteImgSrcForLocs(sg.locs)" :src="noteImgSrcForLocs(sg.locs)" class="popup-note-img" />
+              </button>
+            </div>
+            <template v-if="!collapsedPopupSubs.has(sg.name)">
+              <div
+                v-for="loc in sg.locs"
+                :key="loc.id"
+                :class="['popup-row', 'popup-row--sub', { 'popup-row--checked': state.isChecked(loc.id) }]"
+                @click="state.toggleLocation(loc.id)"
+              >
+                <span class="popup-dot" :style="{ background: PIN_COLOR[state.isChecked(loc.id) ? 'checked' : (accessibility.get(loc.id) ?? 'inaccessible')] }"></span>
+                <span class="popup-name">{{ shortPopupName(loc.name, popupSubAreas.regionName) }}</span>
+                <span v-if="state.isChecked(loc.id)" class="popup-check">✓</span>
+                <button :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs([loc]) }]"
+                  @click.stop="openNotePicker($event, { locs: [loc] })" title="Annoter un item">
+                  <img v-if="noteImgSrcForLocs([loc])" :src="noteImgSrcForLocs([loc])" class="popup-note-img" />
+                </button>
+              </div>
+            </template>
+          </div>
+
+        </template>
+
+        <!-- Mode normal (overworld, fusions, etc.) -->
+        <template v-else>
+          <div
+            v-for="group in popupGroups"
+            :key="group.name"
+            :class="['popup-row', { 'popup-row--checked': group.checked === group.total }]"
+            @click="toggleGroup(group)"
+          >
+            <span class="popup-dot" :style="{ background: PIN_COLOR[group.status] }"></span>
+            <span class="popup-name">{{ group.name }}</span>
+            <span v-if="group.total > 1" class="popup-count">{{ group.checked }}/{{ group.total }}</span>
+            <span v-else-if="group.checked === 1" class="popup-check">✓</span>
+            <button
+              :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs(group.locs) }]"
+              @click.stop="openNotePicker($event, { locs: group.locs })"
+              title="Annoter un item"
+            >
+              <img v-if="noteImgSrcForLocs(group.locs)" :src="noteImgSrcForLocs(group.locs)" class="popup-note-img" />
+            </button>
+          </div>
+        </template>
+
+      </div>
+    </Teleport>
+
+    <!-- Item note picker -->
+    <Teleport to="body">
+      <ItemNotePicker
+        v-if="notePickerPin"
+        :locs="notePickerPin.locs"
+        :popup-style="notePickerStyle"
+        @select="onNoteSelect"
+        @clear="onNoteClear"
+        @close="notePickerPin = null"
+      />
+    </Teleport>
 
   </div>
 </template>
@@ -749,5 +1027,128 @@ function onContextmenuPin(e, pin) {
 }
 .zoom-reset:hover {
   background: var(--bg-panel);
+}
+
+/* ── Pin popup ─────────────────────────────────────────────────────────────── */
+:global(.pin-popup) {
+  position: fixed;
+  z-index: 9999;
+  min-width: 180px;
+  max-width: 260px;
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
+  background: #1e1006;
+  border: 1px solid var(--accent, #d4882a);
+  border-radius: 5px;
+  padding: 4px 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.7);
+  pointer-events: all;
+}
+
+:global(.popup-row) {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text, #d4a84b);
+  transition: background 0.1s;
+}
+:global(.popup-row:hover) {
+  background: rgba(212,136,42,0.15);
+}
+:global(.popup-row--checked) {
+  opacity: 0.45;
+}
+:global(.popup-row--sub) {
+  padding-left: 20px;
+}
+
+:global(.popup-subarea-header) {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  background: rgba(0,0,0,0.25);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text, #d4a84b);
+  user-select: none;
+}
+:global(.popup-subarea-header:hover) {
+  background: rgba(212,136,42,0.1);
+}
+:global(.popup-subarea-toggle) {
+  font-size: 9px;
+  width: 10px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+:global(.popup-subarea-name) {
+  flex: 1;
+}
+
+:global(.popup-dot) {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+:global(.popup-name) {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:global(.popup-check) {
+  color: #7ac038;
+  font-size: 11px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+:global(.popup-count) {
+  font-size: 11px;
+  font-weight: 700;
+  color: #c8983a;
+  background: rgba(212,136,42,0.15);
+  border: 1px solid rgba(212,136,42,0.35);
+  border-radius: 3px;
+  padding: 0 5px;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+:global(.popup-note-btn) {
+  width: 18px;
+  height: 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px;
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+:global(.popup-note-btn:hover) {
+  background: rgba(212,136,42,0.2);
+  border-color: var(--accent, #d4882a);
+}
+:global(.popup-note-btn.has-note) {
+  border-color: rgba(212,168,75,0.5);
+  background: rgba(212,168,75,0.1);
+}
+:global(.popup-note-img) {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  image-rendering: pixelated;
 }
 </style>

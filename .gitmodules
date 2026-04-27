@@ -1,4 +1,4 @@
 [submodule "SubModule/TMC-APWorld"]
 	path = SubModule/TMC-APWorld
 	url = https://github.com/eternalcode0/TMC-APWorld.git
-	branch = dev
+	branch = feat/ut-support

@@ -11,7 +11,7 @@ import BroadcastRegionsView from './views/BroadcastRegionsView.vue'
 const routes = [
   { path: '/',                   name: 'tracker',            component: MainTracker },
   { path: '/broadcast',          name: 'broadcast',          component: BroadcastView },
-  { path: '/broadcast-regions',  name: 'broadcast-regions',  component: BroadcastRegionsView },
+  { path: '/broadcast-regions',  name: 'broadcast-regions',  component: BroadcastRegionsView, beforeEnter: () => import.meta.env.DEV || '/' },
 ]
 
 const router = createRouter({

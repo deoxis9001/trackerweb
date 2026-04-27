@@ -12,6 +12,10 @@
     "build:ci": "vite build",
     "prealpha": "npm run generate",
     "alpha": "vite build --mode alpha",
+    "predevbuild": "npm run generate",
+    "devbuild": "vite build --mode dev",
+    "build:all": "npm run build && npm run alpha && npm run devbuild",
+    "all": "npm run build:all && npx serve dist -p 4173",
     "preview": "vite preview"
   },
   "dependencies": {
