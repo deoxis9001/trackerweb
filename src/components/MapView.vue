@@ -5,8 +5,7 @@ const isDev = import.meta.env.DEV
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { computeAccessibility, buildInventory } from '../logic/accessibility'
-import mapCoordsRaw        from '../../data/map_coords.json'
-import overworldAreaCoords from '../../data/map_coords_overworld_areas.json'
+const overworldAreaModules = import.meta.glob('../../data/map_coords_overworld_*.json', { eager: true })
 
 import dungeonCoordsDws from '../../data/map_coords_dungeons_dws.json'
 import dungeonCoordsCof from '../../data/map_coords_dungeons_cof.json'
@@ -34,12 +33,24 @@ const AREA_LABELS = {
   trilby: 'Trilby', valley: 'Valley', westernwoods: 'W. Woods',
 }
 
-// area → list of {id, x, y}
+// area → id → [{x, y}]  (location entries where map === area)
+// id → [{x, y}]  (location entries where map === 'map')
 const areaCoordById = {}
-for (const e of overworldAreaCoords) {
-  if (!areaCoordById[e.area]) areaCoordById[e.area] = {}
-  if (!areaCoordById[e.area][e.id]) areaCoordById[e.area][e.id] = []
-  areaCoordById[e.area][e.id].push({ x: e.x, y: e.y })
+const overworldCoordById = {}
+for (const [path, mod] of Object.entries(overworldAreaModules)) {
+  const area = path.match(/map_coords_overworld_(.+)\.json$/)[1]
+  if (!OVERWORLD_AREAS.includes(area)) continue
+  areaCoordById[area] = {}
+  for (const entry of mod.default) {
+    areaCoordById[area][entry.id] = entry.location
+      .filter(l => l.map === area)
+      .map(l => ({ x: l.x, y: l.y }))
+    for (const l of entry.location) {
+      if (l.map !== 'map') continue
+      if (!overworldCoordById[entry.id]) overworldCoordById[entry.id] = []
+      overworldCoordById[entry.id].push({ x: l.x, y: l.y })
+    }
+  }
 }
 
 // current overworld area (null = full map)
@@ -47,6 +58,17 @@ const currentArea = ref(null)
 
 // ── Dungeon metadata ──────────────────────────────────────────────────────────
 const DUNGEON_MAP_NAMES = { RC: 'rc', DWS: 'dws', CoF: 'cof', FoW: 'fow', ToD: 'tod', PoW: 'pow', DHC: 'dhc' }
+
+// Fixed overworld entrance position per dungeon slot
+const DUNGEON_ENTRANCE_COORDS = {
+  CoF: { x: 325,  y: 233  },
+  DHC: { x: 1326, y: 164  },
+  DWS: { x: 2284, y: 1842 },
+  FoW: { x: 591,  y: 1777 },
+  PoW: { x: 2304, y: 245  },
+  RC:  { x: 830,  y: 165  },
+  ToD: { x: 2337, y: 1060 },
+}
 
 const DUNGEON_FLOORS = {
   dws: ['B2', 'B1', '1F'],
@@ -196,8 +218,9 @@ onUnmounted(() => {
 
 // ── Accessibility computation ─────────────────────────────────────────────────
 const accessibility = computed(() => {
-  const inv = buildInventory(state)
-  return computeAccessibility(inv, settings)
+  const inv          = buildInventory(state)
+  const entranceMap  = settings.dungeonEntranceShuffle ? state.dungeonEntranceMap : {}
+  return computeAccessibility(inv, settings, entranceMap)
 })
 
 // ── Map name + floor selection ────────────────────────────────────────────────
@@ -249,28 +272,16 @@ const mapSrc = computed(() => {
 })
 
 // ── Coord indexes ─────────────────────────────────────────────────────────────
-// All coords indexed by id (used by overview mode for dungeons too)
+// Dungeon overview: id → [{map, x, y}]  (all location entries across dungeon files)
 const coordsByIdAll = {}
-for (const e of mapCoordsRaw) {
-  if (!coordsByIdAll[e.id]) coordsByIdAll[e.id] = []
-  coordsByIdAll[e.id].push(e)
-}
-
-// Overworld: from map_coords.json (map === 'map')
-const overworldCoordById = {}
-for (const e of mapCoordsRaw) {
-  if (e.map !== 'map') continue
-  if (!overworldCoordById[e.id]) overworldCoordById[e.id] = []
-  overworldCoordById[e.id].push(e)
-}
-
-// Dungeons: from per-dungeon floor files
+// Dungeons: dname → id → [{map, x, y}]  (map = floor name or dname for overview)
 const dungeonCoordById = {}
 for (const [dname, raw] of Object.entries(DUNGEON_COORDS_RAW)) {
   dungeonCoordById[dname] = {}
-  for (const e of raw) {
-    if (!dungeonCoordById[dname][e.id]) dungeonCoordById[dname][e.id] = []
-    dungeonCoordById[dname][e.id].push(e)
+  for (const entry of raw) {
+    dungeonCoordById[dname][entry.id] = entry.location
+    if (!coordsByIdAll[entry.id]) coordsByIdAll[entry.id] = []
+    for (const l of entry.location) coordsByIdAll[entry.id].push(l)
   }
 }
 
@@ -284,9 +295,21 @@ const pins = computed(() => {
   const isDungeon = dname !== 'map'
   const floor    = currentFloor.value
 
+  const entranceShuffle  = !isDungeon && settings.dungeonEntranceShuffle
+  const entranceMap      = state.dungeonEntranceMap
+  // Set of dungeons that have an entrance slot assigned to them (values of entranceMap)
+  const assignedDungeons = new Set(Object.values(entranceMap))
+  // Reverse map: dungeon key → entrance slot (e.g. 'DWS' → 'DHC')
+  const dungeonToSlot = {}
+  for (const [slot, dungeon] of Object.entries(entranceMap)) dungeonToSlot[dungeon] = slot
+
+
   const byCoord = {}
   for (const loc of state.visibleLocations) {
     if (loc.id == null) continue
+
+    // With entrance shuffle: hide dungeon locations whose dungeon has no assigned entrance slot
+    if (entranceShuffle && loc.dungeon && !assignedDungeons.has(loc.dungeon)) continue
 
     let coordList
     if (!isDungeon && currentArea.value) {
@@ -294,10 +317,17 @@ const pins = computed(() => {
       const byId = areaCoordById[currentArea.value] || {}
       coordList = (byId[loc.id] || []).map(c => ({ ...c, map: 'area' }))
     } else if (!isDungeon) {
-      coordList = overworldCoordById[loc.id] || []
+      if (entranceShuffle && loc.dungeon && dungeonToSlot[loc.dungeon]) {
+        // Show dungeon checks at the entrance slot's overworld position
+        const slot = dungeonToSlot[loc.dungeon]
+        const slotCoord = DUNGEON_ENTRANCE_COORDS[slot]
+        coordList = slotCoord ? [{ ...slotCoord, _slot: slot }] : []
+      } else {
+        coordList = overworldCoordById[loc.id] || []
+      }
     } else if (useFloors.value) {
       const byId = dungeonCoordById[dname] || {}
-      coordList = (byId[loc.id] || []).filter(c => c.floor === floor && c.x > 0 && c.y > 0)
+      coordList = (byId[loc.id] || []).filter(c => c.map === floor && c.x > 0 && c.y > 0)
     } else {
       // overview mode: use map_coords.json dungeon entries
       coordList = (coordsByIdAll[loc.id] || []).filter(c => c.map === dname)
@@ -309,12 +339,13 @@ const pins = computed(() => {
         x: Math.round(coord.x * scaleX),
         y: Math.round(coord.y * scaleY),
         locs: [],
+        _slot: coord._slot ?? null,
       }
       byCoord[key].locs.push(loc)
     }
   }
 
-  return Object.values(byCoord).map(pin => ({
+  const regularPins = Object.values(byCoord).map(pin => ({
     ...pin,
     allChecked: pin.locs.every(l => state.isChecked(l.id)),
     tooltip:    pin.locs.map(l => l.name).join('\n'),
@@ -322,6 +353,31 @@ const pins = computed(() => {
     segments:   pinSegments(pin.locs),
     hintColor:  hintColorForLocs(pin.locs),
   }))
+
+  // Door pins for unassigned dungeon entrances (entrance shuffle mode, full overworld only)
+  const doorPins = []
+  if (entranceShuffle && !currentArea.value) {
+    for (const [slot, coord] of Object.entries(DUNGEON_ENTRANCE_COORDS)) {
+      if (!entranceMap[slot]) {
+        const dungeonLocs = state.visibleLocations.filter(l => l.dungeon === slot && l.id != null)
+        const statuses = dungeonLocs.map(l => accessibility.value.get(l.id) ?? 'inaccessible')
+        let status = 'inaccessible'
+        if (statuses.includes('accessible'))        status = 'accessible'
+        else if (statuses.includes('out_of_logic')) status = 'out_of_logic'
+        doorPins.push({
+          x:       Math.round(coord.x * scaleX),
+          y:       Math.round(coord.y * scaleY),
+          slot,
+          isDoor:  true,
+          status,
+          locs:    [],
+          tooltip: `${slot} — entrance not assigned`,
+        })
+      }
+    }
+  }
+
+  return [...regularPins, ...doorPins]
 })
 
 function pinSegments(locs) {
@@ -449,8 +505,22 @@ function onContextmenuPin(e, pin) {
               <feGaussianBlur stdDeviation="4"/>
             </filter>
           </defs>
+          <!-- Door pins (entrance shuffle, unassigned) -->
           <g
-            v-for="pin in pins"
+            v-for="pin in pins.filter(p => p.isDoor)"
+            :key="`door-${pin.slot}`"
+            class="pin-group"
+            @mouseenter="showTooltip($event, pin)"
+            @mouseleave="hideTooltip"
+          >
+            <path :d="dungeonPath(pin.x, pin.y)" :fill="PIN_COLOR[pin.status]" stroke="#000" stroke-width="1.5" opacity="0.85" />
+            <text :x="pin.x" :y="pin.y+5" text-anchor="middle"
+              font-size="7" font-weight="bold" fill="#fff" pointer-events="none"
+            >?</text>
+          </g>
+
+          <g
+            v-for="pin in pins.filter(p => !p.isDoor)"
             :key="`${pin.x}:${pin.y}`"
             class="pin-group"
             @click="checkPin(pin)"

@@ -1,18 +1,32 @@
 import { defineStore } from 'pinia'
 import { ref, computed, watch } from 'vue'
 
-import itemsData     from '../../data/items.json'
-import locationsData from '../../data/locations.json'
+import itemsAP       from '../../data/items.json'
+import locationsAP   from '../../data/locations.json'
+import locationMeta  from '../../data/location_meta.json'
+import namesData     from '../../data/names.json'
 import regionsData   from '../../data/regions.json'
 import apTables      from '../../data/ap_tables.json'
 import { useSettingsStore } from './settingsStore'
 
+// Build enriched items list: merge AP table with names
+const _itemKeyById = Object.fromEntries(itemsAP.map(i => [i.item_id, i.key]))
+const allItemsBuilt = itemsAP.map(i => ({
+  ...i,
+  name: namesData.items[i.key] ?? i.key,
+}))
+
+// locations.json = [{id, key}] — just the AP table
+// location_meta.json = [{id, key, name, region_key, region_name, dungeon, pools, ...}] — full metadata
+// allLocations = location_meta (already has all fields including name)
+const allLocationsBuilt = locationMeta
+
 export const useStateStore = defineStore('state', () => {
   const settings = useSettingsStore()
 
-  // Raw data
-  const allItems     = itemsData
-  const allLocations = locationsData
+  // Raw data (enriched)
+  const allItems     = allItemsBuilt
+  const allLocations = allLocationsBuilt
   const allRegions   = regionsData
 
   // First fusion ID per pool (for 'combined' mode — only the lowest ID is shown)
@@ -52,6 +66,20 @@ export const useStateStore = defineStore('state', () => {
   const hoveredPinLocs  = ref([])           // locations du pin survolé sur la map
   const showSettings      = ref(false)
   const showRegionPopup   = ref(false)
+
+  // Entrance shuffle: entrance slot → dungeon key (e.g. { 'DWS': 'RC' } = DWS entrance leads to RC)
+  const dungeonEntranceMap = ref({})  // keys: dungeon slots, values: dungeon keys
+  function setDungeonEntrance(slot, dungeon) {
+    dungeonEntranceMap.value = { ...dungeonEntranceMap.value, [slot]: dungeon }
+  }
+  function clearDungeonEntrance(slot) {
+    const next = { ...dungeonEntranceMap.value }
+    delete next[slot]
+    dungeonEntranceMap.value = next
+  }
+  function resetDungeonEntrances() {
+    dungeonEntranceMap.value = {}
+  }
 
   // AP hints: locationId → hint status (0=unspecified,10=noPriority,20=avoid,30=priority,40=found)
   const locationHints   = ref({})
@@ -143,13 +171,14 @@ export const useStateStore = defineStore('state', () => {
   function saveState() {
     try {
       localStorage.setItem('tmc_state', JSON.stringify({
-        checkedLocations: [...checkedLocations.value],
-        receivedItems:    receivedItems.value,
-        manualItems:      manualItems.value,
-        activeView:       activeView.value,
-        apServer:         apServer.value,
-        apPort:           apPort.value,
-        apSlot:           apSlot.value,
+        checkedLocations:  [...checkedLocations.value],
+        receivedItems:     receivedItems.value,
+        manualItems:       manualItems.value,
+        activeView:        activeView.value,
+        apServer:          apServer.value,
+        apPort:            apPort.value,
+        apSlot:            apSlot.value,
+        dungeonEntranceMap: dungeonEntranceMap.value,
       }))
     } catch {}
   }
@@ -163,9 +192,10 @@ export const useStateStore = defineStore('state', () => {
       if (s.receivedItems)    receivedItems.value    = s.receivedItems
       if (s.manualItems)      manualItems.value      = s.manualItems
       if (s.activeView)       activeView.value       = s.activeView
-      if (s.apServer)         apServer.value         = s.apServer
-      if (s.apPort  != null)  apPort.value           = s.apPort
-      if (s.apSlot)           apSlot.value           = s.apSlot
+      if (s.apServer)          apServer.value          = s.apServer
+      if (s.apPort  != null)   apPort.value            = s.apPort
+      if (s.apSlot)            apSlot.value            = s.apSlot
+      if (s.dungeonEntranceMap) dungeonEntranceMap.value = s.dungeonEntranceMap
     } catch {}
   }
 
@@ -264,6 +294,7 @@ export const useStateStore = defineStore('state', () => {
     receivedItems,
     manualItems,
     activeView, activeZone, setActiveZone,
+    dungeonEntranceMap, setDungeonEntrance, clearDungeonEntrance, resetDungeonEntrances,
     activePanel,
     hoveredPinLocs,
     locationById,

@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
-TMC_SRC = ROOT / "src_info" / "TMC-APWorld" / "tmc"
+TMC_SRC = ROOT / "SubModule" / "TMC-APWorld" / "tmc"
 DATA_OUT = ROOT / "data"
 DATA_OUT.mkdir(exist_ok=True)
 
@@ -446,16 +446,50 @@ def main():
 
     items_list = annotate_items(item_table)
 
-    # Write outputs
+    # ── Minimal AP tables (id + key only) ────────────────────────────────────────
+    items_ap = [{"item_id": d["item_id"], "key": d["key"]} for d in items_list if d["item_id"] is not None]
+    locs_ap  = [{"id": l["id"], "key": l["key"]} for l in locations if l["id"] is not None]
+
     (DATA_OUT / "items.json").write_text(
-        json.dumps(items_list, indent=2, ensure_ascii=False), encoding="utf-8"
+        json.dumps(items_ap, indent=2, ensure_ascii=False), encoding="utf-8"
     )
-    print(f"  -> data/items.json ({len(items_list)} items)")
+    print(f"  -> data/items.json ({len(items_ap)} items, id+key only)")
 
     (DATA_OUT / "locations.json").write_text(
-        json.dumps(locations, indent=2, ensure_ascii=False), encoding="utf-8"
+        json.dumps(locs_ap, indent=2, ensure_ascii=False), encoding="utf-8"
     )
-    print(f"  -> data/locations.json ({len(locations)} locations)")
+    print(f"  -> data/locations.json ({len(locs_ap)} locations, id+key only)")
+
+    # ── names.json: display names indexed by key ─────────────────────────────────
+    names = {
+        "items":     {d["key"]: d["name"] for d in items_list},
+        "locations": {l["key"]: l["name"] for l in locations if l["key"]},
+    }
+    (DATA_OUT / "names.json").write_text(
+        json.dumps(names, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    print(f"  -> data/names.json ({len(names['items'])} item names, {len(names['locations'])} location names)")
+
+    # ── location_meta.json: logic/display fields for frontend ────────────────────
+    loc_meta = [
+        {
+            "id":           l["id"],
+            "key":          l["key"],
+            "name":         l["name"],
+            "region_key":   l["region_key"],
+            "region_name":  l["region_name"],
+            "dungeon":      l["dungeon"],
+            "pools":        l["pools"],
+            "room_area":    l.get("room_area"),
+            "scoutable":    l.get("scoutable", False),
+            "vanilla_item": l.get("vanilla_item"),
+        }
+        for l in locations
+    ]
+    (DATA_OUT / "location_meta.json").write_text(
+        json.dumps(loc_meta, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    print(f"  -> data/location_meta.json ({len(loc_meta)} entries)")
 
     (DATA_OUT / "regions.json").write_text(
         json.dumps(regions, indent=2, ensure_ascii=False), encoding="utf-8"

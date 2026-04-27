@@ -240,19 +240,19 @@ export const smithCrest  = (inv, s) => has("Ocarina")(inv) && !!s.windCrestSouth
 export const minishCrest = (inv, s) => has("Ocarina")(inv) && !!s.windCrestMinishWoods
 
 // ─── Gold fusion helpers ──────────────────────────────────────────────────────
-const cloudsAllCanFuse = (inv, s) =>
+export const cloudsAllCanFuse = (inv, s) =>
   s.goldFusionAccess === 'open' ||
   (s.goldFusionAccess === 'vanilla' && (inv["Kinstone Cloud Tops"] || 0) >= 5) ||
   (s.goldFusionAccess === 'combined' && (inv["Kinstone Cloud Tops"] || 0) >= 9) ||
   (s.hasTrick('partial_kinstone') && (inv["Kinstone Cloud Tops"] || 0) >= 1)
 
-const swampsAllCanFuse = (inv, s) =>
+export const swampsAllCanFuse = (inv, s) =>
   s.goldFusionAccess === 'open' ||
   (s.goldFusionAccess === 'vanilla' && (inv["Kinstone Swamp"] || 0) >= 3) ||
   (s.goldFusionAccess === 'combined' && (inv["Kinstone Cloud Tops"] || 0) >= 9) ||
   (s.hasTrick('partial_kinstone') && (inv["Kinstone Swamp"] || 0) >= 1)
 
-const fallsCanFuse = (inv) =>
+export const fallsCanFuse = (inv) =>
   has("Kinstone Falls")(inv) ||
   (inv["Kinstone Cloud Tops"] || 0) >= 4
 

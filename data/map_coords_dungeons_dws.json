@@ -1,121 +1,257 @@
 [
   {
     "id": 6029385,
-    "name": "Deepwood 2F Chest",
-    "floor": "B2",
-    "x": 70,
-    "y": 400
+    "location": [
+      {
+        "map": "B2",
+        "x": 70,
+        "y": 400
+      },
+      {
+        "map": "dws",
+        "x": 152,
+        "y": 1137
+      }
+    ]
   },
   {
     "id": 6029386,
-    "name": "Deepwood 1F Slug Torches Chest",
-    "floor": "1F",
-    "x": 779,
-    "y": 1054
+    "location": [
+      {
+        "map": "1F",
+        "x": 779,
+        "y": 1054
+      },
+      {
+        "map": "dws",
+        "x": 786,
+        "y": 1054
+      }
+    ]
   },
   {
     "id": 6029387,
-    "name": "Deepwood 1F Barrel Room Chest",
-    "floor": "1F",
-    "x": 615,
-    "y": 299
+    "location": [
+      {
+        "map": "1F",
+        "x": 615,
+        "y": 299
+      },
+      {
+        "map": "dws",
+        "x": 622,
+        "y": 299
+      }
+    ]
   },
   {
     "id": 6029388,
-    "name": "Deepwood 1F West Big Chest",
-    "floor": "1F",
-    "x": 403,
-    "y": 280
+    "location": [
+      {
+        "map": "1F",
+        "x": 403,
+        "y": 280
+      },
+      {
+        "map": "dws",
+        "x": 410,
+        "y": 280
+      }
+    ]
   },
   {
     "id": 6029389,
-    "name": "Deepwood 1F West Statue Puzzle Chest",
-    "floor": "1F",
-    "x": 138,
-    "y": 570
+    "location": [
+      {
+        "map": "1F",
+        "x": 138,
+        "y": 570
+      },
+      {
+        "map": "dws",
+        "x": 145,
+        "y": 570
+      }
+    ]
   },
   {
     "id": 6029390,
-    "name": "Deepwood 1F East Mulldozer Fight Item",
-    "floor": "1F",
-    "x": 1418,
-    "y": 330
+    "location": [
+      {
+        "map": "1F",
+        "x": 1418,
+        "y": 330
+      },
+      {
+        "map": "dws",
+        "x": 1425,
+        "y": 330
+      }
+    ]
   },
   {
     "id": 6029391,
-    "name": "Deepwood 1F North East Chest",
-    "floor": "1F",
-    "x": 1033,
-    "y": 140
+    "location": [
+      {
+        "map": "1F",
+        "x": 1033,
+        "y": 140
+      },
+      {
+        "map": "dws",
+        "x": 1040,
+        "y": 140
+      }
+    ]
   },
   {
     "id": 6029392,
-    "name": "Deepwood B1 Switch Room Big Chest",
-    "floor": "B1",
-    "x": 656,
-    "y": 45
+    "location": [
+      {
+        "map": "B1",
+        "x": 656,
+        "y": 45
+      },
+      {
+        "map": "dws",
+        "x": 1635,
+        "y": 730
+      }
+    ]
   },
   {
     "id": 6029393,
-    "name": "Deepwood B1 Switch Room Chest",
-    "floor": "B1",
-    "x": 471,
-    "y": 115
+    "location": [
+      {
+        "map": "B1",
+        "x": 471,
+        "y": 115
+      },
+      {
+        "map": "dws",
+        "x": 1450,
+        "y": 795
+      }
+    ]
   },
   {
     "id": 6029394,
-    "name": "Deepwood 1F Blue Warp HP",
-    "floor": "1F",
-    "x": 778,
-    "y": 60
+    "location": [
+      {
+        "map": "1F",
+        "x": 778,
+        "y": 60
+      },
+      {
+        "map": "dws",
+        "x": 785,
+        "y": 60
+      }
+    ]
   },
   {
     "id": 6029395,
-    "name": "Deepwood 1F Blue Warp Left Chest",
-    "floor": "1F",
-    "x": 658,
-    "y": 60
+    "location": [
+      {
+        "map": "1F",
+        "x": 658,
+        "y": 60
+      },
+      {
+        "map": "dws",
+        "x": 665,
+        "y": 60
+      }
+    ]
   },
   {
     "id": 6029396,
-    "name": "Deepwood 1F Blue Warp Right Chest",
-    "floor": "1F",
-    "x": 658,
-    "y": 60
+    "location": [
+      {
+        "map": "1F",
+        "x": 658,
+        "y": 60
+      },
+      {
+        "map": "dws",
+        "x": 665,
+        "y": 60
+      }
+    ]
   },
   {
     "id": 6029397,
-    "name": "Deepwood 1F Madderpillar Big Chest",
-    "floor": "1F",
-    "x": 413,
-    "y": 115
+    "location": [
+      {
+        "map": "1F",
+        "x": 413,
+        "y": 115
+      },
+      {
+        "map": "dws",
+        "x": 420,
+        "y": 115
+      }
+    ]
   },
   {
     "id": 6029398,
-    "name": "Deepwood 1F Madderpillar HP",
-    "floor": "1F",
-    "x": 473,
-    "y": 320
+    "location": [
+      {
+        "map": "1F",
+        "x": 473,
+        "y": 320
+      },
+      {
+        "map": "dws",
+        "x": 480,
+        "y": 320
+      }
+    ]
   },
   {
     "id": 6029399,
-    "name": "Deepwood B1 West Big Chest",
-    "floor": "B1",
-    "x": 176,
-    "y": 95
+    "location": [
+      {
+        "map": "B1",
+        "x": 176,
+        "y": 95
+      },
+      {
+        "map": "dws",
+        "x": 1155,
+        "y": 775
+      }
+    ]
   },
   {
     "id": 6029400,
-    "name": "Deepwood Boss Item",
-    "floor": "B2",
-    "x": 166,
-    "y": 83
+    "location": [
+      {
+        "map": "B2",
+        "x": 166,
+        "y": 83
+      },
+      {
+        "map": "dws",
+        "x": 245,
+        "y": 820
+      }
+    ]
   },
   {
     "id": 6029401,
-    "name": "Deepwood Prize",
-    "floor": "B2",
-    "x": 166,
-    "y": 83
+    "location": [
+      {
+        "map": "B2",
+        "x": 166,
+        "y": 83
+      },
+      {
+        "map": "dws",
+        "x": 245,
+        "y": 820
+      }
+    ]
   }
 ]

@@ -9,8 +9,9 @@
  *  3. Repeat with tricks enabled (settings clone) to detect out-of-logic access.
  */
 
-import { REGION_RULES, LOCATION_RULES, always } from './rules.js'
-import locationsRaw from '../../data/locations.json'
+import { REGION_RULES, LOCATION_RULES } from './rules_generated.js'
+import { always } from './rules.js'
+import locationsRaw from '../../data/location_meta.json'
 
 // Pre-index locations by name for O(1) rule lookup
 const RULE_BY_NAME = LOCATION_RULES
@@ -21,6 +22,17 @@ for (const loc of locationsRaw) {
   const rk = loc.region_key || loc.region_name || 'UNKNOWN'
   if (!locationsByRegion[rk]) locationsByRegion[rk] = []
   locationsByRegion[rk].push(loc)
+}
+
+// Entry region key per dungeon slot
+const DUNGEON_ENTRY_REGION = {
+  DWS: 'DUNGEON_DWS_ENTRANCE',
+  CoF: 'DUNGEON_COF_ENTRANCE',
+  FoW: 'DUNGEON_FOW_ENTRANCE',
+  ToD: 'DUNGEON_TOD_ENTRANCE',
+  RC:  'DUNGEON_RC',
+  PoW: 'DUNGEON_POW_ENTRANCE',
+  DHC: 'DUNGEON_DHC_ENTRANCE',
 }
 
 /**
@@ -130,33 +142,41 @@ export function buildInventory(stateStore) {
  * a pure skill bypass — no items needed — so it stays inaccessible (red) until
  * either the player has the item or enables the trick in settings.
  */
-export function computeAccessibility(inv, settings) {
+export function computeAccessibility(inv, settings, entranceMap = {}) {
   const result = new Map()
+
+  // When DHC→DWS is set, all DWS locations use DUNGEON_DHC_ENTRANCE as their effective
+  // region key — accessible when DHC entrance is accessible, not DWS's own entrance.
+  const dungeonToEntryRegion = {}
+  for (const [slot, dungeon] of Object.entries(entranceMap)) {
+    const slotEntry = DUNGEON_ENTRY_REGION[slot]
+    if (slotEntry) dungeonToEntryRegion[dungeon] = slotEntry
+  }
 
   const allTricks = settingsWithAllTricks(settings)
   const emptyInv  = {}
 
-  // BFS pass 1: current inventory + checked tricks
-  const reachable = reachableRegions(inv, settings)
-  // BFS pass 2: current inventory + all tricks (OOL candidate)
-  const reachableOOL = reachableRegions(inv, allTricks)
-  // BFS pass 3: empty inventory + all tricks (detects pure-trick bypasses)
+  const reachable         = reachableRegions(inv,      settings)
+  const reachableOOL      = reachableRegions(inv,      allTricks)
   const reachableOOLEmpty = reachableRegions(emptyInv, allTricks)
 
   for (const loc of locationsRaw) {
     if (loc.id == null) continue
 
-    const regionKey = loc.region_key || loc.region_name || ''
+    let regionKey = loc.region_key || loc.region_name || ''
+    if (loc.dungeon && dungeonToEntryRegion[loc.dungeon]) {
+      regionKey = dungeonToEntryRegion[loc.dungeon]
+    }
+
     const rule = RULE_BY_NAME[loc.name] ?? always
 
-    const inLogic = reachable.has(regionKey)      && rule(inv,      settings)
-    const ool     = reachableOOL.has(regionKey)   && rule(inv,      allTricks)
-    // Accessible even with no items: trick is a pure bypass, items not needed
+    const inLogic  = reachable.has(regionKey)         && rule(inv,      settings)
+    const ool      = reachableOOL.has(regionKey)      && rule(inv,      allTricks)
     const oolEmpty = reachableOOLEmpty.has(regionKey) && rule(emptyInv, allTricks)
 
     if (inLogic) {
       result.set(loc.id, 'accessible')
-    } else if (ool) {
+    } else if (ool && !oolEmpty) {
       result.set(loc.id, 'out_of_logic')
     } else {
       result.set(loc.id, 'inaccessible')

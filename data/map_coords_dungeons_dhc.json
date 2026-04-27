@@ -1,205 +1,277 @@
 [
   {
     "id": 6029110,
-    "name": "Pedestal Requirement Reward",
-    "floor": "Sanc",
-    "x": 136,
-    "y": 50
-  },
-  {
-    "id": 6029110,
-    "name": "Pedestal Requirement Reward",
-    "floor": "B1",
-    "x": 406,
-    "y": 975
-  },
-  {
-    "id": 6029110,
-    "name": "Pedestal Requirement Reward",
-    "floor": "Sanc",
-    "x": 136,
-    "y": 50
-  },
-  {
-    "id": 6029110,
-    "name": "Pedestal Requirement Reward",
-    "floor": "B1",
-    "x": 406,
-    "y": 975
-  },
-  {
-    "id": 6029541,
-    "name": "Sanctuary Pedestal Item1",
-    "floor": "Sanc",
-    "x": 136,
-    "y": 50
+    "location": [
+      {
+        "map": "Sanc",
+        "x": 136,
+        "y": 50
+      },
+      {
+        "map": "B1",
+        "x": 406,
+        "y": 975
+      },
+      {
+        "map": "Sanc",
+        "x": 136,
+        "y": 50
+      },
+      {
+        "map": "B1",
+        "x": 406,
+        "y": 975
+      },
+      {
+        "map": "dhc",
+        "x": 3090,
+        "y": 1480
+      }
+    ]
   },
   {
     "id": 6029541,
-    "name": "Sanctuary Pedestal Item1",
-    "floor": "B1",
-    "x": 406,
-    "y": 975
-  },
-  {
-    "id": 6029541,
-    "name": "Sanctuary Pedestal Item1",
-    "floor": "Sanc",
-    "x": 136,
-    "y": 50
-  },
-  {
-    "id": 6029541,
-    "name": "Sanctuary Pedestal Item1",
-    "floor": "B1",
-    "x": 406,
-    "y": 975
-  },
-  {
-    "id": 6029542,
-    "name": "Sanctuary Pedestal Item2",
-    "floor": "Sanc",
-    "x": 136,
-    "y": 50
-  },
-  {
-    "id": 6029542,
-    "name": "Sanctuary Pedestal Item2",
-    "floor": "B1",
-    "x": 406,
-    "y": 975
+    "location": [
+      {
+        "map": "Sanc",
+        "x": 136,
+        "y": 50
+      },
+      {
+        "map": "B1",
+        "x": 406,
+        "y": 975
+      },
+      {
+        "map": "Sanc",
+        "x": 136,
+        "y": 50
+      },
+      {
+        "map": "B1",
+        "x": 406,
+        "y": 975
+      },
+      {
+        "map": "dhc",
+        "x": 3090,
+        "y": 1480
+      }
+    ]
   },
   {
     "id": 6029542,
-    "name": "Sanctuary Pedestal Item2",
-    "floor": "Sanc",
-    "x": 136,
-    "y": 50
-  },
-  {
-    "id": 6029542,
-    "name": "Sanctuary Pedestal Item2",
-    "floor": "B1",
-    "x": 406,
-    "y": 975
-  },
-  {
-    "id": 6029543,
-    "name": "Sanctuary Pedestal Item3",
-    "floor": "Sanc",
-    "x": 136,
-    "y": 50
-  },
-  {
-    "id": 6029543,
-    "name": "Sanctuary Pedestal Item3",
-    "floor": "B1",
-    "x": 406,
-    "y": 975
-  },
-  {
-    "id": 6029543,
-    "name": "Sanctuary Pedestal Item3",
-    "floor": "Sanc",
-    "x": 136,
-    "y": 50
+    "location": [
+      {
+        "map": "Sanc",
+        "x": 136,
+        "y": 50
+      },
+      {
+        "map": "B1",
+        "x": 406,
+        "y": 975
+      },
+      {
+        "map": "Sanc",
+        "x": 136,
+        "y": 50
+      },
+      {
+        "map": "B1",
+        "x": 406,
+        "y": 975
+      },
+      {
+        "map": "dhc",
+        "x": 3090,
+        "y": 1480
+      }
+    ]
   },
   {
     "id": 6029543,
-    "name": "Sanctuary Pedestal Item3",
-    "floor": "B1",
-    "x": 406,
-    "y": 975
+    "location": [
+      {
+        "map": "Sanc",
+        "x": 136,
+        "y": 50
+      },
+      {
+        "map": "B1",
+        "x": 406,
+        "y": 975
+      },
+      {
+        "map": "Sanc",
+        "x": 136,
+        "y": 50
+      },
+      {
+        "map": "B1",
+        "x": 406,
+        "y": 975
+      },
+      {
+        "map": "dhc",
+        "x": 3090,
+        "y": 1480
+      }
+    ]
   },
   {
     "id": 6029544,
-    "name": "DHC B2 King",
-    "floor": "B2",
-    "x": 555,
-    "y": 75
+    "location": [
+      {
+        "map": "B2",
+        "x": 555,
+        "y": 75
+      },
+      {
+        "map": "dhc",
+        "x": 3295,
+        "y": 110
+      }
+    ]
   },
   {
     "id": 6029545,
-    "name": "DHC B1 Big Chest",
-    "floor": "B1",
-    "x": 406,
-    "y": 1305
+    "location": [
+      {
+        "map": "B1",
+        "x": 406,
+        "y": 1305
+      },
+      {
+        "map": "dhc",
+        "x": 3090,
+        "y": 1800
+      }
+    ]
   },
   {
     "id": 6029546,
-    "name": "DHC 1F Blade Chest",
-    "floor": "1F",
-    "x": 933,
-    "y": 835
+    "location": [
+      {
+        "map": "1F",
+        "x": 933,
+        "y": 835
+      },
+      {
+        "map": "dhc",
+        "x": 2265,
+        "y": 870
+      }
+    ]
   },
   {
     "id": 6029547,
-    "name": "DHC 1F Throne Big Chest",
-    "floor": "1F",
-    "x": 898,
-    "y": 35
+    "location": [
+      {
+        "map": "1F",
+        "x": 898,
+        "y": 35
+      },
+      {
+        "map": "dhc",
+        "x": 2230,
+        "y": 70
+      }
+    ]
   },
   {
     "id": 6029548,
-    "name": "DHC 3F North West Chest",
-    "floor": "3F",
-    "x": 140,
-    "y": 145
-  },
-  {
-    "id": 6029548,
-    "name": "DHC 3F North West Chest",
-    "floor": "2F",
-    "x": 100,
-    "y": 92
+    "location": [
+      {
+        "map": "3F",
+        "x": 140,
+        "y": 145
+      },
+      {
+        "map": "2F",
+        "x": 100,
+        "y": 92
+      },
+      {
+        "map": "dhc",
+        "x": 220,
+        "y": 130
+      }
+    ]
   },
   {
     "id": 6029549,
-    "name": "DHC 3F North East Chest",
-    "floor": "3F",
-    "x": 1225,
-    "y": 145
-  },
-  {
-    "id": 6029549,
-    "name": "DHC 3F North East Chest",
-    "floor": "2F",
-    "x": 1185,
-    "y": 92
+    "location": [
+      {
+        "map": "3F",
+        "x": 1225,
+        "y": 145
+      },
+      {
+        "map": "2F",
+        "x": 1185,
+        "y": 92
+      },
+      {
+        "map": "dhc",
+        "x": 1305,
+        "y": 135
+      }
+    ]
   },
   {
     "id": 6029550,
-    "name": "DHC 3F South West Chest",
-    "floor": "3F",
-    "x": 140,
-    "y": 1505
-  },
-  {
-    "id": 6029550,
-    "name": "DHC 3F South West Chest",
-    "floor": "2F",
-    "x": 100,
-    "y": 1452
+    "location": [
+      {
+        "map": "3F",
+        "x": 140,
+        "y": 1505
+      },
+      {
+        "map": "2F",
+        "x": 100,
+        "y": 1452
+      },
+      {
+        "map": "dhc",
+        "x": 220,
+        "y": 1490
+      }
+    ]
   },
   {
     "id": 6029551,
-    "name": "DHC 3F South East Chest",
-    "floor": "3F",
-    "x": 1225,
-    "y": 1505
-  },
-  {
-    "id": 6029551,
-    "name": "DHC 3F South East Chest",
-    "floor": "2F",
-    "x": 1185,
-    "y": 1452
+    "location": [
+      {
+        "map": "3F",
+        "x": 1225,
+        "y": 1505
+      },
+      {
+        "map": "2F",
+        "x": 1185,
+        "y": 1452
+      },
+      {
+        "map": "dhc",
+        "x": 1315,
+        "y": 1490
+      }
+    ]
   },
   {
     "id": 6029552,
-    "name": "DHC 2F Blue Warp Big Chest",
-    "floor": "2F",
-    "x": 678,
-    "y": 25
+    "location": [
+      {
+        "map": "2F",
+        "x": 678,
+        "y": 25
+      },
+      {
+        "map": "dhc",
+        "x": 765,
+        "y": 225
+      }
+    ]
   }
 ]

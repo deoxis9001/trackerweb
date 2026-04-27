@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import { useSettingsStore, TRICKS } from '../stores/settingsStore'
 import { watchEffect } from 'vue'
 
+const isDev = import.meta.env.DEV
+
 const s = useSettingsStore()
 
 let saveTimer
@@ -31,16 +33,6 @@ const WARP_OPTIONS = [
   { value: 3, label: 'Both' },
 ]
 
-const DUNGEON_ITEM_OPTIONS = [
-  { value: 'own_dungeon', label: 'Own Dungeon' },
-  { value: 'anywhere',   label: 'Anywhere' },
-]
-
-const DUNGEON_ITEM_OPTIONS_WITH_START = [
-  { value: 'own_dungeon', label: 'Own Dungeon' },
-  { value: 'anywhere',   label: 'Anywhere' },
-  { value: 'start_with', label: 'Start With' },
-]
 
 const FUSION_OPTIONS = [
   { value: 'closed',   label: 'Closed' },
@@ -73,28 +65,28 @@ const FUSION_OPTIONS = [
     <div v-if="activeTab === 'goal'" class="tab-content">
       <section class="card">
         <h3>Goal</h3>
-        <div class="field">
+        <div class="setting-row">
           <label>Goal</label>
-          <div class="radio-row">
-            <label><input type="radio" v-model="s.goal" value="vaati" /> Defeat Vaati</label>
-            <label><input type="radio" v-model="s.goal" value="pedestal" /> Pedestal</label>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.goal === 'vaati' }]"    @click="s.goal = 'vaati'">Defeat Vaati</button>
+            <button :class="['opt-btn', { active: s.goal === 'pedestal' }]" @click="s.goal = 'pedestal'">Pedestal</button>
           </div>
         </div>
-        <div class="field">
+        <div class="setting-row">
           <label>DHC Access</label>
-          <div class="radio-row">
-            <label><input type="radio" v-model="s.dhcAccess" value="closed" /> Closed</label>
-            <label><input type="radio" v-model="s.dhcAccess" value="pedestal" /> Pedestal</label>
-            <label><input type="radio" v-model="s.dhcAccess" value="open" /> Open</label>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.dhcAccess === 'closed' }]"   @click="s.dhcAccess = 'closed'">Closed</button>
+            <button :class="['opt-btn', { active: s.dhcAccess === 'pedestal' }]" @click="s.dhcAccess = 'pedestal'">Pedestal</button>
+            <button :class="['opt-btn', { active: s.dhcAccess === 'open' }]"     @click="s.dhcAccess = 'open'">Open</button>
           </div>
         </div>
-        <div class="field">
+        <div class="setting-row">
           <label>Pedestal Reward</label>
-          <select v-model="s.pedReward" class="sel">
-            <option value="none">None</option>
-            <option value="dhc_big_key">DHC Big Key</option>
-            <option value="random_item">Random Item</option>
-          </select>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.pedReward === 'none' }]"         @click="s.pedReward = 'none'">None</button>
+            <button :class="['opt-btn', { active: s.pedReward === 'dhc_big_key' }]"  @click="s.pedReward = 'dhc_big_key'">DHC Big Key</button>
+            <button :class="['opt-btn', { active: s.pedReward === 'random_item' }]"  @click="s.pedReward = 'random_item'">Random Item</button>
+          </div>
         </div>
         <h3 class="sub-title">Pedestal Conditions</h3>
         <div class="two-col-fields">
@@ -126,60 +118,86 @@ const FUSION_OPTIONS = [
     <div v-if="activeTab === 'dungeons'" class="tab-content two-col-layout">
       <section class="card">
         <h3>Dungeon Shuffle</h3>
-        <div class="field">
+        <div class="setting-row">
           <label>Shuffle Elements</label>
-          <select v-model="s.shuffleElements" class="sel">
-            <option value="vanilla">Vanilla</option>
-            <option value="dungeon_prize">Dungeon Prize</option>
-            <option value="anywhere">Anywhere</option>
-          </select>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.shuffleElements === 'vanilla' }]"       @click="s.shuffleElements = 'vanilla'">Vanilla</button>
+            <button :class="['opt-btn', { active: s.shuffleElements === 'dungeon_prize' }]" @click="s.shuffleElements = 'dungeon_prize'">Prize</button>
+            <button :class="['opt-btn', { active: s.shuffleElements === 'anywhere' }]"      @click="s.shuffleElements = 'anywhere'">Anywhere</button>
+          </div>
         </div>
-        <div class="field">
+        <div class="setting-row">
           <label>Small Keys</label>
-          <select v-model="s.dungeonSmallKeys" class="sel">
-            <option v-for="o in DUNGEON_ITEM_OPTIONS" :key="o.value" :value="o.value">{{ o.label }}</option>
-          </select>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.dungeonSmallKeys === 'own_dungeon' }]" @click="s.dungeonSmallKeys = 'own_dungeon'">Own</button>
+            <button :class="['opt-btn', { active: s.dungeonSmallKeys === 'anywhere' }]"    @click="s.dungeonSmallKeys = 'anywhere'">Anywhere</button>
+          </div>
         </div>
-        <div class="field">
+        <div class="setting-row">
           <label>Big Keys</label>
-          <select v-model="s.dungeonBigKeys" class="sel">
-            <option v-for="o in DUNGEON_ITEM_OPTIONS" :key="o.value" :value="o.value">{{ o.label }}</option>
-          </select>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.dungeonBigKeys === 'own_dungeon' }]" @click="s.dungeonBigKeys = 'own_dungeon'">Own</button>
+            <button :class="['opt-btn', { active: s.dungeonBigKeys === 'anywhere' }]"    @click="s.dungeonBigKeys = 'anywhere'">Anywhere</button>
+          </div>
         </div>
-        <div class="field">
+        <div class="setting-row">
           <label>Dungeon Maps</label>
-          <select v-model="s.dungeonMaps" class="sel">
-            <option v-for="o in DUNGEON_ITEM_OPTIONS_WITH_START" :key="o.value" :value="o.value">{{ o.label }}</option>
-          </select>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.dungeonMaps === 'own_dungeon' }]" @click="s.dungeonMaps = 'own_dungeon'">Own</button>
+            <button :class="['opt-btn', { active: s.dungeonMaps === 'anywhere' }]"    @click="s.dungeonMaps = 'anywhere'">Anywhere</button>
+            <button :class="['opt-btn', { active: s.dungeonMaps === 'start_with' }]"  @click="s.dungeonMaps = 'start_with'">Start</button>
+          </div>
         </div>
-        <div class="field">
+        <div class="setting-row">
           <label>Compasses</label>
-          <select v-model="s.dungeonCompasses" class="sel">
-            <option v-for="o in DUNGEON_ITEM_OPTIONS_WITH_START" :key="o.value" :value="o.value">{{ o.label }}</option>
-          </select>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.dungeonCompasses === 'own_dungeon' }]" @click="s.dungeonCompasses = 'own_dungeon'">Own</button>
+            <button :class="['opt-btn', { active: s.dungeonCompasses === 'anywhere' }]"    @click="s.dungeonCompasses = 'anywhere'">Anywhere</button>
+            <button :class="['opt-btn', { active: s.dungeonCompasses === 'start_with' }]"  @click="s.dungeonCompasses = 'start_with'">Start</button>
+          </div>
         </div>
-        <div class="field">
+        <div class="setting-row">
           <label>Non-Element Dungeons</label>
-          <div class="radio-row">
-            <label><input type="radio" v-model="s.nonElementDungeons" value="standard" /> Standard</label>
-            <label><input type="radio" v-model="s.nonElementDungeons" value="excluded" /> Excluded</label>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.nonElementDungeons === 'standard' }]" @click="s.nonElementDungeons = 'standard'">Standard</button>
+            <button :class="['opt-btn', { active: s.nonElementDungeons === 'excluded' }]" @click="s.nonElementDungeons = 'excluded'">Excluded</button>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <h3>Dungeon Warps</h3>
-        <div class="warp-grid">
-          <template v-for="[key, label] in [
-            ['warpDWS','DWS'],['warpCoF','CoF'],['warpFoW','FoW'],
-            ['warpToD','ToD'],['warpPoW','PoW'],['warpDHC','DHC'],
-          ]" :key="key">
-            <span class="warp-label">{{ label }}</span>
-            <select v-model.number="s[key]" class="sel sm">
-              <option v-for="o in WARP_OPTIONS" :key="o.value" :value="o.value">{{ o.label }}</option>
-            </select>
-          </template>
+        <h3>Entrance Shuffle</h3>
+        <div class="setting-row">
+          <label>Dungeon Entrance Shuffle</label>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: !s.dungeonEntranceShuffle }]" @click="s.dungeonEntranceShuffle = false">No</button>
+            <button
+              :class="['opt-btn', { active: s.dungeonEntranceShuffle }]"
+              :disabled="!isDev"
+              :title="!isDev ? 'Dev only' : ''"
+              @click="isDev && (s.dungeonEntranceShuffle = true)"
+            >Yes</button>
+          </div>
         </div>
+        <p class="hint-block">When enabled, dungeon entrances are shuffled. You can then assign which dungeon each entrance leads to.</p>
+      </section>
+
+      <section class="card">
+        <h3>Dungeon Warps</h3>
+        <template v-for="[key, label] in [
+          ['warpDWS','DWS'],['warpCoF','CoF'],['warpFoW','FoW'],
+          ['warpToD','ToD'],['warpPoW','PoW'],['warpDHC','DHC'],
+        ]" :key="key">
+          <div class="setting-row">
+            <label>{{ label }}</label>
+            <div class="btn-group">
+              <button v-for="o in WARP_OPTIONS" :key="o.value"
+                :class="['opt-btn', { active: s[key] === o.value }]"
+                @click="s[key] = o.value"
+              >{{ o.label }}</button>
+            </div>
+          </div>
+        </template>
       </section>
     </div>
 
@@ -187,22 +205,20 @@ const FUSION_OPTIONS = [
     <div v-if="activeTab === 'locations'" class="tab-content two-col-layout">
       <section class="card">
         <h3>Location Shuffle</h3>
-        <div class="check-list two-col">
-          <label><input type="checkbox" v-model="s.rupeesanity" /> Rupeesanity</label>
-          <label><input type="checkbox" v-model="s.shufflePots" /> Shuffle Pots</label>
-          <label><input type="checkbox" v-model="s.shuffleDigging" /> Shuffle Digging</label>
-          <label><input type="checkbox" v-model="s.shuffleUnderwater" /> Shuffle Underwater</label>
-          <label><input type="checkbox" v-model="s.shuffleGoldEnemies" /> Gold Enemies</label>
-          <label><input type="checkbox" v-model="s.extraShopItem" /> Extra Shop Item</label>
-          <label><input type="checkbox" v-model="s.earlyWeapon" /> Early Weapon</label>
-        </div>
-        <div class="field mt-8">
+        <div class="setting-row"><label>Rupeesanity</label><div class="btn-group"><button :class="['opt-btn',{active:!s.rupeesanity}]" @click="s.rupeesanity=false">No</button><button :class="['opt-btn',{active:s.rupeesanity}]" @click="s.rupeesanity=true">Yes</button></div></div>
+        <div class="setting-row"><label>Shuffle Pots</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shufflePots}]" @click="s.shufflePots=false">No</button><button :class="['opt-btn',{active:s.shufflePots}]" @click="s.shufflePots=true">Yes</button></div></div>
+        <div class="setting-row"><label>Shuffle Digging</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shuffleDigging}]" @click="s.shuffleDigging=false">No</button><button :class="['opt-btn',{active:s.shuffleDigging}]" @click="s.shuffleDigging=true">Yes</button></div></div>
+        <div class="setting-row"><label>Shuffle Underwater</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shuffleUnderwater}]" @click="s.shuffleUnderwater=false">No</button><button :class="['opt-btn',{active:s.shuffleUnderwater}]" @click="s.shuffleUnderwater=true">Yes</button></div></div>
+        <div class="setting-row"><label>Gold Enemies</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shuffleGoldEnemies}]" @click="s.shuffleGoldEnemies=false">No</button><button :class="['opt-btn',{active:s.shuffleGoldEnemies}]" @click="s.shuffleGoldEnemies=true">Yes</button></div></div>
+        <div class="setting-row"><label>Extra Shop Item</label><div class="btn-group"><button :class="['opt-btn',{active:!s.extraShopItem}]" @click="s.extraShopItem=false">No</button><button :class="['opt-btn',{active:s.extraShopItem}]" @click="s.extraShopItem=true">Yes</button></div></div>
+        <div class="setting-row"><label>Early Weapon</label><div class="btn-group"><button :class="['opt-btn',{active:!s.earlyWeapon}]" @click="s.earlyWeapon=false">No</button><button :class="['opt-btn',{active:s.earlyWeapon}]" @click="s.earlyWeapon=true">Yes</button></div></div>
+        <div class="setting-row mt-8">
           <label>Biggoron</label>
-          <select v-model="s.biggoron" class="sel">
-            <option value="disabled">Disabled</option>
-            <option value="shield">Requires Shield</option>
-            <option value="mirror_shield">Requires Mirror Shield</option>
-          </select>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.biggoron === 'disabled' }]"      @click="s.biggoron = 'disabled'">Disabled</button>
+            <button :class="['opt-btn', { active: s.biggoron === 'shield' }]"        @click="s.biggoron = 'shield'">Shield</button>
+            <button :class="['opt-btn', { active: s.biggoron === 'mirror_shield' }]" @click="s.biggoron = 'mirror_shield'">Mirror Shield</button>
+          </div>
         </div>
         <div class="two-col-fields mt-8">
           <div class="field">
@@ -214,21 +230,17 @@ const FUSION_OPTIONS = [
             <input type="number" v-model.number="s.goronSets" min="0" max="5" class="num-input" />
           </div>
         </div>
-        <div class="check-list mt-8">
-          <label><input type="checkbox" v-model="s.goronJPPrices" /> Goron JP Prices</label>
-        </div>
+        <div class="setting-row mt-8"><label>Goron JP Prices</label><div class="btn-group"><button :class="['opt-btn',{active:!s.goronJPPrices}]" @click="s.goronJPPrices=false">No</button><button :class="['opt-btn',{active:s.goronJPPrices}]" @click="s.goronJPPrices=true">Yes</button></div></div>
       </section>
 
       <section class="card">
         <h3>Wind Crests <span class="hint-inline">(unlocked at start)</span></h3>
-        <div class="check-list two-col">
-          <label><input type="checkbox" v-model="s.windCrestCrenel" /> Mt. Crenel</label>
-          <label><input type="checkbox" v-model="s.windCrestFalls" /> Veil Falls</label>
-          <label><input type="checkbox" v-model="s.windCrestClouds" /> Cloud Tops</label>
-          <label><input type="checkbox" v-model="s.windCrestCastor" /> Castor Wilds</label>
-          <label><input type="checkbox" v-model="s.windCrestSouthField" /> South Field</label>
-          <label><input type="checkbox" v-model="s.windCrestMinishWoods" /> Minish Woods</label>
-        </div>
+        <div class="setting-row"><label>Mt. Crenel</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestCrenel}]" @click="s.windCrestCrenel=false">No</button><button :class="['opt-btn',{active:s.windCrestCrenel}]" @click="s.windCrestCrenel=true">Yes</button></div></div>
+        <div class="setting-row"><label>Veil Falls</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestFalls}]" @click="s.windCrestFalls=false">No</button><button :class="['opt-btn',{active:s.windCrestFalls}]" @click="s.windCrestFalls=true">Yes</button></div></div>
+        <div class="setting-row"><label>Cloud Tops</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestClouds}]" @click="s.windCrestClouds=false">No</button><button :class="['opt-btn',{active:s.windCrestClouds}]" @click="s.windCrestClouds=true">Yes</button></div></div>
+        <div class="setting-row"><label>Castor Wilds</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestCastor}]" @click="s.windCrestCastor=false">No</button><button :class="['opt-btn',{active:s.windCrestCastor}]" @click="s.windCrestCastor=true">Yes</button></div></div>
+        <div class="setting-row"><label>South Field</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestSouthField}]" @click="s.windCrestSouthField=false">No</button><button :class="['opt-btn',{active:s.windCrestSouthField}]" @click="s.windCrestSouthField=true">Yes</button></div></div>
+        <div class="setting-row"><label>Minish Woods</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestMinishWoods}]" @click="s.windCrestMinishWoods=false">No</button><button :class="['opt-btn',{active:s.windCrestMinishWoods}]" @click="s.windCrestMinishWoods=true">Yes</button></div></div>
       </section>
     </div>
 
@@ -236,15 +248,13 @@ const FUSION_OPTIONS = [
     <div v-if="activeTab === 'items'" class="tab-content two-col-layout">
       <section class="card">
         <h3>Progressive Items</h3>
-        <div class="check-list two-col">
-          <label><input type="checkbox" v-model="s.progressiveSword" /> Progressive Sword</label>
-          <label><input type="checkbox" v-model="s.progressiveShield" /> Progressive Shield</label>
-          <label><input type="checkbox" v-model="s.progressiveBow" /> Progressive Bow</label>
-          <label><input type="checkbox" v-model="s.progressiveBoomerang" /> Progressive Boomerang</label>
-          <label><input type="checkbox" v-model="s.progressiveScroll" /> Progressive Scroll</label>
-          <label><input type="checkbox" v-model="s.randomBottleContents" /> Random Bottle Contents</label>
-          <label><input type="checkbox" v-model="s.trapsEnabled" /> Traps Enabled</label>
-        </div>
+        <div class="setting-row"><label>Progressive Sword</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveSword}]" @click="s.progressiveSword=false">No</button><button :class="['opt-btn',{active:s.progressiveSword}]" @click="s.progressiveSword=true">Yes</button></div></div>
+        <div class="setting-row"><label>Progressive Shield</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveShield}]" @click="s.progressiveShield=false">No</button><button :class="['opt-btn',{active:s.progressiveShield}]" @click="s.progressiveShield=true">Yes</button></div></div>
+        <div class="setting-row"><label>Progressive Bow</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveBow}]" @click="s.progressiveBow=false">No</button><button :class="['opt-btn',{active:s.progressiveBow}]" @click="s.progressiveBow=true">Yes</button></div></div>
+        <div class="setting-row"><label>Progressive Boomerang</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveBoomerang}]" @click="s.progressiveBoomerang=false">No</button><button :class="['opt-btn',{active:s.progressiveBoomerang}]" @click="s.progressiveBoomerang=true">Yes</button></div></div>
+        <div class="setting-row"><label>Progressive Scroll</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveScroll}]" @click="s.progressiveScroll=false">No</button><button :class="['opt-btn',{active:s.progressiveScroll}]" @click="s.progressiveScroll=true">Yes</button></div></div>
+        <div class="setting-row"><label>Random Bottle Contents</label><div class="btn-group"><button :class="['opt-btn',{active:!s.randomBottleContents}]" @click="s.randomBottleContents=false">No</button><button :class="['opt-btn',{active:s.randomBottleContents}]" @click="s.randomBottleContents=true">Yes</button></div></div>
+        <div class="setting-row"><label>Traps Enabled</label><div class="btn-group"><button :class="['opt-btn',{active:!s.trapsEnabled}]" @click="s.trapsEnabled=false">No</button><button :class="['opt-btn',{active:s.trapsEnabled}]" @click="s.trapsEnabled=true">Yes</button></div></div>
       </section>
 
       <section class="card">
@@ -259,19 +269,17 @@ const FUSION_OPTIONS = [
             <input type="number" v-model.number="s.pieceOfHearts" min="0" max="20" class="num-input" />
           </div>
         </div>
-        <div class="field mt-8">
+        <div class="setting-row mt-8">
           <label>Bomb Bag Required</label>
-          <select v-model.number="s.weaponBomb" class="sel">
-            <option :value="0">No (Bag required)</option>
-            <option :value="1">Yes (Free bombs)</option>
-            <option :value="2">Yes + Bosses</option>
-          </select>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.weaponBomb === 0 }]" @click="s.weaponBomb = 0">Bag required</button>
+            <button :class="['opt-btn', { active: s.weaponBomb === 1 }]" @click="s.weaponBomb = 1">Free bombs</button>
+            <button :class="['opt-btn', { active: s.weaponBomb === 2 }]" @click="s.weaponBomb = 2">Free + Bosses</button>
+          </div>
         </div>
-        <div class="check-list mt-8">
-          <label><input type="checkbox" v-model="s.weaponBow" /> Bow = Weapon</label>
-          <label><input type="checkbox" v-model="s.weaponGust" /> Gust Jar = Weapon</label>
-          <label><input type="checkbox" v-model="s.weaponLantern" /> Lantern = Weapon</label>
-        </div>
+        <div class="setting-row mt-8"><label>Bow = Weapon</label><div class="btn-group"><button :class="['opt-btn',{active:!s.weaponBow}]" @click="s.weaponBow=false">No</button><button :class="['opt-btn',{active:s.weaponBow}]" @click="s.weaponBow=true">Yes</button></div></div>
+        <div class="setting-row"><label>Gust Jar = Weapon</label><div class="btn-group"><button :class="['opt-btn',{active:!s.weaponGust}]" @click="s.weaponGust=false">No</button><button :class="['opt-btn',{active:s.weaponGust}]" @click="s.weaponGust=true">Yes</button></div></div>
+        <div class="setting-row"><label>Lantern = Weapon</label><div class="btn-group"><button :class="['opt-btn',{active:!s.weaponLantern}]" @click="s.weaponLantern=false">No</button><button :class="['opt-btn',{active:s.weaponLantern}]" @click="s.weaponLantern=true">Yes</button></div></div>
       </section>
     </div>
 
@@ -279,19 +287,22 @@ const FUSION_OPTIONS = [
     <div v-if="activeTab === 'fusions'" class="tab-content">
       <section class="card">
         <h3>Fusion Access</h3>
-        <div class="fusion-grid">
-          <template v-for="[key, label, model] in [
-            ['gold','Gold Kinstone','goldFusionAccess'],
-            ['red','Red Kinstone','redFusionAccess'],
-            ['blue','Blue Kinstone','blueFusionAccess'],
-            ['green','Green Kinstone','greenFusionAccess'],
-          ]" :key="key">
-            <span class="fusion-label">{{ label }}</span>
-            <select v-model="s[model]" class="sel sm">
-              <option v-for="o in FUSION_OPTIONS" :key="o.value" :value="o.value">{{ o.label }}</option>
-            </select>
-          </template>
-        </div>
+        <template v-for="[key, label, model] in [
+          ['gold','Gold Kinstone','goldFusionAccess'],
+          ['red','Red Kinstone','redFusionAccess'],
+          ['blue','Blue Kinstone','blueFusionAccess'],
+          ['green','Green Kinstone','greenFusionAccess'],
+        ]" :key="key">
+          <div class="setting-row">
+            <label>{{ label }}</label>
+            <div class="btn-group">
+              <button v-for="o in FUSION_OPTIONS" :key="o.value"
+                :class="['opt-btn', { active: s[model] === o.value }]"
+                @click="s[model] = o.value"
+              >{{ o.label }}</button>
+            </div>
+          </div>
+        </template>
         <div class="two-col-fields mt-8">
           <div class="field">
             <label>Cloud Multiplier ×<span class="hint-inline">(1–9)</span></label>
@@ -309,13 +320,11 @@ const FUSION_OPTIONS = [
     <div v-if="activeTab === 'qol'" class="tab-content two-col-layout">
       <section class="card">
         <h3>Quality of Life</h3>
-        <div class="check-list two-col">
-          <label><input type="checkbox" v-model="s.ocarinaOnSelect" /> Ocarina on Select</label>
-          <label><input type="checkbox" v-model="s.bootsOnL" /> Boots on L</label>
-          <label><input type="checkbox" v-model="s.bootsAsMinish" /> Boots as Minish</label>
-          <label><input type="checkbox" v-model="s.bigOctoManipulation" /> Skip Big Octorok</label>
-          <label><input type="checkbox" v-model="s.replicaTODBossDoor" /> ToD Boss Door Replica</label>
-        </div>
+        <div class="setting-row"><label>Ocarina on Select</label><div class="btn-group"><button :class="['opt-btn',{active:!s.ocarinaOnSelect}]" @click="s.ocarinaOnSelect=false">No</button><button :class="['opt-btn',{active:s.ocarinaOnSelect}]" @click="s.ocarinaOnSelect=true">Yes</button></div></div>
+        <div class="setting-row"><label>Boots on L</label><div class="btn-group"><button :class="['opt-btn',{active:!s.bootsOnL}]" @click="s.bootsOnL=false">No</button><button :class="['opt-btn',{active:s.bootsOnL}]" @click="s.bootsOnL=true">Yes</button></div></div>
+        <div class="setting-row"><label>Boots as Minish</label><div class="btn-group"><button :class="['opt-btn',{active:!s.bootsAsMinish}]" @click="s.bootsAsMinish=false">No</button><button :class="['opt-btn',{active:s.bootsAsMinish}]" @click="s.bootsAsMinish=true">Yes</button></div></div>
+        <div class="setting-row"><label>Skip Big Octorok</label><div class="btn-group"><button :class="['opt-btn',{active:!s.bigOctoManipulation}]" @click="s.bigOctoManipulation=false">No</button><button :class="['opt-btn',{active:s.bigOctoManipulation}]" @click="s.bigOctoManipulation=true">Yes</button></div></div>
+        <div class="setting-row"><label>ToD Boss Door Replica</label><div class="btn-group"><button :class="['opt-btn',{active:!s.replicaTODBossDoor}]" @click="s.replicaTODBossDoor=false">No</button><button :class="['opt-btn',{active:s.replicaTODBossDoor}]" @click="s.replicaTODBossDoor=true">Yes</button></div></div>
       </section>
 
       <section class="card tricks-card">
@@ -326,11 +335,12 @@ const FUSION_OPTIONS = [
             <button class="btn-sm" @click="s.setAllTricks(false)">None</button>
           </div>
         </div>
-        <div class="check-list two-col">
-          <label v-for="trick in Object.values(TRICKS)" :key="trick.key">
-            <input type="checkbox" :checked="s.hasTrick(trick.key)" @change="s.toggleTrick(trick.key)" />
-            {{ trick.label }}
-          </label>
+        <div v-for="trick in Object.values(TRICKS)" :key="trick.key" class="setting-row">
+          <label>{{ trick.label }}</label>
+          <div class="btn-group">
+            <button :class="['opt-btn',{active:!s.hasTrick(trick.key)}]" @click="s.hasTrick(trick.key) && s.toggleTrick(trick.key)">No</button>
+            <button :class="['opt-btn',{active:s.hasTrick(trick.key)}]"  @click="!s.hasTrick(trick.key) && s.toggleTrick(trick.key)">Yes</button>
+          </div>
         </div>
       </section>
     </div>
@@ -339,12 +349,7 @@ const FUSION_OPTIONS = [
     <div v-if="activeTab === 'tracker'" class="tab-content">
       <section class="card">
         <h3>Tracker Display</h3>
-        <div class="check-list">
-          <label>
-            <input type="checkbox" v-model="s.showInaccessible" />
-            Show inaccessible locations in the list
-          </label>
-        </div>
+        <div class="setting-row"><label>Show inaccessible locations</label><div class="btn-group"><button :class="['opt-btn',{active:!s.showInaccessible}]" @click="s.showInaccessible=false">No</button><button :class="['opt-btn',{active:s.showInaccessible}]" @click="s.showInaccessible=true">Yes</button></div></div>
         <p class="hint-block">
           By default, <span style="color:#f44336">red</span> (inaccessible) locations are hidden
           in the checklist and left panel. Enabling this option shows them.
@@ -498,38 +503,7 @@ const FUSION_OPTIONS = [
   gap: 8px 12px;
 }
 
-.radio-row {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  font-size: 13px;
-}
-.radio-row label {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: var(--text);
-  cursor: pointer;
-}
 
-.check-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.check-list label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: var(--text);
-  cursor: pointer;
-}
-.check-list.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px 12px;
-}
 
 .num-input {
   width: 70px;
@@ -541,16 +515,6 @@ const FUSION_OPTIONS = [
   font-size: 13px;
 }
 
-.sel {
-  background: var(--bg-dark);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 13px;
-  width: 100%;
-}
-.sel.sm { width: auto; min-width: 120px; }
 
 .hint-inline {
   font-size: 11px;
@@ -594,21 +558,6 @@ const FUSION_OPTIONS = [
   line-height: 1.6;
 }
 
-.warp-grid {
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 8px 12px;
-  align-items: center;
-}
-.warp-label { font-size: 12px; font-weight: 600; color: var(--text-muted); }
-
-.fusion-grid {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 8px 12px;
-  align-items: center;
-}
-.fusion-label { font-size: 12px; color: var(--text-muted); }
 
 .tricks-card { width: 100%; box-sizing: border-box; }
 .tricks-header {

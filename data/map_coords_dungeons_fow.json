@@ -1,219 +1,467 @@
 [
   {
     "id": 6029424,
-    "name": "Fortress Entrance 1F Left Chest",
-    "floor": "1F",
-    "x": 170,
-    "y": 245
+    "location": [
+      {
+        "map": "1F",
+        "x": 170,
+        "y": 245
+      },
+      {
+        "map": "fow",
+        "x": 250,
+        "y": 1115
+      }
+    ]
   },
   {
     "id": 6029425,
-    "name": "Fortress Entrance 1F Left Wizzrobe Chest",
-    "floor": "1F",
-    "x": 120,
-    "y": 100
+    "location": [
+      {
+        "map": "1F",
+        "x": 120,
+        "y": 100
+      },
+      {
+        "map": "fow",
+        "x": 200,
+        "y": 970
+      }
+    ]
   },
   {
     "id": 6029426,
-    "name": "Fortress Entrance 1F Right Item",
-    "floor": "1F",
-    "x": 1031,
-    "y": 244
+    "location": [
+      {
+        "map": "1F",
+        "x": 1031,
+        "y": 244
+      },
+      {
+        "map": "fow",
+        "x": 1111,
+        "y": 1114
+      }
+    ]
   },
   {
     "id": 6029427,
-    "name": "Fortress Left 2F Dig Chest",
-    "floor": "2F",
-    "x": 410,
-    "y": 870
+    "location": [
+      {
+        "map": "2F",
+        "x": 410,
+        "y": 870
+      },
+      {
+        "map": "fow",
+        "x": 1805,
+        "y": 870
+      }
+    ]
   },
   {
     "id": 6029428,
-    "name": "Fortress Left 2F Item 1",
-    "floor": "2F",
-    "x": 293,
-    "y": 992
+    "location": [
+      {
+        "map": "2F",
+        "x": 293,
+        "y": 992
+      },
+      {
+        "map": "fow",
+        "x": 1688,
+        "y": 992
+      }
+    ]
   },
   {
     "id": 6029429,
-    "name": "Fortress Left 2F Item 2",
-    "floor": "2F",
-    "x": 293,
-    "y": 992
+    "location": [
+      {
+        "map": "2F",
+        "x": 293,
+        "y": 992
+      },
+      {
+        "map": "fow",
+        "x": 1688,
+        "y": 992
+      }
+    ]
   },
   {
     "id": 6029450,
-    "name": "Fortress Left 2F Item 3",
-    "floor": "2F",
-    "x": 293,
-    "y": 992
+    "location": [
+      {
+        "map": "2F",
+        "x": 293,
+        "y": 992
+      },
+      {
+        "map": "fow",
+        "x": 1688,
+        "y": 992
+      }
+    ]
   },
   {
     "id": 6029451,
-    "name": "Fortress Left 2F Item 4",
-    "floor": "2F",
-    "x": 293,
-    "y": 992
+    "location": [
+      {
+        "map": "2F",
+        "x": 293,
+        "y": 992
+      },
+      {
+        "map": "fow",
+        "x": 1688,
+        "y": 992
+      }
+    ]
   },
   {
     "id": 6029452,
-    "name": "Fortress Left 2F Item 5",
-    "floor": "2F",
-    "x": 293,
-    "y": 992
+    "location": [
+      {
+        "map": "2F",
+        "x": 293,
+        "y": 992
+      },
+      {
+        "map": "fow",
+        "x": 1688,
+        "y": 992
+      }
+    ]
   },
   {
     "id": 6029453,
-    "name": "Fortress Left 2F Item 6",
-    "floor": "2F",
-    "x": 293,
-    "y": 992
+    "location": [
+      {
+        "map": "2F",
+        "x": 293,
+        "y": 992
+      },
+      {
+        "map": "fow",
+        "x": 1688,
+        "y": 992
+      }
+    ]
   },
   {
     "id": 6029454,
-    "name": "Fortress Left 2F Item 7",
-    "floor": "2F",
-    "x": 525,
-    "y": 993
+    "location": [
+      {
+        "map": "2F",
+        "x": 525,
+        "y": 993
+      },
+      {
+        "map": "fow",
+        "x": 1920,
+        "y": 993
+      }
+    ]
   },
   {
     "id": 6029455,
-    "name": "Fortress Left 3F Switch Chest",
-    "floor": "3F",
-    "x": 295,
-    "y": 725
+    "location": [
+      {
+        "map": "3F",
+        "x": 295,
+        "y": 725
+      },
+      {
+        "map": "fow",
+        "x": 295,
+        "y": 725
+      }
+    ]
   },
   {
     "id": 6029456,
-    "name": "Fortress Left 3F Eyegore Big Chest",
-    "floor": "3F",
-    "x": 125,
-    "y": 305
+    "location": [
+      {
+        "map": "3F",
+        "x": 125,
+        "y": 305
+      },
+      {
+        "map": "fow",
+        "x": 125,
+        "y": 305
+      }
+    ]
   },
   {
     "id": 6029457,
-    "name": "Fortress Left 3F Item Drop",
-    "floor": "3F",
-    "x": 485,
-    "y": 460
+    "location": [
+      {
+        "map": "3F",
+        "x": 485,
+        "y": 460
+      },
+      {
+        "map": "fow",
+        "x": 485,
+        "y": 460
+      }
+    ]
   },
   {
     "id": 6029458,
-    "name": "Fortress Middle 2F Big Chest",
-    "floor": "2F",
-    "x": 680,
-    "y": 610
+    "location": [
+      {
+        "map": "2F",
+        "x": 680,
+        "y": 610
+      },
+      {
+        "map": "fow",
+        "x": 2075,
+        "y": 610
+      }
+    ]
   },
   {
     "id": 6029459,
-    "name": "Fortress Middle 2F Statue Chest",
-    "floor": "2F",
-    "x": 635,
-    "y": 995
+    "location": [
+      {
+        "map": "2F",
+        "x": 635,
+        "y": 995
+      },
+      {
+        "map": "fow",
+        "x": 2030,
+        "y": 995
+      }
+    ]
   },
   {
     "id": 6029460,
-    "name": "Fortress Right 2F Left Chest",
-    "floor": "2F",
-    "x": 890,
-    "y": 675
+    "location": [
+      {
+        "map": "2F",
+        "x": 890,
+        "y": 675
+      },
+      {
+        "map": "fow",
+        "x": 2285,
+        "y": 675
+      }
+    ]
   },
   {
     "id": 6029461,
-    "name": "Fortress Right 2F Right Chest",
-    "floor": "2F",
-    "x": 1020,
-    "y": 675
+    "location": [
+      {
+        "map": "2F",
+        "x": 1020,
+        "y": 675
+      },
+      {
+        "map": "fow",
+        "x": 2415,
+        "y": 675
+      }
+    ]
   },
   {
     "id": 6029462,
-    "name": "Fortress Right 2F Dig Chest",
-    "floor": "2F",
-    "x": 795,
-    "y": 1060
+    "location": [
+      {
+        "map": "2F",
+        "x": 795,
+        "y": 1060
+      },
+      {
+        "map": "fow",
+        "x": 2190,
+        "y": 1060
+      }
+    ]
   },
   {
     "id": 6029463,
-    "name": "Fortress Right 3F Dig Chest",
-    "floor": "3F",
-    "x": 795,
-    "y": 710
+    "location": [
+      {
+        "map": "3F",
+        "x": 795,
+        "y": 710
+      },
+      {
+        "map": "fow",
+        "x": 795,
+        "y": 710
+      }
+    ]
   },
   {
     "id": 6029464,
-    "name": "Fortress Right 3F Item Drop",
-    "floor": "3F",
-    "x": 900,
-    "y": 460
+    "location": [
+      {
+        "map": "3F",
+        "x": 900,
+        "y": 460
+      },
+      {
+        "map": "fow",
+        "x": 900,
+        "y": 460
+      }
+    ]
   },
   {
     "id": 6029465,
-    "name": "Fortress Entrance 1F Right HP",
-    "floor": "1F",
-    "x": 1030,
-    "y": 65
+    "location": [
+      {
+        "map": "1F",
+        "x": 1030,
+        "y": 65
+      },
+      {
+        "map": "fow",
+        "x": 1110,
+        "y": 935
+      }
+    ]
   },
   {
     "id": 6029466,
-    "name": "Fortress Back Left Big Chest",
-    "floor": "2F",
-    "x": 370,
-    "y": 260
+    "location": [
+      {
+        "map": "2F",
+        "x": 370,
+        "y": 260
+      },
+      {
+        "map": "fow",
+        "x": 1765,
+        "y": 260
+      }
+    ]
   },
   {
     "id": 6029467,
-    "name": "Fortress Back Left Small Chest",
-    "floor": "2F",
-    "x": 505,
-    "y": 260
+    "location": [
+      {
+        "map": "2F",
+        "x": 505,
+        "y": 260
+      },
+      {
+        "map": "fow",
+        "x": 1900,
+        "y": 260
+      }
+    ]
   },
   {
     "id": 6029468,
-    "name": "Fortress Back Right Statue Item Drop",
-    "floor": "2F",
-    "x": 1270,
-    "y": 230
+    "location": [
+      {
+        "map": "2F",
+        "x": 1270,
+        "y": 230
+      },
+      {
+        "map": "fow",
+        "x": 2665,
+        "y": 230
+      }
+    ]
   },
   {
     "id": 6029469,
-    "name": "Fortress Back Right Minish Item Drop",
-    "floor": "2F",
-    "x": 1035,
-    "y": 280
+    "location": [
+      {
+        "map": "2F",
+        "x": 1035,
+        "y": 280
+      },
+      {
+        "map": "fow",
+        "x": 2430,
+        "y": 280
+      }
+    ]
   },
   {
     "id": 6029470,
-    "name": "Fortress Back Right Dig Room Top Pot",
-    "floor": "2F",
-    "x": 1085,
-    "y": 930
+    "location": [
+      {
+        "map": "2F",
+        "x": 1085,
+        "y": 930
+      },
+      {
+        "map": "fow",
+        "x": 2480,
+        "y": 930
+      }
+    ]
   },
   {
     "id": 6029471,
-    "name": "Fortress Back Right Dig Room Bottom Pot",
-    "floor": "2F",
-    "x": 970,
-    "y": 1080
+    "location": [
+      {
+        "map": "2F",
+        "x": 970,
+        "y": 1080
+      },
+      {
+        "map": "fow",
+        "x": 2365,
+        "y": 1080
+      }
+    ]
   },
   {
     "id": 6029472,
-    "name": "Fortress Back Right Big Chest",
-    "floor": "2F",
-    "x": 1285,
-    "y": 480
+    "location": [
+      {
+        "map": "2F",
+        "x": 1285,
+        "y": 480
+      },
+      {
+        "map": "fow",
+        "x": 2680,
+        "y": 480
+      }
+    ]
   },
   {
     "id": 6029473,
-    "name": "Fortress Boss Item",
-    "floor": "3F",
-    "x": 680,
-    "y": 55
+    "location": [
+      {
+        "map": "3F",
+        "x": 680,
+        "y": 55
+      },
+      {
+        "map": "fow",
+        "x": 660,
+        "y": 55
+      }
+    ]
   },
   {
     "id": 6029474,
-    "name": "Fortress Prize",
-    "floor": "3F",
-    "x": 680,
-    "y": 55
+    "location": [
+      {
+        "map": "3F",
+        "x": 680,
+        "y": 55
+      },
+      {
+        "map": "fow",
+        "x": 660,
+        "y": 55
+      }
+    ]
   }
 ]

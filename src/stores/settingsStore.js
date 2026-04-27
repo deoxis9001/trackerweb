@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
+
+const ENTRANCE_SHUFFLE_ENABLED = import.meta.env.MODE === 'alpha'
 
 export const TRICKS = {
   BOMB_DUST:            { key: 'bomb_dust',            label: 'Bomb Dust (Bomb/Gust blows dust)' },
@@ -114,6 +116,13 @@ export const useSettingsStore = defineStore('settings', () => {
   const windCrestSouthField = ref(false)
   const windCrestMinishWoods = ref(false)
 
+  // ── Entrance Shuffle ──────────────────────────────────────────────────────────
+  const _dungeonEntranceShuffle = ref(false)
+  const dungeonEntranceShuffle = computed({
+    get: () => ENTRANCE_SHUFFLE_ENABLED && _dungeonEntranceShuffle.value,
+    set: (v) => { if (ENTRANCE_SHUFFLE_ENABLED) _dungeonEntranceShuffle.value = v },
+  })
+
   // ── Tracker Display ───────────────────────────────────────────────────────────
   const showInaccessible = ref(false)
   const autoTabDungeons  = ref('overview') // 'non' | 'overview' | 'etage'
@@ -166,6 +175,7 @@ export const useSettingsStore = defineStore('settings', () => {
       showInaccessible: showInaccessible.value,
       autoTabDungeons: autoTabDungeons.value,
       autoTabOverworld: autoTabOverworld.value,
+      dungeonEntranceShuffle: dungeonEntranceShuffle.value,
     }
   }
 
@@ -191,6 +201,7 @@ export const useSettingsStore = defineStore('settings', () => {
       ocarinaOnSelect, bootsOnL, bootsAsMinish, bigOctoManipulation,
       replicaTODBossDoor, trapsEnabled,
       showInaccessible, autoTabDungeons, autoTabOverworld,
+      dungeonEntranceShuffle,
     }
     for (const [k, r] of Object.entries(refs)) {
       if (s[k] != null) r.value = s[k]
@@ -402,6 +413,7 @@ export const useSettingsStore = defineStore('settings', () => {
     ocarinaOnSelect, bootsOnL, bootsAsMinish, bigOctoManipulation,
     replicaTODBossDoor, trapsEnabled,
     showInaccessible, autoTabDungeons, autoTabOverworld,
+    dungeonEntranceShuffle,
     exportSettings, importSettings, importFromSlotData, save, load,
   }
 })
