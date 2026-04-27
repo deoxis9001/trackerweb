@@ -98,29 +98,29 @@ export function buildInventory(stateStore) {
       inv['Progressive Spin Scroll'] = Math.max(inv['Progressive Spin Scroll'] || 0, count)
       continue
     }
-    // PROGRESSIVE_WALLET: chaque niveau = 1 Big Wallet (nom utilisé par rules.js)
+    // PROGRESSIVE_WALLET: each level = 1 Big Wallet (name used by rules.js)
     if (key === 'PROGRESSIVE_WALLET') {
       inv['Big Wallet'] = Math.max(inv['Big Wallet'] || 0, count)
       continue
     }
-    // HEART_TOTAL: le clic manuel représente des coeurs additionnels (= containers pour la logique)
+    // HEART_TOTAL: manual clicks represent additional heart containers (used as Heart Container count in logic)
     if (key === 'HEART_TOTAL') {
       inv['Heart Container'] = Math.max(inv['Heart Container'] || 0, count)
       continue
     }
-    // PROGRESSIVE_BOMB_BAG n'existe pas dans items.json ; chaque niveau = 1 Bomb Bag
+    // PROGRESSIVE_BOMB_BAG does not exist in items.json; each level = 1 Bomb Bag
     if (key === 'PROGRESSIVE_BOMB_BAG') {
       inv['Bomb Bag'] = Math.max(inv['Bomb Bag'] || 0, count)
       continue
     }
-    // PROGRESSIVE_BOOK : niveau 1=Red, 2=+Green, 3=+Blue
+    // PROGRESSIVE_BOOK: level 1=Red, 2=+Green, 3=+Blue
     if (key === 'PROGRESSIVE_BOOK') {
       if (count >= 1) inv['Red Book (Hyrulian Bestiary)'] = 1
       if (count >= 2) inv['Green Book (Picori Legend)']   = 1
       if (count >= 3) inv['Blue Book (History of Masks)'] = 1
       continue
     }
-    // Le compteur BOTTLE représente N bouteilles distinctes
+    // BOTTLE counter represents N distinct bottles
     if (key === 'BOTTLE') {
       for (let i = 1; i <= count; i++) inv[`Bottle ${i}`] = 1
       continue

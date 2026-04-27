@@ -5,6 +5,8 @@
       <RouterView />
     </div>
 
+    <RouterLink v-if="!isBroadcastRoute" to="/changelog" class="changelog-link">changelog</RouterLink>
+
     <Teleport to="body">
       <!-- Settings modal -->
       <div
@@ -249,4 +251,17 @@ body {
   line-height: 1;
 }
 .popup-close:hover { color: var(--text); background: var(--bg-card); }
+
+.changelog-link {
+  position: fixed;
+  bottom: 4px;
+  right: 8px;
+  font-size: 10px;
+  color: var(--accent-soft);
+  opacity: 0.45;
+  text-decoration: none;
+  z-index: 10;
+  letter-spacing: 0.03em;
+}
+.changelog-link:hover { opacity: 1; }
 </style>
