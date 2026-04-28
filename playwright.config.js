@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test'
 
+// DEV=1 → test against running dev server (port 5173)
+// default → build + preview (port 4173)
+const DEV_MODE = !!process.env.DEV
+
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
@@ -9,7 +13,7 @@ export default defineConfig({
   reporter: process.env.CI ? 'github' : 'list',
 
   use: {
-    baseURL: 'http://localhost:4173',
+    baseURL: DEV_MODE ? 'http://localhost:5173' : 'http://localhost:4173',
     trace: 'on-first-retry',
   },
 
@@ -19,10 +23,17 @@ export default defineConfig({
     { name: 'webkit',   use: { ...devices['Desktop Safari'] } },
   ],
 
-  webServer: {
-    command: 'npm run build:ci && npx vite preview --port 4173',
-    port: 4173,
-    reuseExistingServer: !process.env.CI,
-    timeout: 120000,
-  },
+  webServer: DEV_MODE
+    ? {
+        command: 'npm run dev',
+        port: 5173,
+        reuseExistingServer: true,
+        timeout: 60000,
+      }
+    : {
+        command: 'npx vite preview --port 4173',
+        port: 4173,
+        reuseExistingServer: !process.env.CI,
+        timeout: 60000,
+      },
 })

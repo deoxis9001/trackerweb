@@ -17,7 +17,8 @@
     "build:all": "npm run build && npm run alpha && npm run devbuild",
     "all": "npm run build:all && npx serve dist -p 4173",
     "preview": "vite preview",
-    "test:e2e": "playwright test"
+    "test:e2e": "npm run build:ci && playwright test",
+    "test:e2e:dev": "cross-env DEV=1 playwright test"
   },
   "dependencies": {
     "archipelago.js": "^2.0.4",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@playwright/test": "^1.59.1",
     "@vitejs/plugin-vue": "^6.0.1",
+    "cross-env": "^10.1.0",
     "vite": "^7.2.1",
     "vite-plugin-singlefile": "^2.3.3"
   }
