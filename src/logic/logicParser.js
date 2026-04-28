@@ -455,29 +455,168 @@ function _compileTerm(term, helperMap) {
   return () => true
 }
 
-// ─── 5f — Item map (stub; filled in step 5f) ─────────────────────────────────
-// Each entry: { count: (inv) => number }
-// "count" returns the quantity available in the inventory (0 = not held).
-const ITEM_MAP = {}
+// ─── 5f — Item map ───────────────────────────────────────────────────────────
+
+/** Shorthand: count how many of the named AP item are in the inventory. */
+function _cnt(apName) {
+  return { count: inv => inv[apName] || 0 }
+}
+
+/** Total number of distinct bottle slots filled (1–4). */
+function _bottleCount(inv) {
+  return ['Bottle 1', 'Bottle 2', 'Bottle 3', 'Bottle 4']
+    .filter(b => (inv[b] || 0) >= 1).length
+}
+
+/**
+ * Maps rando item names to { count: (inv) => number }.
+ * Items absent from this map fall back to Infinity (fail-open) in _itemCount.
+ */
+const ITEM_MAP = {
+  // ── Swords ──────────────────────────────────────────────────────────────────
+  SmithSword:             _cnt("Smith's Sword"),
+  SmithSwordQuest:        _cnt("Smith Sword (Quest)"),
+  GreenSword:             _cnt("White Sword"),
+  RedSword:               _cnt("White Sword (Two Elements)"),
+  BlueSword:              _cnt("White Sword (Three Elements)"),
+  FourSword:              _cnt("Four Sword"),
+  'ProgressiveItem.0x00': _cnt("Progressive Sword"),
+  // ── Bows ────────────────────────────────────────────────────────────────────
+  Bow:                    _cnt("Bow"),
+  LightArrow:             _cnt("Light Arrow"),
+  'ProgressiveItem.0x01': _cnt("Progressive Bow"),
+  // ── Boomerangs ──────────────────────────────────────────────────────────────
+  Boomerang:              _cnt("Boomerang"),
+  MagicBoomerang:         _cnt("Magic Boomerang"),
+  'ProgressiveItem.0x02': _cnt("Progressive Boomerang"),
+  // ── Shields ─────────────────────────────────────────────────────────────────
+  Shield:                 _cnt("Shield"),
+  MirrorShield:           _cnt("Mirror Shield"),
+  'ProgressiveItem.0x03': _cnt("Progressive Shield"),
+  // ── Spin Scrolls ────────────────────────────────────────────────────────────
+  SpinAttack:             _cnt("Spin Attack"),
+  FastSpin:               _cnt("Fast Spin Scroll"),
+  FastSplit:              _cnt("Fast Split Scroll"),
+  LongSpin:               _cnt("Long Spin"),
+  GreatSpin:              _cnt("Greatspin"),
+  'ProgressiveItem.0x04': _cnt("Progressive Spin Scroll"),
+  // ── Tools ───────────────────────────────────────────────────────────────────
+  GustJar:                _cnt("Gust Jar"),
+  BombBag:                _cnt("Bomb Bag"),
+  PegasusBoots:           _cnt("Pegasus Boots"),
+  MoleMitts:              _cnt("Mole Mitts"),
+  RocsCape:               _cnt("Roc's Cape"),
+  PacciCane:              _cnt("Cane of Pacci"),
+  Flippers:               _cnt("Flippers"),
+  Ocarina:                _cnt("Ocarina"),
+  Lantern:                _cnt("Lantern"),
+  Firerod:                _cnt("Fire Rod"),
+  RemoteBombs:            _cnt("Remote Bomb"),
+  GripRing:               _cnt("Grip Ring"),
+  PowerBracelets:         _cnt("Power Bracelets"),
+  LargeQuiver:            _cnt("Quiver"),
+  Wallet:                 _cnt("Big Wallet"),
+  // ── Combat skills ───────────────────────────────────────────────────────────
+  RockBreaker:            _cnt("Rock Breaker"),
+  DashAttack:             _cnt("Dash Attack"),
+  DownThrust:             _cnt("DownThrust"),
+  RollAttack:             _cnt("Roll Attack"),
+  SwordBeam:              _cnt("Sword Beam"),
+  PerilBeam:              _cnt("Peril Beam"),
+  // ── Quest items ─────────────────────────────────────────────────────────────
+  TingleTrophy:           _cnt("Tingle Trophy"),
+  LonLonKey:              _cnt("LonLon Key"),
+  JabberNut:              _cnt("Jabber Nut"),
+  WakeUpMushroom:         _cnt("Wakeup Mushroom"),
+  GraveyardKey:           _cnt("Graveyard Key"),
+  CarlovMedal:            _cnt("Carlov Medal"),
+  BrokenPicoriBlade:      _cnt("Broken Picori Blade"),
+  DogFoodBottle:          _cnt("Dog Food"),
+  // ── Elements ────────────────────────────────────────────────────────────────
+  EarthElement:           _cnt("Earth Element"),
+  FireElement:            _cnt("Fire Element"),
+  WaterElement:           _cnt("Water Element"),
+  WindElement:            _cnt("Wind Element"),
+  // ── Books ───────────────────────────────────────────────────────────────────
+  RedBook:                _cnt("Red Book (Hyrulian Bestiary)"),
+  GreenBook:              _cnt("Green Book (Picori Legend)"),
+  BlueBook:               _cnt("Blue Book (History of Masks)"),
+  // ── Hearts ──────────────────────────────────────────────────────────────────
+  PieceOfHeart:           _cnt("Piece of Heart"),
+  HeartContainer:         _cnt("Heart Container"),
+  // ── Butterfly upgrades ───────────────────────────────────────────────────────
+  ArrowButterfly:         _cnt("Bow Butterfly"),
+  DigButterfly:           _cnt("Dig Butterfly"),
+  SwimButterfly:          _cnt("Swim Butterfly"),
+  // ── Small Keys ──────────────────────────────────────────────────────────────
+  'SmallKey.0x18':        _cnt("Small Key (DWS)"),
+  'SmallKey.0x19':        _cnt("Small Key (CoF)"),
+  'SmallKey.0x1A':        _cnt("Small Key (FoW)"),
+  'SmallKey.0x1B':        _cnt("Small Key (ToD)"),
+  'SmallKey.0x1C':        _cnt("Small Key (PoW)"),
+  'SmallKey.0x1D':        _cnt("Small Key (DHC)"),
+  'SmallKey.0x1E':        _cnt("Small Key (RC)"),
+  // ToD specific door flags → map to ToD small keys
+  'ToDKeys.0xa':          _cnt("Small Key (ToD)"),
+  'ToDKeys.0xb':          _cnt("Small Key (ToD)"),
+  // ── Big Keys ────────────────────────────────────────────────────────────────
+  'BigKey.0x18':          _cnt("Big Key (DWS)"),
+  'BigKey.0x19':          _cnt("Big Key (CoF)"),
+  'BigKey.0x1A':          _cnt("Big Key (FoW)"),
+  'BigKey.0x1B':          _cnt("Big Key (ToD)"),
+  'BigKey.0x1C':          _cnt("Big Key (PoW)"),
+  'BigKey.0x1D':          _cnt("Big Key (DHC)"),
+  // ── Dungeon Maps ────────────────────────────────────────────────────────────
+  'DungeonMap.0x18':      _cnt("Dungeon Map (DWS)"),
+  'DungeonMap.0x19':      _cnt("Dungeon Map (CoF)"),
+  'DungeonMap.0x1A':      _cnt("Dungeon Map (FoW)"),
+  'DungeonMap.0x1B':      _cnt("Dungeon Map (ToD)"),
+  'DungeonMap.0x1C':      _cnt("Dungeon Map (PoW)"),
+  'DungeonMap.0x1D':      _cnt("Dungeon Map (DHC)"),
+  // ── Compasses ───────────────────────────────────────────────────────────────
+  'Compass.0x18':         _cnt("Dungeon Compass (DWS)"),
+  'Compass.0x19':         _cnt("Dungeon Compass (CoF)"),
+  'Compass.0x1A':         _cnt("Dungeon Compass (FoW)"),
+  'Compass.0x1B':         _cnt("Dungeon Compass (ToD)"),
+  'Compass.0x1C':         _cnt("Dungeon Compass (PoW)"),
+  'Compass.0x1D':         _cnt("Dungeon Compass (DHC)"),
+  // ── Kinstones ───────────────────────────────────────────────────────────────
+  'Kinstone.RedE':            _cnt("Kinstone Red E"),
+  'Kinstone.RedV':            _cnt("Kinstone Red >"),
+  'Kinstone.RedW':            _cnt("Kinstone Red W"),
+  'Kinstone.Red':             { count: inv => (inv["Kinstone Red E"] || 0) + (inv["Kinstone Red >"] || 0) + (inv["Kinstone Red W"] || 0) },
+  'Kinstone.BlueL':           _cnt("Kinstone Blue L"),
+  'Kinstone.BlueS':           _cnt("Kinstone Blue 6"),
+  'Kinstone.GreenC':          _cnt("Kinstone Green ["),
+  'Kinstone.GreenG':          _cnt("Kinstone Green <"),
+  'Kinstone.GreenP':          _cnt("Kinstone Green P"),
+  'Kinstone.GoldenCloudTops': _cnt("Kinstone Cloud Tops"),
+  'Kinstone.GoldenSwamp':     _cnt("Kinstone Swamp"),
+  'Kinstone.GoldenFalls':     _cnt("Kinstone Falls"),
+  // ── Bottles ─────────────────────────────────────────────────────────────────
+  // Plain Bottle: total filled slots; Bottle1/2/3: need >=N slots filled
+  Bottle:  { count: inv => _bottleCount(inv) },
+  Bottle1: { count: inv => _bottleCount(inv) >= 1 ? 1 : 0 },
+  Bottle2: { count: inv => _bottleCount(inv) >= 2 ? 1 : 0 },
+  Bottle3: { count: inv => _bottleCount(inv) >= 3 ? 1 : 0 },
+  // Bottle.0xNN (content-type variants) handled dynamically in _itemCount
+}
 
 /**
  * Returns how many of `name` the inventory contains.
- * Delegates to ITEM_MAP; returns 0 for unknown items (fail-closed for counts).
- * @param {string} name - rando item name (e.g. "SmallKey.0x18")
- * @param {object} inv  - tracker inventory object
- * @returns {number}
+ * Bottle.0xNN items are content-type variants that all mean "has any bottle".
+ * Items absent from ITEM_MAP return Infinity (fail-open: untracked = no block).
  */
 function _itemCount(name, inv) {
   const entry = ITEM_MAP[name]
-  if (!entry) return 0
-  return entry.count(inv)
+  if (entry) return entry.count(inv)
+  // Bottle.0xNN: content-type doesn't matter — just check if any bottle is held
+  if (name.startsWith('Bottle.0x')) return _bottleCount(inv)
+  return Infinity
 }
 
 /**
  * Returns true when the inventory holds at least `min` of `name`.
- * @param {string} name
- * @param {number} min
- * @param {object} inv
  */
 function _itemCheck(name, min, inv) {
   return _itemCount(name, inv) >= min
