@@ -167,12 +167,16 @@ export function settingsToDefines(settings) {
   }
 
   // ── Wind Crests ──────────────────────────────────────────────────────────
-  setFlag('CRENEL_CREST',   settings.windCrestCrenel)
-  setFlag('FALLS_CREST',    settings.windCrestFalls)
-  setFlag('CLOUD_CREST',    settings.windCrestClouds)
-  setFlag('TOWN_CREST',     settings.windCrestCastor)
-  setFlag('SHF_CREST',      settings.windCrestSouthField)
-  setFlag('MINISH_CREST',   settings.windCrestMinishWoods)
+  // LAKE_CREST and TOWN_CREST default to true in rando and have no AP toggle
+  d['LAKE_CREST'] = true
+  d['TOWN_CREST'] = true
+  setFlag('CRENEL_CREST',    settings.windCrestCrenel)
+  setFlag('FALLS_CREST',     settings.windCrestFalls)
+  setFlag('CLOUD_CREST',     settings.windCrestClouds)
+  setFlag('SHF_CREST',       settings.windCrestSouthField)
+  setFlag('MINISH_CREST',    settings.windCrestMinishWoods)
+  // windCrestCastor maps to TOWN_CREST but we already force it true above
+  // (Castor Wilds crest — always enabled in AP)
 
   // ── Dungeon Warps ────────────────────────────────────────────────────────
   setFlag('DWS_BLUEWARP',  (settings.warpDWS ?? 0) >= 1)
@@ -189,11 +193,67 @@ export function settingsToDefines(settings) {
   setFlag('DHC_REDWARP',   (settings.warpDHC ?? 0) >= 2)
 
   // ── Open World ───────────────────────────────────────────────────────────
-  // AP has no open-world mode — always use vanilla traversal
+  // AP has no open-world traversal mode
   setOption('OPENWORLD', 'OPENWORLD_OFF')
 
+  // ── Shuffle flags ────────────────────────────────────────────────────────
+  setFlag('HEART_RANDO',   true)                       // hearts always shuffled in AP
+  setFlag('DIGGING',       settings.shuffleDigging)
+  setFlag('UNDERWATER',    settings.shuffleUnderwater)
+  setFlag('SPECIALPOTS',   settings.shufflePots)
+  setFlag('GOLDEN_ENEMY',  settings.shuffleGoldEnemies)
+  setFlag('RUPEEMANIA',    settings.rupeesanity)
+  setFlag('SHOP_BOMBBAG',  settings.extraShopItem)
+
+  // ── Element shuffle ──────────────────────────────────────────────────────
+  // AP values: 'vanilla' | 'dungeon_prize' | 'anywhere'
+  const elems = settings.shuffleElements ?? 'dungeon_prize'
+  if (elems === 'vanilla')       setOption('SHUFFLE_ELEMENTS', 'SHUFFLE_ELEMENTS_VANILLA')
+  else if (elems === 'anywhere') setOption('SHUFFLE_ELEMENTS', 'SHUFFLE_ELEMENTS_ON')
+  else                           setOption('SHUFFLE_ELEMENTS', 'SHUFFLE_ELEMENTS_OFF')
+
+  // ── Dungeon item settings ────────────────────────────────────────────────
+  // Small Keys
+  const sk = settings.dungeonSmallKeys ?? 'own_dungeon'
+  if (sk === 'anywhere') setOption('SMALL_KEYS_SETTING', 'SMALL_KEYSANITY')
+  else                   setOption('SMALL_KEYS_SETTING', 'SMALL_KEYS_STANDARD')
+
+  // Big Keys
+  const bk = settings.dungeonBigKeys ?? 'own_dungeon'
+  if (bk === 'anywhere') setOption('BIG_KEYS_SETTING', 'BIG_KEYSANITY')
+  else                   setOption('BIG_KEYS_SETTING', 'BIG_KEYS_STANDARD')
+
+  // Maps
+  const maps = settings.dungeonMaps ?? 'own_dungeon'
+  if (maps === 'anywhere')    setOption('MAP_SETTING', 'MAP_KEYSANITY')
+  else if (maps === 'start_with') setOption('MAP_SETTING', 'MAP_KEASY')
+  else                        setOption('MAP_SETTING', 'MAP_STANDARD')
+
+  // Compasses
+  const comp = settings.dungeonCompasses ?? 'own_dungeon'
+  if (comp === 'anywhere')    setOption('COMPASS_SETTING', 'COMPASS_KEYSANITY')
+  else if (comp === 'start_with') setOption('COMPASS_SETTING', 'COMPASS_KEASY')
+  else                        setOption('COMPASS_SETTING', 'COMPASS_STANDARD')
+
+  // ── Pedestal / requirements ──────────────────────────────────────────────
+  const pedReward = settings.pedReward ?? 'none'
+  setFlag('PED_ITEMS', pedReward !== 'none')
+  if (pedReward === 'dhc_big_key')  setOption('REQUIREMENT_ITEM', 'REQUIREMENT_ITEM_DHC_BK')
+  else if (pedReward === 'random_item') setOption('REQUIREMENT_ITEM', 'REQUIREMENT_ITEM_RANDOM')
+  else                              setOption('REQUIREMENT_ITEM', 'REQUIREMENT_ITEM_NONE')
+
+  // Sword requirement (0–5; 5 = Four Sword)
+  const pedSwords = settings.pedSwords ?? 5
+  setOption('SWORD_SETTING', `${pedSwords}SWORD`)
+
+  // ── DHC access ───────────────────────────────────────────────────────────
+  const dhc = settings.dhcAccess ?? 'pedestal'
+  if (dhc === 'open')    setOption('DHC_SETTING', 'OPENDHC')
+  else if (dhc === 'closed') setOption('DHC_SETTING', 'NODHC')
+  else                    setOption('DHC_SETTING', 'NORMALDHC')
+
   // ── Kinstone Fusions ─────────────────────────────────────────────────────
-  // 'closed' in AP ≡ 'none' in rando (no fusions in pool)
+  // 'closed' in AP ≡ no fusions in pool (same as rando 'none')
   const gold = settings.goldFusionAccess ?? 'vanilla'
   if (gold === 'closed' || gold === 'none') setOption('GOLD_FUSION_SETTING', 'NO_GOLD_FUSIONS')
   else if (gold === 'combined')             setOption('GOLD_FUSION_SETTING', 'COMBINED_GOLD_FUSIONS')
@@ -219,12 +279,8 @@ export function settingsToDefines(settings) {
   else                                        setOption('GREEN_FUSION_SETTING', 'VANILLA_GREEN_FUSIONS')
 
   // ── Cucco setting ────────────────────────────────────────────────────────
-  // cuccoRounds > 0 means cucco NPCs are randomized
   if ((settings.cuccoRounds ?? 1) > 0) setOption('CUCCO_SETTING', 'RANDOM_CUCCOS')
   else                                  setOption('CUCCO_SETTING', 'VANILLA_CUCCOS')
-
-  // ── Dig spots ────────────────────────────────────────────────────────────
-  setFlag('KINSTONE_DIGS', settings.shuffleDigging)
 
   // ── Goron Merchant sets ──────────────────────────────────────────────────
   const goronSets = settings.goronSets ?? 0
@@ -232,21 +288,29 @@ export function settingsToDefines(settings) {
     if (goronSets >= i) d[`GORON_${i}`] = true
   }
   setOption('GORON_SETTING', `GORON_${goronSets}`)
+  setFlag('GORON_ALT_PRICES', settings.goronJPPrices)
 
   // ── Biggoron ─────────────────────────────────────────────────────────────
   const biggoron = settings.biggoron ?? 'disabled'
-  if (biggoron === 'shield')         setOption('BIGGORON_SETTING', 'BIGGORON_NORMAL')
+  if (biggoron === 'shield')             setOption('BIGGORON_SETTING', 'BIGGORON_NORMAL')
   else if (biggoron === 'mirror_shield') setOption('BIGGORON_SETTING', 'BIGGORON_MIRROR')
-  else                                setOption('BIGGORON_SETTING', 'BIGGORON_OFF')
+  else                                   setOption('BIGGORON_SETTING', 'BIGGORON_OFF')
 
-  // ── DHC access ───────────────────────────────────────────────────────────
-  const dhc = settings.dhcAccess ?? 'pedestal'
-  if (dhc === 'open')    setOption('DHC_SETTING', 'OPENDHC')
-  else if (dhc === 'closed') setOption('DHC_SETTING', 'NODHC')
-  else                    setOption('DHC_SETTING', 'NORMALDHC')
+  // ── Progressive items ────────────────────────────────────────────────────
+  setFlag('YES_SWORD_PROG',  settings.progressiveSword)
+  setFlag('YES_BOW_PROG',    settings.progressiveBow)
+  setFlag('YES_BOOM_PROG',   settings.progressiveBoomerang)
+  setFlag('YES_SHIELD_PROG', settings.progressiveShield)
+  setFlag('YES_SCROLL_PROG', settings.progressiveScroll)
 
-  // ── Pedestal items ───────────────────────────────────────────────────────
-  setFlag('PED_ITEMS', settings.pedReward != null && settings.pedReward !== 'none')
+  // ── Misc item pool ───────────────────────────────────────────────────────
+  setFlag('RANDOM_BOTTLE_CONTENT', settings.randomBottleContents)
+  setFlag('TRAPS',                 settings.trapsEnabled)
+
+  // ── Boots on L ──────────────────────────────────────────────────────────
+  if (settings.bootsAsMinish && settings.bootsOnL) setOption('BOOTS_L', 'BOOTS_L_MINISH')
+  else if (settings.bootsOnL)                       setOption('BOOTS_L', 'BOOTS_L_NORMAL')
+  else                                              setOption('BOOTS_L', 'BOOTS_L_OFF')
 
   // ── Tricks ───────────────────────────────────────────────────────────────
   setFlag('LAKE_MINISH_TRICKS', hasTrick('lake_minish'))
