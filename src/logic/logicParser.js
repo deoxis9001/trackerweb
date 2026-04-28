@@ -131,6 +131,112 @@ function _applySubs(text, substitutions) {
 }
 
 
+// ─── 5c — Directive schema parser ────────────────────────────────────────────
+
+// Token is a define name if it is all uppercase letters/digits/underscores,
+// at least 2 chars (handles both ALL_CAPS_SNAKE and digit-prefixed like 5SWORD).
+const _IS_DEFINE = /^[A-Z0-9][A-Z0-9_]+$/
+
+/**
+ * Parse !flag / !dropdown / !numberbox schema from the raw logic text.
+ * Used later by settingsStringEncoder to build the UI settings panel.
+ *
+ * @param {string} rawText - raw default.logic content
+ * @returns {{ flags: object[], dropdowns: object[], numberboxes: object[] }}
+ */
+export function parseDirectives(rawText) {
+  const result = { flags: [], dropdowns: [], numberboxes: [] }
+
+  for (const rawLine of rawText.split('\n')) {
+    let line = rawLine
+    const h = line.indexOf('#')
+    if (h >= 0) line = line.slice(0, h)
+    const trimmed = line.trim()
+    if (!trimmed.startsWith('!')) continue
+
+    // strip trailing " -" that some entries append after their last option description
+    const parts = trimmed.split(' - ').map(p => p.replace(/ -$/, '').trim())
+    const keyword = parts[0].slice(1)
+    if (keyword !== 'flag' && keyword !== 'dropdown' && keyword !== 'numberbox') continue
+
+    // Locate the first define-like token — that is the setting's DEFINE_NAME
+    let di = -1
+    for (let i = 1; i < parts.length; i++) {
+      if (_IS_DEFINE.test(parts[i])) { di = i; break }
+    }
+    if (di < 0) continue
+
+    const defineName = parts[di]
+
+    if (keyword === 'flag') {
+      const label = parts[di + 1] ?? ''
+      // optional trailing "true" / "false" indicates the default value
+      const last = parts[parts.length - 1]
+      const defaultValue = last === 'true' ? true : last === 'false' ? false : undefined
+      result.flags.push({ defineName, label, defaultValue })
+    }
+
+    else if (keyword === 'numberbox') {
+      // DEFINE - label - description - defaultVal - min - max
+      const label   = parts[di + 1] ?? ''
+      const defVal  = Number(parts[di + 3] ?? parts[di + 2] ?? 0)
+      const min     = Number(parts[di + 4] ?? parts[di + 3] ?? 0)
+      const max     = Number(parts[di + 5] ?? parts[di + 4] ?? 0)
+      result.numberboxes.push({ defineName, label, default: defVal, min, max })
+    }
+
+    else { // dropdown
+      // After DEFINE: label [description_parts…] DEFAULT_DEFINE [opt_label OPT_DEFINE [opt_desc…]]…
+      // Option descriptions always start with ' (single-quote).
+      // Empty parts (from consecutive " - ") also count as descriptions to skip.
+      const label = parts[di + 1] ?? ''
+
+      let i = di + 2
+      // skip description parts (non-define, non-empty) until we reach DEFAULT_DEFINE
+      while (i < parts.length && !_IS_DEFINE.test(parts[i])) i++
+      const defaultValue = parts[i] ?? ''
+      i++
+
+      const options = []
+      while (i < parts.length) {
+        // collect label words (non-define, non-quote, non-empty)
+        // Strip leading "- " prefix: bare "-" description placeholders bleed into
+        // the next part when the separator " - " is consumed (e.g. SWORD_SETTING).
+        const labelParts = []
+        while (i < parts.length &&
+               !_IS_DEFINE.test(parts[i]) &&
+               !parts[i].startsWith("'") &&
+               parts[i] !== '') {
+          const word = parts[i].replace(/^-\s+/, '')
+          if (word) labelParts.push(word)
+          i++
+        }
+
+        if (!_IS_DEFINE.test(parts[i] ?? '')) {
+          // hit a quote-description or empty without finding a define — skip to next define
+          while (i < parts.length && !_IS_DEFINE.test(parts[i])) i++
+          continue
+        }
+
+        const optDefine = parts[i]
+        i++
+
+        // skip option description (empty or starts with ')
+        while (i < parts.length && (parts[i] === '' || parts[i].startsWith("'"))) i++
+
+        if (labelParts.length > 0) {
+          options.push({ label: labelParts.join(' - '), defineName: optDefine })
+        }
+      }
+
+      result.dropdowns.push({ defineName, label, defaultValue, options })
+    }
+  }
+
+  return result
+}
+
+
 // ─── 5b — Settings → defines ─────────────────────────────────────────────────
 
 /**
