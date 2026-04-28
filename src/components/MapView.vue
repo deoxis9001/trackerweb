@@ -7,6 +7,7 @@ import { useSettingsStore } from '../stores/settingsStore'
 import { computeAccessibility, buildInventory } from '../logic/accessibility'
 import { ITEM_IMAGES } from '../metadata/itemImages'
 import ItemNotePicker from './ItemNotePicker.vue'
+import { useLocale } from '../composables/useLocale'
 const overworldAreaModules = import.meta.glob('../../data/map_coords_overworld_*.json', { eager: true })
 
 import dungeonCoordsDws from '../../data/map_coords_dungeons_dws.json'
@@ -19,6 +20,7 @@ import dungeonCoordsDhc from '../../data/map_coords_dungeons_dhc.json'
 
 const state    = useStateStore()
 const settings = useSettingsStore()
+const { t, tLocation } = useLocale()
 
 // ── Overworld area metadata ───────────────────────────────────────────────────
 const OVERWORLD_AREAS = [
@@ -27,13 +29,13 @@ const OVERWORLD_AREAS = [
   'town','trilby','valley','westernwoods',
 ]
 
-const AREA_LABELS = {
-  castle: 'Castle', clouds: 'Clouds', crenel: 'Crenel', falls: 'Falls',
-  hills: 'Hills', hylia: 'Hylia', lonlon: 'Lon Lon',
-  minishwoods: 'Minish Woods', northfield: 'N. Field', ruins: 'Ruins',
-  southfield: 'S. Field', swamp: 'Swamp', town: 'Town',
-  trilby: 'Trilby', valley: 'Valley', westernwoods: 'W. Woods',
-}
+const AREA_LABELS = computed(() => ({
+  castle: t('map_areas.castle'), clouds: t('map_areas.clouds'), crenel: t('map_areas.crenel'), falls: t('map_areas.falls'),
+  hills: t('map_areas.hills'), hylia: t('map_areas.hylia'), lonlon: t('map_areas.lonlon'),
+  minishwoods: t('map_areas.minishwoods'), northfield: t('map_areas.northfield'), ruins: t('map_areas.ruins'),
+  southfield: t('map_areas.southfield'), swamp: t('map_areas.swamp'), town: t('map_areas.town'),
+  trilby: t('map_areas.trilby'), valley: t('map_areas.valley'), westernwoods: t('map_areas.westernwoods'),
+}))
 
 // area → id → [{x, y}]  (location entries where map === area)
 // id → [{x, y}]  (location entries where map === 'map')
@@ -354,7 +356,7 @@ const pins = computed(() => {
   const regularPins = Object.values(byCoord).map(pin => ({
     ...pin,
     allChecked: pin.locs.every(l => state.isChecked(l.id)),
-    tooltip:    pin.locs.map(l => l.name).join('\n'),
+    tooltip:    pin.locs.map(l => tLocation(l.key, l.name)).join('\n'),
     type:       pinType(pin.locs),
     segments:   pinSegments(pin.locs),
     noteImg:    noteImgSrcForLocs(pin.locs),
@@ -836,7 +838,7 @@ function onNoteClear() {
             @click="state.toggleLocation(loc.id)"
           >
             <span class="popup-dot" :style="{ background: PIN_COLOR[state.isChecked(loc.id) ? 'checked' : (accessibility.get(loc.id) ?? 'inaccessible')] }"></span>
-            <span class="popup-name">{{ shortPopupName(loc.name, popupSubAreas.regionName) }}</span>
+            <span class="popup-name">{{ tLocation(loc.key, shortPopupName(loc.name, popupSubAreas.regionName)) }}</span>
             <span v-if="state.isChecked(loc.id)" class="popup-check">✓</span>
             <button :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs([loc]) }]"
               @click.stop="openNotePicker($event, { locs: [loc] })" title="Annoter un item">
@@ -863,7 +865,7 @@ function onNoteClear() {
                 @click="state.toggleLocation(loc.id)"
               >
                 <span class="popup-dot" :style="{ background: PIN_COLOR[state.isChecked(loc.id) ? 'checked' : (accessibility.get(loc.id) ?? 'inaccessible')] }"></span>
-                <span class="popup-name">{{ shortPopupName(loc.name, popupSubAreas.regionName) }}</span>
+                <span class="popup-name">{{ tLocation(loc.key, shortPopupName(loc.name, popupSubAreas.regionName)) }}</span>
                 <span v-if="state.isChecked(loc.id)" class="popup-check">✓</span>
                 <button :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs([loc]) }]"
                   @click.stop="openNotePicker($event, { locs: [loc] })" title="Annoter un item">

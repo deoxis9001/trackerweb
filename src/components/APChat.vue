@@ -2,8 +2,10 @@
 import { ref, watch, nextTick } from 'vue'
 import { useStateStore } from '../stores/stateStore'
 import { getClient } from '../archipelago/client'
+import { useLocale } from '../composables/useLocale'
 
 const store   = useStateStore()
+const { t }   = useLocale()
 const input   = ref('')
 const scrollEl = ref(null)
 
@@ -73,7 +75,7 @@ watch(() => store.chatMessages.length, async () => {
       <input
         v-model="input"
         class="chat-input"
-        placeholder="Message AP…"
+        :placeholder="t('ap_connect.chat_placeholder')"
         @keydown="onKeydown"
       />
       <button class="chat-send" @click="send">↵</button>
