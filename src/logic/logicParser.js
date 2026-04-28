@@ -237,6 +237,66 @@ export function parseDirectives(rawText) {
 }
 
 
+// ─── 5d — Location line parser ───────────────────────────────────────────────
+
+// Detects compact-format lines where parts[1] holds an address or define
+// reference rather than the type name (same heuristic as the Python extractor).
+const _ADDR_PAT = /^0x[0-9A-Fa-f]|^\d+-|^[a-z]/
+
+// Types that represent real locations or helpers we need for logic evaluation.
+const _KEPT_TYPES = new Set([
+  'Helper',
+  'Any', 'Dungeon', 'Major', 'Minor', 'Nice',
+  'Unshuffled', 'UnshuffledPrize', 'DungeonPrize',
+])
+
+// Name prefixes that indicate internal pool entries, not trackable locations.
+const _SKIP_PREFIXES = ['Items.', 'Dummy_', 'Shared', 'FakeDojo']
+
+/**
+ * Parse preprocessed logic lines into location/helper descriptors.
+ *
+ * Line format: `Name[\`SUFFIX\`][; Type; Address; LogicStr[; Item]]`
+ *
+ * @param {string[]} lines  - output of preprocessLogic()
+ * @returns {{ name: string, type: string, logicStr: string }[]}
+ */
+export function parseLocations(lines) {
+  const result = []
+
+  for (const line of lines) {
+    const parts = line.split(';')
+    if (parts.length < 2) continue
+
+    const nameField = parts[0].trim()
+    let   type      = parts[1].trim()
+
+    // Compact format: type field holds an address/ROM define; real type is the
+    // last backtick token embedded in the name field.
+    if (_ADDR_PAT.test(type)) {
+      const ticks = nameField.match(/`[^`]*`/g)
+      type = ticks ? ticks[ticks.length - 1] : ''
+    }
+
+    // Filter by type — keep helpers and trackable location types only.
+    const isBacktickType = type.startsWith('`') && type.endsWith('`')
+    if (!_KEPT_TYPES.has(type) && !isBacktickType) continue
+
+    // Clean name: strip backtick define suffixes and colon dungeon-ID suffixes.
+    const name = nameField.replace(/`[^`]*`/g, '').split(':')[0].trim()
+    if (!name) continue
+    if (_SKIP_PREFIXES.some(p => name.startsWith(p))) continue
+
+    // Logic string is the 4th field (index 3); empty = always accessible.
+    const logicStr = (parts[3] ?? '').trim()
+
+    result.push({ name, type, logicStr })
+  }
+
+  return result
+}
+
+
 // ─── 5b — Settings → defines ─────────────────────────────────────────────────
 
 /**
