@@ -17,8 +17,8 @@
     "build:all": "npm run build && npm run alpha && npm run devbuild",
     "all": "npm run build:all && npx serve dist -p 4173",
     "preview": "vite preview",
-    "test:e2e": "npm run build:ci && playwright test",
-    "test:e2e:dev": "cross-env DEV=1 playwright test"
+    "test:e2e": "playwright install && npm run build:ci && playwright test",
+    "test:e2e:dev": "playwright install && cross-env DEV=1 playwright test"
   },
   "dependencies": {
     "archipelago.js": "^2.0.4",
