@@ -1,11 +1,13 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useSettingsStore, TRICKS } from '../stores/settingsStore'
 import { watchEffect } from 'vue'
+import { useLocale } from '../composables/useLocale'
 
 const isDev = import.meta.env.DEV
 
 const s = useSettingsStore()
+const { t, locale } = useLocale()
 
 let saveTimer
 watchEffect(() => {
@@ -15,31 +17,30 @@ watchEffect(() => {
 })
 
 const TABS = [
-  { id: 'goal',      label: 'Goal' },
-  { id: 'dungeons',  label: 'Dungeons' },
-  { id: 'locations', label: 'Locations' },
-  { id: 'items',     label: 'Items' },
-  { id: 'fusions',   label: 'Fusions' },
-  { id: 'qol',       label: 'QoL & Tricks' },
-  { id: 'tracker',   label: 'Tracker' },
+  { id: 'goal' },
+  { id: 'dungeons' },
+  { id: 'locations' },
+  { id: 'items' },
+  { id: 'fusions' },
+  { id: 'qol' },
+  { id: 'tracker' },
 ]
 
 const activeTab = ref('goal')
 
-const WARP_OPTIONS = [
-  { value: 0, label: 'None' },
-  { value: 1, label: 'Blue' },
-  { value: 2, label: 'Red' },
-  { value: 3, label: 'Both' },
-]
+const WARP_OPTIONS = computed(() => [
+  { value: 0, label: t('settings.dungeons.warp_none') },
+  { value: 1, label: t('settings.dungeons.warp_blue') },
+  { value: 2, label: t('settings.dungeons.warp_red') },
+  { value: 3, label: t('settings.dungeons.warp_both') },
+])
 
-
-const FUSION_OPTIONS = [
-  { value: 'closed',   label: 'Closed' },
-  { value: 'vanilla',  label: 'Vanilla' },
-  { value: 'combined', label: 'Combined' },
-  { value: 'open',     label: 'Open' },
-]
+const FUSION_OPTIONS = computed(() => [
+  { value: 'closed',   label: t('settings.fusions.closed') },
+  { value: 'vanilla',  label: t('settings.fusions.vanilla') },
+  { value: 'combined', label: t('settings.fusions.combined') },
+  { value: 'open',     label: t('settings.fusions.open') },
+])
 </script>
 
 <template>
@@ -51,63 +52,63 @@ const FUSION_OPTIONS = [
         :key="tab.id"
         :class="['stab', activeTab === tab.id && 'active']"
         @click="activeTab = tab.id"
-      >{{ tab.label }}</button>
+      >{{ t('settings.tabs.' + tab.id) }}</button>
     </div>
 
     <!-- Legend -->
     <div class="legend-bar">
-      <span class="dot green"></span> Accessible
-      <span class="dot yellow"></span> Out of logic (tricks)
-      <span class="dot red"></span> Inaccessible
+      <span class="dot green"></span> {{ t('settings.legend.accessible') }}
+      <span class="dot yellow"></span> {{ t('settings.legend.out_of_logic') }}
+      <span class="dot red"></span> {{ t('settings.legend.inaccessible') }}
     </div>
 
     <!-- ── GOAL ──────────────────────────────────────────────────────────── -->
     <div v-if="activeTab === 'goal'" class="tab-content">
       <section class="card">
-        <h3>Goal</h3>
+        <h3>{{ t('settings.goal.title') }}</h3>
         <div class="setting-row">
-          <label>Goal</label>
+          <label>{{ t('settings.goal.goal_label') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.goal === 'vaati' }]"    @click="s.goal = 'vaati'">Defeat Vaati</button>
-            <button :class="['opt-btn', { active: s.goal === 'pedestal' }]" @click="s.goal = 'pedestal'">Pedestal</button>
+            <button :class="['opt-btn', { active: s.goal === 'vaati' }]"    @click="s.goal = 'vaati'">{{ t('settings.goal.defeat_vaati') }}</button>
+            <button :class="['opt-btn', { active: s.goal === 'pedestal' }]" @click="s.goal = 'pedestal'">{{ t('settings.goal.pedestal') }}</button>
           </div>
         </div>
         <div class="setting-row">
-          <label>DHC Access</label>
+          <label>{{ t('settings.goal.dhc_access') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.dhcAccess === 'closed' }]"   @click="s.dhcAccess = 'closed'">Closed</button>
-            <button :class="['opt-btn', { active: s.dhcAccess === 'pedestal' }]" @click="s.dhcAccess = 'pedestal'">Pedestal</button>
-            <button :class="['opt-btn', { active: s.dhcAccess === 'open' }]"     @click="s.dhcAccess = 'open'">Open</button>
+            <button :class="['opt-btn', { active: s.dhcAccess === 'closed' }]"   @click="s.dhcAccess = 'closed'">{{ t('settings.goal.closed') }}</button>
+            <button :class="['opt-btn', { active: s.dhcAccess === 'pedestal' }]" @click="s.dhcAccess = 'pedestal'">{{ t('settings.goal.pedestal') }}</button>
+            <button :class="['opt-btn', { active: s.dhcAccess === 'open' }]"     @click="s.dhcAccess = 'open'">{{ t('settings.goal.open') }}</button>
           </div>
         </div>
         <div class="setting-row">
-          <label>Pedestal Reward</label>
+          <label>{{ t('settings.goal.pedestal_reward') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.pedReward === 'none' }]"         @click="s.pedReward = 'none'">None</button>
-            <button :class="['opt-btn', { active: s.pedReward === 'dhc_big_key' }]"  @click="s.pedReward = 'dhc_big_key'">DHC Big Key</button>
-            <button :class="['opt-btn', { active: s.pedReward === 'random_item' }]"  @click="s.pedReward = 'random_item'">Random Item</button>
+            <button :class="['opt-btn', { active: s.pedReward === 'none' }]"         @click="s.pedReward = 'none'">{{ t('settings.goal.none') }}</button>
+            <button :class="['opt-btn', { active: s.pedReward === 'dhc_big_key' }]"  @click="s.pedReward = 'dhc_big_key'">{{ t('settings.goal.dhc_big_key') }}</button>
+            <button :class="['opt-btn', { active: s.pedReward === 'random_item' }]"  @click="s.pedReward = 'random_item'">{{ t('settings.goal.random_item') }}</button>
           </div>
         </div>
-        <h3 class="sub-title">Pedestal Conditions</h3>
+        <h3 class="sub-title">{{ t('settings.goal.pedestal_conditions') }}</h3>
         <div class="two-col-fields">
           <div class="field">
-            <label>Required Elements (0–4)</label>
+            <label>{{ t('settings.goal.required_elements') }}</label>
             <input type="number" v-model.number="s.pedElements" min="0" max="4" class="num-input" />
           </div>
           <div class="field">
-            <label>Required Sword Tier (0–5)</label>
+            <label>{{ t('settings.goal.required_sword_tier') }}</label>
             <input type="number" v-model.number="s.pedSwords" min="0" max="5" class="num-input" />
           </div>
           <div class="field">
-            <label>Required Dungeons (0–6)</label>
+            <label>{{ t('settings.goal.required_dungeons') }}</label>
             <input type="number" v-model.number="s.pedDungeons" min="0" max="6" class="num-input" />
           </div>
           <div class="field">
-            <label>Required Figurines (0–136)</label>
+            <label>{{ t('settings.goal.required_figurines') }}</label>
             <input type="number" v-model.number="s.pedFigurines" min="0" max="136" class="num-input" />
           </div>
           <div class="field">
-            <label>Starting Hearts (1–20)</label>
+            <label>{{ t('settings.goal.starting_hearts') }}</label>
             <input type="number" v-model.number="s.startingHearts" min="1" max="20" class="num-input" />
           </div>
         </div>
@@ -117,73 +118,73 @@ const FUSION_OPTIONS = [
     <!-- ── DUNGEONS ──────────────────────────────────────────────────────── -->
     <div v-if="activeTab === 'dungeons'" class="tab-content two-col-layout">
       <section class="card">
-        <h3>Dungeon Shuffle</h3>
+        <h3>{{ t('settings.dungeons.dungeon_shuffle') }}</h3>
         <div class="setting-row">
-          <label>Shuffle Elements</label>
+          <label>{{ t('settings.dungeons.shuffle_elements') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.shuffleElements === 'vanilla' }]"       @click="s.shuffleElements = 'vanilla'">Vanilla</button>
-            <button :class="['opt-btn', { active: s.shuffleElements === 'dungeon_prize' }]" @click="s.shuffleElements = 'dungeon_prize'">Prize</button>
-            <button :class="['opt-btn', { active: s.shuffleElements === 'anywhere' }]"      @click="s.shuffleElements = 'anywhere'">Anywhere</button>
+            <button :class="['opt-btn', { active: s.shuffleElements === 'vanilla' }]"       @click="s.shuffleElements = 'vanilla'">{{ t('settings.dungeons.vanilla') }}</button>
+            <button :class="['opt-btn', { active: s.shuffleElements === 'dungeon_prize' }]" @click="s.shuffleElements = 'dungeon_prize'">{{ t('settings.dungeons.prize') }}</button>
+            <button :class="['opt-btn', { active: s.shuffleElements === 'anywhere' }]"      @click="s.shuffleElements = 'anywhere'">{{ t('settings.dungeons.anywhere') }}</button>
           </div>
         </div>
         <div class="setting-row">
-          <label>Small Keys</label>
+          <label>{{ t('settings.dungeons.small_keys') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.dungeonSmallKeys === 'own_dungeon' }]" @click="s.dungeonSmallKeys = 'own_dungeon'">Own</button>
-            <button :class="['opt-btn', { active: s.dungeonSmallKeys === 'anywhere' }]"    @click="s.dungeonSmallKeys = 'anywhere'">Anywhere</button>
+            <button :class="['opt-btn', { active: s.dungeonSmallKeys === 'own_dungeon' }]" @click="s.dungeonSmallKeys = 'own_dungeon'">{{ t('settings.dungeons.own') }}</button>
+            <button :class="['opt-btn', { active: s.dungeonSmallKeys === 'anywhere' }]"    @click="s.dungeonSmallKeys = 'anywhere'">{{ t('settings.dungeons.anywhere') }}</button>
           </div>
         </div>
         <div class="setting-row">
-          <label>Big Keys</label>
+          <label>{{ t('settings.dungeons.big_keys') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.dungeonBigKeys === 'own_dungeon' }]" @click="s.dungeonBigKeys = 'own_dungeon'">Own</button>
-            <button :class="['opt-btn', { active: s.dungeonBigKeys === 'anywhere' }]"    @click="s.dungeonBigKeys = 'anywhere'">Anywhere</button>
+            <button :class="['opt-btn', { active: s.dungeonBigKeys === 'own_dungeon' }]" @click="s.dungeonBigKeys = 'own_dungeon'">{{ t('settings.dungeons.own') }}</button>
+            <button :class="['opt-btn', { active: s.dungeonBigKeys === 'anywhere' }]"    @click="s.dungeonBigKeys = 'anywhere'">{{ t('settings.dungeons.anywhere') }}</button>
           </div>
         </div>
         <div class="setting-row">
-          <label>Dungeon Maps</label>
+          <label>{{ t('settings.dungeons.dungeon_maps') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.dungeonMaps === 'own_dungeon' }]" @click="s.dungeonMaps = 'own_dungeon'">Own</button>
-            <button :class="['opt-btn', { active: s.dungeonMaps === 'anywhere' }]"    @click="s.dungeonMaps = 'anywhere'">Anywhere</button>
-            <button :class="['opt-btn', { active: s.dungeonMaps === 'start_with' }]"  @click="s.dungeonMaps = 'start_with'">Start</button>
+            <button :class="['opt-btn', { active: s.dungeonMaps === 'own_dungeon' }]" @click="s.dungeonMaps = 'own_dungeon'">{{ t('settings.dungeons.own') }}</button>
+            <button :class="['opt-btn', { active: s.dungeonMaps === 'anywhere' }]"    @click="s.dungeonMaps = 'anywhere'">{{ t('settings.dungeons.anywhere') }}</button>
+            <button :class="['opt-btn', { active: s.dungeonMaps === 'start_with' }]"  @click="s.dungeonMaps = 'start_with'">{{ t('settings.dungeons.start') }}</button>
           </div>
         </div>
         <div class="setting-row">
-          <label>Compasses</label>
+          <label>{{ t('settings.dungeons.compasses') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.dungeonCompasses === 'own_dungeon' }]" @click="s.dungeonCompasses = 'own_dungeon'">Own</button>
-            <button :class="['opt-btn', { active: s.dungeonCompasses === 'anywhere' }]"    @click="s.dungeonCompasses = 'anywhere'">Anywhere</button>
-            <button :class="['opt-btn', { active: s.dungeonCompasses === 'start_with' }]"  @click="s.dungeonCompasses = 'start_with'">Start</button>
+            <button :class="['opt-btn', { active: s.dungeonCompasses === 'own_dungeon' }]" @click="s.dungeonCompasses = 'own_dungeon'">{{ t('settings.dungeons.own') }}</button>
+            <button :class="['opt-btn', { active: s.dungeonCompasses === 'anywhere' }]"    @click="s.dungeonCompasses = 'anywhere'">{{ t('settings.dungeons.anywhere') }}</button>
+            <button :class="['opt-btn', { active: s.dungeonCompasses === 'start_with' }]"  @click="s.dungeonCompasses = 'start_with'">{{ t('settings.dungeons.start') }}</button>
           </div>
         </div>
         <div class="setting-row">
-          <label>Non-Element Dungeons</label>
+          <label>{{ t('settings.dungeons.non_element_dungeons') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.nonElementDungeons === 'standard' }]" @click="s.nonElementDungeons = 'standard'">Standard</button>
-            <button :class="['opt-btn', { active: s.nonElementDungeons === 'excluded' }]" @click="s.nonElementDungeons = 'excluded'">Excluded</button>
+            <button :class="['opt-btn', { active: s.nonElementDungeons === 'standard' }]" @click="s.nonElementDungeons = 'standard'">{{ t('settings.dungeons.standard') }}</button>
+            <button :class="['opt-btn', { active: s.nonElementDungeons === 'excluded' }]" @click="s.nonElementDungeons = 'excluded'">{{ t('settings.dungeons.excluded') }}</button>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <h3>Entrance Shuffle</h3>
+        <h3>{{ t('settings.dungeons.entrance_shuffle') }}</h3>
         <div class="setting-row">
-          <label>Dungeon Entrance Shuffle</label>
+          <label>{{ t('settings.dungeons.dungeon_entrance_shuffle') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: !s.dungeonEntranceShuffle }]" @click="s.dungeonEntranceShuffle = false">No</button>
+            <button :class="['opt-btn', { active: !s.dungeonEntranceShuffle }]" @click="s.dungeonEntranceShuffle = false">{{ t('settings.dungeons.no') }}</button>
             <button
               :class="['opt-btn', { active: s.dungeonEntranceShuffle }]"
               :disabled="!isDev"
-              :title="!isDev ? 'Dev only' : ''"
+              :title="!isDev ? t('settings.dungeons.dev_only') : ''"
               @click="isDev && (s.dungeonEntranceShuffle = true)"
-            >Yes</button>
+            >{{ t('settings.dungeons.yes') }}</button>
           </div>
         </div>
-        <p class="hint-block">When enabled, dungeon entrances are shuffled. You can then assign which dungeon each entrance leads to.</p>
+        <p class="hint-block">{{ t('settings.dungeons.entrance_hint') }}</p>
       </section>
 
       <section class="card">
-        <h3>Dungeon Warps</h3>
+        <h3>{{ t('settings.dungeons.dungeon_warps') }}</h3>
         <template v-for="[key, label] in [
           ['warpDWS','DWS'],['warpCoF','CoF'],['warpFoW','FoW'],
           ['warpToD','ToD'],['warpPoW','PoW'],['warpDHC','DHC'],
@@ -204,97 +205,97 @@ const FUSION_OPTIONS = [
     <!-- ── LOCATIONS ───────────────────────────────────────────────────────── -->
     <div v-if="activeTab === 'locations'" class="tab-content two-col-layout">
       <section class="card">
-        <h3>Location Shuffle</h3>
-        <div class="setting-row"><label>Rupeesanity</label><div class="btn-group"><button :class="['opt-btn',{active:!s.rupeesanity}]" @click="s.rupeesanity=false">No</button><button :class="['opt-btn',{active:s.rupeesanity}]" @click="s.rupeesanity=true">Yes</button></div></div>
-        <div class="setting-row"><label>Shuffle Pots</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shufflePots}]" @click="s.shufflePots=false">No</button><button :class="['opt-btn',{active:s.shufflePots}]" @click="s.shufflePots=true">Yes</button></div></div>
-        <div class="setting-row"><label>Shuffle Digging</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shuffleDigging}]" @click="s.shuffleDigging=false">No</button><button :class="['opt-btn',{active:s.shuffleDigging}]" @click="s.shuffleDigging=true">Yes</button></div></div>
-        <div class="setting-row"><label>Shuffle Underwater</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shuffleUnderwater}]" @click="s.shuffleUnderwater=false">No</button><button :class="['opt-btn',{active:s.shuffleUnderwater}]" @click="s.shuffleUnderwater=true">Yes</button></div></div>
-        <div class="setting-row"><label>Gold Enemies</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shuffleGoldEnemies}]" @click="s.shuffleGoldEnemies=false">No</button><button :class="['opt-btn',{active:s.shuffleGoldEnemies}]" @click="s.shuffleGoldEnemies=true">Yes</button></div></div>
-        <div class="setting-row"><label>Extra Shop Item</label><div class="btn-group"><button :class="['opt-btn',{active:!s.extraShopItem}]" @click="s.extraShopItem=false">No</button><button :class="['opt-btn',{active:s.extraShopItem}]" @click="s.extraShopItem=true">Yes</button></div></div>
-        <div class="setting-row"><label>Early Weapon</label><div class="btn-group"><button :class="['opt-btn',{active:!s.earlyWeapon}]" @click="s.earlyWeapon=false">No</button><button :class="['opt-btn',{active:s.earlyWeapon}]" @click="s.earlyWeapon=true">Yes</button></div></div>
+        <h3>{{ t('settings.locations.location_shuffle') }}</h3>
+        <div class="setting-row"><label>{{ t('settings.locations.rupeesanity') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.rupeesanity}]" @click="s.rupeesanity=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.rupeesanity}]" @click="s.rupeesanity=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.shuffle_pots') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shufflePots}]" @click="s.shufflePots=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.shufflePots}]" @click="s.shufflePots=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.shuffle_digging') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shuffleDigging}]" @click="s.shuffleDigging=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.shuffleDigging}]" @click="s.shuffleDigging=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.shuffle_underwater') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shuffleUnderwater}]" @click="s.shuffleUnderwater=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.shuffleUnderwater}]" @click="s.shuffleUnderwater=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.gold_enemies') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.shuffleGoldEnemies}]" @click="s.shuffleGoldEnemies=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.shuffleGoldEnemies}]" @click="s.shuffleGoldEnemies=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.extra_shop_item') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.extraShopItem}]" @click="s.extraShopItem=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.extraShopItem}]" @click="s.extraShopItem=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.early_weapon') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.earlyWeapon}]" @click="s.earlyWeapon=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.earlyWeapon}]" @click="s.earlyWeapon=true">{{ t('settings.dungeons.yes') }}</button></div></div>
         <div class="setting-row mt-8">
-          <label>Biggoron</label>
+          <label>{{ t('settings.locations.biggoron') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.biggoron === 'disabled' }]"      @click="s.biggoron = 'disabled'">Disabled</button>
-            <button :class="['opt-btn', { active: s.biggoron === 'shield' }]"        @click="s.biggoron = 'shield'">Shield</button>
-            <button :class="['opt-btn', { active: s.biggoron === 'mirror_shield' }]" @click="s.biggoron = 'mirror_shield'">Mirror Shield</button>
+            <button :class="['opt-btn', { active: s.biggoron === 'disabled' }]"      @click="s.biggoron = 'disabled'">{{ t('settings.locations.disabled') }}</button>
+            <button :class="['opt-btn', { active: s.biggoron === 'shield' }]"        @click="s.biggoron = 'shield'">{{ t('settings.locations.shield') }}</button>
+            <button :class="['opt-btn', { active: s.biggoron === 'mirror_shield' }]" @click="s.biggoron = 'mirror_shield'">{{ t('settings.locations.mirror_shield') }}</button>
           </div>
         </div>
         <div class="two-col-fields mt-8">
           <div class="field">
-            <label>Cucco Rounds (0–10)</label>
+            <label>{{ t('settings.locations.cucco_rounds') }}</label>
             <input type="number" v-model.number="s.cuccoRounds" min="0" max="10" class="num-input" />
           </div>
           <div class="field">
-            <label>Goron Sets (0–5)</label>
+            <label>{{ t('settings.locations.goron_sets') }}</label>
             <input type="number" v-model.number="s.goronSets" min="0" max="5" class="num-input" />
           </div>
         </div>
-        <div class="setting-row mt-8"><label>Goron JP Prices</label><div class="btn-group"><button :class="['opt-btn',{active:!s.goronJPPrices}]" @click="s.goronJPPrices=false">No</button><button :class="['opt-btn',{active:s.goronJPPrices}]" @click="s.goronJPPrices=true">Yes</button></div></div>
+        <div class="setting-row mt-8"><label>{{ t('settings.locations.goron_jp_prices') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.goronJPPrices}]" @click="s.goronJPPrices=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.goronJPPrices}]" @click="s.goronJPPrices=true">{{ t('settings.dungeons.yes') }}</button></div></div>
       </section>
 
       <section class="card">
-        <h3>Wind Crests <span class="hint-inline">(unlocked at start)</span></h3>
-        <div class="setting-row"><label>Mt. Crenel</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestCrenel}]" @click="s.windCrestCrenel=false">No</button><button :class="['opt-btn',{active:s.windCrestCrenel}]" @click="s.windCrestCrenel=true">Yes</button></div></div>
-        <div class="setting-row"><label>Veil Falls</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestFalls}]" @click="s.windCrestFalls=false">No</button><button :class="['opt-btn',{active:s.windCrestFalls}]" @click="s.windCrestFalls=true">Yes</button></div></div>
-        <div class="setting-row"><label>Cloud Tops</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestClouds}]" @click="s.windCrestClouds=false">No</button><button :class="['opt-btn',{active:s.windCrestClouds}]" @click="s.windCrestClouds=true">Yes</button></div></div>
-        <div class="setting-row"><label>Castor Wilds</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestCastor}]" @click="s.windCrestCastor=false">No</button><button :class="['opt-btn',{active:s.windCrestCastor}]" @click="s.windCrestCastor=true">Yes</button></div></div>
-        <div class="setting-row"><label>South Field</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestSouthField}]" @click="s.windCrestSouthField=false">No</button><button :class="['opt-btn',{active:s.windCrestSouthField}]" @click="s.windCrestSouthField=true">Yes</button></div></div>
-        <div class="setting-row"><label>Minish Woods</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestMinishWoods}]" @click="s.windCrestMinishWoods=false">No</button><button :class="['opt-btn',{active:s.windCrestMinishWoods}]" @click="s.windCrestMinishWoods=true">Yes</button></div></div>
+        <h3>{{ t('settings.locations.wind_crests') }} <span class="hint-inline">{{ t('settings.locations.wind_crests_hint') }}</span></h3>
+        <div class="setting-row"><label>{{ t('settings.locations.mt_crenel') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestCrenel}]" @click="s.windCrestCrenel=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.windCrestCrenel}]" @click="s.windCrestCrenel=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.veil_falls') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestFalls}]" @click="s.windCrestFalls=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.windCrestFalls}]" @click="s.windCrestFalls=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.cloud_tops') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestClouds}]" @click="s.windCrestClouds=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.windCrestClouds}]" @click="s.windCrestClouds=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.castor_wilds') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestCastor}]" @click="s.windCrestCastor=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.windCrestCastor}]" @click="s.windCrestCastor=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.south_field') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestSouthField}]" @click="s.windCrestSouthField=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.windCrestSouthField}]" @click="s.windCrestSouthField=true">{{ t('settings.dungeons.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.locations.minish_woods') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.windCrestMinishWoods}]" @click="s.windCrestMinishWoods=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.windCrestMinishWoods}]" @click="s.windCrestMinishWoods=true">{{ t('settings.dungeons.yes') }}</button></div></div>
       </section>
     </div>
 
     <!-- ── ITEMS ───────────────────────────────────────────────────────────── -->
     <div v-if="activeTab === 'items'" class="tab-content two-col-layout">
       <section class="card">
-        <h3>Progressive Items</h3>
-        <div class="setting-row"><label>Progressive Sword</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveSword}]" @click="s.progressiveSword=false">No</button><button :class="['opt-btn',{active:s.progressiveSword}]" @click="s.progressiveSword=true">Yes</button></div></div>
-        <div class="setting-row"><label>Progressive Shield</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveShield}]" @click="s.progressiveShield=false">No</button><button :class="['opt-btn',{active:s.progressiveShield}]" @click="s.progressiveShield=true">Yes</button></div></div>
-        <div class="setting-row"><label>Progressive Bow</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveBow}]" @click="s.progressiveBow=false">No</button><button :class="['opt-btn',{active:s.progressiveBow}]" @click="s.progressiveBow=true">Yes</button></div></div>
-        <div class="setting-row"><label>Progressive Boomerang</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveBoomerang}]" @click="s.progressiveBoomerang=false">No</button><button :class="['opt-btn',{active:s.progressiveBoomerang}]" @click="s.progressiveBoomerang=true">Yes</button></div></div>
-        <div class="setting-row"><label>Progressive Scroll</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveScroll}]" @click="s.progressiveScroll=false">No</button><button :class="['opt-btn',{active:s.progressiveScroll}]" @click="s.progressiveScroll=true">Yes</button></div></div>
-        <div class="setting-row"><label>Random Bottle Contents</label><div class="btn-group"><button :class="['opt-btn',{active:!s.randomBottleContents}]" @click="s.randomBottleContents=false">No</button><button :class="['opt-btn',{active:s.randomBottleContents}]" @click="s.randomBottleContents=true">Yes</button></div></div>
-        <div class="setting-row"><label>Traps Enabled</label><div class="btn-group"><button :class="['opt-btn',{active:!s.trapsEnabled}]" @click="s.trapsEnabled=false">No</button><button :class="['opt-btn',{active:s.trapsEnabled}]" @click="s.trapsEnabled=true">Yes</button></div></div>
+        <h3>{{ t('settings.items.progressive_items') }}</h3>
+        <div class="setting-row"><label>{{ t('settings.items.progressive_sword') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveSword}]" @click="s.progressiveSword=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.progressiveSword}]" @click="s.progressiveSword=true">{{ t('settings.items.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.items.progressive_shield') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveShield}]" @click="s.progressiveShield=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.progressiveShield}]" @click="s.progressiveShield=true">{{ t('settings.items.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.items.progressive_bow') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveBow}]" @click="s.progressiveBow=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.progressiveBow}]" @click="s.progressiveBow=true">{{ t('settings.items.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.items.progressive_boomerang') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveBoomerang}]" @click="s.progressiveBoomerang=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.progressiveBoomerang}]" @click="s.progressiveBoomerang=true">{{ t('settings.items.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.items.progressive_scroll') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveScroll}]" @click="s.progressiveScroll=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.progressiveScroll}]" @click="s.progressiveScroll=true">{{ t('settings.items.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.items.random_bottle_contents') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.randomBottleContents}]" @click="s.randomBottleContents=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.randomBottleContents}]" @click="s.randomBottleContents=true">{{ t('settings.items.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.items.traps_enabled') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.trapsEnabled}]" @click="s.trapsEnabled=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.trapsEnabled}]" @click="s.trapsEnabled=true">{{ t('settings.items.yes') }}</button></div></div>
       </section>
 
       <section class="card">
-        <h3>Difficulty &amp; Weapons</h3>
+        <h3>{{ t('settings.items.difficulty') }}</h3>
         <div class="two-col-fields">
           <div class="field">
-            <label>Heart Containers (0–20)</label>
+            <label>{{ t('settings.items.heart_containers') }}</label>
             <input type="number" v-model.number="s.heartContainers" min="0" max="20" class="num-input" />
           </div>
           <div class="field">
-            <label>Pieces of Heart (0–20)</label>
+            <label>{{ t('settings.items.pieces_of_heart') }}</label>
             <input type="number" v-model.number="s.pieceOfHearts" min="0" max="20" class="num-input" />
           </div>
         </div>
         <div class="setting-row mt-8">
-          <label>Bomb Bag Required</label>
+          <label>{{ t('settings.items.bomb_bag_required') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.weaponBomb === 0 }]" @click="s.weaponBomb = 0">Bag required</button>
-            <button :class="['opt-btn', { active: s.weaponBomb === 1 }]" @click="s.weaponBomb = 1">Free bombs</button>
-            <button :class="['opt-btn', { active: s.weaponBomb === 2 }]" @click="s.weaponBomb = 2">Free + Bosses</button>
+            <button :class="['opt-btn', { active: s.weaponBomb === 0 }]" @click="s.weaponBomb = 0">{{ t('settings.items.bag_required') }}</button>
+            <button :class="['opt-btn', { active: s.weaponBomb === 1 }]" @click="s.weaponBomb = 1">{{ t('settings.items.free_bombs') }}</button>
+            <button :class="['opt-btn', { active: s.weaponBomb === 2 }]" @click="s.weaponBomb = 2">{{ t('settings.items.free_plus_bosses') }}</button>
           </div>
         </div>
-        <div class="setting-row mt-8"><label>Bow = Weapon</label><div class="btn-group"><button :class="['opt-btn',{active:!s.weaponBow}]" @click="s.weaponBow=false">No</button><button :class="['opt-btn',{active:s.weaponBow}]" @click="s.weaponBow=true">Yes</button></div></div>
-        <div class="setting-row"><label>Gust Jar = Weapon</label><div class="btn-group"><button :class="['opt-btn',{active:!s.weaponGust}]" @click="s.weaponGust=false">No</button><button :class="['opt-btn',{active:s.weaponGust}]" @click="s.weaponGust=true">Yes</button></div></div>
-        <div class="setting-row"><label>Lantern = Weapon</label><div class="btn-group"><button :class="['opt-btn',{active:!s.weaponLantern}]" @click="s.weaponLantern=false">No</button><button :class="['opt-btn',{active:s.weaponLantern}]" @click="s.weaponLantern=true">Yes</button></div></div>
+        <div class="setting-row mt-8"><label>{{ t('settings.items.bow_weapon') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.weaponBow}]" @click="s.weaponBow=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.weaponBow}]" @click="s.weaponBow=true">{{ t('settings.items.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.items.gust_jar_weapon') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.weaponGust}]" @click="s.weaponGust=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.weaponGust}]" @click="s.weaponGust=true">{{ t('settings.items.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.items.lantern_weapon') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.weaponLantern}]" @click="s.weaponLantern=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.weaponLantern}]" @click="s.weaponLantern=true">{{ t('settings.items.yes') }}</button></div></div>
       </section>
     </div>
 
     <!-- ── FUSIONS ─────────────────────────────────────────────────────────── -->
     <div v-if="activeTab === 'fusions'" class="tab-content">
       <section class="card">
-        <h3>Fusion Access</h3>
-        <template v-for="[key, label, model] in [
-          ['gold','Gold Kinstone','goldFusionAccess'],
-          ['red','Red Kinstone','redFusionAccess'],
-          ['blue','Blue Kinstone','blueFusionAccess'],
-          ['green','Green Kinstone','greenFusionAccess'],
+        <h3>{{ t('settings.fusions.fusion_access') }}</h3>
+        <template v-for="[key, labelKey, model] in [
+          ['gold','gold_kinstone','goldFusionAccess'],
+          ['red','red_kinstone','redFusionAccess'],
+          ['blue','blue_kinstone','blueFusionAccess'],
+          ['green','green_kinstone','greenFusionAccess'],
         ]" :key="key">
           <div class="setting-row">
-            <label>{{ label }}</label>
+            <label>{{ t('settings.fusions.' + labelKey) }}</label>
             <div class="btn-group">
               <button v-for="o in FUSION_OPTIONS" :key="o.value"
                 :class="['opt-btn', { active: s[model] === o.value }]"
@@ -305,11 +306,11 @@ const FUSION_OPTIONS = [
         </template>
         <div class="two-col-fields mt-8">
           <div class="field">
-            <label>Cloud Multiplier ×<span class="hint-inline">(1–9)</span></label>
+            <label>{{ t('settings.fusions.cloud_multiplier') }}<span class="hint-inline">(1–9)</span></label>
             <input type="number" v-model.number="s.cloudKinstoneMultiplier" min="1" max="9" class="num-input" />
           </div>
           <div class="field">
-            <label>Swamp Multiplier ×<span class="hint-inline">(1–3)</span></label>
+            <label>{{ t('settings.fusions.swamp_multiplier') }}<span class="hint-inline">(1–3)</span></label>
             <input type="number" v-model.number="s.swampKinstoneMultiplier" min="1" max="3" class="num-input" />
           </div>
         </div>
@@ -319,27 +320,27 @@ const FUSION_OPTIONS = [
     <!-- ── QOL & TRICKS ────────────────────────────────────────────────────── -->
     <div v-if="activeTab === 'qol'" class="tab-content two-col-layout">
       <section class="card">
-        <h3>Quality of Life</h3>
-        <div class="setting-row"><label>Ocarina on Select</label><div class="btn-group"><button :class="['opt-btn',{active:!s.ocarinaOnSelect}]" @click="s.ocarinaOnSelect=false">No</button><button :class="['opt-btn',{active:s.ocarinaOnSelect}]" @click="s.ocarinaOnSelect=true">Yes</button></div></div>
-        <div class="setting-row"><label>Boots on L</label><div class="btn-group"><button :class="['opt-btn',{active:!s.bootsOnL}]" @click="s.bootsOnL=false">No</button><button :class="['opt-btn',{active:s.bootsOnL}]" @click="s.bootsOnL=true">Yes</button></div></div>
-        <div class="setting-row"><label>Boots as Minish</label><div class="btn-group"><button :class="['opt-btn',{active:!s.bootsAsMinish}]" @click="s.bootsAsMinish=false">No</button><button :class="['opt-btn',{active:s.bootsAsMinish}]" @click="s.bootsAsMinish=true">Yes</button></div></div>
-        <div class="setting-row"><label>Skip Big Octorok</label><div class="btn-group"><button :class="['opt-btn',{active:!s.bigOctoManipulation}]" @click="s.bigOctoManipulation=false">No</button><button :class="['opt-btn',{active:s.bigOctoManipulation}]" @click="s.bigOctoManipulation=true">Yes</button></div></div>
-        <div class="setting-row"><label>ToD Boss Door Replica</label><div class="btn-group"><button :class="['opt-btn',{active:!s.replicaTODBossDoor}]" @click="s.replicaTODBossDoor=false">No</button><button :class="['opt-btn',{active:s.replicaTODBossDoor}]" @click="s.replicaTODBossDoor=true">Yes</button></div></div>
+        <h3>{{ t('settings.qol.quality_of_life') }}</h3>
+        <div class="setting-row"><label>{{ t('settings.qol.ocarina_on_select') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.ocarinaOnSelect}]" @click="s.ocarinaOnSelect=false">{{ t('settings.qol.no') }}</button><button :class="['opt-btn',{active:s.ocarinaOnSelect}]" @click="s.ocarinaOnSelect=true">{{ t('settings.qol.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.qol.boots_on_l') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.bootsOnL}]" @click="s.bootsOnL=false">{{ t('settings.qol.no') }}</button><button :class="['opt-btn',{active:s.bootsOnL}]" @click="s.bootsOnL=true">{{ t('settings.qol.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.qol.boots_as_minish') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.bootsAsMinish}]" @click="s.bootsAsMinish=false">{{ t('settings.qol.no') }}</button><button :class="['opt-btn',{active:s.bootsAsMinish}]" @click="s.bootsAsMinish=true">{{ t('settings.qol.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.qol.skip_big_octorok') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.bigOctoManipulation}]" @click="s.bigOctoManipulation=false">{{ t('settings.qol.no') }}</button><button :class="['opt-btn',{active:s.bigOctoManipulation}]" @click="s.bigOctoManipulation=true">{{ t('settings.qol.yes') }}</button></div></div>
+        <div class="setting-row"><label>{{ t('settings.qol.tod_boss_door') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.replicaTODBossDoor}]" @click="s.replicaTODBossDoor=false">{{ t('settings.qol.no') }}</button><button :class="['opt-btn',{active:s.replicaTODBossDoor}]" @click="s.replicaTODBossDoor=true">{{ t('settings.qol.yes') }}</button></div></div>
       </section>
 
       <section class="card tricks-card">
         <div class="tricks-header">
-          <h3>Tricks <span class="hint-inline">(yellow = accessible with tricks)</span></h3>
+          <h3>{{ t('settings.qol.tricks') }} <span class="hint-inline">{{ t('settings.qol.tricks_hint') }}</span></h3>
           <div class="tricks-btns">
-            <button class="btn-sm" @click="s.setAllTricks(true)">All</button>
-            <button class="btn-sm" @click="s.setAllTricks(false)">None</button>
+            <button class="btn-sm" @click="s.setAllTricks(true)">{{ t('settings.qol.all') }}</button>
+            <button class="btn-sm" @click="s.setAllTricks(false)">{{ t('settings.qol.none') }}</button>
           </div>
         </div>
         <div v-for="trick in Object.values(TRICKS)" :key="trick.key" class="setting-row">
           <label>{{ trick.label }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn',{active:!s.hasTrick(trick.key)}]" @click="s.hasTrick(trick.key) && s.toggleTrick(trick.key)">No</button>
-            <button :class="['opt-btn',{active:s.hasTrick(trick.key)}]"  @click="!s.hasTrick(trick.key) && s.toggleTrick(trick.key)">Yes</button>
+            <button :class="['opt-btn',{active:!s.hasTrick(trick.key)}]" @click="s.hasTrick(trick.key) && s.toggleTrick(trick.key)">{{ t('settings.qol.no') }}</button>
+            <button :class="['opt-btn',{active:s.hasTrick(trick.key)}]"  @click="!s.hasTrick(trick.key) && s.toggleTrick(trick.key)">{{ t('settings.qol.yes') }}</button>
           </div>
         </div>
       </section>
@@ -348,34 +349,33 @@ const FUSION_OPTIONS = [
     <!-- ── TRACKER ─────────────────────────────────────────────────────────── -->
     <div v-if="activeTab === 'tracker'" class="tab-content">
       <section class="card">
-        <h3>Tracker Display</h3>
-        <div class="setting-row"><label>Show inaccessible locations</label><div class="btn-group"><button :class="['opt-btn',{active:!s.showInaccessible}]" @click="s.showInaccessible=false">No</button><button :class="['opt-btn',{active:s.showInaccessible}]" @click="s.showInaccessible=true">Yes</button></div></div>
-        <p class="hint-block">
-          By default, <span style="color:#f44336">red</span> (inaccessible) locations are hidden
-          in the checklist and left panel. Enabling this option shows them.
-          Map pins are never hidden.
-        </p>
+        <h3>{{ t('settings.tracker.tracker_display') }}</h3>
+        <div class="setting-row">
+          <label>{{ t('settings.tracker.language') }}</label>
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: locale === 'FR' }]" @click="locale = 'FR'">🇫🇷 FR</button>
+            <button :class="['opt-btn', { active: locale === 'EN' }]" @click="locale = 'EN'">🇬🇧 EN</button>
+          </div>
+        </div>
+        <div class="setting-row"><label>{{ t('settings.tracker.show_inaccessible') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.showInaccessible}]" @click="s.showInaccessible=false">{{ t('settings.tracker.off') }}</button><button :class="['opt-btn',{active:s.showInaccessible}]" @click="s.showInaccessible=true">{{ t('settings.tracker.on') }}</button></div></div>
+        <p class="hint-block">{{ t('settings.tracker.inaccessible_hint') }}</p>
 
         <div class="setting-row" style="margin-top:10px">
-          <label>Auto tab — Dungeons</label>
+          <label>{{ t('settings.tracker.auto_tab_dungeons') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.autoTabDungeons === 'non' }]"      @click="s.autoTabDungeons = 'non'">Off</button>
-            <button :class="['opt-btn', { active: s.autoTabDungeons === 'overview' }]" @click="s.autoTabDungeons = 'overview'">Overview</button>
-            <button :class="['opt-btn', { active: s.autoTabDungeons === 'etage' }]"    @click="s.autoTabDungeons = 'etage'">Floor</button>
+            <button :class="['opt-btn', { active: s.autoTabDungeons === 'non' }]"      @click="s.autoTabDungeons = 'non'">{{ t('settings.tracker.off') }}</button>
+            <button :class="['opt-btn', { active: s.autoTabDungeons === 'overview' }]" @click="s.autoTabDungeons = 'overview'">{{ t('settings.tracker.overview') }}</button>
+            <button :class="['opt-btn', { active: s.autoTabDungeons === 'etage' }]"    @click="s.autoTabDungeons = 'etage'">{{ t('settings.tracker.floor') }}</button>
           </div>
         </div>
         <div class="setting-row">
-          <label>Auto tab — Overworld</label>
+          <label>{{ t('settings.tracker.auto_tab_overworld') }}</label>
           <div class="btn-group">
-            <button :class="['opt-btn', { active: s.autoTabOverworld === 'non' }]" @click="s.autoTabOverworld = 'non'">Off</button>
-            <button :class="['opt-btn', { active: s.autoTabOverworld === 'oui' }]" @click="s.autoTabOverworld = 'oui'">On</button>
+            <button :class="['opt-btn', { active: s.autoTabOverworld === 'non' }]" @click="s.autoTabOverworld = 'non'">{{ t('settings.tracker.off') }}</button>
+            <button :class="['opt-btn', { active: s.autoTabOverworld === 'oui' }]" @click="s.autoTabOverworld = 'oui'">{{ t('settings.tracker.on') }}</button>
           </div>
         </div>
-        <p class="hint-block">
-          Controls whether the map switches automatically when you change area (autotracking / AP).
-          <b>Floor</b> shows individual floor maps in dungeons.
-          <b>Overview</b> shows the full dungeon overview map.
-        </p>
+        <p class="hint-block">{{ t('settings.tracker.auto_tab_hint') }}</p>
       </section>
     </div>
 

@@ -3,8 +3,10 @@ import { ref } from 'vue'
 import { useStateStore } from '../stores/stateStore'
 import { connectToAP, disconnectFromAP } from '../archipelago/client'
 import { connectToBizhawk, disconnectFromBizhawk } from '../autotracking/bizhawk'
+import { useLocale } from '../composables/useLocale'
 
 const store = useStateStore()
+const { t } = useLocale()
 const isDev = import.meta.env.DEV
 const connecting = ref(false)
 const error = ref('')
@@ -20,7 +22,7 @@ async function connect() {
     store.apPassword,
   )
   connecting.value = false
-  if (!ok) error.value = 'Connection failed. Check server/slot/password.'
+  if (!ok) error.value = t('ap_connect.error')
   else showPanel.value = false
 }
 
@@ -38,10 +40,10 @@ function toggleBizhawk() {
   <div class="ap-connect">
     <div class="btn-row">
       <button v-if="!store.apConnected" class="btn-connect" @click="showPanel = !showPanel">
-        Connect to AP
+        {{ t('ap_connect.connect') }}
       </button>
       <button v-else class="btn-disconnect" @click="disconnect">
-        Disconnect AP
+        {{ t('ap_connect.disconnect') }}
       </button>
 
       <button
@@ -50,29 +52,29 @@ function toggleBizhawk() {
         :class="{ connected: store.bizhawkConnected }"
         @click="toggleBizhawk"
       >
-        {{ store.bizhawkConnected ? 'Bizhawk ✓' : 'Bizhawk Lua' }}
+        {{ store.bizhawkConnected ? t('ap_connect.bizhawk_connected') : t('ap_connect.bizhawk_lua') }}
       </button>
     </div>
 
     <div v-if="showPanel && !store.apConnected" class="panel">
-      <h3>Archipelago Connection</h3>
+      <h3>{{ t('ap_connect.panel_title') }}</h3>
 
-      <label>Server</label>
+      <label>{{ t('ap_connect.server') }}</label>
       <input v-model="store.apServer" placeholder="archipelago.gg" />
 
-      <label>Port</label>
+      <label>{{ t('ap_connect.port') }}</label>
       <input v-model.number="store.apPort" type="number" placeholder="38281" />
 
-      <label>Slot Name</label>
+      <label>{{ t('ap_connect.slot_name') }}</label>
       <input v-model="store.apSlot" placeholder="Player1" />
 
-      <label>Password (optional)</label>
+      <label>{{ t('ap_connect.password') }}</label>
       <input v-model="store.apPassword" type="password" placeholder="" />
 
       <div v-if="error" class="error">{{ error }}</div>
 
       <button class="btn-go" :disabled="connecting || !store.apSlot" @click="connect">
-        {{ connecting ? 'Connecting…' : 'Connect' }}
+        {{ connecting ? t('ap_connect.connecting') : t('ap_connect.connect_btn') }}
       </button>
     </div>
   </div>

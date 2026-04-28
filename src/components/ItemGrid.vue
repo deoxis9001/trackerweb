@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { computeAccessibility, buildInventory } from '../logic/accessibility'
+import { useLocale } from '../composables/useLocale'
 import {
   ITEM_IMAGES,
   ITEM_MAX_COUNT,
@@ -19,6 +20,7 @@ import {
 
 const store    = useStateStore()
 const settings = useSettingsStore()
+const { t, tItem, tLocation, tRegion } = useLocale()
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -164,7 +166,8 @@ function isAtMax(key) {
 }
 
 function itemTitle(key) {
-  return store.allItems.find(i => i.key === key)?.name ?? key
+  const fallback = store.allItems.find(i => i.key === key)?.name ?? key
+  return tItem(key, fallback)
 }
 
 function padRow(row, n = 8) {
@@ -227,11 +230,13 @@ function locListColor(loc) {
 const groupedMapLocations = computed(() => {
   const groups = {}
   for (const loc of visibleMapLocations.value) {
-    const key = loc.region_name || 'Inconnu'
-    if (!groups[key]) groups[key] = []
-    groups[key].push(loc)
+    const key = loc.region_key || loc.region_name || 'Inconnu'
+    if (!groups[key]) groups[key] = { locs: [], fallback: loc.region_name || key }
+    groups[key].locs.push(loc)
   }
-  return Object.entries(groups).sort(([a], [b]) => a.localeCompare(b))
+  return Object.entries(groups)
+    .map(([key, { locs, fallback }]) => [key, locs, tRegion(key, fallback)])
+    .sort(([, , a], [, , b]) => a.localeCompare(b))
 })
 
 const expandedMapRegions = ref(new Set())
@@ -245,7 +250,7 @@ function regionChecked(locs) { return locs.filter(l => store.isChecked(l.id)).le
 const regionStats = computed(() => {
   const stats = {}
   for (const loc of mapLocations.value) {
-    const key = loc.region_name || 'Inconnu'
+    const key = loc.region_key || loc.region_name || 'Inconnu'
     if (!stats[key]) stats[key] = { total: 0, checked: 0 }
     stats[key].total++
     if (store.isChecked(loc.id)) stats[key].checked++
@@ -331,7 +336,7 @@ const gridSections = computed(() => {
               <div
                 v-else-if="key === 'PROGRESSIVE_COUNT_SCROLL'"
                 :class="['item-cell', 'auto-count', countScrollActive() > 0 && 'has-item']"
-                title="Spin Scrolls actifs"
+                :title="t('item_grid.spin_scrolls_active')"
               >
                 <img :src="imgSrc(key)" :alt="key" />
                 <span v-if="countScrollActive() > 0" :class="['count-badge', countScrollActive() >= 11 && 'count-max']">{{ countScrollActive() }}</span>
@@ -341,7 +346,7 @@ const gridSections = computed(() => {
               <div
                 v-else-if="key === 'HEART_TOTAL'"
                 class="item-cell has-item"
-                title="Total Hearts"
+                :title="t('item_grid.total_hearts')"
                 @click="incrementHearts()"
                 @contextmenu.prevent="decrementHearts()"
               >
@@ -407,7 +412,7 @@ const gridSections = computed(() => {
           ><img :src="imgSrc(dungeon)" :alt="dungeon" /></div>
           <div class="item-cell empty sm" />
           <div :class="['item-cell', 'sm', hasItem('WIND_ELEMENT') && 'has-item']"
-            title="Wind Element"
+            :title="t('item_grid.wind_element')"
             @click="incrementItem('WIND_ELEMENT')"
             @contextmenu="onRightClickItem($event, 'WIND_ELEMENT')"
           ><img :src="imgSrc('WIND_ELEMENT')" alt="Wind Element" /></div>
@@ -429,7 +434,7 @@ const gridSections = computed(() => {
           </div>
           <div class="item-cell empty sm" />
           <div :class="['item-cell', 'sm', hasItem('FIRE_ELEMENT') && 'has-item']"
-            title="Fire Element"
+            :title="t('item_grid.fire_element')"
             @click="incrementItem('FIRE_ELEMENT')"
             @contextmenu="onRightClickItem($event, 'FIRE_ELEMENT')"
           ><img :src="imgSrc('FIRE_ELEMENT')" alt="Fire Element" /></div>
@@ -448,7 +453,7 @@ const gridSections = computed(() => {
           </template>
           <div class="item-cell empty sm" />
           <div :class="['item-cell', 'sm', hasItem('WATER_ELEMENT') && 'has-item']"
-            title="Water Element"
+            :title="t('item_grid.water_element')"
             @click="incrementItem('WATER_ELEMENT')"
             @contextmenu="onRightClickItem($event, 'WATER_ELEMENT')"
           ><img :src="imgSrc('WATER_ELEMENT')" alt="Water Element" /></div>
@@ -470,7 +475,7 @@ const gridSections = computed(() => {
           </template>
           <div class="item-cell empty sm" />
           <div :class="['item-cell', 'sm', hasItem('EARTH_ELEMENT') && 'has-item']"
-            title="Earth Element"
+            :title="t('item_grid.earth_element')"
             @click="incrementItem('EARTH_ELEMENT')"
             @contextmenu="onRightClickItem($event, 'EARTH_ELEMENT')"
           ><img :src="imgSrc('EARTH_ELEMENT')" alt="Earth Element" /></div>
@@ -481,7 +486,7 @@ const gridSections = computed(() => {
     <!-- ── Location list for current view ── -->
     <div class="loc-section">
       <div class="loc-section-title">
-        {{ store.activeView === 'overworld' ? 'Overworld' : store.activeView }} Locations
+        {{ store.activeView === 'overworld' ? t('item_grid.overworld_locations') : t('item_grid.dungeon_locations', { dungeon: store.activeView }) }}
         <span class="loc-count">{{ mapLocations.filter(l => store.isChecked(l.id)).length }}/{{ mapLocations.length }}</span>
       </div>
       <div class="loc-list">
@@ -502,13 +507,13 @@ const gridSections = computed(() => {
 
         <template v-else>
           <!-- Overworld : groupé par région -->
-          <div v-for="([region, locs]) in groupedMapLocations" :key="region" class="loc-group">
-            <div class="loc-group-header" @click="toggleMapRegion(region)">
-              <span class="loc-group-arrow">{{ expandedMapRegions.has(region) ? '▼' : '▶' }}</span>
-              <span class="loc-group-name">{{ region }}</span>
-              <span class="loc-group-count">{{ regionStats[region]?.checked ?? 0 }}/{{ regionStats[region]?.total ?? 0 }}</span>
+          <div v-for="([key, locs, label]) in groupedMapLocations" :key="key" class="loc-group">
+            <div class="loc-group-header" @click="toggleMapRegion(key)">
+              <span class="loc-group-arrow">{{ expandedMapRegions.has(key) ? '▼' : '▶' }}</span>
+              <span class="loc-group-name">{{ label }}</span>
+              <span class="loc-group-count">{{ regionStats[key]?.checked ?? 0 }}/{{ regionStats[key]?.total ?? 0 }}</span>
             </div>
-            <template v-if="expandedMapRegions.has(region)">
+            <template v-if="expandedMapRegions.has(key)">
               <div
                 v-for="loc in locs"
                 :key="loc.id"
@@ -517,13 +522,13 @@ const gridSections = computed(() => {
                 @contextmenu="onRightClickLoc($event, loc)"
               >
                 <span class="loc-dot" :style="{ color: locListColor(loc) }">●</span>
-                <span class="loc-name">{{ loc.name }}</span>
+                <span class="loc-name">{{ tLocation(loc.key, loc.name) }}</span>
               </div>
             </template>
           </div>
         </template>
 
-        <div v-if="!visibleMapLocations.length" class="loc-empty">Aucune location</div>
+        <div v-if="!visibleMapLocations.length" class="loc-empty">{{ t('item_grid.no_locations') }}</div>
       </div>
     </div>
 

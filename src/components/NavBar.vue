@@ -5,12 +5,14 @@ import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { disconnectFromAP, resyncFromAP } from '../archipelago/client'
 import ArchipelagoLogo from './ArchipelagoLogo.vue'
+import { useLocale } from '../composables/useLocale'
 
 const store    = useStateStore()
 const settings = useSettingsStore()
 const router   = useRouter()
 const route    = useRoute()
 const isDev    = import.meta.env.DEV
+const { t }    = useLocale()
 
 function goToTracker() {
   if (route.path !== '/') router.push('/')
@@ -95,7 +97,7 @@ function openBroadcastRegions() {
       <button
         :class="['tab', store.activeView === 'overworld' && 'active']"
         @click="goToTracker(); store.setActiveView('overworld')"
-      >Overworld</button>
+      >{{ t('navbar.overworld') }}</button>
       <div
         v-for="dungeon in store.dungeonRegions"
         :key="dungeon"
@@ -123,18 +125,18 @@ function openBroadcastRegions() {
       <button
         :class="['tab', store.activePanel === 'map' && 'active']"
         @click="goToTracker(); store.setActivePanel('map')"
-      >Map</button>
+      >{{ t('navbar.map') }}</button>
       <button
         :class="['tab', store.activePanel === 'checklist' && 'active']"
         @click="goToTracker(); store.setActivePanel('checklist')"
-      >List</button>
+      >{{ t('navbar.list') }}</button>
     </div>
 
     <div class="stats">{{ store.checkedCount }} / {{ store.totalCount }}</div>
 
     <div class="ap-status">
-      <button class="tab reset-btn" @click="handleReset()">Reset</button>
-      <ArchipelagoLogo :size="22" :active="store.apConnected" :title="store.apConnected ? 'Connected' : 'Offline'"/>
+      <button class="tab reset-btn" @click="handleReset()">{{ t('navbar.reset') }}</button>
+      <ArchipelagoLogo :size="22" :active="store.apConnected" :title="store.apConnected ? t('navbar.connected') : t('navbar.offline')"/>
     </div>
 
     <div class="nav-right">
@@ -143,24 +145,24 @@ function openBroadcastRegions() {
         :class="['settings-btn', store.showDevPanel && 'active']"
         @click="store.showDevPanel = !store.showDevPanel"
         title="Dev panel"
-      >🛠 Dev</button>
+      >🛠 {{ t('navbar.dev') }}</button>
       <button
         v-if="isDev"
         :class="['settings-btn', store.showRegionPopup && 'active']"
         @click="store.toggleRegionPopup()"
         title="Régions accessibles"
-      >Régions</button>
-      <button class="settings-btn" @click="openBroadcastItems()" title="Broadcast items">📡 Items</button>
-      <button v-if="isDev" class="settings-btn" @click="openBroadcastRegions()" title="Broadcast régions [dev]">📡 Régions</button>
+      >{{ t('navbar.regions') }}</button>
+      <button class="settings-btn" @click="openBroadcastItems()" title="Broadcast items">{{ t('navbar.items_broadcast') }}</button>
+      <button v-if="isDev" class="settings-btn" @click="openBroadcastRegions()" title="Broadcast régions [dev]">{{ t('navbar.regions_broadcast') }}</button>
       <button
         v-if="store.apConnected"
         :class="['settings-btn', store.showChat && 'active']"
         @click="store.showChat = !store.showChat"
-      >💬 Chat</button>
+      >{{ t('navbar.chat') }}</button>
       <button
         :class="['settings-btn', store.showSettings && 'active']"
         @click="store.toggleSettings()"
-      >⚙ Settings</button>
+      >{{ t('navbar.settings') }}</button>
     </div>
   </nav>
 </template>

@@ -3,32 +3,34 @@ import { ref, computed } from 'vue'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { computeAccessibility, buildInventory } from '../logic/accessibility'
+import { useLocale } from '../composables/useLocale'
 
 const store    = useStateStore()
 const settings = useSettingsStore()
+const { t, tLocation, tRegion } = useLocale()
 
 const searchQuery = ref('')
 const filterPool  = ref('all')
 
-const POOL_LABELS = {
-  all: 'All',
-  hp: 'Hearts',
-  element: 'Elements',
-  shop: 'Shop',
-  scrub: 'Scrub',
-  fairy: 'Fairy',
-  scroll: 'Scrolls',
-  butterfly: 'Butterfly',
-  dig: 'Dig',
-  water: 'Water',
-  pot: 'Pot',
-  enemy: 'Enemy',
-  fuse_gold: 'Gold Fuse',
-  fuse_red: 'Red Fuse',
-  fuse_green: 'Green Fuse',
-  fuse_blue: 'Blue Fuse',
-  rupee: 'Rupee',
-}
+const POOL_LABELS = computed(() => ({
+  all: t('checklist.pools.all'),
+  hp: t('checklist.pools.hp'),
+  element: t('checklist.pools.element'),
+  shop: t('checklist.pools.shop'),
+  scrub: t('checklist.pools.scrub'),
+  fairy: t('checklist.pools.fairy'),
+  scroll: t('checklist.pools.scroll'),
+  butterfly: t('checklist.pools.butterfly'),
+  dig: t('checklist.pools.dig'),
+  water: t('checklist.pools.water'),
+  pot: t('checklist.pools.pot'),
+  enemy: t('checklist.pools.enemy'),
+  fuse_gold: t('checklist.pools.fuse_gold'),
+  fuse_red: t('checklist.pools.fuse_red'),
+  fuse_green: t('checklist.pools.fuse_green'),
+  fuse_blue: t('checklist.pools.fuse_blue'),
+  rupee: t('checklist.pools.rupee'),
+}))
 
 const STATUS_COLOR = {
   accessible:   '#7ac038',
@@ -70,11 +72,13 @@ const visibleLocations = computed(() => {
 const groupedLocations = computed(() => {
   const groups = {}
   for (const loc of visibleLocations.value) {
-    const region = loc.region_name || 'Unknown'
-    if (!groups[region]) groups[region] = []
-    groups[region].push(loc)
+    const key = loc.region_key || loc.region_name || 'Unknown'
+    if (!groups[key]) groups[key] = { locs: [], fallback: loc.region_name || key }
+    groups[key].locs.push(loc)
   }
-  return Object.entries(groups).sort(([a], [b]) => a.localeCompare(b))
+  return Object.entries(groups)
+    .map(([key, { locs, fallback }]) => [key, locs, tRegion(key, fallback)])
+    .sort(([, , a], [, , b]) => a.localeCompare(b))
 })
 
 const collapsedRegions = ref(new Set())
@@ -116,12 +120,12 @@ function isDungeonRegion(locs) {
 
 const dungeonSubAreas = computed(() => {
   const result = {}
-  for (const [region, locs] of groupedLocations.value) {
+  for (const [key, locs] of groupedLocations.value) {
     if (!isDungeonRegion(locs)) continue
     const grouped = new Map()
     const flat = []
     for (const loc of locs) {
-      const { subArea } = parseSubArea(loc.name, region)
+      const { subArea } = parseSubArea(loc.name, loc.region_name)
       if (subArea != null) {
         if (!grouped.has(subArea)) grouped.set(subArea, [])
         grouped.get(subArea).push(loc)
@@ -129,7 +133,7 @@ const dungeonSubAreas = computed(() => {
         flat.push(loc)
       }
     }
-    result[region] = {
+    result[key] = {
       groups: [...grouped.entries()].map(([name, ls]) => ({ name, locs: ls })),
       flat,
     }
@@ -154,55 +158,55 @@ const totalChecked  = computed(() => visibleLocations.value.filter(l => store.is
 <template>
   <div class="checklist-panel">
     <div class="filters">
-      <input v-model="searchQuery" class="search" placeholder="Rechercher…" />
+      <input v-model="searchQuery" class="search" :placeholder="t('checklist.search_placeholder')" />
       <select v-model="filterPool" class="pool-select">
         <option v-for="(label, val) in POOL_LABELS" :key="val" :value="val">{{ label }}</option>
       </select>
     </div>
 
     <div class="stats-bar">
-      {{ totalChecked }} / {{ totalVisible }} visible
-      <span v-if="!settings.showInaccessible" class="hint"> (inaccessible masqué)</span>
+      {{ totalChecked }} / {{ totalVisible }} {{ t('checklist.visible') }}
+      <span v-if="!settings.showInaccessible" class="hint"> {{ t('checklist.inaccessible_hidden') }}</span>
     </div>
 
     <div class="location-groups">
-      <div v-for="([region, locs]) in groupedLocations" :key="region" class="region-group">
-        <div class="region-header" @click="toggleRegion(region)">
-          <span class="region-toggle">{{ collapsedRegions.has(region) ? '▶' : '▼' }}</span>
-          <span class="region-name">{{ region }}</span>
+      <div v-for="([key, locs, label]) in groupedLocations" :key="key" class="region-group">
+        <div class="region-header" @click="toggleRegion(key)">
+          <span class="region-toggle">{{ collapsedRegions.has(key) ? '▶' : '▼' }}</span>
+          <span class="region-name">{{ label }}</span>
           <span class="region-count">{{ regionCheckedCount(locs) }}/{{ locs.length }}</span>
         </div>
 
-        <div v-if="!collapsedRegions.has(region)" class="region-locations">
+        <div v-if="!collapsedRegions.has(key)" class="region-locations">
 
           <!-- Dungeon: sub-area grouping (désactivé si recherche active) -->
-          <template v-if="dungeonSubAreas[region] && !searchQuery">
+          <template v-if="dungeonSubAreas[key] && !searchQuery">
 
             <!-- Locations sans code de floor (Boss, Prize…) -->
             <div
-              v-for="loc in dungeonSubAreas[region].flat"
+              v-for="loc in dungeonSubAreas[key].flat"
               :key="loc.id"
               :class="['location-row', store.isChecked(loc.id) && 'checked']"
               @click="!store.isChecked(loc.id) && store.toggleLocation(loc.id)"
               @contextmenu="onRightClickLoc($event, loc)"
             >
               <span class="check-dot" :style="{ color: locColor(loc) }">●</span>
-              <span class="loc-name">{{ shortLocName(loc.name, region) }}</span>
+              <span class="loc-name">{{ tLocation(loc.key, shortLocName(loc.name, loc.region_name)) }}</span>
               <span v-if="loc.pools.length" class="loc-pools">{{ loc.pools.slice(0,2).join(', ') }}</span>
             </div>
 
             <!-- Sous-groupes par étage -->
             <div
-              v-for="sg in dungeonSubAreas[region].groups"
+              v-for="sg in dungeonSubAreas[key].groups"
               :key="sg.name"
               class="subarea-group"
             >
-              <div class="subarea-header" @click="toggleSubArea(region + ':' + sg.name)">
-                <span class="subarea-toggle">{{ collapsedSubAreas.has(region + ':' + sg.name) ? '▶' : '▼' }}</span>
+              <div class="subarea-header" @click="toggleSubArea(key + ':' + sg.name)">
+                <span class="subarea-toggle">{{ collapsedSubAreas.has(key + ':' + sg.name) ? '▶' : '▼' }}</span>
                 <span class="subarea-name">{{ sg.name }}</span>
                 <span class="subarea-count">{{ regionCheckedCount(sg.locs) }}/{{ sg.locs.length }}</span>
               </div>
-              <div v-if="!collapsedSubAreas.has(region + ':' + sg.name)" class="subarea-locs">
+              <div v-if="!collapsedSubAreas.has(key + ':' + sg.name)" class="subarea-locs">
                 <div
                   v-for="loc in sg.locs"
                   :key="loc.id"
@@ -211,7 +215,7 @@ const totalChecked  = computed(() => visibleLocations.value.filter(l => store.is
                   @contextmenu="onRightClickLoc($event, loc)"
                 >
                   <span class="check-dot" :style="{ color: locColor(loc) }">●</span>
-                  <span class="loc-name">{{ shortLocName(loc.name, region) }}</span>
+                  <span class="loc-name">{{ tLocation(loc.key, shortLocName(loc.name, loc.region_name)) }}</span>
                   <span v-if="loc.pools.length" class="loc-pools">{{ loc.pools.slice(0,2).join(', ') }}</span>
                 </div>
               </div>
@@ -229,7 +233,7 @@ const totalChecked  = computed(() => visibleLocations.value.filter(l => store.is
               @contextmenu="onRightClickLoc($event, loc)"
             >
               <span class="check-dot" :style="{ color: locColor(loc) }">●</span>
-              <span class="loc-name">{{ loc.name }}</span>
+              <span class="loc-name">{{ tLocation(loc.key, loc.name) }}</span>
               <span v-if="loc.pools.length" class="loc-pools">{{ loc.pools.slice(0,2).join(', ') }}</span>
             </div>
           </template>
