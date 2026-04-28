@@ -297,6 +297,193 @@ export function parseLocations(lines) {
 }
 
 
+// ─── 5e — Expression compiler ────────────────────────────────────────────────
+
+// Set of helper names currently being evaluated — prevents infinite recursion.
+const _evaluating = new Set()
+
+// Always-false sentinel helpers used for inaccessible or infinite-resource gates.
+const _ALWAYS_FALSE = new Set([
+  'Helpers.Hundo', 'Helpers.Inaccessible', 'Helpers.InfiniteMoney',
+])
+
+/**
+ * Split `str` on commas that are at parenthesis depth 0.
+ * Trims and filters empty segments.
+ */
+function splitTopLevel(str) {
+  const parts = []
+  let depth = 0, start = 0
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i]
+    if      (c === '(') depth++
+    else if (c === ')') depth--
+    else if (c === ',' && depth === 0) {
+      parts.push(str.slice(start, i).trim())
+      start = i + 1
+    }
+  }
+  parts.push(str.slice(start).trim())
+  return parts.filter(Boolean)
+}
+
+/**
+ * Compile a logic expression string into an (inv, settings) => boolean function.
+ *
+ * Grammar:
+ *   empty          → always true
+ *   a, b, c        → AND (root-level commas)
+ *   (| a, b, …)   → OR
+ *   (& a, b, …)   → AND (explicit)
+ *   (+ N, x:w, …) → weighted counter ≥ N
+ *   Items.X[:N]    → item check (count ≥ N) via _itemCheck / _itemCount
+ *   Helpers.X      → recursive helper lookup (cycle-safe)
+ *   `TOKEN`        → unresolved substitution → fail-open (true)
+ *
+ * @param {string}          logicStr  - preprocessed logic expression
+ * @param {Map<string,fn>}  helperMap - name → compiled helper fn
+ * @returns {(inv:object, settings:object) => boolean}
+ */
+export function compileExpr(logicStr, helperMap) {
+  if (!logicStr || !logicStr.trim()) return () => true
+  const terms = splitTopLevel(logicStr)
+  if (terms.length === 0) return () => true
+  if (terms.length === 1) return _compileTerm(terms[0], helperMap)
+  const fns = terms.map(t => _compileTerm(t, helperMap))
+  return (inv, s) => fns.every(f => f(inv, s))
+}
+
+function _compileTerm(term, helperMap) {
+  term = term.trim()
+  if (!term) return () => true
+
+  // ── Parenthesized expression ──────────────────────────────────────────────
+  if (term.startsWith('(') && term.endsWith(')')) {
+    const inner = term.slice(1, -1).trim()
+
+    if (inner.startsWith('|')) {
+      const fns = splitTopLevel(inner.slice(1)).map(t => _compileTerm(t, helperMap))
+      return (inv, s) => fns.some(f => f(inv, s))
+    }
+    if (inner.startsWith('&')) {
+      const fns = splitTopLevel(inner.slice(1)).map(t => _compileTerm(t, helperMap))
+      return (inv, s) => fns.every(f => f(inv, s))
+    }
+    if (inner.startsWith('+')) {
+      // Weighted counter: (+ threshold, item[:weight], ...)
+      const parts = splitTopLevel(inner.slice(1))
+      if (parts.length === 0) return () => true
+
+      // Threshold — backtick token fallback to 4 (covers unresolved ELEMENT_COUNT)
+      const rawN = parts[0].replace(/`[^`]*`/g, '4').trim()
+      const threshold = parseFloat(rawN)
+      if (isNaN(threshold)) return () => true
+
+      // Build weighted contributors
+      const contributors = parts.slice(1).map(p => {
+        p = p.trim()
+        if (p.startsWith('Helpers.') || p.startsWith('Locations.')) {
+          // Boolean helper → contributes 0 or 1
+          const fn = _compileTerm(p, helperMap)
+          return (inv, s) => fn(inv, s) ? 1 : 0
+        }
+        if (p.startsWith('Items.')) {
+          const ref = p.slice(6)
+          // Last colon is the weight separator when followed only by digits/backticks
+          const ci = ref.lastIndexOf(':')
+          let name, weight
+          if (ci > 0 && /^[\d`]/.test(ref.slice(ci + 1))) {
+            name   = ref.slice(0, ci)
+            const rawW = ref.slice(ci + 1).replace(/`[^`]*`/g, '1')
+            weight = parseFloat(rawW) || 1
+          } else {
+            name   = ref
+            weight = 1
+          }
+          // Item contributes count × weight to the sum
+          return (inv) => _itemCount(name, inv) * weight
+        }
+        return () => 0
+      })
+
+      return (inv, s) => {
+        let sum = 0
+        for (const c of contributors) {
+          sum += c(inv, s)
+          if (sum >= threshold) return true
+        }
+        return false
+      }
+    }
+
+    // Bare parentheses (no operator) → AND
+    const fns = splitTopLevel(inner).map(t => _compileTerm(t, helperMap))
+    return (inv, s) => fns.every(f => f(inv, s))
+  }
+
+  // ── Always-false sentinels ────────────────────────────────────────────────
+  if (_ALWAYS_FALSE.has(term)) return () => false
+
+  // ── Helper / Location reference ──────────────────────────────────────────
+  if (term.startsWith('Helpers.') || term.startsWith('Locations.')) {
+    const name = term.slice(term.indexOf('.') + 1)
+    return (inv, s) => {
+      if (_evaluating.has(name)) return false   // cycle → treat as inaccessible
+      const fn = helperMap.get(name)
+      if (!fn) return true                       // unknown helper → fail-open
+      _evaluating.add(name)
+      try { return fn(inv, s) } finally { _evaluating.delete(name) }
+    }
+  }
+
+  // ── Item reference ────────────────────────────────────────────────────────
+  if (term.startsWith('Items.')) {
+    const ref = term.slice(6)
+    const ci  = ref.lastIndexOf(':')
+    if (ci > 0 && /^\d+$/.test(ref.slice(ci + 1))) {
+      const name = ref.slice(0, ci)
+      const min  = parseInt(ref.slice(ci + 1), 10) || 1
+      return (inv) => _itemCheck(name, min, inv)
+    }
+    return (inv) => _itemCheck(ref, 1, inv)
+  }
+
+  // ── Unresolved backtick substitution → fail-open ─────────────────────────
+  if (term.startsWith('`')) return () => true
+
+  // ── Unknown token → fail-open ────────────────────────────────────────────
+  return () => true
+}
+
+// ─── 5f — Item map (stub; filled in step 5f) ─────────────────────────────────
+// Each entry: { count: (inv) => number }
+// "count" returns the quantity available in the inventory (0 = not held).
+const ITEM_MAP = {}
+
+/**
+ * Returns how many of `name` the inventory contains.
+ * Delegates to ITEM_MAP; returns 0 for unknown items (fail-closed for counts).
+ * @param {string} name - rando item name (e.g. "SmallKey.0x18")
+ * @param {object} inv  - tracker inventory object
+ * @returns {number}
+ */
+function _itemCount(name, inv) {
+  const entry = ITEM_MAP[name]
+  if (!entry) return 0
+  return entry.count(inv)
+}
+
+/**
+ * Returns true when the inventory holds at least `min` of `name`.
+ * @param {string} name
+ * @param {number} min
+ * @param {object} inv
+ */
+function _itemCheck(name, min, inv) {
+  return _itemCount(name, inv) >= min
+}
+
+
 // ─── 5b — Settings → defines ─────────────────────────────────────────────────
 
 /**
@@ -400,6 +587,11 @@ export function settingsToDefines(settings) {
   if (comp === 'anywhere')    setOption('COMPASS_SETTING', 'COMPASS_KEYSANITY')
   else if (comp === 'start_with') setOption('COMPASS_SETTING', 'COMPASS_KEASY')
   else                        setOption('COMPASS_SETTING', 'COMPASS_STANDARD')
+
+  // ── Pedestal element count ───────────────────────────────────────────────
+  // e.g. pedElements = 4 → d['4ELEMENT'] = true → preprocessor resolves ELEMENT_COUNT = 4
+  const pedElems = settings.pedElements ?? 4
+  d[`${pedElems}ELEMENT`] = true
 
   // ── Pedestal / requirements ──────────────────────────────────────────────
   const pedReward = settings.pedReward ?? 'none'
