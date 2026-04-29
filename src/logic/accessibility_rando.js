@@ -9,12 +9,8 @@
  * Interface mirrors accessibility.js so callers can swap implementations.
  */
 
-import { buildInventory } from './accessibility.js'
-import { parseLogic }     from './logicParser.js'
-import locationsRaw       from '../../data/location_meta.json'
-
-// buildInventory is identical for both logic sources — re-export under the rando name.
-export { buildInventory as buildInventory_rando }
+import { parseLogic } from './logicParser.js'
+import locationsRaw  from '../../data/location_meta.json'
 
 /**
  * Compute accessibility for every AP location using rando logic rules.
