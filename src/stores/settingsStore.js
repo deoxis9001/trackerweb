@@ -123,6 +123,11 @@ export const useSettingsStore = defineStore('settings', () => {
     set: (v) => { if (ENTRANCE_SHUFFLE_ENABLED) _dungeonEntranceShuffle.value = v },
   })
 
+  // ── Logic Source ─────────────────────────────────────────────────────────────
+  const logicSource     = ref('ap_world') // 'ap_world' | 'default_logic' | 'custom'
+  // Raw text of a user-imported .logic file — not persisted (session only, can be large)
+  const customLogicText = ref(null)
+
   // ── Tracker Display ───────────────────────────────────────────────────────────
   const showInaccessible = ref(false)
   const autoTabDungeons  = ref('overview') // 'non' | 'overview' | 'etage'
@@ -176,6 +181,7 @@ export const useSettingsStore = defineStore('settings', () => {
       autoTabDungeons: autoTabDungeons.value,
       autoTabOverworld: autoTabOverworld.value,
       dungeonEntranceShuffle: dungeonEntranceShuffle.value,
+      logicSource: logicSource.value,
     }
   }
 
@@ -202,6 +208,7 @@ export const useSettingsStore = defineStore('settings', () => {
       replicaTODBossDoor, trapsEnabled,
       showInaccessible, autoTabDungeons, autoTabOverworld,
       dungeonEntranceShuffle,
+      logicSource,
     }
     for (const [k, r] of Object.entries(refs)) {
       if (s[k] != null) r.value = s[k]
@@ -414,6 +421,7 @@ export const useSettingsStore = defineStore('settings', () => {
     replicaTODBossDoor, trapsEnabled,
     showInaccessible, autoTabDungeons, autoTabOverworld,
     dungeonEntranceShuffle,
+    logicSource, customLogicText,
     exportSettings, importSettings, importFromSlotData, save, load,
   }
 })
