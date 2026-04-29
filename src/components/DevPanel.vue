@@ -1,12 +1,15 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useStateStore } from '../stores/stateStore'
+import { useSettingsStore } from '../stores/settingsStore'
+import { computeAccessibility, buildInventory } from '../logic/accessibility'
+import locationsRaw from '../../data/location_meta.json'
 import apTables from '../../data/ap_tables.json'
 
-const store = useStateStore()
+const store    = useStateStore()
+const settings = useSettingsStore()
 const activeTab    = ref('ap')
 const activeSubTab = ref('slot_data')
-
 
 const receivedItemCounts = computed(() => {
   const counts = {}
@@ -19,6 +22,46 @@ const receivedItemCounts = computed(() => {
 const slotDataEntries = computed(() =>
   Object.entries(store.rawSlotData).sort((a, b) => a[0].localeCompare(b[0]))
 )
+
+// ── Logic tab ────────────────────────────────────────────────────────────────
+
+const logicFilter = ref('accessible')
+
+const accessibilityMap = computed(() => {
+  const inv = buildInventory(store)
+  return computeAccessibility(inv, settings)
+})
+
+const STATUS_LABEL = {
+  accessible:   'OK',
+  out_of_logic: 'OOL',
+  inaccessible: 'NON',
+}
+const STATUS_COLOR = {
+  accessible:   '#7ac038',
+  out_of_logic: '#d4901a',
+  inaccessible: '#c03030',
+}
+
+const logicRows = computed(() => {
+  const map = accessibilityMap.value
+  return locationsRaw
+    .filter(loc => loc.id != null)
+    .map(loc => ({ loc, status: map.get(loc.id) ?? 'inaccessible' }))
+    .filter(({ status }) => logicFilter.value === 'all' || status === logicFilter.value)
+    .sort((a, b) => a.loc.name.localeCompare(b.loc.name))
+})
+
+const logicCopied = ref(false)
+function copyLogic() {
+  const lines = logicRows.value.map(({ loc, status }) =>
+    `[${STATUS_LABEL[status]}] ${loc.name}  (${loc.key_rando ?? loc.key})`
+  )
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    logicCopied.value = true
+    setTimeout(() => { logicCopied.value = false }, 1500)
+  })
+}
 </script>
 
 <template>
@@ -27,9 +70,35 @@ const slotDataEntries = computed(() =>
     <!-- Main tabs -->
     <div class="dev-tabs main-tabs">
       <button :class="['dev-tab', activeTab === 'ap' && 'active']" @click="activeTab = 'ap'">AP</button>
+      <button :class="['dev-tab', activeTab === 'logic' && 'active']" @click="activeTab = 'logic'">Logic</button>
     </div>
 
-    <div v-if="!store.apConnected" class="not-connected">Non connecté à AP</div>
+    <!-- Logic tab (always available) -->
+    <template v-if="activeTab === 'logic'">
+      <div class="logic-toolbar">
+        <div class="filter-btns">
+          <button :class="['filter-btn', logicFilter === 'accessible' && 'active-ok']"   @click="logicFilter = 'accessible'">Accessible <span class="count">{{ accessibilityMap.size > 0 ? [...accessibilityMap.values()].filter(s => s === 'accessible').length : '?' }}</span></button>
+          <button :class="['filter-btn', logicFilter === 'out_of_logic' && 'active-ool']" @click="logicFilter = 'out_of_logic'">OOL <span class="count">{{ [...accessibilityMap.values()].filter(s => s === 'out_of_logic').length }}</span></button>
+          <button :class="['filter-btn', logicFilter === 'inaccessible' && 'active-no']"  @click="logicFilter = 'inaccessible'">Inaccess. <span class="count">{{ [...accessibilityMap.values()].filter(s => s === 'inaccessible').length }}</span></button>
+          <button :class="['filter-btn', logicFilter === 'all' && 'active']"              @click="logicFilter = 'all'">Tout</button>
+        </div>
+        <button class="copy-btn" @click="copyLogic">{{ logicCopied ? 'Copié ✓' : 'Copier' }}</button>
+      </div>
+      <div class="dev-content">
+        <table class="data-table">
+          <tbody>
+            <tr v-for="{ loc, status } in logicRows" :key="loc.id">
+              <td class="logic-badge" :style="{ color: STATUS_COLOR[status] }">{{ STATUS_LABEL[status] }}</td>
+              <td class="key">{{ loc.name }}</td>
+              <td class="val logic-key">{{ loc.key_rando ?? loc.key }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div v-if="logicRows.length === 0" class="not-connected">Aucune location dans ce filtre</div>
+      </div>
+    </template>
+
+    <div v-else-if="!store.apConnected" class="not-connected">Non connecté à AP</div>
     <template v-else>
 
       <!-- Sub-tabs (AP) -->
@@ -190,5 +259,57 @@ const slotDataEntries = computed(() =>
   font-weight: 700;
   text-align: right;
   white-space: nowrap;
+}
+
+/* Logic tab */
+.logic-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  gap: 8px;
+}
+.filter-btns {
+  display: flex;
+  gap: 4px;
+}
+.filter-btn {
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg-panel);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 11px;
+}
+.filter-btn .count { margin-left: 3px; font-size: 10px; }
+.filter-btn.active-ok  { background: #1a3a0a; color: #7ac038; border-color: #7ac038; }
+.filter-btn.active-ool { background: #3a2800; color: #d4901a; border-color: #d4901a; }
+.filter-btn.active-no  { background: #3a0808; color: #c03030; border-color: #c03030; }
+.filter-btn.active     { background: var(--bg-dark); color: var(--text); }
+.copy-btn {
+  padding: 2px 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg-panel);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+.logic-badge {
+  font-weight: 700;
+  font-size: 10px;
+  white-space: nowrap;
+  width: 1%;
+  padding-right: 6px;
+  text-align: center;
+}
+.logic-key {
+  color: var(--text-muted);
+  font-size: 10px;
 }
 </style>
