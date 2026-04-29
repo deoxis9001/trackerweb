@@ -815,3 +815,69 @@ export function settingsToDefines(settings) {
 
   return d
 }
+
+
+// ─── 5g — Full parse + compile assembly ──────────────────────────────────────
+
+// Last-call memoization: avoids recompiling when rawText + settings are unchanged.
+let _memoRawText    = null
+let _memoDefinesKey = null
+let _memoResult     = null
+
+/**
+ * Parse and compile a .logic file into ready-to-call rule functions.
+ *
+ * Returns:
+ *   LOCATION_RULES — plain object keyed by rando location name OR "Helpers.XFusion"
+ *                    (covers all possible key_rando values in location_meta.json)
+ *   HELPERS        — Map<name, fn> for all Helper entries
+ *   DIRECTIVES     — { flags, dropdowns, numberboxes } from parseDirectives
+ *
+ * Result is memoized: same rawText + same settings → same object reference.
+ *
+ * @param {string} rawText  - raw content of the .logic file
+ * @param {Object} settings - settingsStore state (or exportSettings() snapshot)
+ * @returns {{ LOCATION_RULES: Object, HELPERS: Map, DIRECTIVES: Object }}
+ */
+export function parseLogic(rawText, settings) {
+  const defines    = settingsToDefines(settings)
+  const definesKey = JSON.stringify(defines)
+
+  if (rawText === _memoRawText && definesKey === _memoDefinesKey) {
+    return _memoResult
+  }
+
+  // 1 — Pre-process: apply ifdef/define/substitutions
+  const lines = preprocessLogic(rawText, defines)
+
+  // 2 — Extract directive schema (flags/dropdowns/numberboxes) from raw text
+  const directives = parseDirectives(rawText)
+
+  // 3 — Parse location + helper descriptors from preprocessed lines
+  const allEntries = parseLocations(lines)
+
+  // 4 — Pass 1: build helperMap (lazy refs → forward declarations work fine)
+  const helperMap = new Map()
+  for (const entry of allEntries) {
+    if (entry.type === 'Helper') {
+      helperMap.set(entry.name, compileExpr(entry.logicStr, helperMap))
+    }
+  }
+
+  // 5 — Pass 2: compile LOCATION_RULES
+  // Helpers are also indexed under "Helpers.Name" so key_rando = "Helpers.XFusion" resolves.
+  const LOCATION_RULES = {}
+  for (const [name, fn] of helperMap) {
+    LOCATION_RULES[`Helpers.${name}`] = fn
+  }
+  for (const entry of allEntries) {
+    if (entry.type !== 'Helper') {
+      LOCATION_RULES[entry.name] = compileExpr(entry.logicStr, helperMap)
+    }
+  }
+
+  _memoRawText    = rawText
+  _memoDefinesKey = definesKey
+  _memoResult     = { LOCATION_RULES, HELPERS: helperMap, DIRECTIVES: directives }
+  return _memoResult
+}
