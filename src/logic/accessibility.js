@@ -12,6 +12,8 @@
 import { REGION_RULES, LOCATION_RULES } from './rules_generated.js'
 import { always } from './rules.js'
 import locationsRaw from '../../data/location_meta.json'
+import defaultLogicRaw from './defaultLogic.js'
+import { computeAccessibility_rando } from './accessibility_rando.js'
 
 // Pre-index locations by name for O(1) rule lookup
 const RULE_BY_NAME = LOCATION_RULES
@@ -143,6 +145,15 @@ export function buildInventory(stateStore) {
  * either the player has the item or enables the trick in settings.
  */
 export function computeAccessibility(inv, settings, entranceMap = {}) {
+  // Dispatch to rando logic when logicSource is not 'ap_world'
+  const source = settings.logicSource ?? 'ap_world'
+  if (source === 'default_logic' || source === 'custom') {
+    const logicText = source === 'custom' && settings.customLogicText
+      ? settings.customLogicText
+      : defaultLogicRaw
+    return computeAccessibility_rando(inv, settings, logicText)
+  }
+
   const result = new Map()
 
   // When DHC→DWS is set, all DWS locations use DUNGEON_DHC_ENTRANCE as their effective
