@@ -89,9 +89,13 @@ export function preprocessLogic(rawText, defines) {
           // !define - NAME - VALUE  (VALUE may contain backtick refs)
           const d = rest.indexOf(' - ')
           if (d >= 0) {
-            substitutions[rest.slice(0, d)] = _applySubs(rest.slice(d + 3), substitutions)
+            const name = rest.slice(0, d)
+            const value = _applySubs(rest.slice(d + 3), substitutions)
+            substitutions[name] = value
+            activeDefines[name] = value  // visible to subsequent !ifdef checks
           } else {
             substitutions[rest] = ''
+            activeDefines[rest] = true   // bare !define → marks name as defined
           }
         }
         break
