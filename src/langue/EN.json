@@ -174,7 +174,14 @@
       "floor": "Floor",
       "on": "On",
       "auto_tab_hint": "Controls whether the map switches automatically when you change area (autotracking / AP). Floor shows individual floor maps in dungeons. Overview shows the full dungeon overview map.",
-      "language": "Language"
+      "language": "Language",
+      "logic_source": "Logic Source",
+      "ap_world": "AP World",
+      "default_logic": "Default Logic",
+      "custom_logic": "Custom Logic",
+      "import_logic_file": "Import .logic",
+      "no_file_loaded": "(no file loaded)",
+      "logic_source_hint": "AP World: rules generated from the AP World (default). Default Logic: uses the standalone randomizer's default.logic file. Custom: import your own .logic file."
     }
   },
   "map_areas": {

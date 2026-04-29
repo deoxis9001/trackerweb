@@ -41,6 +41,28 @@ const FUSION_OPTIONS = computed(() => [
   { value: 'combined', label: t('settings.fusions.combined') },
   { value: 'open',     label: t('settings.fusions.open') },
 ])
+
+// ── Logic Source file import ──────────────────────────────────────────────────
+const customLogicFileName = ref(null)
+const logicFileInput = ref(null)
+
+function openLogicFilePicker() {
+  logicFileInput.value?.click()
+}
+
+function onLogicFileChange(event) {
+  const file = event.target.files?.[0]
+  if (!file) return
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    s.customLogicText = e.target.result
+    customLogicFileName.value = file.name
+    s.logicSource = 'custom'
+  }
+  reader.readAsText(file)
+  // reset so the same file can be re-imported
+  event.target.value = ''
+}
 </script>
 
 <template>
@@ -348,6 +370,25 @@ const FUSION_OPTIONS = computed(() => [
 
     <!-- ── TRACKER ─────────────────────────────────────────────────────────── -->
     <div v-if="activeTab === 'tracker'" class="tab-content">
+
+      <!-- Logic Source -->
+      <section class="card">
+        <h3>{{ t('settings.tracker.logic_source') }}</h3>
+        <div class="setting-row">
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.logicSource === 'ap_world' }]"      @click="s.logicSource = 'ap_world'">{{ t('settings.tracker.ap_world') }}</button>
+            <button :class="['opt-btn', { active: s.logicSource === 'default_logic' }]" @click="s.logicSource = 'default_logic'">{{ t('settings.tracker.default_logic') }}</button>
+            <button :class="['opt-btn', { active: s.logicSource === 'custom' }]"        @click="s.logicSource = 'custom'">{{ t('settings.tracker.custom_logic') }}</button>
+          </div>
+        </div>
+        <div v-if="s.logicSource === 'custom'" class="setting-row mt-8">
+          <span class="hint-inline">{{ customLogicFileName ?? t('settings.tracker.no_file_loaded') }}</span>
+          <button class="btn-sm" @click="openLogicFilePicker">{{ t('settings.tracker.import_logic_file') }}</button>
+          <input ref="logicFileInput" type="file" accept=".logic" style="display:none" @change="onLogicFileChange" />
+        </div>
+        <p class="hint-block">{{ t('settings.tracker.logic_source_hint') }}</p>
+      </section>
+
       <section class="card">
         <h3>{{ t('settings.tracker.tracker_display') }}</h3>
         <div class="setting-row">

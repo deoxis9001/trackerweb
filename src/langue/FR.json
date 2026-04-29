@@ -174,7 +174,14 @@
       "floor": "Étage",
       "on": "Activé",
       "auto_tab_hint": "Contrôle si la carte change automatiquement de zone (autotracking / AP). Étage affiche les cartes individuelles des donjons. Vue d'ensemble affiche la carte globale.",
-      "language": "Langue"
+      "language": "Langue",
+      "logic_source": "Source de logique",
+      "ap_world": "AP World",
+      "default_logic": "Logique par défaut",
+      "custom_logic": "Logique custom",
+      "import_logic_file": "Importer .logic",
+      "no_file_loaded": "(aucun fichier)",
+      "logic_source_hint": "AP World : règles générées depuis l'AP World (défaut). Logique par défaut : utilise le fichier default.logic du randomizer standalone. Logique custom : importe ton propre fichier .logic."
     }
   },
   "map_areas": {
