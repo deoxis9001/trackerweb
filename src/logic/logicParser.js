@@ -667,16 +667,15 @@ export function settingsToDefines(settings) {
   }
 
   // ── Wind Crests ──────────────────────────────────────────────────────────
-  // LAKE_CREST and TOWN_CREST default to true in rando and have no AP toggle
+  // LAKE_CREST and TOWN_CREST default to true in rando (no AP toggle)
   d['LAKE_CREST'] = true
   d['TOWN_CREST'] = true
   setFlag('CRENEL_CREST',    settings.windCrestCrenel)
   setFlag('FALLS_CREST',     settings.windCrestFalls)
   setFlag('CLOUD_CREST',     settings.windCrestClouds)
+  setFlag('SWAMP_CREST',     settings.windCrestCastor)   // Castor Wilds = Swamp crest
   setFlag('SHF_CREST',       settings.windCrestSouthField)
   setFlag('MINISH_CREST',    settings.windCrestMinishWoods)
-  // windCrestCastor maps to TOWN_CREST but we already force it true above
-  // (Castor Wilds crest — always enabled in AP)
 
   // ── Dungeon Warps ────────────────────────────────────────────────────────
   setFlag('DWS_BLUEWARP',  (settings.warpDWS ?? 0) >= 1)
