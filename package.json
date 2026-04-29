@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate": "py scripts/extract_tmc_data.py && py scripts/gen_rules.py && py scripts/gen_presets.py",
+    "generate": "py scripts/extract_tmc_data.py && py scripts/gen_rando_loc_keys.py --apply && py scripts/gen_rules.py && py scripts/gen_presets.py",
     "predev": "npm run generate",
     "dev": "vite",
     "prebuild": "npm run generate",
