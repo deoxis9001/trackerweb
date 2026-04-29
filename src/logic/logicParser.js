@@ -82,9 +82,13 @@ export function preprocessLogic(rawText, defines) {
       case 'define':
         if (!isActive()) break
         if (rest.startsWith('`') && rest.endsWith('`')) {
-          // !define - `NAME`  →  load value from activeDefines
-          const name = rest.slice(1, -1)
-          substitutions[name] = String(activeDefines[name] ?? '')
+          // !define - `NAME`  →  resolves NAME's value and activates it as a define.
+          // e.g. MAP_SETTING='MAP_VANILLA' → substitutions['MAP_SETTING']='MAP_VANILLA'
+          //      AND activeDefines['MAP_VANILLA']=true  (so !ifdef MAP_VANILLA works)
+          const name  = rest.slice(1, -1)
+          const value = String(activeDefines[name] ?? '')
+          substitutions[name] = value
+          if (value) activeDefines[value] = true
         } else {
           // !define - NAME - VALUE  (VALUE may contain backtick refs)
           const d = rest.indexOf(' - ')
@@ -687,6 +691,13 @@ export function settingsToDefines(settings) {
   setFlag('POW_REDWARP',   (settings.warpPoW ?? 0) >= 2)
   setFlag('DHC_BLUEWARP',  (settings.warpDHC ?? 0) >= 1)
   setFlag('DHC_REDWARP',   (settings.warpDHC ?? 0) >= 2)
+
+  // ── Dungeon entrance shuffle ─────────────────────────────────────────────
+  // ENTRANCES_VANILLA activates the !define - ENTERDWS/ENTERFOW/etc. block so
+  // that dungeon location logicStrs include their proper access helper.
+  // Without this, `ENTERDWS` backtick references stay unresolved and fail-open.
+  if (settings.dungeonEntranceShuffle) setOption('ENTRANCES', 'ENTRANCES_COUPLED')
+  else                                  setOption('ENTRANCES', 'ENTRANCES_VANILLA')
 
   // ── Open World ───────────────────────────────────────────────────────────
   // AP has no open-world traversal mode
