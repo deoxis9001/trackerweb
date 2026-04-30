@@ -499,7 +499,9 @@ const popupGroups = computed(() => {
       : unchecked.some(l => (accessibility.value.get(l.id) ?? 'inaccessible') === 'accessible')   ? 'accessible'
       : unchecked.some(l => (accessibility.value.get(l.id) ?? 'inaccessible') === 'out_of_logic') ? 'out_of_logic'
       : 'inaccessible'
-    const name = locs.length > 1 ? locBaseName(locs[0].name) : locs[0].name
+    const name = locs.length > 1
+      ? locBaseName(tLocation(locs[0].key, locs[0].name))
+      : tLocation(locs[0].key, locs[0].name)
     return { name, locs, checked, total: locs.length, status }
   })
 })

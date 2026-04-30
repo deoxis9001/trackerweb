@@ -4,24 +4,9 @@ import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { computeAccessibility, buildInventory } from '../logic/accessibility'
 import locationsRaw from '../../data/location_meta.json'
-import apTables from '../../data/ap_tables.json'
 
 const store    = useStateStore()
 const settings = useSettingsStore()
-const activeTab    = ref('ap')
-const activeSubTab = ref('slot_data')
-
-const receivedItemCounts = computed(() => {
-  const counts = {}
-  for (const name of store.receivedItems) {
-    counts[name] = (counts[name] ?? 0) + 1
-  }
-  return Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-})
-
-const slotDataEntries = computed(() =>
-  Object.entries(store.rawSlotData).sort((a, b) => a[0].localeCompare(b[0]))
-)
 
 // ── Logic tab ────────────────────────────────────────────────────────────────
 
@@ -67,14 +52,8 @@ function copyLogic() {
 <template>
   <div class="dev-panel">
 
-    <!-- Main tabs -->
-    <div class="dev-tabs main-tabs">
-      <button :class="['dev-tab', activeTab === 'ap' && 'active']" @click="activeTab = 'ap'">AP</button>
-      <button :class="['dev-tab', activeTab === 'logic' && 'active']" @click="activeTab = 'logic'">Logic</button>
-    </div>
-
-    <!-- Logic tab (always available) -->
-    <template v-if="activeTab === 'logic'">
+    <!-- Logic tab -->
+    <template>
       <div class="logic-toolbar">
         <div class="filter-btns">
           <button :class="['filter-btn', logicFilter === 'accessible' && 'active-ok']"   @click="logicFilter = 'accessible'">Accessible <span class="count">{{ accessibilityMap.size > 0 ? [...accessibilityMap.values()].filter(s => s === 'accessible').length : '?' }}</span></button>
@@ -95,50 +74,6 @@ function copyLogic() {
           </tbody>
         </table>
         <div v-if="logicRows.length === 0" class="not-connected">Aucune location dans ce filtre</div>
-      </div>
-    </template>
-
-    <div v-else-if="!store.apConnected" class="not-connected">Non connecté à AP</div>
-    <template v-else>
-
-      <!-- Sub-tabs (AP) -->
-      <div v-if="activeTab === 'ap'" class="dev-tabs sub-tabs">
-        <button :class="['sub-tab', activeSubTab === 'slot_data' && 'active']" @click="activeSubTab = 'slot_data'">
-          slot_data <span class="count">{{ slotDataEntries.length }}</span>
-        </button>
-        <button :class="['sub-tab', activeSubTab === 'items' && 'active']" @click="activeSubTab = 'items'">
-          Items reçus <span class="count">{{ store.receivedItems.length }}</span>
-        </button>
-      </div>
-
-      <!-- Content -->
-      <div class="dev-content">
-
-        <!-- slot_data -->
-        <template v-if="activeTab === 'ap' && activeSubTab === 'slot_data'">
-          <table class="data-table">
-            <tbody>
-              <tr v-for="[key, val] in slotDataEntries" :key="key">
-                <td class="key">{{ key }}</td>
-                <td class="val">{{ typeof val === 'object' ? JSON.stringify(val) : val }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </template>
-
-        <!-- Items reçus -->
-        <template v-if="activeTab === 'ap' && activeSubTab === 'items'">
-          <table class="data-table">
-            <tbody>
-              <tr v-for="[name, count] in receivedItemCounts" :key="name">
-                <td class="key">{{ name }}</td>
-                <td class="val count-badge">×{{ count }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </template>
-
-
       </div>
     </template>
   </div>
