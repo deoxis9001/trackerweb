@@ -1,13 +1,21 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useSettingsStore, TRICKS } from '../stores/settingsStore'
 import { watchEffect } from 'vue'
 import { useLocale } from '../composables/useLocale'
+import { useFont } from '../composables/useFont'
+import presetsData from '../data/presets.json'
+import { applyPreset } from '../logic/presetMapper.js'
+import { parseDirectives } from '../logic/logicParser.js'
+import { encodeSettingsString, decodeSettingsString } from '../logic/settingsString.js'
+import defaultLogicRaw from '../logic/defaultLogic.js'
+import LogicSettingsTab from '../components/LogicSettingsTab.vue'
 
 const isDev = import.meta.env.DEV
 
 const s = useSettingsStore()
-const { t, locale } = useLocale()
+const { t, locale, availableLocales } = useLocale()
+const { selectedFont, fonts } = useFont()
 
 let saveTimer
 watchEffect(() => {
@@ -16,7 +24,7 @@ watchEffect(() => {
   saveTimer = setTimeout(() => s.save(), 400)
 })
 
-const TABS = [
+const AP_TABS = [
   { id: 'goal' },
   { id: 'dungeons' },
   { id: 'locations' },
@@ -26,7 +34,135 @@ const TABS = [
   { id: 'tracker' },
 ]
 
-const activeTab = ref('goal')
+// ── Logic mode ────────────────────────────────────────────────────────────────
+
+const logicMode = computed(() => s.logicSource !== 'ap_world')
+
+// Directive schema — parsed from the current logic file (only in logic mode)
+const currentLogicText = computed(() =>
+  s.logicSource === 'custom' && s.customLogicText ? s.customLogicText : defaultLogicRaw
+)
+
+const allDirectives = computed(() => {
+  if (!logicMode.value) return null
+  return parseDirectives(currentLogicText.value)
+})
+
+// Ordered tab+group structure built from directive file order
+const logicTabsData = computed(() => {
+  const dir = allDirectives.value
+  if (!dir) return []
+  const tabMap = new Map()
+  for (const d of dir.directives) {
+    if (d.tab === 'Cosmetics') continue
+    if (!tabMap.has(d.tab)) tabMap.set(d.tab, new Map())
+    const groupMap = tabMap.get(d.tab)
+    if (!groupMap.has(d.group)) groupMap.set(d.group, [])
+    groupMap.get(d.group).push(d)
+  }
+  return Array.from(tabMap.entries()).map(([tabName, groupMap]) => ({
+    name: tabName,
+    groups: Array.from(groupMap.entries()).map(([groupName, directives]) => ({
+      name: groupName,
+      directives,
+    })),
+  }))
+})
+
+const TABS = computed(() => {
+  if (logicMode.value) {
+    return [
+      { id: 'presets' },
+      ...logicTabsData.value.map(t => ({ id: t.name })),
+      { id: 'tracker' },
+    ]
+  }
+  return AP_TABS
+})
+
+// Groups to display for the currently active logic tab
+const activeTabGroups = computed(() => {
+  const tab = logicTabsData.value.find(t => t.name === activeTab.value)
+  return tab ? tab.groups : []
+})
+
+// Reset active tab when switching modes
+watch(logicMode, (isLogic) => {
+  if (isLogic) activeTab.value = logicTabsData.value[0]?.name ?? 'presets'
+  else         activeTab.value = 'tracker'
+})
+
+// Initialize randoDefines from directive defaults when entering logic mode.
+// Always runs so that: new keys get defaults, invalid dropdown values get reset.
+function initRandoDefines() {
+  const dir = allDirectives.value
+  if (!dir) return
+  const rd = { ...(s.randoDefines ?? {}) }
+  for (const d of dir.flags)
+    if (!(d.defineName in rd) && d.defaultValue !== undefined)
+      rd[d.defineName] = d.defaultValue
+  for (const d of dir.dropdowns) {
+    const cur = rd[d.defineName]
+    const valid = cur && d.options.some(o => o.defineName === cur)
+    if (!valid) rd[d.defineName] = d.defaultValue ?? (d.options[0]?.defineName ?? '')
+  }
+  for (const d of dir.numberboxes)
+    if (!(d.defineName in rd))
+      rd[d.defineName] = d.default ?? 0
+  s.randoDefines = rd
+}
+
+watch(
+  () => s.logicSource,
+  (src) => { if (src !== 'ap_world') initRandoDefines() },
+  { immediate: true }
+)
+
+// ── Settings String ───────────────────────────────────────────────────────────
+
+const settingsString = ref('')
+watch(
+  [logicMode, allDirectives, () => s.randoDefines],
+  ([isLogic, dirs, rd]) => {
+    if (!isLogic || !dirs || !rd) { settingsString.value = ''; return }
+    try { settingsString.value = encodeSettingsString(dirs, rd) } catch { settingsString.value = '' }
+  },
+  { immediate: true }
+)
+
+const importInput = ref('')
+const importError = ref('')
+
+function importSettingsString() {
+  const rd = decodeSettingsString(importInput.value.trim(), allDirectives.value)
+  if (!rd) { importError.value = 'invalid'; return }
+  s.randoDefines = rd
+  importInput.value = ''
+  importError.value = ''
+}
+
+function copySettingsString() {
+  navigator.clipboard?.writeText(settingsString.value)
+}
+
+// ── Presets ───────────────────────────────────────────────────────────────────
+
+const presets = presetsData
+const activePreset = ref(null)
+
+function loadPreset(preset) {
+  if (logicMode.value) {
+    // In logic mode: apply preset settings directly as rando defines
+    const rd = {}
+    for (const [k, v] of Object.entries(preset.settings)) rd[k] = v
+    s.randoDefines = rd
+  } else {
+    applyPreset(preset.settings, s)
+  }
+  activePreset.value = preset.name
+}
+
+const activeTab = ref('tracker')
 
 const WARP_OPTIONS = computed(() => [
   { value: 0, label: t('settings.dungeons.warp_none') },
@@ -41,6 +177,28 @@ const FUSION_OPTIONS = computed(() => [
   { value: 'combined', label: t('settings.fusions.combined') },
   { value: 'open',     label: t('settings.fusions.open') },
 ])
+
+// ── Logic Source file import ──────────────────────────────────────────────────
+const customLogicFileName = ref(null)
+const logicFileInput = ref(null)
+
+function openLogicFilePicker() {
+  logicFileInput.value?.click()
+}
+
+function onLogicFileChange(event) {
+  const file = event.target.files?.[0]
+  if (!file) return
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    s.customLogicText = e.target.result
+    customLogicFileName.value = file.name
+    s.logicSource = 'custom'
+  }
+  reader.readAsText(file)
+  // reset so the same file can be re-imported
+  event.target.value = ''
+}
 </script>
 
 <template>
@@ -52,7 +210,7 @@ const FUSION_OPTIONS = computed(() => [
         :key="tab.id"
         :class="['stab', activeTab === tab.id && 'active']"
         @click="activeTab = tab.id"
-      >{{ t('settings.tabs.' + tab.id) }}</button>
+      >{{ logicMode && tab.id !== 'presets' && tab.id !== 'tracker' ? tab.id : t('settings.tabs.' + tab.id) }}</button>
     </div>
 
     <!-- Legend -->
@@ -62,8 +220,33 @@ const FUSION_OPTIONS = computed(() => [
       <span class="dot red"></span> {{ t('settings.legend.inaccessible') }}
     </div>
 
+    <!-- ── PRESETS ─────────────────────────────────────────────────────── -->
+    <div v-if="activeTab === 'presets'" class="tab-content">
+      <section class="card">
+        <h3>{{ t('settings.tabs.presets') }}</h3>
+        <div class="preset-grid">
+          <button
+            v-for="preset in presets"
+            :key="preset.name"
+            :class="['preset-btn', { active: activePreset === preset.name }]"
+            @click="loadPreset(preset)"
+          >{{ preset.name }}</button>
+        </div>
+        <p class="hint-block" style="margin-top:10px">{{ t('settings.tracker.logic_source_hint') }}</p>
+      </section>
+    </div>
+
+    <!-- ── LOGIC MODE: dynamic tab content from directive file ──────────── -->
+    <div v-if="logicMode && activeTab !== 'presets' && activeTab !== 'tracker'" class="tab-content">
+      <LogicSettingsTab
+        :groups="activeTabGroups"
+        :model-value="s.randoDefines"
+        @update:model-value="s.randoDefines = $event"
+      />
+    </div>
+
     <!-- ── GOAL ──────────────────────────────────────────────────────────── -->
-    <div v-if="activeTab === 'goal'" class="tab-content">
+    <div v-if="!logicMode && activeTab === 'goal'" class="tab-content">
       <section class="card">
         <h3>{{ t('settings.goal.title') }}</h3>
         <div class="setting-row">
@@ -116,7 +299,7 @@ const FUSION_OPTIONS = computed(() => [
     </div>
 
     <!-- ── DUNGEONS ──────────────────────────────────────────────────────── -->
-    <div v-if="activeTab === 'dungeons'" class="tab-content two-col-layout">
+    <div v-if="!logicMode && activeTab === 'dungeons'" class="tab-content two-col-layout">
       <section class="card">
         <h3>{{ t('settings.dungeons.dungeon_shuffle') }}</h3>
         <div class="setting-row">
@@ -203,7 +386,7 @@ const FUSION_OPTIONS = computed(() => [
     </div>
 
     <!-- ── LOCATIONS ───────────────────────────────────────────────────────── -->
-    <div v-if="activeTab === 'locations'" class="tab-content two-col-layout">
+    <div v-if="!logicMode && activeTab === 'locations'" class="tab-content two-col-layout">
       <section class="card">
         <h3>{{ t('settings.locations.location_shuffle') }}</h3>
         <div class="setting-row"><label>{{ t('settings.locations.rupeesanity') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.rupeesanity}]" @click="s.rupeesanity=false">{{ t('settings.dungeons.no') }}</button><button :class="['opt-btn',{active:s.rupeesanity}]" @click="s.rupeesanity=true">{{ t('settings.dungeons.yes') }}</button></div></div>
@@ -246,7 +429,7 @@ const FUSION_OPTIONS = computed(() => [
     </div>
 
     <!-- ── ITEMS ───────────────────────────────────────────────────────────── -->
-    <div v-if="activeTab === 'items'" class="tab-content two-col-layout">
+    <div v-if="!logicMode && activeTab === 'items'" class="tab-content two-col-layout">
       <section class="card">
         <h3>{{ t('settings.items.progressive_items') }}</h3>
         <div class="setting-row"><label>{{ t('settings.items.progressive_sword') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.progressiveSword}]" @click="s.progressiveSword=false">{{ t('settings.items.no') }}</button><button :class="['opt-btn',{active:s.progressiveSword}]" @click="s.progressiveSword=true">{{ t('settings.items.yes') }}</button></div></div>
@@ -285,7 +468,7 @@ const FUSION_OPTIONS = computed(() => [
     </div>
 
     <!-- ── FUSIONS ─────────────────────────────────────────────────────────── -->
-    <div v-if="activeTab === 'fusions'" class="tab-content">
+    <div v-if="!logicMode && activeTab === 'fusions'" class="tab-content">
       <section class="card">
         <h3>{{ t('settings.fusions.fusion_access') }}</h3>
         <template v-for="[key, labelKey, model] in [
@@ -318,7 +501,7 @@ const FUSION_OPTIONS = computed(() => [
     </div>
 
     <!-- ── QOL & TRICKS ────────────────────────────────────────────────────── -->
-    <div v-if="activeTab === 'qol'" class="tab-content two-col-layout">
+    <div v-if="!logicMode && activeTab === 'qol'" class="tab-content two-col-layout">
       <section class="card">
         <h3>{{ t('settings.qol.quality_of_life') }}</h3>
         <div class="setting-row"><label>{{ t('settings.qol.ocarina_on_select') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.ocarinaOnSelect}]" @click="s.ocarinaOnSelect=false">{{ t('settings.qol.no') }}</button><button :class="['opt-btn',{active:s.ocarinaOnSelect}]" @click="s.ocarinaOnSelect=true">{{ t('settings.qol.yes') }}</button></div></div>
@@ -348,16 +531,67 @@ const FUSION_OPTIONS = computed(() => [
 
     <!-- ── TRACKER ─────────────────────────────────────────────────────────── -->
     <div v-if="activeTab === 'tracker'" class="tab-content">
+
+      <!-- Logic Source -->
+      <section class="card">
+        <h3>{{ t('settings.tracker.logic_source') }}</h3>
+        <div class="setting-row">
+          <div class="btn-group">
+            <button :class="['opt-btn', { active: s.logicSource === 'ap_world' }]"      @click="s.logicSource = 'ap_world'">{{ t('settings.tracker.ap_world') }}</button>
+            <button :class="['opt-btn', { active: s.logicSource === 'default_logic' }]" @click="s.logicSource = 'default_logic'">{{ t('settings.tracker.default_logic') }}</button>
+            <button v-if="isDev" :class="['opt-btn', 'dev-only', { active: s.logicSource === 'custom' }]" @click="s.logicSource = 'custom'">{{ t('settings.tracker.custom_logic') }}</button>
+          </div>
+        </div>
+        <div v-if="isDev && s.logicSource === 'custom'" class="setting-row mt-8">
+          <span class="hint-inline">{{ customLogicFileName ?? t('settings.tracker.no_file_loaded') }}</span>
+          <button class="btn-sm" @click="openLogicFilePicker">{{ t('settings.tracker.import_logic_file') }}</button>
+          <input ref="logicFileInput" type="file" accept=".logic" style="display:none" @change="onLogicFileChange" />
+        </div>
+        <p class="hint-block">{{ t('settings.tracker.logic_source_hint') }}</p>
+      </section>
+
+      <!-- Settings String — logic mode only -->
+      <section v-if="logicMode" class="card">
+        <h3>Settings String</h3>
+        <div class="settings-str-row">
+          <input class="str-input" readonly :value="settingsString" @focus="$event.target.select()" />
+          <button class="btn-sm" @click="copySettingsString">Copy</button>
+        </div>
+        <div class="settings-str-row" style="margin-top:6px">
+          <input
+            class="str-input"
+            v-model="importInput"
+            placeholder="Paste settings string…"
+            @keydown.enter="importSettingsString"
+          />
+          <button class="btn-sm" @click="importSettingsString">Import</button>
+        </div>
+        <p v-if="importError" class="err-msg">{{ importError }}</p>
+      </section>
+
       <section class="card">
         <h3>{{ t('settings.tracker.tracker_display') }}</h3>
         <div class="setting-row">
-          <label>{{ t('settings.tracker.language') }}</label>
-          <div class="btn-group">
-            <button :class="['opt-btn', { active: locale === 'FR' }]" @click="locale = 'FR'">🇫🇷 FR</button>
-            <button :class="['opt-btn', { active: locale === 'EN' }]" @click="locale = 'EN'">🇬🇧 EN</button>
+          <label>{{ t('settings.tracker.font') }}</label>
+          <div class="btn-group btn-group--wrap">
+            <button
+              v-for="f in fonts" :key="f.value ?? 'default'"
+              :class="['opt-btn', { active: selectedFont === f.value }]"
+              @click="selectedFont = f.value"
+            >{{ f.name }}</button>
           </div>
         </div>
-        <div class="setting-row"><label>{{ t('settings.tracker.show_inaccessible') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.showInaccessible}]" @click="s.showInaccessible=false">{{ t('settings.tracker.off') }}</button><button :class="['opt-btn',{active:s.showInaccessible}]" @click="s.showInaccessible=true">{{ t('settings.tracker.on') }}</button></div></div>
+        <div class="setting-row">
+          <label>{{ t('settings.tracker.language') }}</label>
+          <div class="btn-group">
+            <button
+              v-for="loc in availableLocales" :key="loc.code"
+              :class="['opt-btn', { active: locale === loc.code }]"
+              @click="locale = loc.code"
+            ><span class="emoji-flag">{{ loc.flag }}</span> {{ loc.code }}</button>
+          </div>
+        </div>
+<div class="setting-row"><label>{{ t('settings.tracker.show_inaccessible') }}</label><div class="btn-group"><button :class="['opt-btn',{active:!s.showInaccessible}]" @click="s.showInaccessible=false">{{ t('settings.tracker.off') }}</button><button :class="['opt-btn',{active:s.showInaccessible}]" @click="s.showInaccessible=true">{{ t('settings.tracker.on') }}</button></div></div>
         <p class="hint-block">{{ t('settings.tracker.inaccessible_hint') }}</p>
 
         <div class="setting-row" style="margin-top:10px">
@@ -534,6 +768,7 @@ const FUSION_OPTIONS = computed(() => [
   color: var(--text);
 }
 .btn-group { display: flex; gap: 4px; }
+.btn-group--wrap { flex-wrap: wrap; }
 .opt-btn {
   padding: 3px 10px;
   background: transparent;
@@ -581,4 +816,48 @@ const FUSION_OPTIONS = computed(() => [
 .btn-sm:hover { border-color: var(--accent); color: var(--accent); }
 
 .mt-8 { margin-top: 8px; }
+
+.preset-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.preset-btn {
+  padding: 5px 12px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+.preset-btn:hover { border-color: var(--accent-bright, #d4a84b); }
+.preset-btn.active {
+  background: var(--accent, #5a3a10);
+  color: #fff;
+  border-color: var(--accent-bright, #d4a84b);
+}
+
+.settings-str-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.str-input {
+  flex: 1;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: monospace;
+  min-width: 0;
+}
+.err-msg {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #e04040;
+}
 </style>

@@ -9,7 +9,8 @@
     "pools": [],
     "room_area": 4386,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Smith_House_Chest"
   },
   {
     "id": 6029001,
@@ -21,7 +22,8 @@
     "pools": [],
     "room_area": 4386,
     "scoutable": false,
-    "vanilla_item": "Progressive Sword"
+    "vanilla_item": "Progressive Sword",
+    "key_rando": "Smith_Floor_Item1"
   },
   {
     "id": 6029002,
@@ -33,7 +35,8 @@
     "pools": [],
     "room_area": 4386,
     "scoutable": false,
-    "vanilla_item": "Progressive Shield"
+    "vanilla_item": "Progressive Shield",
+    "key_rando": "Smith_Floor_Item2"
   },
   {
     "id": 6029003,
@@ -47,7 +50,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item1"
   },
   {
     "id": 6029004,
@@ -61,7 +65,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item2"
   },
   {
     "id": 6029005,
@@ -75,7 +80,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item3"
   },
   {
     "id": 6029006,
@@ -89,7 +95,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item4"
   },
   {
     "id": 6029007,
@@ -103,7 +110,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item5"
   },
   {
     "id": 6029008,
@@ -117,7 +125,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item6"
   },
   {
     "id": 6029009,
@@ -131,7 +140,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item7"
   },
   {
     "id": 6029010,
@@ -145,7 +155,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item8"
   },
   {
     "id": 6029011,
@@ -159,7 +170,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item9"
   },
   {
     "id": 6029012,
@@ -173,7 +185,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item10"
   },
   {
     "id": 6029013,
@@ -187,7 +200,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item11"
   },
   {
     "id": 6029014,
@@ -201,7 +215,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item12"
   },
   {
     "id": 6029015,
@@ -215,7 +230,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item13"
   },
   {
     "id": 6029016,
@@ -229,7 +245,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item14"
   },
   {
     "id": 6029017,
@@ -243,7 +260,8 @@
     ],
     "room_area": 4146,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "SouthField_PuddleFusion_Item15"
   },
   {
     "id": 6029018,
@@ -255,7 +273,8 @@
     "pools": [],
     "room_area": 259,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "SouthField_Fusion_Chest"
   },
   {
     "id": 6029019,
@@ -269,7 +288,8 @@
     ],
     "room_area": 4644,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "SouthField_TreeFusion_HP"
   },
   {
     "id": 6029020,
@@ -283,7 +303,8 @@
     ],
     "room_area": 1077,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "SouthField_MinishSize_WaterHole_HP"
   },
   {
     "id": 6029021,
@@ -295,7 +316,8 @@
     "pools": [],
     "room_area": 259,
     "scoutable": false,
-    "vanilla_item": "Tingle Trophy"
+    "vanilla_item": "Tingle Trophy",
+    "key_rando": "SouthField_Tingle_NPC"
   },
   {
     "id": 6029022,
@@ -307,7 +329,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_CafeLady_NPC"
   },
   {
     "id": 6029023,
@@ -321,7 +344,8 @@
     ],
     "room_area": 35,
     "scoutable": true,
-    "vanilla_item": "Big Wallet"
+    "vanilla_item": "Big Wallet",
+    "key_rando": "Town_Shop_80Item"
   },
   {
     "id": 6029024,
@@ -335,7 +359,8 @@
     ],
     "room_area": 35,
     "scoutable": true,
-    "vanilla_item": "Progressive Boomerang"
+    "vanilla_item": "Progressive Boomerang",
+    "key_rando": "Town_Shop_300Item"
   },
   {
     "id": 6029025,
@@ -349,7 +374,8 @@
     ],
     "room_area": 35,
     "scoutable": true,
-    "vanilla_item": "Quiver"
+    "vanilla_item": "Quiver",
+    "key_rando": "Town_Shop_600Item"
   },
   {
     "id": 6029026,
@@ -363,7 +389,8 @@
     ],
     "room_area": 35,
     "scoutable": true,
-    "vanilla_item": "Bomb Bag"
+    "vanilla_item": "Bomb Bag",
+    "key_rando": "Town_Shop_Extra600Item"
   },
   {
     "id": 6029027,
@@ -375,7 +402,8 @@
     "pools": [],
     "room_area": 35,
     "scoutable": true,
-    "vanilla_item": "Dog Food"
+    "vanilla_item": "Dog Food",
+    "key_rando": "Town_Shop_BehindCounterItem"
   },
   {
     "id": 6029028,
@@ -387,7 +415,8 @@
     "pools": [],
     "room_area": 302,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Town_Shop_AtticChest"
   },
   {
     "id": 6029029,
@@ -399,7 +428,8 @@
     "pools": [],
     "room_area": 814,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Town_Bakery_AtticChest"
   },
   {
     "id": 6029030,
@@ -413,7 +443,8 @@
     ],
     "room_area": 2593,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Town_Inn_BackdoorHP"
   },
   {
     "id": 6029031,
@@ -425,7 +456,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_Inn_LedgeChest"
   },
   {
     "id": 6029032,
@@ -439,7 +471,8 @@
     ],
     "room_area": 2337,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_Inn_Pot"
   },
   {
     "id": 6029033,
@@ -451,7 +484,8 @@
     "pools": [],
     "room_area": 65,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_Well_RightChest"
   },
   {
     "id": 6029034,
@@ -463,7 +497,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_1_Left"
   },
   {
     "id": 6029035,
@@ -475,7 +510,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_1_Middle"
   },
   {
     "id": 6029036,
@@ -487,7 +523,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_1_Right"
   },
   {
     "id": 6029037,
@@ -499,7 +536,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_2_Left"
   },
   {
     "id": 6029038,
@@ -511,7 +549,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_2_Middle"
   },
   {
     "id": 6029039,
@@ -523,7 +562,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_2_Right"
   },
   {
     "id": 6029040,
@@ -535,7 +575,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_3_Left"
   },
   {
     "id": 6029041,
@@ -547,7 +588,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_3_Middle"
   },
   {
     "id": 6029042,
@@ -559,7 +601,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_3_Right"
   },
   {
     "id": 6029043,
@@ -571,7 +614,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_4_Left"
   },
   {
     "id": 6029044,
@@ -583,7 +627,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_4_Middle"
   },
   {
     "id": 6029045,
@@ -595,7 +640,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_4_Right"
   },
   {
     "id": 6029046,
@@ -607,7 +653,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_5_Left"
   },
   {
     "id": 6029047,
@@ -619,7 +666,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_5_Middle"
   },
   {
     "id": 6029048,
@@ -631,7 +679,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_GoronMerchant_5_Right"
   },
   {
     "id": 6029049,
@@ -645,7 +694,8 @@
     ],
     "room_area": 296,
     "scoutable": false,
-    "vanilla_item": "Spin Attack"
+    "vanilla_item": "Spin Attack",
+    "key_rando": "Town_Dojo_NPC1"
   },
   {
     "id": 6029050,
@@ -659,7 +709,8 @@
     ],
     "room_area": 296,
     "scoutable": false,
-    "vanilla_item": "Rock Breaker"
+    "vanilla_item": "Rock Breaker",
+    "key_rando": "Town_Dojo_NPC2"
   },
   {
     "id": 6029051,
@@ -673,7 +724,8 @@
     ],
     "room_area": 296,
     "scoutable": false,
-    "vanilla_item": "Dash Attack"
+    "vanilla_item": "Dash Attack",
+    "key_rando": "Town_Dojo_NPC3"
   },
   {
     "id": 6029052,
@@ -687,7 +739,8 @@
     ],
     "room_area": 296,
     "scoutable": false,
-    "vanilla_item": "DownThrust"
+    "vanilla_item": "DownThrust",
+    "key_rando": "Town_Dojo_NPC4"
   },
   {
     "id": 6029053,
@@ -699,7 +752,8 @@
     "pools": [],
     "room_area": 65,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Town_Well_TopChest"
   },
   {
     "id": 6029054,
@@ -711,7 +765,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_School_Roof_Chest"
   },
   {
     "id": 6029055,
@@ -723,7 +778,8 @@
     "pools": [],
     "room_area": 529,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_School_PathFusion_Chest"
   },
   {
     "id": 6029056,
@@ -735,7 +791,8 @@
     "pools": [],
     "room_area": 529,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_School_Path_LeftChest"
   },
   {
     "id": 6029057,
@@ -747,7 +804,8 @@
     "pools": [],
     "room_area": 529,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_School_Path_MiddleChest"
   },
   {
     "id": 6029058,
@@ -759,7 +817,8 @@
     "pools": [],
     "room_area": 529,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_School_Path_RightChest"
   },
   {
     "id": 6029059,
@@ -773,7 +832,8 @@
     ],
     "room_area": 529,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_School_Path_HP"
   },
   {
     "id": 6029060,
@@ -785,7 +845,8 @@
     "pools": [],
     "room_area": 15,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_Digging_TopChest"
   },
   {
     "id": 6029061,
@@ -797,7 +858,8 @@
     "pools": [],
     "room_area": 15,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_Digging_RightChest"
   },
   {
     "id": 6029062,
@@ -809,7 +871,8 @@
     "pools": [],
     "room_area": 15,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_Digging_LeftChest"
   },
   {
     "id": 6029063,
@@ -821,7 +884,8 @@
     "pools": [],
     "room_area": 65,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Town_Well_LeftChest"
   },
   {
     "id": 6029064,
@@ -835,7 +899,8 @@
     ],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Town_Bell_HP"
   },
   {
     "id": 6029065,
@@ -847,7 +912,8 @@
     "pools": [],
     "room_area": 2866,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Town_WaterfallFusion_Chest"
   },
   {
     "id": 6029066,
@@ -859,7 +925,8 @@
     "pools": [],
     "room_area": 1827,
     "scoutable": false,
-    "vanilla_item": "Carlov Medal"
+    "vanilla_item": "Carlov Medal",
+    "key_rando": "Town_Carlov_NPC"
   },
   {
     "id": 6029067,
@@ -871,7 +938,8 @@
     "pools": [],
     "room_area": 65,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Town_Well_BottomChest"
   },
   {
     "id": 6029068,
@@ -883,7 +951,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Town_Cuccos_Lv_1_NPC"
   },
   {
     "id": 6029069,
@@ -895,7 +964,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Town_Cuccos_Lv_2_NPC"
   },
   {
     "id": 6029070,
@@ -907,7 +977,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Town_Cuccos_Lv_3_NPC"
   },
   {
     "id": 6029071,
@@ -919,7 +990,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Town_Cuccos_Lv_4_NPC"
   },
   {
     "id": 6029072,
@@ -931,7 +1003,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Town_Cuccos_Lv_5_NPC"
   },
   {
     "id": 6029073,
@@ -943,7 +1016,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Town_Cuccos_Lv_6_NPC"
   },
   {
     "id": 6029074,
@@ -955,7 +1029,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_Cuccos_Lv_7_NPC"
   },
   {
     "id": 6029075,
@@ -967,7 +1042,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_Cuccos_Lv_8_NPC"
   },
   {
     "id": 6029076,
@@ -979,7 +1055,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Town_Cuccos_Lv_9_NPC"
   },
   {
     "id": 6029077,
@@ -991,7 +1068,8 @@
     "pools": [],
     "room_area": 2,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Town_Cuccos_Lv_10_NPC"
   },
   {
     "id": 6029078,
@@ -1003,7 +1081,8 @@
     "pools": [],
     "room_area": 1826,
     "scoutable": true,
-    "vanilla_item": "Red Book (Hyrulian Bestiary)"
+    "vanilla_item": "Red Book (Hyrulian Bestiary)",
+    "key_rando": "Town_Jullieta_Item"
   },
   {
     "id": 6029079,
@@ -1017,7 +1096,8 @@
     ],
     "room_area": 68,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Town_Simulation_Chest"
   },
   {
     "id": 6029080,
@@ -1029,7 +1109,8 @@
     "pools": [],
     "room_area": 547,
     "scoutable": false,
-    "vanilla_item": "Pegasus Boots"
+    "vanilla_item": "Pegasus Boots",
+    "key_rando": "Town_ShoeShop_NPC"
   },
   {
     "id": 6029081,
@@ -1041,7 +1122,8 @@
     "pools": [],
     "room_area": 1315,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "Town_MusicHouse_LeftChest"
   },
   {
     "id": 6029082,
@@ -1053,7 +1135,8 @@
     "pools": [],
     "room_area": 1315,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "Town_MusicHouse_MiddleChest"
   },
   {
     "id": 6029083,
@@ -1065,7 +1148,8 @@
     "pools": [],
     "room_area": 1315,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "Town_MusicHouse_RightChest"
   },
   {
     "id": 6029084,
@@ -1079,7 +1163,8 @@
     ],
     "room_area": 1315,
     "scoutable": true,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Town_MusicHouse_HP"
   },
   {
     "id": 6029085,
@@ -1091,7 +1176,8 @@
     "pools": [],
     "room_area": 65,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "Town_Well_PillarChest"
   },
   {
     "id": 6029086,
@@ -1103,7 +1189,8 @@
     "pools": [],
     "room_area": 1058,
     "scoutable": false,
-    "vanilla_item": "Green Book (Picori Legend)"
+    "vanilla_item": "Green Book (Picori Legend)",
+    "key_rando": "Town_DrLeft_AtticItem"
   },
   {
     "id": 6029087,
@@ -1115,7 +1202,8 @@
     "pools": [],
     "room_area": 866,
     "scoutable": false,
-    "vanilla_item": "Power Bracelets"
+    "vanilla_item": "Power Bracelets",
+    "key_rando": "Town_Fountain_BigChest"
   },
   {
     "id": 6029088,
@@ -1127,7 +1215,8 @@
     "pools": [],
     "room_area": 1122,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Town_Fountain_SmallChest"
   },
   {
     "id": 6029089,
@@ -1141,7 +1230,8 @@
     ],
     "room_area": 98,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Town_Fountain_HP"
   },
   {
     "id": 6029090,
@@ -1153,7 +1243,8 @@
     "pools": [],
     "room_area": 4141,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Town_Library_YellowMinish_NPC"
   },
   {
     "id": 6029091,
@@ -1165,7 +1256,8 @@
     "pools": [],
     "room_area": 4706,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Town_UnderLibrary_FrozenChest"
   },
   {
     "id": 6029092,
@@ -1177,7 +1269,8 @@
     "pools": [],
     "room_area": 4194,
     "scoutable": false,
-    "vanilla_item": "Flippers"
+    "vanilla_item": "Flippers",
+    "key_rando": "Town_UnderLibrary_BigChest"
   },
   {
     "id": 6029093,
@@ -1191,7 +1284,8 @@
     ],
     "room_area": 4194,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Town_UnderLibrary_Underwater"
   },
   {
     "id": 6029094,
@@ -1205,7 +1299,8 @@
     ],
     "room_area": 1539,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "NorthField_DigSpot"
   },
   {
     "id": 6029095,
@@ -1219,7 +1314,8 @@
     ],
     "room_area": 5426,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "NorthField_HP"
   },
   {
     "id": 6029096,
@@ -1231,7 +1327,8 @@
     "pools": [],
     "room_area": 50,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "NorthField_TreeFusion_TopLeftChest"
   },
   {
     "id": 6029097,
@@ -1243,7 +1340,8 @@
     "pools": [],
     "room_area": 50,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "NorthField_TreeFusion_TopRightChest"
   },
   {
     "id": 6029098,
@@ -1255,7 +1353,8 @@
     "pools": [],
     "room_area": 50,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "NorthField_TreeFusion_BottomLeftChest"
   },
   {
     "id": 6029099,
@@ -1267,7 +1366,8 @@
     "pools": [],
     "room_area": 50,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "NorthField_TreeFusion_BottomRightChest"
   },
   {
     "id": 6029100,
@@ -1279,7 +1379,8 @@
     "pools": [],
     "room_area": 50,
     "scoutable": false,
-    "vanilla_item": "Progressive Boomerang"
+    "vanilla_item": "Progressive Boomerang",
+    "key_rando": "NorthField_TreeFusion_CenterBigChest"
   },
   {
     "id": 6029101,
@@ -1293,7 +1394,8 @@
     ],
     "room_area": 549,
     "scoutable": false,
-    "vanilla_item": "Long Spin"
+    "vanilla_item": "Long Spin",
+    "key_rando": "NorthField_WaterfallFusion_DojoNPC"
   },
   {
     "id": 6029102,
@@ -1305,7 +1407,8 @@
     "pools": [],
     "room_area": 7,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Castle_Moat_LeftChest"
   },
   {
     "id": 6029103,
@@ -1317,7 +1420,8 @@
     "pools": [],
     "room_area": 7,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "Castle_Moat_RightChest"
   },
   {
     "id": 6029104,
@@ -1331,7 +1435,8 @@
     ],
     "room_area": 7,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Castle_GoldenRope"
   },
   {
     "id": 6029105,
@@ -1345,7 +1450,8 @@
     ],
     "room_area": 66,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Castle_RightFountainFusion_HP"
   },
   {
     "id": 6029106,
@@ -1359,7 +1465,8 @@
     ],
     "room_area": 1317,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Castle_Dojo_HP"
   },
   {
     "id": 6029107,
@@ -1373,7 +1480,8 @@
     ],
     "room_area": 1317,
     "scoutable": false,
-    "vanilla_item": "Sword Beam"
+    "vanilla_item": "Sword Beam",
+    "key_rando": "Castle_Dojo_NPC"
   },
   {
     "id": 6029108,
@@ -1385,7 +1493,8 @@
     "pools": [],
     "room_area": 54,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Castle_RightFountainFusion_MinishHoleChest"
   },
   {
     "id": 6029109,
@@ -1397,7 +1506,8 @@
     "pools": [],
     "room_area": 310,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Castle_LeftFountainFusion_MinishHoleChest"
   },
   {
     "id": 6029110,
@@ -1409,7 +1519,8 @@
     "pools": [],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "All_Requirements_Met"
   },
   {
     "id": 6029112,
@@ -1423,7 +1534,8 @@
     ],
     "room_area": 1027,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Hills_GoldenRope"
   },
   {
     "id": 6029113,
@@ -1435,7 +1547,8 @@
     "pools": [],
     "room_area": 1027,
     "scoutable": false,
-    "vanilla_item": "Bottle (Empty)"
+    "vanilla_item": "Bottle (Empty)",
+    "key_rando": "Hills_Fusion_Chest"
   },
   {
     "id": 6029114,
@@ -1447,7 +1560,8 @@
     "pools": [],
     "room_area": 781,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Hills_BeanstalkFusion_LeftChest"
   },
   {
     "id": 6029115,
@@ -1461,7 +1575,8 @@
     ],
     "room_area": 781,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Hills_BeanstalkFusion_HP"
   },
   {
     "id": 6029116,
@@ -1473,7 +1588,8 @@
     "pools": [],
     "room_area": 781,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "Hills_BeanstalkFusion_RightChest"
   },
   {
     "id": 6029117,
@@ -1485,7 +1601,8 @@
     "pools": [],
     "room_area": 4914,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Hills_BombCave_Chest"
   },
   {
     "id": 6029118,
@@ -1499,7 +1616,8 @@
     ],
     "room_area": 297,
     "scoutable": false,
-    "vanilla_item": "Big Wallet"
+    "vanilla_item": "Big Wallet",
+    "key_rando": "Minish_GreatFairy_NPC"
   },
   {
     "id": 6029119,
@@ -1513,7 +1631,8 @@
     ],
     "room_area": 19,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Hills_FarmDigCave_Item"
   },
   {
     "id": 6029120,
@@ -1527,7 +1646,8 @@
     ],
     "room_area": 552,
     "scoutable": false,
-    "vanilla_item": "LonLon Key"
+    "vanilla_item": "LonLon Key",
+    "key_rando": "LonLon_RanchPot"
   },
   {
     "id": 6029121,
@@ -1539,7 +1659,8 @@
     "pools": [],
     "room_area": 3890,
     "scoutable": false,
-    "vanilla_item": "Big Wallet"
+    "vanilla_item": "Big Wallet",
+    "key_rando": "LonLon_PuddleFusion_BigChest"
   },
   {
     "id": 6029122,
@@ -1551,7 +1672,8 @@
     "pools": [],
     "room_area": 3122,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "LonLon_Cave_Chest"
   },
   {
     "id": 6029123,
@@ -1563,7 +1685,8 @@
     "pools": [],
     "room_area": 3378,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "LonLon_CaveSecret_Chest"
   },
   {
     "id": 6029124,
@@ -1575,7 +1698,8 @@
     "pools": [],
     "room_area": 785,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "LonLon_Path_FusionChest"
   },
   {
     "id": 6029125,
@@ -1589,7 +1713,8 @@
     ],
     "room_area": 785,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "LonLon_Path_HP"
   },
   {
     "id": 6029126,
@@ -1603,7 +1728,8 @@
     ],
     "room_area": 1283,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "LonLon_DigSpot"
   },
   {
     "id": 6029127,
@@ -1615,7 +1741,8 @@
     "pools": [],
     "room_area": 39,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "LonLon_NorthMinishCrack_Chest"
   },
   {
     "id": 6029128,
@@ -1627,7 +1754,8 @@
     "pools": [],
     "room_area": 303,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "LonLon_GoronCaveFusion_SmallChest"
   },
   {
     "id": 6029129,
@@ -1639,7 +1767,8 @@
     "pools": [],
     "room_area": 303,
     "scoutable": false,
-    "vanilla_item": "Bottle (Empty)"
+    "vanilla_item": "Bottle (Empty)",
+    "key_rando": "LonLon_GoronCaveFusion_BigChest"
   },
   {
     "id": 6029130,
@@ -1651,7 +1780,8 @@
     "pools": [],
     "room_area": 1283,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "FallsLower_LonLonFusion_Chest"
   },
   {
     "id": 6029131,
@@ -1665,7 +1795,8 @@
     ],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "FallsLower_HP"
   },
   {
     "id": 6029132,
@@ -1679,7 +1810,8 @@
     ],
     "room_area": 293,
     "scoutable": false,
-    "vanilla_item": "Fast Split Scroll"
+    "vanilla_item": "Fast Split Scroll",
+    "key_rando": "FallsLower_WaterfallFusion_DojoNPC"
   },
   {
     "id": 6029133,
@@ -1693,7 +1825,8 @@
     ],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "FallsLower_RockItem1"
   },
   {
     "id": 6029134,
@@ -1707,7 +1840,8 @@
     ],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "FallsLower_RockItem2"
   },
   {
     "id": 6029135,
@@ -1721,7 +1855,8 @@
     ],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "FallsLower_RockItem3"
   },
   {
     "id": 6029136,
@@ -1733,7 +1868,8 @@
     "pools": [],
     "room_area": 22,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "FallsLower_DigCave_LeftChest"
   },
   {
     "id": 6029137,
@@ -1745,7 +1881,8 @@
     "pools": [],
     "room_area": 22,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "FallsLower_DigCave_RightChest"
   },
   {
     "id": 6029138,
@@ -1760,7 +1897,8 @@
     ],
     "room_area": 11,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Hylia_SunkenHP"
   },
   {
     "id": 6029139,
@@ -1772,7 +1910,8 @@
     "pools": [],
     "room_area": 5154,
     "scoutable": false,
-    "vanilla_item": "Bottle (Empty)"
+    "vanilla_item": "Bottle (Empty)",
+    "key_rando": "Hylia_DogNPC"
   },
   {
     "id": 6029140,
@@ -1786,7 +1925,8 @@
     ],
     "room_area": 11,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Hylia_SmallIsland_HP"
   },
   {
     "id": 6029141,
@@ -1798,7 +1938,8 @@
     "pools": [],
     "room_area": 281,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Hylia_CapeCave_TopRight"
   },
   {
     "id": 6029142,
@@ -1810,7 +1951,8 @@
     "pools": [],
     "room_area": 281,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Hylia_CapeCave_BottomLeft"
   },
   {
     "id": 6029143,
@@ -1822,7 +1964,8 @@
     "pools": [],
     "room_area": 281,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Hylia_CapeCave_TopLeft"
   },
   {
     "id": 6029144,
@@ -1834,7 +1977,8 @@
     "pools": [],
     "room_area": 281,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Hylia_CapeCave_TopMiddle"
   },
   {
     "id": 6029145,
@@ -1846,7 +1990,8 @@
     "pools": [],
     "room_area": 281,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Hylia_CapeCave_Right"
   },
   {
     "id": 6029146,
@@ -1858,7 +2003,8 @@
     "pools": [],
     "room_area": 281,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Hylia_CapeCave_BottomRight"
   },
   {
     "id": 6029147,
@@ -1870,7 +2016,8 @@
     "pools": [],
     "room_area": 281,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Hylia_CapeCave_BottomMiddle"
   },
   {
     "id": 6029148,
@@ -1884,7 +2031,8 @@
     ],
     "room_area": 1283,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Hylia_CapeCave_LonLonHP"
   },
   {
     "id": 6029149,
@@ -1896,7 +2044,8 @@
     "pools": [],
     "room_area": 269,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "Hylia_BeanstalkFusion_LeftChest"
   },
   {
     "id": 6029150,
@@ -1910,7 +2059,8 @@
     ],
     "room_area": 269,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Hylia_BeanstalkFusion_HP"
   },
   {
     "id": 6029151,
@@ -1922,7 +2072,8 @@
     "pools": [],
     "room_area": 269,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Hylia_BeanstalkFusion_RightChest"
   },
   {
     "id": 6029152,
@@ -1934,7 +2085,8 @@
     "pools": [],
     "room_area": 25,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Hylia_MiddleIslandFusion_DigCaveChest"
   },
   {
     "id": 6029154,
@@ -1948,7 +2100,8 @@
     ],
     "room_area": 11,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Hylia_BottomHP"
   },
   {
     "id": 6029155,
@@ -1962,7 +2115,8 @@
     ],
     "room_area": 1573,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Hylia_Dojo_HP"
   },
   {
     "id": 6029156,
@@ -1976,7 +2130,8 @@
     ],
     "room_area": 1573,
     "scoutable": false,
-    "vanilla_item": "Peril Beam"
+    "vanilla_item": "Peril Beam",
+    "key_rando": "Hylia_Dojo_NPC"
   },
   {
     "id": 6029157,
@@ -1990,7 +2145,8 @@
     ],
     "room_area": 8992,
     "scoutable": false,
-    "vanilla_item": "Heart Container"
+    "vanilla_item": "Heart Container",
+    "key_rando": "Hylia_CrackFusion_LibrariNPC"
   },
   {
     "id": 6029158,
@@ -2002,7 +2158,8 @@
     "pools": [],
     "room_area": 1845,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Hylia_NorthMinishHole_Chest"
   },
   {
     "id": 6029159,
@@ -2014,7 +2171,8 @@
     "pools": [],
     "room_area": 1333,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Hylia_SouthMinishHole_Chest"
   },
   {
     "id": 6029160,
@@ -2026,7 +2184,8 @@
     "pools": [],
     "room_area": 1041,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Hylia_CabinPathFusion_Chest"
   },
   {
     "id": 6029161,
@@ -2038,7 +2197,8 @@
     "pools": [],
     "room_area": 1320,
     "scoutable": true,
-    "vanilla_item": "Blue Book (History of Masks)"
+    "vanilla_item": "Blue Book (History of Masks)",
+    "key_rando": "Hylia_MayorCabin_Item"
   },
   {
     "id": 6029162,
@@ -2052,7 +2212,8 @@
     ],
     "room_area": 0,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "MinishWoods_GoldenOcto"
   },
   {
     "id": 6029163,
@@ -2066,7 +2227,8 @@
     ],
     "room_area": 36,
     "scoutable": false,
-    "vanilla_item": "Wakeup Mushroom"
+    "vanilla_item": "Wakeup Mushroom",
+    "key_rando": "MinishWoods_WitchHut_Item"
   },
   {
     "id": 6029164,
@@ -2078,7 +2240,8 @@
     "pools": [],
     "room_area": 12,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "WitchDiggingCave_Chest"
   },
   {
     "id": 6029165,
@@ -2090,7 +2253,8 @@
     "pools": [],
     "room_area": 0,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "MinishWoods_NorthFusion_Chest"
   },
   {
     "id": 6029166,
@@ -2104,7 +2268,8 @@
     ],
     "room_area": 0,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "MinishWoods_TopHP"
   },
   {
     "id": 6029167,
@@ -2116,7 +2281,8 @@
     "pools": [],
     "room_area": 0,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "MinishWoods_WestFusion_Chest"
   },
   {
     "id": 6029168,
@@ -2128,7 +2294,8 @@
     "pools": [],
     "room_area": 12,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "MinishWoods_LikeLikeDiggingCave_LeftChest"
   },
   {
     "id": 6029169,
@@ -2140,7 +2307,8 @@
     "pools": [],
     "room_area": 12,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "MinishWoods_LikeLikeDiggingCave_RightChest"
   },
   {
     "id": 6029170,
@@ -2152,7 +2320,8 @@
     "pools": [],
     "room_area": 0,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "MinishWoods_EastFusion_Chest"
   },
   {
     "id": 6029171,
@@ -2164,7 +2333,8 @@
     "pools": [],
     "room_area": 0,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "MinishWoods_SouthFusion_Chest"
   },
   {
     "id": 6029172,
@@ -2178,7 +2348,8 @@
     ],
     "room_area": 0,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "MinishWoods_BottomHP"
   },
   {
     "id": 6029173,
@@ -2190,7 +2361,8 @@
     "pools": [],
     "room_area": 2087,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "MinishWoods_CrackFusion_Chest"
   },
   {
     "id": 6029174,
@@ -2202,7 +2374,8 @@
     "pools": [],
     "room_area": 17,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "MinishWoods_MinishPathFusion_Chest"
   },
   {
     "id": 6029175,
@@ -2214,7 +2387,8 @@
     "pools": [],
     "room_area": 2336,
     "scoutable": false,
-    "vanilla_item": "Jabber Nut"
+    "vanilla_item": "Jabber Nut",
+    "key_rando": "MinishVillage_BarrelHouse_Item"
   },
   {
     "id": 6029176,
@@ -2228,7 +2402,8 @@
     ],
     "room_area": 257,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "MinishVillage_HP"
   },
   {
     "id": 6029178,
@@ -2240,7 +2415,8 @@
     "pools": [],
     "room_area": 9760,
     "scoutable": false,
-    "vanilla_item": "Bomb Bag"
+    "vanilla_item": "Bomb Bag",
+    "key_rando": "MinishWoods_BombMinish_NPC1"
   },
   {
     "id": 6029179,
@@ -2252,7 +2428,8 @@
     "pools": [],
     "room_area": 9760,
     "scoutable": false,
-    "vanilla_item": "Remote Bomb"
+    "vanilla_item": "Remote Bomb",
+    "key_rando": "MinishWoods_BombMinish_NPC2"
   },
   {
     "id": 6029180,
@@ -2264,7 +2441,8 @@
     "pools": [],
     "room_area": 0,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "MinishWoods_PostVillageFusion_Chest"
   },
   {
     "id": 6029181,
@@ -2276,7 +2454,8 @@
     "pools": [],
     "room_area": 2357,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "MinishWoods_FlipperHole_MiddleChest"
   },
   {
     "id": 6029182,
@@ -2288,7 +2467,8 @@
     "pools": [],
     "room_area": 2357,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "MinishWoods_FlipperHole_RightChest"
   },
   {
     "id": 6029183,
@@ -2300,7 +2480,8 @@
     "pools": [],
     "room_area": 2357,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "MinishWoods_FlipperHole_LeftChest"
   },
   {
     "id": 6029184,
@@ -2314,7 +2495,8 @@
     ],
     "room_area": 2357,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "MinishWoods_FlipperHole_HP"
   },
   {
     "id": 6029185,
@@ -2326,7 +2508,8 @@
     "pools": [],
     "room_area": 1795,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Trilby_MiddleFusion_Chest"
   },
   {
     "id": 6029186,
@@ -2338,7 +2521,8 @@
     "pools": [],
     "room_area": 1795,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Trilby_TopFusion_Chest"
   },
   {
     "id": 6029187,
@@ -2350,7 +2534,8 @@
     "pools": [],
     "room_area": 787,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Trilby_DigCave_LeftChest"
   },
   {
     "id": 6029188,
@@ -2362,7 +2547,8 @@
     "pools": [],
     "room_area": 787,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Trilby_DigCave_RightChest"
   },
   {
     "id": 6029189,
@@ -2374,7 +2560,8 @@
     "pools": [],
     "room_area": 787,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Trilby_DigCave_WaterFusion_Chest"
   },
   {
     "id": 6029190,
@@ -2388,7 +2575,8 @@
     ],
     "room_area": 5170,
     "scoutable": false,
-    "vanilla_item": "Bottle (Empty)"
+    "vanilla_item": "Bottle (Empty)",
+    "key_rando": "Trilby_Scrub_NPC"
   },
   {
     "id": 6029191,
@@ -2400,7 +2588,8 @@
     "pools": [],
     "room_area": 1842,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Trilby_BombCave_Chest"
   },
   {
     "id": 6029192,
@@ -2414,7 +2603,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item1"
   },
   {
     "id": 6029193,
@@ -2428,7 +2618,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item2"
   },
   {
     "id": 6029194,
@@ -2442,7 +2633,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item3"
   },
   {
     "id": 6029195,
@@ -2456,7 +2648,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item4"
   },
   {
     "id": 6029196,
@@ -2470,7 +2663,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item5"
   },
   {
     "id": 6029197,
@@ -2484,7 +2678,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item6"
   },
   {
     "id": 6029198,
@@ -2498,7 +2693,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item7"
   },
   {
     "id": 6029199,
@@ -2512,7 +2708,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item8"
   },
   {
     "id": 6029200,
@@ -2526,7 +2723,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item9"
   },
   {
     "id": 6029201,
@@ -2540,7 +2738,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item10"
   },
   {
     "id": 6029202,
@@ -2554,7 +2753,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item11"
   },
   {
     "id": 6029203,
@@ -2568,7 +2768,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item12"
   },
   {
     "id": 6029204,
@@ -2582,7 +2783,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item13"
   },
   {
     "id": 6029205,
@@ -2596,7 +2798,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item14"
   },
   {
     "id": 6029206,
@@ -2610,7 +2813,8 @@
     ],
     "room_area": 4402,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Trilby_PuddleFusion_Item15"
   },
   {
     "id": 6029207,
@@ -2622,7 +2826,8 @@
     "pools": [],
     "room_area": 2051,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "WesternWoods_FusionChest"
   },
   {
     "id": 6029208,
@@ -2636,7 +2841,8 @@
     ],
     "room_area": 6436,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "WesternWoods_TreeFusion_HP"
   },
   {
     "id": 6029209,
@@ -2650,7 +2856,8 @@
     ],
     "room_area": 2051,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "WesternWoods_TopDig1"
   },
   {
     "id": 6029210,
@@ -2664,7 +2871,8 @@
     ],
     "room_area": 2051,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "WesternWoods_TopDig2"
   },
   {
     "id": 6029211,
@@ -2678,7 +2886,8 @@
     ],
     "room_area": 2051,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "WesternWoods_TopDig3"
   },
   {
     "id": 6029212,
@@ -2692,7 +2901,8 @@
     ],
     "room_area": 2051,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "WesternWoods_TopDig4"
   },
   {
     "id": 6029213,
@@ -2706,7 +2916,8 @@
     ],
     "room_area": 2051,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "WesternWoods_TopDig5"
   },
   {
     "id": 6029214,
@@ -2720,7 +2931,8 @@
     ],
     "room_area": 2051,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "WesternWoods_TopDig6"
   },
   {
     "id": 6029215,
@@ -2732,7 +2944,8 @@
     "pools": [],
     "room_area": 2082,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "WesternWoods_PercyFusion_Moblin"
   },
   {
     "id": 6029216,
@@ -2744,7 +2957,8 @@
     "pools": [],
     "room_area": 2082,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "WesternWoods_PercyFusion_Percy"
   },
   {
     "id": 6029217,
@@ -2758,7 +2972,8 @@
     ],
     "room_area": 2051,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "WesternWoods_BottomDig1"
   },
   {
     "id": 6029218,
@@ -2772,7 +2987,8 @@
     ],
     "room_area": 2051,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "WesternWoods_BottomDig2"
   },
   {
     "id": 6029219,
@@ -2786,7 +3002,8 @@
     ],
     "room_area": 2307,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "WesternWoods_GoldenOcto"
   },
   {
     "id": 6029220,
@@ -2798,7 +3015,8 @@
     "pools": [],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "WesternWoods_BeanstalkFusion_Chest"
   },
   {
     "id": 6029221,
@@ -2812,7 +3030,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item1"
   },
   {
     "id": 6029222,
@@ -2826,7 +3045,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item2"
   },
   {
     "id": 6029223,
@@ -2840,7 +3060,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item3"
   },
   {
     "id": 6029224,
@@ -2854,7 +3075,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item4"
   },
   {
     "id": 6029225,
@@ -2868,7 +3090,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item5"
   },
   {
     "id": 6029226,
@@ -2882,7 +3105,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item6"
   },
   {
     "id": 6029227,
@@ -2896,7 +3120,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item7"
   },
   {
     "id": 6029228,
@@ -2910,7 +3135,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item8"
   },
   {
     "id": 6029229,
@@ -2924,7 +3150,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item9"
   },
   {
     "id": 6029230,
@@ -2938,7 +3165,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item10"
   },
   {
     "id": 6029231,
@@ -2952,7 +3180,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item11"
   },
   {
     "id": 6029232,
@@ -2966,7 +3195,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item12"
   },
   {
     "id": 6029233,
@@ -2980,7 +3210,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item13"
   },
   {
     "id": 6029234,
@@ -2994,7 +3225,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item14"
   },
   {
     "id": 6029235,
@@ -3008,7 +3240,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item15"
   },
   {
     "id": 6029236,
@@ -3022,7 +3255,8 @@
     ],
     "room_area": 1037,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "WesternWoods_BeanstalkFusion_Item16"
   },
   {
     "id": 6029237,
@@ -3036,7 +3270,8 @@
     ],
     "room_area": 1030,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "CrenelBase_EntranceVine"
   },
   {
     "id": 6029238,
@@ -3050,7 +3285,8 @@
     ],
     "room_area": 2342,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "CrenelBase_FairyCave_Item1"
   },
   {
     "id": 6029239,
@@ -3064,7 +3300,8 @@
     ],
     "room_area": 2342,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "CrenelBase_FairyCave_Item2"
   },
   {
     "id": 6029240,
@@ -3078,7 +3315,8 @@
     ],
     "room_area": 2342,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "CrenelBase_FairyCave_Item3"
   },
   {
     "id": 6029241,
@@ -3090,7 +3328,8 @@
     "pools": [],
     "room_area": 274,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "CrenelBase_GreenWaterFusion_Chest"
   },
   {
     "id": 6029242,
@@ -3102,7 +3341,8 @@
     "pools": [],
     "room_area": 1030,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "CrenelBase_WestFusion_Chest"
   },
   {
     "id": 6029243,
@@ -3114,7 +3354,8 @@
     "pools": [],
     "room_area": 2086,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "CrenelBase_WaterCave_LeftChest"
   },
   {
     "id": 6029244,
@@ -3126,7 +3367,8 @@
     "pools": [],
     "room_area": 2086,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "CrenelBase_WaterCave_RightChest"
   },
   {
     "id": 6029245,
@@ -3140,7 +3382,8 @@
     ],
     "room_area": 2086,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "CrenelBase_WaterCave_HP"
   },
   {
     "id": 6029246,
@@ -3152,7 +3395,8 @@
     "pools": [],
     "room_area": 53,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "CrenelBase_MinishVineHole_Chest"
   },
   {
     "id": 6029247,
@@ -3164,7 +3408,8 @@
     "pools": [],
     "room_area": 807,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "CrenelBase_MinishCrack_Chest"
   },
   {
     "id": 6029248,
@@ -3178,7 +3423,8 @@
     ],
     "room_area": 774,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Crenel_VineTop_GoldenTektite"
   },
   {
     "id": 6029249,
@@ -3190,7 +3436,8 @@
     "pools": [],
     "room_area": 1830,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Crenel_BridgeCave_Chest"
   },
   {
     "id": 6029250,
@@ -3204,7 +3451,8 @@
     ],
     "room_area": 1318,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Crenel_FairyCave_HP"
   },
   {
     "id": 6029251,
@@ -3218,7 +3466,8 @@
     ],
     "room_area": 518,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Crenel_BelowCoF_GoldenTektite"
   },
   {
     "id": 6029252,
@@ -3232,7 +3481,8 @@
     ],
     "room_area": 1062,
     "scoutable": false,
-    "vanilla_item": "Grip Ring"
+    "vanilla_item": "Grip Ring",
+    "key_rando": "Crenel_Scrub_NPC"
   },
   {
     "id": 6029253,
@@ -3244,7 +3494,8 @@
     "pools": [],
     "room_area": 37,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Crenel_Dojo_LeftChest"
   },
   {
     "id": 6029254,
@@ -3256,7 +3507,8 @@
     "pools": [],
     "room_area": 37,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Crenel_Dojo_RightChest"
   },
   {
     "id": 6029255,
@@ -3270,7 +3522,8 @@
     ],
     "room_area": 37,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Crenel_Dojo_HP"
   },
   {
     "id": 6029256,
@@ -3284,7 +3537,8 @@
     ],
     "room_area": 37,
     "scoutable": false,
-    "vanilla_item": "Roll Attack"
+    "vanilla_item": "Roll Attack",
+    "key_rando": "Crenel_Dojo_NPC"
   },
   {
     "id": 6029257,
@@ -3298,7 +3552,8 @@
     ],
     "room_area": 553,
     "scoutable": false,
-    "vanilla_item": "Bomb Bag"
+    "vanilla_item": "Bomb Bag",
+    "key_rando": "Crenel_GreatFairy_NPC"
   },
   {
     "id": 6029258,
@@ -3310,7 +3565,8 @@
     "pools": [],
     "room_area": 262,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Crenel_ClimbFusion_Chest"
   },
   {
     "id": 6029259,
@@ -3324,7 +3580,8 @@
     ],
     "room_area": 20,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Crenel_DigCave_HP"
   },
   {
     "id": 6029260,
@@ -3338,7 +3595,8 @@
     ],
     "room_area": 13,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Crenel_BeanstalkFusion_HP"
   },
   {
     "id": 6029261,
@@ -3352,7 +3610,8 @@
     ],
     "room_area": 13,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_BeanstalkFusion_Item1"
   },
   {
     "id": 6029262,
@@ -3366,7 +3625,8 @@
     ],
     "room_area": 13,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_BeanstalkFusion_Item2"
   },
   {
     "id": 6029263,
@@ -3380,7 +3640,8 @@
     ],
     "room_area": 13,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_BeanstalkFusion_Item3"
   },
   {
     "id": 6029264,
@@ -3394,7 +3655,8 @@
     ],
     "room_area": 13,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_BeanstalkFusion_Item4"
   },
   {
     "id": 6029265,
@@ -3408,7 +3670,8 @@
     ],
     "room_area": 13,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_BeanstalkFusion_Item5"
   },
   {
     "id": 6029266,
@@ -3422,7 +3685,8 @@
     ],
     "room_area": 13,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_BeanstalkFusion_Item6"
   },
   {
     "id": 6029267,
@@ -3436,7 +3700,8 @@
     ],
     "room_area": 13,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_BeanstalkFusion_Item7"
   },
   {
     "id": 6029268,
@@ -3450,7 +3715,8 @@
     ],
     "room_area": 13,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_BeanstalkFusion_Item8"
   },
   {
     "id": 6029269,
@@ -3462,7 +3728,8 @@
     "pools": [],
     "room_area": 530,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Crenel_RainPathFusion_Chest"
   },
   {
     "id": 6029270,
@@ -3474,7 +3741,8 @@
     "pools": [],
     "room_area": 806,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Crenel_UpperBlock_Chest"
   },
   {
     "id": 6029271,
@@ -3486,7 +3754,8 @@
     "pools": [],
     "room_area": 786,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Crenel_MinesPathFusion_Chest"
   },
   {
     "id": 6029272,
@@ -3500,7 +3769,8 @@
     ],
     "room_area": 16,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Crenel_Melari_LowerMiddle_Dig"
   },
   {
     "id": 6029273,
@@ -3514,7 +3784,8 @@
     ],
     "room_area": 16,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Crenel_Melari_VeryBottom_Dig"
   },
   {
     "id": 6029274,
@@ -3528,7 +3799,8 @@
     ],
     "room_area": 16,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_Melari_UpperMiddle_LeftDig"
   },
   {
     "id": 6029275,
@@ -3542,7 +3814,8 @@
     ],
     "room_area": 16,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_Melari_UpperMiddle_MiddleDig"
   },
   {
     "id": 6029276,
@@ -3556,7 +3829,8 @@
     ],
     "room_area": 16,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_Melari_UpperMiddle_RightDig"
   },
   {
     "id": 6029277,
@@ -3570,7 +3844,8 @@
     ],
     "room_area": 16,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Crenel_Melari_UpperTop_RightDig"
   },
   {
     "id": 6029278,
@@ -3584,7 +3859,8 @@
     ],
     "room_area": 16,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Crenel_Melari_UpperTop_MiddleDig"
   },
   {
     "id": 6029279,
@@ -3598,7 +3874,8 @@
     ],
     "room_area": 16,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Crenel_Melari_UpperTop_LeftDig"
   },
   {
     "id": 6029281,
@@ -3612,7 +3889,8 @@
     ],
     "room_area": 4,
     "scoutable": false,
-    "vanilla_item": "Dig Butterfly"
+    "vanilla_item": "Dig Butterfly",
+    "key_rando": "Swamp_ButterflyFusion_Item"
   },
   {
     "id": 6029282,
@@ -3624,7 +3902,8 @@
     "pools": [],
     "room_area": 43,
     "scoutable": false,
-    "vanilla_item": "Kinstone Swamp"
+    "vanilla_item": "Kinstone Swamp",
+    "key_rando": "Swamp_CenterCave_DarknutChest"
   },
   {
     "id": 6029283,
@@ -3636,7 +3915,8 @@
     "pools": [],
     "room_area": 4,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Swamp_CenterChest"
   },
   {
     "id": 6029284,
@@ -3650,7 +3930,8 @@
     ],
     "room_area": 4,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Swamp_GoldenRope"
   },
   {
     "id": 6029285,
@@ -3664,7 +3945,8 @@
     ],
     "room_area": 1066,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Swamp_NearWaterfall_CaveHP"
   },
   {
     "id": 6029286,
@@ -3678,7 +3960,8 @@
     ],
     "room_area": 805,
     "scoutable": false,
-    "vanilla_item": "Fast Spin Scroll"
+    "vanilla_item": "Fast Spin Scroll",
+    "key_rando": "Swamp_WaterfallFusion_DojoNPC"
   },
   {
     "id": 6029287,
@@ -3690,7 +3973,8 @@
     "pools": [],
     "room_area": 298,
     "scoutable": false,
-    "vanilla_item": "Kinstone Swamp"
+    "vanilla_item": "Kinstone Swamp",
+    "key_rando": "Swamp_NorthCave_Chest"
   },
   {
     "id": 6029288,
@@ -3702,7 +3986,8 @@
     "pools": [],
     "room_area": 23,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Swamp_DiggingCave_LeftChest"
   },
   {
     "id": 6029289,
@@ -3714,7 +3999,8 @@
     "pools": [],
     "room_area": 23,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Swamp_DiggingCave_RightChest"
   },
   {
     "id": 6029290,
@@ -3728,7 +4014,8 @@
     ],
     "room_area": 4,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Swamp_Underwater_Top"
   },
   {
     "id": 6029291,
@@ -3742,7 +4029,8 @@
     ],
     "room_area": 4,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Swamp_Underwater_Middle"
   },
   {
     "id": 6029292,
@@ -3756,7 +4044,8 @@
     ],
     "room_area": 4,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Swamp_Underwater_Bottom"
   },
   {
     "id": 6029293,
@@ -3768,7 +4057,8 @@
     "pools": [],
     "room_area": 42,
     "scoutable": false,
-    "vanilla_item": "Kinstone Swamp"
+    "vanilla_item": "Kinstone Swamp",
+    "key_rando": "Swamp_SouthCave_Chest"
   },
   {
     "id": 6029294,
@@ -3782,7 +4072,8 @@
     ],
     "room_area": 1061,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Swamp_Dojo_HP"
   },
   {
     "id": 6029295,
@@ -3796,7 +4087,8 @@
     ],
     "room_area": 1061,
     "scoutable": false,
-    "vanilla_item": "Greatspin"
+    "vanilla_item": "Greatspin",
+    "key_rando": "Swamp_Dojo_NPC"
   },
   {
     "id": 6029296,
@@ -3808,7 +4100,8 @@
     "pools": [],
     "room_area": 2343,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Swamp_MinishFusion_NorthCrack_Chest"
   },
   {
     "id": 6029297,
@@ -3820,7 +4113,8 @@
     "pools": [],
     "room_area": 1575,
     "scoutable": false,
-    "vanilla_item": "Progressive Bow"
+    "vanilla_item": "Progressive Bow",
+    "key_rando": "Swamp_Minish_Mulldozer_BigChest"
   },
   {
     "id": 6029298,
@@ -3832,7 +4126,8 @@
     "pools": [],
     "room_area": 3367,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Swamp_MinishFusion_NorthWestCrack_Chest"
   },
   {
     "id": 6029299,
@@ -3844,7 +4139,8 @@
     "pools": [],
     "room_area": 2599,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Swamp_MinishFusion_WestCrack_Chest"
   },
   {
     "id": 6029300,
@@ -3856,7 +4152,8 @@
     "pools": [],
     "room_area": 2855,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Swamp_MinishFusion_VineCrack_Chest"
   },
   {
     "id": 6029301,
@@ -3868,7 +4165,8 @@
     "pools": [],
     "room_area": 309,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Swamp_MinishFusion_WaterHole_Chest"
   },
   {
     "id": 6029302,
@@ -3882,7 +4180,8 @@
     ],
     "room_area": 565,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Swamp_MinishFusion_WaterHole_HP"
   },
   {
     "id": 6029303,
@@ -3896,7 +4195,8 @@
     ],
     "room_area": 5,
     "scoutable": false,
-    "vanilla_item": "Bow Butterfly"
+    "vanilla_item": "Bow Butterfly",
+    "key_rando": "Ruins_ButterflyFusion_Item"
   },
   {
     "id": 6029304,
@@ -3908,7 +4208,8 @@
     "pools": [],
     "room_area": 554,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Ruins_BombCave_Chest"
   },
   {
     "id": 6029305,
@@ -3920,7 +4221,8 @@
     "pools": [],
     "room_area": 1831,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Ruins_MinishHome_Chest"
   },
   {
     "id": 6029306,
@@ -3932,7 +4234,8 @@
     "pools": [],
     "room_area": 773,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Ruins_PillarsFusion_Chest"
   },
   {
     "id": 6029307,
@@ -3944,7 +4247,8 @@
     "pools": [],
     "room_area": 525,
     "scoutable": false,
-    "vanilla_item": "Quiver"
+    "vanilla_item": "Quiver",
+    "key_rando": "Ruins_BeanStalkFusion_BigChest"
   },
   {
     "id": 6029308,
@@ -3956,7 +4260,8 @@
     "pools": [],
     "room_area": 3111,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Ruins_CrackFusion_Chest"
   },
   {
     "id": 6029309,
@@ -3970,7 +4275,8 @@
     ],
     "room_area": 821,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Ruins_MinishCave_HP"
   },
   {
     "id": 6029310,
@@ -3982,7 +4288,8 @@
     "pools": [],
     "room_area": 1285,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Ruins_ArmosKill_LeftChest"
   },
   {
     "id": 6029311,
@@ -3994,7 +4301,8 @@
     "pools": [],
     "room_area": 1285,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Ruins_ArmosKill_RightChest"
   },
   {
     "id": 6029312,
@@ -4008,7 +4316,8 @@
     ],
     "room_area": 1285,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Ruins_GoldenOcto"
   },
   {
     "id": 6029313,
@@ -4020,7 +4329,8 @@
     "pools": [],
     "room_area": 1029,
     "scoutable": false,
-    "vanilla_item": "Bomb Bag"
+    "vanilla_item": "Bomb Bag",
+    "key_rando": "Ruins_NearFoWFusion_Chest"
   },
   {
     "id": 6029315,
@@ -4032,7 +4342,8 @@
     "pools": [],
     "room_area": 1539,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Valley_PreValleyFusion_Chest"
   },
   {
     "id": 6029316,
@@ -4046,7 +4357,8 @@
     ],
     "room_area": 41,
     "scoutable": false,
-    "vanilla_item": "Quiver"
+    "vanilla_item": "Quiver",
+    "key_rando": "Valley_GreatFairy_NPC"
   },
   {
     "id": 6029317,
@@ -4058,7 +4370,8 @@
     "pools": [],
     "room_area": 265,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Valley_LostWoods_Chest"
   },
   {
     "id": 6029318,
@@ -4070,7 +4383,8 @@
     "pools": [],
     "room_area": 4642,
     "scoutable": false,
-    "vanilla_item": "Graveyard Key"
+    "vanilla_item": "Graveyard Key",
+    "key_rando": "Valley_DampeNPC"
   },
   {
     "id": 6029319,
@@ -4084,7 +4398,8 @@
     ],
     "room_area": 9,
     "scoutable": false,
-    "vanilla_item": "Swim Butterfly"
+    "vanilla_item": "Swim Butterfly",
+    "key_rando": "Valley_GraveyardButterflyFusion_Item"
   },
   {
     "id": 6029320,
@@ -4096,7 +4411,8 @@
     "pools": [],
     "room_area": 9,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Valley_GraveyardLeftFusion_Chest"
   },
   {
     "id": 6029321,
@@ -4110,7 +4426,8 @@
     ],
     "room_area": 52,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Valley_GraveyardLeftGrave_HP"
   },
   {
     "id": 6029322,
@@ -4122,7 +4439,8 @@
     "pools": [],
     "room_area": 9,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Valley_GraveyardRightFusion_Chest"
   },
   {
     "id": 6029323,
@@ -4134,7 +4452,8 @@
     "pools": [],
     "room_area": 308,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Valley_GraveyardRightGraveFusion_Chest"
   },
   {
     "id": 6029325,
@@ -4146,7 +4465,8 @@
     "pools": [],
     "room_area": 2152,
     "scoutable": false,
-    "vanilla_item": "5 Bomb Refill"
+    "vanilla_item": "5 Bomb Refill",
+    "key_rando": "Crypt_Gibdo_LeftItem"
   },
   {
     "id": 6029326,
@@ -4158,7 +4478,8 @@
     "pools": [],
     "room_area": 2152,
     "scoutable": false,
-    "vanilla_item": "Small Key (RC)"
+    "vanilla_item": "Small Key (RC)",
+    "key_rando": "Crypt_Gibdo_RightItem"
   },
   {
     "id": 6029327,
@@ -4170,7 +4491,8 @@
     "pools": [],
     "room_area": 1128,
     "scoutable": false,
-    "vanilla_item": "Small Key (RC)"
+    "vanilla_item": "Small Key (RC)",
+    "key_rando": "Crypt_LeftItem"
   },
   {
     "id": 6029328,
@@ -4182,7 +4504,8 @@
     "pools": [],
     "room_area": 1128,
     "scoutable": false,
-    "vanilla_item": "Small Key (RC)"
+    "vanilla_item": "Small Key (RC)",
+    "key_rando": "Crypt_RightItem"
   },
   {
     "id": 6029329,
@@ -4194,7 +4517,8 @@
     "pools": [],
     "room_area": 104,
     "scoutable": false,
-    "vanilla_item": "Kinstone Falls"
+    "vanilla_item": "Kinstone Falls",
+    "key_rando": "Crypt_Prize"
   },
   {
     "id": 6029330,
@@ -4208,7 +4532,8 @@
     ],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Falls_Entrance_HP"
   },
   {
     "id": 6029331,
@@ -4222,7 +4547,8 @@
     ],
     "room_area": 22,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Falls_WaterDigCaveFusion_HP"
   },
   {
     "id": 6029332,
@@ -4234,7 +4560,8 @@
     "pools": [],
     "room_area": 22,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Falls_WaterDigCaveFusion_Chest"
   },
   {
     "id": 6029333,
@@ -4246,7 +4573,8 @@
     "pools": [],
     "room_area": 1331,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Falls_1stCave_Chest"
   },
   {
     "id": 6029334,
@@ -4258,7 +4586,8 @@
     "pools": [],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Falls_Cliff_Chest"
   },
   {
     "id": 6029335,
@@ -4272,7 +4601,8 @@
     ],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Falls_SouthDigSpot"
   },
   {
     "id": 6029336,
@@ -4286,7 +4616,8 @@
     ],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Falls_GoldenTektite"
   },
   {
     "id": 6029337,
@@ -4300,7 +4631,8 @@
     ],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Falls_NorthDigSpot"
   },
   {
     "id": 6029338,
@@ -4312,7 +4644,8 @@
     "pools": [],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Falls_RockFusion_Chest"
   },
   {
     "id": 6029339,
@@ -4326,7 +4659,8 @@
     ],
     "room_area": 2355,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Falls_WaterfallFusion_HP"
   },
   {
     "id": 6029340,
@@ -4340,7 +4674,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Falls_RupeeCave_TopTop"
   },
   {
     "id": 6029341,
@@ -4354,7 +4689,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Falls_RupeeCave_TopLeft"
   },
   {
     "id": 6029342,
@@ -4368,7 +4704,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Falls_RupeeCave_TopMiddle"
   },
   {
     "id": 6029343,
@@ -4382,7 +4719,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Falls_RupeeCave_TopRight"
   },
   {
     "id": 6029344,
@@ -4396,7 +4734,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Falls_RupeeCave_TopBottom"
   },
   {
     "id": 6029345,
@@ -4410,7 +4749,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Falls_RupeeCave_SideTop"
   },
   {
     "id": 6029346,
@@ -4424,7 +4764,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Falls_RupeeCave_SideLeft"
   },
   {
     "id": 6029347,
@@ -4438,7 +4779,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Falls_RupeeCave_SideRight"
   },
   {
     "id": 6029348,
@@ -4452,7 +4794,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Falls_RupeeCave_SideBottom"
   },
   {
     "id": 6029349,
@@ -4466,7 +4809,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Falls_RupeeCave_Underwater_TopLeft"
   },
   {
     "id": 6029350,
@@ -4480,7 +4824,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Falls_RupeeCave_Underwater_TopRight"
   },
   {
     "id": 6029351,
@@ -4494,7 +4839,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Falls_RupeeCave_Underwater_MiddleLeft"
   },
   {
     "id": 6029352,
@@ -4508,7 +4854,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Falls_RupeeCave_Underwater_MiddleRight"
   },
   {
     "id": 6029353,
@@ -4522,7 +4869,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Falls_RupeeCave_Underwater_BottomLeft"
   },
   {
     "id": 6029354,
@@ -4536,7 +4884,8 @@
     ],
     "room_area": 2099,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Falls_RupeeCave_Underwater_BottomRight"
   },
   {
     "id": 6029355,
@@ -4548,7 +4897,8 @@
     "pools": [],
     "room_area": 563,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Falls_TopCave_BombWall_Chest"
   },
   {
     "id": 6029356,
@@ -4560,7 +4910,8 @@
     "pools": [],
     "room_area": 51,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Falls_TopCave_Chest"
   },
   {
     "id": 6029357,
@@ -4572,7 +4923,8 @@
     "pools": [],
     "room_area": 26,
     "scoutable": false,
-    "vanilla_item": "Progressive Shield"
+    "vanilla_item": "Progressive Shield",
+    "key_rando": "Falls_Biggoron"
   },
   {
     "id": 6029358,
@@ -4584,7 +4936,8 @@
     "pools": [],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": "Kinstone Cloud Tops"
+    "vanilla_item": "Kinstone Cloud Tops",
+    "key_rando": "Clouds_FreeChest"
   },
   {
     "id": 6029359,
@@ -4598,7 +4951,8 @@
     ],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Clouds_NorthEast_DigSpot"
   },
   {
     "id": 6029360,
@@ -4610,7 +4964,8 @@
     "pools": [],
     "room_area": 520,
     "scoutable": false,
-    "vanilla_item": "Kinstone Cloud Tops"
+    "vanilla_item": "Kinstone Cloud Tops",
+    "key_rando": "Clouds_North_Kill"
   },
   {
     "id": 6029361,
@@ -4622,7 +4977,8 @@
     "pools": [],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Clouds_NorthWest_RightChest"
   },
   {
     "id": 6029362,
@@ -4634,7 +4990,8 @@
     "pools": [],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Clouds_NorthWest_LeftChest"
   },
   {
     "id": 6029363,
@@ -4648,7 +5005,8 @@
     ],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Clouds_NorthWest_DigSpot"
   },
   {
     "id": 6029364,
@@ -4660,7 +5018,8 @@
     "pools": [],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": "Kinstone Cloud Tops"
+    "vanilla_item": "Kinstone Cloud Tops",
+    "key_rando": "Clouds_NorthWest_BottomChest"
   },
   {
     "id": 6029365,
@@ -4672,7 +5031,8 @@
     "pools": [],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Clouds_South_LeftChest"
   },
   {
     "id": 6029366,
@@ -4686,7 +5046,8 @@
     ],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Clouds_South_DigSpot"
   },
   {
     "id": 6029367,
@@ -4698,7 +5059,8 @@
     "pools": [],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": "Kinstone Cloud Tops"
+    "vanilla_item": "Kinstone Cloud Tops",
+    "key_rando": "Clouds_South_MiddleChest"
   },
   {
     "id": 6029368,
@@ -4712,7 +5074,8 @@
     ],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Clouds_South_MiddleDigSpot"
   },
   {
     "id": 6029369,
@@ -4724,7 +5087,8 @@
     "pools": [],
     "room_area": 520,
     "scoutable": false,
-    "vanilla_item": "Kinstone Cloud Tops"
+    "vanilla_item": "Kinstone Cloud Tops",
+    "key_rando": "Clouds_South_Kill"
   },
   {
     "id": 6029370,
@@ -4736,7 +5100,8 @@
     "pools": [],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Clouds_South_RightChest"
   },
   {
     "id": 6029371,
@@ -4750,7 +5115,8 @@
     ],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Clouds_South_RightDigSpot"
   },
   {
     "id": 6029372,
@@ -4764,7 +5130,8 @@
     ],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Clouds_SouthEast_BottomDigSpot"
   },
   {
     "id": 6029373,
@@ -4778,7 +5145,8 @@
     ],
     "room_area": 264,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Clouds_SouthEast_TopDigSpot"
   },
   {
     "id": 6029374,
@@ -4790,7 +5158,8 @@
     "pools": [],
     "room_area": 48,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "WindTribe_1F_LeftChest"
   },
   {
     "id": 6029375,
@@ -4802,7 +5171,8 @@
     "pools": [],
     "room_area": 48,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "WindTribe_1F_RightChest"
   },
   {
     "id": 6029376,
@@ -4814,7 +5184,8 @@
     "pools": [],
     "room_area": 304,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "WindTribe_2F_Chest"
   },
   {
     "id": 6029377,
@@ -4826,7 +5197,8 @@
     "pools": [],
     "room_area": 304,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "WindTribe_2F_Gregal_NPC1"
   },
   {
     "id": 6029378,
@@ -4838,7 +5210,8 @@
     "pools": [],
     "room_area": 304,
     "scoutable": false,
-    "vanilla_item": "Progressive Bow"
+    "vanilla_item": "Progressive Bow",
+    "key_rando": "WindTribe_2F_Gregal_NPC2"
   },
   {
     "id": 6029379,
@@ -4850,7 +5223,8 @@
     "pools": [],
     "room_area": 560,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "WindTribe_3F_LeftChest"
   },
   {
     "id": 6029380,
@@ -4862,7 +5236,8 @@
     "pools": [],
     "room_area": 560,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "WindTribe_3F_CenterChest"
   },
   {
     "id": 6029381,
@@ -4874,7 +5249,8 @@
     "pools": [],
     "room_area": 560,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "WindTribe_3F_RightChest"
   },
   {
     "id": 6029382,
@@ -4886,7 +5262,8 @@
     "pools": [],
     "room_area": 816,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "WindTribe_4F_LeftChest"
   },
   {
     "id": 6029383,
@@ -4898,7 +5275,8 @@
     "pools": [],
     "room_area": 816,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "WindTribe_4F_RightChest"
   },
   {
     "id": 6029385,
@@ -4910,7 +5288,8 @@
     "pools": [],
     "room_area": 5960,
     "scoutable": false,
-    "vanilla_item": "20 Rupees"
+    "vanilla_item": "20 Rupees",
+    "key_rando": "Deepwood_2F_Chest"
   },
   {
     "id": 6029386,
@@ -4922,7 +5301,8 @@
     "pools": [],
     "room_area": 4168,
     "scoutable": false,
-    "vanilla_item": "Small Key (DWS)"
+    "vanilla_item": "Small Key (DWS)",
+    "key_rando": "Deepwood_1F_SlugTorches_Chest"
   },
   {
     "id": 6029387,
@@ -4934,7 +5314,8 @@
     "pools": [],
     "room_area": 1608,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Deepwood_1F_BarrelRoom_Chest"
   },
   {
     "id": 6029388,
@@ -4946,7 +5327,8 @@
     "pools": [],
     "room_area": 1352,
     "scoutable": false,
-    "vanilla_item": "Dungeon Compass (DWS)"
+    "vanilla_item": "Dungeon Compass (DWS)",
+    "key_rando": "Deepwood_1F_West_BigChest"
   },
   {
     "id": 6029389,
@@ -4958,7 +5340,8 @@
     "pools": [],
     "room_area": 1096,
     "scoutable": false,
-    "vanilla_item": "Small Key (DWS)"
+    "vanilla_item": "Small Key (DWS)",
+    "key_rando": "Deepwood_1F_West_StatuePuzzle_Chest"
   },
   {
     "id": 6029390,
@@ -4970,7 +5353,8 @@
     "pools": [],
     "room_area": 2120,
     "scoutable": false,
-    "vanilla_item": "Small Key (DWS)"
+    "vanilla_item": "Small Key (DWS)",
+    "key_rando": "Deepwood_1F_East_MulldozerFight_Item"
   },
   {
     "id": 6029391,
@@ -4982,7 +5366,8 @@
     "pools": [],
     "room_area": 584,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Deepwood_1F_NorthEast_Chest"
   },
   {
     "id": 6029392,
@@ -4994,7 +5379,8 @@
     "pools": [],
     "room_area": 4680,
     "scoutable": false,
-    "vanilla_item": "Dungeon Map (DWS)"
+    "vanilla_item": "Dungeon Map (DWS)",
+    "key_rando": "Deepwood_B1_SwitchRoom_BigChest"
   },
   {
     "id": 6029393,
@@ -5006,7 +5392,8 @@
     "pools": [],
     "room_area": 4680,
     "scoutable": false,
-    "vanilla_item": "Small Key (DWS)"
+    "vanilla_item": "Small Key (DWS)",
+    "key_rando": "Deepwood_B1_SwitchRoom_Chest"
   },
   {
     "id": 6029394,
@@ -5020,7 +5407,8 @@
     ],
     "room_area": 328,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Deepwood_1F_BlueWarp_HP"
   },
   {
     "id": 6029395,
@@ -5032,7 +5420,8 @@
     "pools": [],
     "room_area": 328,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Deepwood_1F_BlueWarp_LeftChest"
   },
   {
     "id": 6029396,
@@ -5044,7 +5433,8 @@
     "pools": [],
     "room_area": 328,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Deepwood_1F_BlueWarp_RightChest"
   },
   {
     "id": 6029397,
@@ -5056,7 +5446,8 @@
     "pools": [],
     "room_area": 72,
     "scoutable": false,
-    "vanilla_item": "Gust Jar"
+    "vanilla_item": "Gust Jar",
+    "key_rando": "Deepwood_1F_Madderpillar_BigChest"
   },
   {
     "id": 6029398,
@@ -5070,7 +5461,8 @@
     ],
     "room_area": 1352,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Deepwood_1F_Madderpillar_HP"
   },
   {
     "id": 6029399,
@@ -5082,7 +5474,8 @@
     "pools": [],
     "room_area": 4424,
     "scoutable": false,
-    "vanilla_item": "Big Key (DWS)"
+    "vanilla_item": "Big Key (DWS)",
+    "key_rando": "Deepwood_B1_West_BigChest"
   },
   {
     "id": 6029400,
@@ -5096,7 +5489,8 @@
     ],
     "room_area": 73,
     "scoutable": false,
-    "vanilla_item": "Heart Container"
+    "vanilla_item": "Heart Container",
+    "key_rando": "Deepwood_BossItem"
   },
   {
     "id": 6029401,
@@ -5110,7 +5504,8 @@
     ],
     "room_area": 73,
     "scoutable": false,
-    "vanilla_item": "Earth Element"
+    "vanilla_item": "Earth Element",
+    "key_rando": "Deepwood_Prize"
   },
   {
     "id": 6029402,
@@ -5122,7 +5517,8 @@
     "pools": [],
     "room_area": 5456,
     "scoutable": false,
-    "vanilla_item": "Dungeon Map (CoF)"
+    "vanilla_item": "Dungeon Map (CoF)",
+    "key_rando": "CoF_1F_SpikeBeetle_BigChest"
   },
   {
     "id": 6029403,
@@ -5136,7 +5532,8 @@
     ],
     "room_area": 1360,
     "scoutable": true,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "CoF_1F_Item1"
   },
   {
     "id": 6029404,
@@ -5150,7 +5547,8 @@
     ],
     "room_area": 1360,
     "scoutable": true,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "CoF_1F_Item2"
   },
   {
     "id": 6029405,
@@ -5164,7 +5562,8 @@
     ],
     "room_area": 1360,
     "scoutable": true,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "CoF_1F_Item3"
   },
   {
     "id": 6029406,
@@ -5178,7 +5577,8 @@
     ],
     "room_area": 1360,
     "scoutable": true,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "CoF_1F_Item4"
   },
   {
     "id": 6029407,
@@ -5192,7 +5592,8 @@
     ],
     "room_area": 1360,
     "scoutable": true,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "CoF_1F_Item5"
   },
   {
     "id": 6029408,
@@ -5204,7 +5605,8 @@
     "pools": [],
     "room_area": 2384,
     "scoutable": false,
-    "vanilla_item": "Dungeon Compass (CoF)"
+    "vanilla_item": "Dungeon Compass (CoF)",
+    "key_rando": "CoF_B1_HazyRoom_BigChest"
   },
   {
     "id": 6029409,
@@ -5216,7 +5618,8 @@
     "pools": [],
     "room_area": 2384,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "CoF_B1_HazyRoom_SmallChest"
   },
   {
     "id": 6029410,
@@ -5228,7 +5631,8 @@
     "pools": [],
     "room_area": 2128,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "CoF_B1_Rollobite_Chest"
   },
   {
     "id": 6029411,
@@ -5240,7 +5644,8 @@
     "pools": [],
     "room_area": 2128,
     "scoutable": false,
-    "vanilla_item": "Small Key (CoF)"
+    "vanilla_item": "Small Key (CoF)",
+    "key_rando": "CoF_B1_Rollobite_PillarChest"
   },
   {
     "id": 6029412,
@@ -5252,7 +5657,8 @@
     "pools": [],
     "room_area": 336,
     "scoutable": false,
-    "vanilla_item": "Small Key (CoF)"
+    "vanilla_item": "Small Key (CoF)",
+    "key_rando": "CoF_B1_SpikeyChus_PillarChest"
   },
   {
     "id": 6029413,
@@ -5266,7 +5672,8 @@
     ],
     "room_area": 1616,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "CoF_B1_HP"
   },
   {
     "id": 6029414,
@@ -5278,7 +5685,8 @@
     "pools": [],
     "room_area": 336,
     "scoutable": false,
-    "vanilla_item": "Cane of Pacci"
+    "vanilla_item": "Cane of Pacci",
+    "key_rando": "CoF_B1_SpikeyChus_BigChest"
   },
   {
     "id": 6029415,
@@ -5290,7 +5698,8 @@
     "pools": [],
     "room_area": 4176,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "CoF_B2_PreLava_NorthChest"
   },
   {
     "id": 6029416,
@@ -5302,7 +5711,8 @@
     "pools": [],
     "room_area": 4176,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "CoF_B2_PreLava_SouthChest"
   },
   {
     "id": 6029417,
@@ -5314,7 +5724,8 @@
     "pools": [],
     "room_area": 5200,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "CoF_B2_LavaRoom_BladeChest"
   },
   {
     "id": 6029418,
@@ -5326,7 +5737,8 @@
     "pools": [],
     "room_area": 5968,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "CoF_B2_LavaRoom_RightChest"
   },
   {
     "id": 6029419,
@@ -5338,7 +5750,8 @@
     "pools": [],
     "room_area": 5968,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "CoF_B2_LavaRoom_LeftChest"
   },
   {
     "id": 6029420,
@@ -5350,7 +5763,8 @@
     "pools": [],
     "room_area": 5968,
     "scoutable": false,
-    "vanilla_item": "Big Key (CoF)"
+    "vanilla_item": "Big Key (CoF)",
+    "key_rando": "CoF_B2_LavaRoom_BigChest"
   },
   {
     "id": 6029421,
@@ -5364,7 +5778,8 @@
     ],
     "room_area": 81,
     "scoutable": false,
-    "vanilla_item": "Heart Container"
+    "vanilla_item": "Heart Container",
+    "key_rando": "CoF_BossItem"
   },
   {
     "id": 6029422,
@@ -5378,7 +5793,8 @@
     ],
     "room_area": 81,
     "scoutable": false,
-    "vanilla_item": "Fire Element"
+    "vanilla_item": "Fire Element",
+    "key_rando": "CoF_Prize"
   },
   {
     "id": 6029423,
@@ -5390,7 +5806,8 @@
     "pools": [],
     "room_area": 16,
     "scoutable": false,
-    "vanilla_item": "Progressive Sword"
+    "vanilla_item": "Progressive Sword",
+    "key_rando": "Crenel_Melari_NPC"
   },
   {
     "id": 6029424,
@@ -5402,7 +5819,8 @@
     "pools": [],
     "room_area": 24,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Fortress_Entrance_1F_LeftChest"
   },
   {
     "id": 6029425,
@@ -5414,7 +5832,8 @@
     "pools": [],
     "room_area": 9048,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Fortress_Entrance_1F_LeftWizrobeChest"
   },
   {
     "id": 6029426,
@@ -5428,7 +5847,8 @@
     ],
     "room_area": 24,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Fortress_Entrance_1F_RightItem"
   },
   {
     "id": 6029427,
@@ -5440,7 +5860,8 @@
     "pools": [],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Fortress_Left_2F_DigChest"
   },
   {
     "id": 6029428,
@@ -5454,7 +5875,8 @@
     ],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Fortress_Left_2F_Item1"
   },
   {
     "id": 6029429,
@@ -5468,7 +5890,8 @@
     ],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Fortress_Left_2F_Item2"
   },
   {
     "id": 6029450,
@@ -5482,7 +5905,8 @@
     ],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Fortress_Left_2F_Item3"
   },
   {
     "id": 6029451,
@@ -5496,7 +5920,8 @@
     ],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Fortress_Left_2F_Item4"
   },
   {
     "id": 6029452,
@@ -5510,7 +5935,8 @@
     ],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Fortress_Left_2F_Item5"
   },
   {
     "id": 6029453,
@@ -5524,7 +5950,8 @@
     ],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Fortress_Left_2F_Item6"
   },
   {
     "id": 6029454,
@@ -5538,7 +5965,8 @@
     ],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Fortress_Left_2F_Item7"
   },
   {
     "id": 6029455,
@@ -5550,7 +5978,8 @@
     "pools": [],
     "room_area": 536,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Fortress_Left_3F_SwitchChest"
   },
   {
     "id": 6029456,
@@ -5562,7 +5991,8 @@
     "pools": [],
     "room_area": 88,
     "scoutable": false,
-    "vanilla_item": "Dungeon Map (FoW)"
+    "vanilla_item": "Dungeon Map (FoW)",
+    "key_rando": "Fortress_Left_3F_Eyegore_BigChest"
   },
   {
     "id": 6029457,
@@ -5574,7 +6004,8 @@
     "pools": [],
     "room_area": 8280,
     "scoutable": false,
-    "vanilla_item": "Small Key (FoW)"
+    "vanilla_item": "Small Key (FoW)",
+    "key_rando": "Fortress_Left_3F_ItemDrop"
   },
   {
     "id": 6029458,
@@ -5586,7 +6017,8 @@
     "pools": [],
     "room_area": 6488,
     "scoutable": false,
-    "vanilla_item": "Dungeon Compass (FoW)"
+    "vanilla_item": "Dungeon Compass (FoW)",
+    "key_rando": "Fortress_Middle_2F_BigChest"
   },
   {
     "id": 6029459,
@@ -5598,7 +6030,8 @@
     "pools": [],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Fortress_Middle_2F_StatueChest"
   },
   {
     "id": 6029460,
@@ -5610,7 +6043,8 @@
     "pools": [],
     "room_area": 7512,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Fortress_Right_2F_LeftChest"
   },
   {
     "id": 6029461,
@@ -5622,7 +6056,8 @@
     "pools": [],
     "room_area": 7512,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Fortress_Right_2F_RightChest"
   },
   {
     "id": 6029462,
@@ -5634,7 +6069,8 @@
     "pools": [],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Fortress_Right_2F_DigChest"
   },
   {
     "id": 6029463,
@@ -5646,7 +6082,8 @@
     "pools": [],
     "room_area": 536,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Fortress_Right_3F_DigChest"
   },
   {
     "id": 6029464,
@@ -5658,7 +6095,8 @@
     "pools": [],
     "room_area": 8792,
     "scoutable": false,
-    "vanilla_item": "Small Key (FoW)"
+    "vanilla_item": "Small Key (FoW)",
+    "key_rando": "Fortress_Right_3F_ItemDrop"
   },
   {
     "id": 6029465,
@@ -5672,7 +6110,8 @@
     ],
     "room_area": 9304,
     "scoutable": true,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Fortress_Entrance_1F_RightHP"
   },
   {
     "id": 6029466,
@@ -5684,7 +6123,8 @@
     "pools": [],
     "room_area": 792,
     "scoutable": false,
-    "vanilla_item": "Mole Mitts"
+    "vanilla_item": "Mole Mitts",
+    "key_rando": "Fortress_BackLeft_BigChest"
   },
   {
     "id": 6029467,
@@ -5696,7 +6136,8 @@
     "pools": [],
     "room_area": 792,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Fortress_BackLeft_SmallChest"
   },
   {
     "id": 6029468,
@@ -5708,7 +6149,8 @@
     "pools": [],
     "room_area": 5208,
     "scoutable": false,
-    "vanilla_item": "Small Key (FoW)"
+    "vanilla_item": "Small Key (FoW)",
+    "key_rando": "Fortress_BackRight_Statue_ItemDrop"
   },
   {
     "id": 6029469,
@@ -5720,7 +6162,8 @@
     "pools": [],
     "room_area": 1048,
     "scoutable": false,
-    "vanilla_item": "Small Key (FoW)"
+    "vanilla_item": "Small Key (FoW)",
+    "key_rando": "Fortress_BackRight_Minish_ItemDrop"
   },
   {
     "id": 6029470,
@@ -5734,7 +6177,8 @@
     ],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Fortress_BackRight_DigRoom_TopPot"
   },
   {
     "id": 6029471,
@@ -5748,7 +6192,8 @@
     ],
     "room_area": 280,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Fortress_BackRight_DigRoom_BottomPot"
   },
   {
     "id": 6029472,
@@ -5760,7 +6205,8 @@
     "pools": [],
     "room_area": 7000,
     "scoutable": false,
-    "vanilla_item": "Big Key (FoW)"
+    "vanilla_item": "Big Key (FoW)",
+    "key_rando": "Fortress_BackRight_BigChest"
   },
   {
     "id": 6029473,
@@ -5774,7 +6220,8 @@
     ],
     "room_area": 5720,
     "scoutable": false,
-    "vanilla_item": "Heart Container"
+    "vanilla_item": "Heart Container",
+    "key_rando": "Fortress_BossItem"
   },
   {
     "id": 6029474,
@@ -5788,7 +6235,8 @@
     ],
     "room_area": 89,
     "scoutable": false,
-    "vanilla_item": "Ocarina"
+    "vanilla_item": "Ocarina",
+    "key_rando": "Fortress_Prize"
   },
   {
     "id": 6029475,
@@ -5800,7 +6248,8 @@
     "pools": [],
     "room_area": 8544,
     "scoutable": false,
-    "vanilla_item": "Small Key (ToD)"
+    "vanilla_item": "Small Key (ToD)",
+    "key_rando": "Droplets_Entrance_B2_EastIceblock"
   },
   {
     "id": 6029476,
@@ -5812,7 +6261,8 @@
     "pools": [],
     "room_area": 8288,
     "scoutable": false,
-    "vanilla_item": "Big Key (ToD)"
+    "vanilla_item": "Big Key (ToD)",
+    "key_rando": "Droplets_Entrance_B2_WestIceblock"
   },
   {
     "id": 6029477,
@@ -5826,7 +6276,8 @@
     ],
     "room_area": 3424,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Droplets_LeftPath_B1_UnderpassItem1"
   },
   {
     "id": 6029478,
@@ -5840,7 +6291,8 @@
     ],
     "room_area": 3424,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Droplets_LeftPath_B1_UnderpassItem2"
   },
   {
     "id": 6029479,
@@ -5854,7 +6306,8 @@
     ],
     "room_area": 3424,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Droplets_LeftPath_B1_UnderpassItem3"
   },
   {
     "id": 6029480,
@@ -5868,7 +6321,8 @@
     ],
     "room_area": 3424,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Droplets_LeftPath_B1_UnderpassItem4"
   },
   {
     "id": 6029481,
@@ -5882,7 +6336,8 @@
     ],
     "room_area": 3424,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Droplets_LeftPath_B1_UnderpassItem5"
   },
   {
     "id": 6029482,
@@ -5894,7 +6349,8 @@
     "pools": [],
     "room_area": 3424,
     "scoutable": false,
-    "vanilla_item": "Dungeon Map (ToD)"
+    "vanilla_item": "Dungeon Map (ToD)",
+    "key_rando": "Droplets_LeftPath_B1_Waterfall_BigChest"
   },
   {
     "id": 6029483,
@@ -5908,7 +6364,8 @@
     ],
     "room_area": 1632,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B1_Waterfall_Underwater1"
   },
   {
     "id": 6029484,
@@ -5922,7 +6379,8 @@
     ],
     "room_area": 1632,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B1_Waterfall_Underwater2"
   },
   {
     "id": 6029485,
@@ -5936,7 +6394,8 @@
     ],
     "room_area": 1632,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B1_Waterfall_Underwater3"
   },
   {
     "id": 6029486,
@@ -5950,7 +6409,8 @@
     ],
     "room_area": 1632,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B1_Waterfall_Underwater4"
   },
   {
     "id": 6029487,
@@ -5964,7 +6424,8 @@
     ],
     "room_area": 1632,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B1_Waterfall_Underwater5"
   },
   {
     "id": 6029488,
@@ -5978,7 +6439,8 @@
     ],
     "room_area": 1632,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B1_Waterfall_Underwater6"
   },
   {
     "id": 6029489,
@@ -5992,7 +6454,8 @@
     ],
     "room_area": 12640,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B2_Waterfall_Underwater1"
   },
   {
     "id": 6029490,
@@ -6006,7 +6469,8 @@
     ],
     "room_area": 12640,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B2_Waterfall_Underwater2"
   },
   {
     "id": 6029491,
@@ -6020,7 +6484,8 @@
     ],
     "room_area": 12640,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B2_Waterfall_Underwater3"
   },
   {
     "id": 6029492,
@@ -6034,7 +6499,8 @@
     ],
     "room_area": 12640,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B2_Waterfall_Underwater4"
   },
   {
     "id": 6029493,
@@ -6048,7 +6514,8 @@
     ],
     "room_area": 12640,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B2_Waterfall_Underwater5"
   },
   {
     "id": 6029494,
@@ -6062,7 +6529,8 @@
     ],
     "room_area": 12640,
     "scoutable": false,
-    "vanilla_item": "5 Rupees"
+    "vanilla_item": "5 Rupees",
+    "key_rando": "Droplets_LeftPath_B2_Waterfall_Underwater6"
   },
   {
     "id": 6029495,
@@ -6076,7 +6544,8 @@
     ],
     "room_area": 13408,
     "scoutable": false,
-    "vanilla_item": "Small Key (ToD)"
+    "vanilla_item": "Small Key (ToD)",
+    "key_rando": "Droplets_LeftPath_B2_Underwater_Pot"
   },
   {
     "id": 6029496,
@@ -6088,7 +6557,8 @@
     "pools": [],
     "room_area": 12896,
     "scoutable": false,
-    "vanilla_item": "Dungeon Compass (ToD)"
+    "vanilla_item": "Dungeon Compass (ToD)",
+    "key_rando": "Droplets_LeftPath_B2_IceMadderpillar_BigChest"
   },
   {
     "id": 6029497,
@@ -6100,7 +6570,8 @@
     "pools": [],
     "room_area": 10336,
     "scoutable": false,
-    "vanilla_item": null
+    "vanilla_item": null,
+    "key_rando": "Droplets_LeftPath_B2_IcePlain_FrozenChest"
   },
   {
     "id": 6029498,
@@ -6112,7 +6583,8 @@
     "pools": [],
     "room_area": 10336,
     "scoutable": false,
-    "vanilla_item": "50 Rupees"
+    "vanilla_item": "50 Rupees",
+    "key_rando": "Droplets_LeftPath_B2_IcePlain_Chest"
   },
   {
     "id": 6029499,
@@ -6124,7 +6596,8 @@
     "pools": [],
     "room_area": 11616,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Droplets_LeftPath_B2_LilypadCorner_FrozenChest"
   },
   {
     "id": 6029500,
@@ -6136,7 +6609,8 @@
     "pools": [],
     "room_area": 2400,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Droplets_RightPath_B1_1stChest"
   },
   {
     "id": 6029501,
@@ -6148,7 +6622,8 @@
     "pools": [],
     "room_area": 2656,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Droplets_RightPath_B1_2ndChest"
   },
   {
     "id": 6029502,
@@ -6162,7 +6637,8 @@
     ],
     "room_area": 2656,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Droplets_RightPath_B1_Pot"
   },
   {
     "id": 6029503,
@@ -6174,7 +6650,8 @@
     "pools": [],
     "room_area": 4448,
     "scoutable": false,
-    "vanilla_item": "Small Key (ToD)"
+    "vanilla_item": "Small Key (ToD)",
+    "key_rando": "Droplets_RightPath_B3_FrozenChest"
   },
   {
     "id": 6029504,
@@ -6186,7 +6663,8 @@
     "pools": [],
     "room_area": 4192,
     "scoutable": false,
-    "vanilla_item": "Lantern"
+    "vanilla_item": "Lantern",
+    "key_rando": "Droplets_RightPath_B1_BluChu_BigChest"
   },
   {
     "id": 6029505,
@@ -6198,7 +6676,8 @@
     "pools": [],
     "room_area": 12896,
     "scoutable": false,
-    "vanilla_item": "100 Rupees"
+    "vanilla_item": "100 Rupees",
+    "key_rando": "Droplets_RightPath_B2_FrozenChest"
   },
   {
     "id": 6029506,
@@ -6210,7 +6689,8 @@
     "pools": [],
     "room_area": 11104,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Droplets_RightPath_B2_DarkMaze_BottomChest"
   },
   {
     "id": 6029507,
@@ -6222,7 +6702,8 @@
     "pools": [],
     "room_area": 12128,
     "scoutable": false,
-    "vanilla_item": "Small Key (ToD)"
+    "vanilla_item": "Small Key (ToD)",
+    "key_rando": "Droplets_RightPath_B2_Mulldozers_ItemDrop"
   },
   {
     "id": 6029508,
@@ -6234,7 +6715,8 @@
     "pools": [],
     "room_area": 11104,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Droplets_RightPath_B2_DarkMaze_TopRightChest"
   },
   {
     "id": 6029509,
@@ -6246,7 +6728,8 @@
     "pools": [],
     "room_area": 11104,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Droplets_RightPath_B2_DarkMaze_TopLeftChest"
   },
   {
     "id": 6029510,
@@ -6260,7 +6743,8 @@
     ],
     "room_area": 9568,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Droplets_RightPath_B2_UnderpassItem1"
   },
   {
     "id": 6029511,
@@ -6274,7 +6758,8 @@
     ],
     "room_area": 9568,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Droplets_RightPath_B2_UnderpassItem2"
   },
   {
     "id": 6029512,
@@ -6288,7 +6773,8 @@
     ],
     "room_area": 9568,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Droplets_RightPath_B2_UnderpassItem3"
   },
   {
     "id": 6029513,
@@ -6302,7 +6788,8 @@
     ],
     "room_area": 9568,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Droplets_RightPath_B2_UnderpassItem4"
   },
   {
     "id": 6029514,
@@ -6316,7 +6803,8 @@
     ],
     "room_area": 9568,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Droplets_RightPath_B2_UnderpassItem5"
   },
   {
     "id": 6029515,
@@ -6330,7 +6818,8 @@
     ],
     "room_area": 3680,
     "scoutable": false,
-    "vanilla_item": "Heart Container"
+    "vanilla_item": "Heart Container",
+    "key_rando": "Droplets_BossItem"
   },
   {
     "id": 6029516,
@@ -6344,7 +6833,8 @@
     ],
     "room_area": 3680,
     "scoutable": false,
-    "vanilla_item": "Water Element"
+    "vanilla_item": "Water Element",
+    "key_rando": "Droplets_Prize"
   },
   {
     "id": 6029517,
@@ -6356,7 +6846,8 @@
     "pools": [],
     "room_area": 11632,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Palace_1stHalf_1F_GrateChest"
   },
   {
     "id": 6029518,
@@ -6368,7 +6859,8 @@
     "pools": [],
     "room_area": 11376,
     "scoutable": false,
-    "vanilla_item": "Roc's Cape"
+    "vanilla_item": "Roc's Cape",
+    "key_rando": "Palace_1stHalf_1F_Wizrobe_BigChest"
   },
   {
     "id": 6029519,
@@ -6382,7 +6874,8 @@
     ],
     "room_area": 8560,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Palace_1stHalf_2F_Item1"
   },
   {
     "id": 6029520,
@@ -6396,7 +6889,8 @@
     ],
     "room_area": 8560,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Palace_1stHalf_2F_Item2"
   },
   {
     "id": 6029521,
@@ -6410,7 +6904,8 @@
     ],
     "room_area": 8560,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Palace_1stHalf_2F_Item3"
   },
   {
     "id": 6029522,
@@ -6424,7 +6919,8 @@
     ],
     "room_area": 8560,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Palace_1stHalf_2F_Item4"
   },
   {
     "id": 6029523,
@@ -6438,7 +6934,8 @@
     ],
     "room_area": 8560,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "Palace_1stHalf_2F_Item5"
   },
   {
     "id": 6029524,
@@ -6450,7 +6947,8 @@
     "pools": [],
     "room_area": 8304,
     "scoutable": false,
-    "vanilla_item": "Small Key (PoW)"
+    "vanilla_item": "Small Key (PoW)",
+    "key_rando": "Palace_1stHalf_3F_PotPuzzle_ItemDrop"
   },
   {
     "id": 6029525,
@@ -6462,7 +6960,8 @@
     "pools": [],
     "room_area": 3952,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Palace_1stHalf_4F_BowMoblins_Chest"
   },
   {
     "id": 6029526,
@@ -6474,7 +6973,8 @@
     "pools": [],
     "room_area": 2160,
     "scoutable": false,
-    "vanilla_item": "Small Key (PoW)"
+    "vanilla_item": "Small Key (PoW)",
+    "key_rando": "Palace_1stHalf_5F_BallAndChainSoldiers_ItemDrop"
   },
   {
     "id": 6029527,
@@ -6486,7 +6986,8 @@
     "pools": [],
     "room_area": 1904,
     "scoutable": false,
-    "vanilla_item": "Small Key (PoW)"
+    "vanilla_item": "Small Key (PoW)",
+    "key_rando": "Palace_1stHalf_5F_FanLoop_Chest"
   },
   {
     "id": 6029528,
@@ -6498,7 +6999,8 @@
     "pools": [],
     "room_area": 368,
     "scoutable": false,
-    "vanilla_item": "Big Key (PoW)"
+    "vanilla_item": "Big Key (PoW)",
+    "key_rando": "Palace_1stHalf_5F_BigChest"
   },
   {
     "id": 6029529,
@@ -6510,7 +7012,8 @@
     "pools": [],
     "room_area": 12912,
     "scoutable": false,
-    "vanilla_item": "Dungeon Compass (PoW)"
+    "vanilla_item": "Dungeon Compass (PoW)",
+    "key_rando": "Palace_2ndHalf_1F_DarkRoom_BigChest"
   },
   {
     "id": 6029530,
@@ -6522,7 +7025,8 @@
     "pools": [],
     "room_area": 12912,
     "scoutable": false,
-    "vanilla_item": "Small Key (PoW)"
+    "vanilla_item": "Small Key (PoW)",
+    "key_rando": "Palace_2ndHalf_1F_DarkRoom_SmallChest"
   },
   {
     "id": 6029531,
@@ -6534,7 +7038,8 @@
     "pools": [],
     "room_area": 11120,
     "scoutable": false,
-    "vanilla_item": "Small Key (PoW)"
+    "vanilla_item": "Small Key (PoW)",
+    "key_rando": "Palace_2ndHalf_2F_ManyRollers_Chest"
   },
   {
     "id": 6029532,
@@ -6546,7 +7051,8 @@
     "pools": [],
     "room_area": 10608,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Palace_2ndHalf_2F_TwinWizrobes_Chest"
   },
   {
     "id": 6029533,
@@ -6558,7 +7064,8 @@
     "pools": [],
     "room_area": 7280,
     "scoutable": false,
-    "vanilla_item": "Dungeon Map (PoW)"
+    "vanilla_item": "Dungeon Map (PoW)",
+    "key_rando": "Palace_2ndHalf_3F_FireWizrobes_BigChest"
   },
   {
     "id": 6029534,
@@ -6572,7 +7079,8 @@
     ],
     "room_area": 3952,
     "scoutable": false,
-    "vanilla_item": "Piece of Heart"
+    "vanilla_item": "Piece of Heart",
+    "key_rando": "Palace_2ndHalf_4F_HP"
   },
   {
     "id": 6029535,
@@ -6584,7 +7092,8 @@
     "pools": [],
     "room_area": 5488,
     "scoutable": false,
-    "vanilla_item": "200 Rupees"
+    "vanilla_item": "200 Rupees",
+    "key_rando": "Palace_2ndHalf_4F_SwitchHit_Chest"
   },
   {
     "id": 6029536,
@@ -6596,7 +7105,8 @@
     "pools": [],
     "room_area": 880,
     "scoutable": false,
-    "vanilla_item": "Small Key (PoW)"
+    "vanilla_item": "Small Key (PoW)",
+    "key_rando": "Palace_2ndHalf_5F_Bombarossa_Chest"
   },
   {
     "id": 6029537,
@@ -6608,7 +7118,8 @@
     "pools": [],
     "room_area": 4208,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Palace_2ndHalf_4F_BlockMaze_Chest"
   },
   {
     "id": 6029538,
@@ -6620,7 +7131,8 @@
     "pools": [],
     "room_area": 1136,
     "scoutable": false,
-    "vanilla_item": "Broken Kinstone (Report Me!)"
+    "vanilla_item": "Broken Kinstone (Report Me!)",
+    "key_rando": "Palace_2ndHalf_5F_RightSide_Chest"
   },
   {
     "id": 6029539,
@@ -6634,7 +7146,8 @@
     ],
     "room_area": 112,
     "scoutable": false,
-    "vanilla_item": "Heart Container"
+    "vanilla_item": "Heart Container",
+    "key_rando": "Palace_BossItem"
   },
   {
     "id": 6029540,
@@ -6648,7 +7161,8 @@
     ],
     "room_area": 112,
     "scoutable": false,
-    "vanilla_item": "Wind Element"
+    "vanilla_item": "Wind Element",
+    "key_rando": "Palace_Prize"
   },
   {
     "id": 6029541,
@@ -6662,7 +7176,8 @@
     ],
     "room_area": 376,
     "scoutable": false,
-    "vanilla_item": "Progressive Sword"
+    "vanilla_item": "Progressive Sword",
+    "key_rando": "Sanctuary_Pedestal_Item1"
   },
   {
     "id": 6029542,
@@ -6676,7 +7191,8 @@
     ],
     "room_area": 376,
     "scoutable": false,
-    "vanilla_item": "Progressive Sword"
+    "vanilla_item": "Progressive Sword",
+    "key_rando": "Sanctuary_Pedestal_Item2"
   },
   {
     "id": 6029543,
@@ -6690,7 +7206,8 @@
     ],
     "room_area": 376,
     "scoutable": false,
-    "vanilla_item": "Progressive Sword"
+    "vanilla_item": "Progressive Sword",
+    "key_rando": "Sanctuary_Pedestal_Item3"
   },
   {
     "id": 6029544,
@@ -6702,7 +7219,8 @@
     "pools": [],
     "room_area": 14728,
     "scoutable": false,
-    "vanilla_item": "1 Rupee"
+    "vanilla_item": "1 Rupee",
+    "key_rando": "DHC_B2_King"
   },
   {
     "id": 6029545,
@@ -6714,7 +7232,8 @@
     "pools": [],
     "room_area": 14216,
     "scoutable": false,
-    "vanilla_item": "Dungeon Map (DHC)"
+    "vanilla_item": "Dungeon Map (DHC)",
+    "key_rando": "DHC_B1_BigChest"
   },
   {
     "id": 6029546,
@@ -6726,7 +7245,8 @@
     "pools": [],
     "room_area": 10120,
     "scoutable": false,
-    "vanilla_item": "Small Key (DHC)"
+    "vanilla_item": "Small Key (DHC)",
+    "key_rando": "DHC_1F_Blade_Chest"
   },
   {
     "id": 6029547,
@@ -6738,7 +7258,8 @@
     "pools": [],
     "room_area": 8328,
     "scoutable": false,
-    "vanilla_item": "Dungeon Compass (DHC)"
+    "vanilla_item": "Dungeon Compass (DHC)",
+    "key_rando": "DHC_1F_Throne_BigChest"
   },
   {
     "id": 6029548,
@@ -6750,7 +7271,8 @@
     "pools": [],
     "room_area": 392,
     "scoutable": false,
-    "vanilla_item": "Small Key (DHC)"
+    "vanilla_item": "Small Key (DHC)",
+    "key_rando": "DHC_3F_NorthWest_Chest"
   },
   {
     "id": 6029549,
@@ -6762,7 +7284,8 @@
     "pools": [],
     "room_area": 648,
     "scoutable": false,
-    "vanilla_item": "Small Key (DHC)"
+    "vanilla_item": "Small Key (DHC)",
+    "key_rando": "DHC_3F_NorthEast_Chest"
   },
   {
     "id": 6029550,
@@ -6774,7 +7297,8 @@
     "pools": [],
     "room_area": 904,
     "scoutable": false,
-    "vanilla_item": "Small Key (DHC)"
+    "vanilla_item": "Small Key (DHC)",
+    "key_rando": "DHC_3F_SouthWest_Chest"
   },
   {
     "id": 6029551,
@@ -6786,7 +7310,8 @@
     "pools": [],
     "room_area": 1160,
     "scoutable": false,
-    "vanilla_item": "Small Key (DHC)"
+    "vanilla_item": "Small Key (DHC)",
+    "key_rando": "DHC_3F_SouthEast_Chest"
   },
   {
     "id": 6029552,
@@ -6798,7 +7323,8 @@
     "pools": [],
     "room_area": 2440,
     "scoutable": false,
-    "vanilla_item": "Big Key (DHC)"
+    "vanilla_item": "Big Key (DHC)",
+    "key_rando": "DHC_2F_BlueWarp_BigChest"
   },
   {
     "id": 6029601,
@@ -6812,7 +7338,8 @@
     ],
     "room_area": 520,
     "scoutable": false,
-    "vanilla_item": "Top Right Pinwheel"
+    "vanilla_item": "Top Right Pinwheel",
+    "key_rando": "Helpers.CloudFusions"
   },
   {
     "id": 6029602,
@@ -6826,7 +7353,8 @@
     ],
     "room_area": 520,
     "scoutable": false,
-    "vanilla_item": "Bottom Left Pinwheel"
+    "vanilla_item": "Bottom Left Pinwheel",
+    "key_rando": "Helpers.CloudFusions"
   },
   {
     "id": 6029603,
@@ -6840,7 +7368,8 @@
     ],
     "room_area": 520,
     "scoutable": false,
-    "vanilla_item": "Top Left Pinwheel"
+    "vanilla_item": "Top Left Pinwheel",
+    "key_rando": "Helpers.CloudFusions"
   },
   {
     "id": 6029604,
@@ -6854,7 +7383,8 @@
     ],
     "room_area": 520,
     "scoutable": false,
-    "vanilla_item": "Middle Pinwheel"
+    "vanilla_item": "Middle Pinwheel",
+    "key_rando": "Helpers.CloudFusions"
   },
   {
     "id": 6029605,
@@ -6868,7 +7398,8 @@
     ],
     "room_area": 520,
     "scoutable": false,
-    "vanilla_item": "Bottom Right Pinwheel"
+    "vanilla_item": "Bottom Right Pinwheel",
+    "key_rando": "Helpers.CloudFusions"
   },
   {
     "id": 6029606,
@@ -6882,7 +7413,8 @@
     ],
     "room_area": 4,
     "scoutable": false,
-    "vanilla_item": "West Statue Bashes Floor"
+    "vanilla_item": "West Statue Bashes Floor",
+    "key_rando": "Helpers.RuinsFusion"
   },
   {
     "id": 6029607,
@@ -6896,7 +7428,8 @@
     ],
     "room_area": 4,
     "scoutable": false,
-    "vanilla_item": "Middle Statue Bashes Floor"
+    "vanilla_item": "Middle Statue Bashes Floor",
+    "key_rando": "Helpers.RuinsFusion"
   },
   {
     "id": 6029608,
@@ -6910,7 +7443,8 @@
     ],
     "room_area": 4,
     "scoutable": false,
-    "vanilla_item": "East Statue Bashes Floor"
+    "vanilla_item": "East Statue Bashes Floor",
+    "key_rando": "Helpers.RuinsFusion"
   },
   {
     "id": 6029609,
@@ -6924,7 +7458,8 @@
     ],
     "room_area": 10,
     "scoutable": false,
-    "vanilla_item": "Veil Falls Kinstone Door Opens"
+    "vanilla_item": "Veil Falls Kinstone Door Opens",
+    "key_rando": "Helpers.FallsFusion"
   },
   {
     "id": 6029610,
@@ -6938,7 +7473,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Bomb Bag chest in Wind Ruins"
+    "vanilla_item": "Bomb Bag chest in Wind Ruins",
+    "key_rando": "Helpers.BelariFusion"
   },
   {
     "id": 6029611,
@@ -6952,7 +7488,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Mutoh builds new house"
+    "vanilla_item": "Mutoh builds new house",
+    "key_rando": "Helpers.BremorFusion"
   },
   {
     "id": 6029612,
@@ -6966,7 +7503,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Waterfall in Castor Wilds opens"
+    "vanilla_item": "Waterfall in Castor Wilds opens",
+    "key_rando": "Helpers.GreybladeFusion"
   },
   {
     "id": 6029613,
@@ -6980,7 +7518,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Golden Tektite in Mount Crenel Middle"
+    "vanilla_item": "Golden Tektite in Mount Crenel Middle",
+    "key_rando": "Helpers.Tingle2Fusion"
   },
   {
     "id": 6029614,
@@ -6994,7 +7533,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Biggoron wakes up"
+    "vanilla_item": "Biggoron wakes up",
+    "key_rando": "Helpers.GoronRightFusion"
   },
   {
     "id": 6029615,
@@ -7008,7 +7548,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Portal to Cloud Tops open"
+    "vanilla_item": "Portal to Cloud Tops open",
+    "key_rando": "Helpers.StrangerFusion"
   },
   {
     "id": 6029616,
@@ -7022,7 +7563,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Castor Wilds Joy Butterfly (Dig)"
+    "vanilla_item": "Castor Wilds Joy Butterfly (Dig)",
+    "key_rando": "Helpers.Farore2Fusion"
   },
   {
     "id": 6029617,
@@ -7036,7 +7578,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Removed vines near Castor Wilds tree"
+    "vanilla_item": "Removed vines near Castor Wilds tree",
+    "key_rando": "Helpers.HyliaMiddleMinishFusion"
   },
   {
     "id": 6029618,
@@ -7050,7 +7593,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Hole in Lake Hylia to Librari opens"
+    "vanilla_item": "Hole in Lake Hylia to Librari opens",
+    "key_rando": "Helpers.VillageSideMinish3Fusion"
   },
   {
     "id": 6029619,
@@ -7064,7 +7608,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "North Waterfall in Veil Falls opens"
+    "vanilla_item": "North Waterfall in Veil Falls opens",
+    "key_rando": "Helpers.GaleFusion"
   },
   {
     "id": 6029620,
@@ -7078,7 +7623,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Syrup makes red potion"
+    "vanilla_item": "Syrup makes red potion",
+    "key_rando": "Helpers.SHFMinishFusion"
   },
   {
     "id": 6029621,
@@ -7092,7 +7638,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Waterfall outside castle opens"
+    "vanilla_item": "Waterfall outside castle opens",
+    "key_rando": "Helpers.WavebladeFusion"
   },
   {
     "id": 6029622,
@@ -7106,7 +7653,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Bottle chest near Farm"
+    "vanilla_item": "Bottle chest near Farm",
+    "key_rando": "Helpers.Smith1Fusion"
   },
   {
     "id": 6029623,
@@ -7120,7 +7668,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Wind Ruins Beanstalk"
+    "vanilla_item": "Wind Ruins Beanstalk",
+    "key_rando": "Helpers.RuinsMinishFusion"
   },
   {
     "id": 6029624,
@@ -7134,7 +7683,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Castle Garden East Fountain"
+    "vanilla_item": "Castle Garden East Fountain",
+    "key_rando": "Helpers.Shared18Fusion"
   },
   {
     "id": 6029625,
@@ -7148,7 +7698,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Graveyard Joy Butterfly (Swim)"
+    "vanilla_item": "Graveyard Joy Butterfly (Swim)",
+    "key_rando": "Helpers.Nayru2Fusion"
   },
   {
     "id": 6029626,
@@ -7162,7 +7713,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Mount Crenel Beanstalk"
+    "vanilla_item": "Mount Crenel Beanstalk",
+    "key_rando": "Helpers.MelariFusion"
   },
   {
     "id": 6029627,
@@ -7176,7 +7728,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Gorman rents blue house"
+    "vanilla_item": "Gorman rents blue house",
+    "key_rando": "Helpers.DinNayruFaroreFusion"
   },
   {
     "id": 6029628,
@@ -7190,7 +7743,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Belari creates Remote Bomb"
+    "vanilla_item": "Belari creates Remote Bomb",
+    "key_rando": "Helpers.GentariFusion"
   },
   {
     "id": 6029629,
@@ -7204,7 +7758,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "South Waterfall to Grimblade in Veil Falls open"
+    "vanilla_item": "South Waterfall to Grimblade in Veil Falls open",
+    "key_rando": "Helpers.GrimbladeFusion"
   },
   {
     "id": 6029630,
@@ -7218,7 +7773,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Drained Water in Lon Lon Ranch"
+    "vanilla_item": "Drained Water in Lon Lon Ranch",
+    "key_rando": "Helpers.MayorFusion"
   },
   {
     "id": 6029631,
@@ -7232,7 +7788,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Platform to Veil Falls cave appears"
+    "vanilla_item": "Platform to Veil Falls cave appears",
+    "key_rando": "Helpers.VillageSideMinish2Fusion"
   },
   {
     "id": 6029632,
@@ -7246,7 +7803,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Wind Ruins Joy Butterfly (Arrows)"
+    "vanilla_item": "Wind Ruins Joy Butterfly (Arrows)",
+    "key_rando": "Helpers.Din2Fusion"
   },
   {
     "id": 6029633,
@@ -7260,7 +7818,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Tree to Percy's house fixed"
+    "vanilla_item": "Tree to Percy's house fixed",
+    "key_rando": "Helpers.PercyFusion"
   },
   {
     "id": 6029634,
@@ -7274,7 +7833,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Platform to West Hyrule cave appears"
+    "vanilla_item": "Platform to West Hyrule cave appears",
+    "key_rando": "Helpers.CandyFusion"
   },
   {
     "id": 6029635,
@@ -7288,7 +7848,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Lake Hylia Beanstalk"
+    "vanilla_item": "Lake Hylia Beanstalk",
+    "key_rando": "Helpers.LakeEastMinishFusion"
   },
   {
     "id": 6029636,
@@ -7302,7 +7863,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "South Hyrule Beanstalk"
+    "vanilla_item": "South Hyrule Beanstalk",
+    "key_rando": "Helpers.WesternMinishFusion"
   },
   {
     "id": 6029637,
@@ -7316,7 +7878,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "2nd Goron Joins"
+    "vanilla_item": "2nd Goron Joins",
+    "key_rando": "Helpers.4WallFusions"
   },
   {
     "id": 6029638,
@@ -7330,7 +7893,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "4th Goron Joins"
+    "vanilla_item": "4th Goron Joins",
+    "key_rando": "Helpers.4WallFusions"
   },
   {
     "id": 6029639,
@@ -7344,7 +7908,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Removed vines in Minish Woods"
+    "vanilla_item": "Removed vines in Minish Woods",
+    "key_rando": "Helpers.SwampScrubFusion"
   },
   {
     "id": 6029640,
@@ -7358,7 +7923,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Spookter leaves Hyrule Town"
+    "vanilla_item": "Spookter leaves Hyrule Town",
+    "key_rando": "Helpers.Spekter2Fusion"
   },
   {
     "id": 6029641,
@@ -7372,7 +7938,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "1st Goron Opens Cave"
+    "vanilla_item": "1st Goron Opens Cave",
+    "key_rando": "Helpers.4WallFusions"
   },
   {
     "id": 6029642,
@@ -7386,7 +7953,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "3rd Goron Joins"
+    "vanilla_item": "3rd Goron Joins",
+    "key_rando": "Helpers.4WallFusions"
   },
   {
     "id": 6029643,
@@ -7400,7 +7968,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "5th Goron Joins"
+    "vanilla_item": "5th Goron Joins",
+    "key_rando": "Helpers.4WallFusions"
   },
   {
     "id": 6029644,
@@ -7414,7 +7983,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Marcy in Post Office"
+    "vanilla_item": "Marcy in Post Office",
+    "key_rando": "Helpers.PostmanFusion"
   },
   {
     "id": 6029645,
@@ -7428,7 +7998,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Removed vines outside castle tree"
+    "vanilla_item": "Removed vines outside castle tree",
+    "key_rando": "Helpers.Shared2DFusion"
   },
   {
     "id": 6029646,
@@ -7442,7 +8013,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Eastern Hills Beanstalk"
+    "vanilla_item": "Eastern Hills Beanstalk",
+    "key_rando": "Helpers.HillsMinishFusion"
   },
   {
     "id": 6029647,
@@ -7456,7 +8028,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "6th Goron Joins"
+    "vanilla_item": "6th Goron Joins",
+    "key_rando": "Helpers.4WallFusions"
   },
   {
     "id": 6029648,
@@ -7470,7 +8043,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Grave Open"
+    "vanilla_item": "Grave Open",
+    "key_rando": "Helpers.Dampe1Fusion"
   },
   {
     "id": 6029649,
@@ -7484,7 +8058,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Borlov adds new difficulty"
+    "vanilla_item": "Borlov adds new difficulty",
+    "key_rando": "Helpers.Spekter1Fusion"
   },
   {
     "id": 6029650,
@@ -7498,7 +8073,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Removed vines in tree near Link's House"
+    "vanilla_item": "Removed vines in tree near Link's House",
+    "key_rando": "Helpers.HurdyFusion"
   },
   {
     "id": 6029651,
@@ -7512,7 +8088,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Goron Merchant appears"
+    "vanilla_item": "Goron Merchant appears",
+    "key_rando": "Helpers.GoronLeftFusion"
   },
   {
     "id": 6029652,
@@ -7526,7 +8103,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Platform to Lake Hylia cave appears"
+    "vanilla_item": "Platform to Lake Hylia cave appears",
+    "key_rando": "Helpers.MamaFusion"
   },
   {
     "id": 6029653,
@@ -7540,7 +8118,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Castle Garden West Fountain"
+    "vanilla_item": "Castle Garden West Fountain",
+    "key_rando": "Helpers.Shared35Fusion"
   },
   {
     "id": 6029654,
@@ -7554,7 +8133,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Hyrule Town School Minish Path Chest"
+    "vanilla_item": "Hyrule Town School Minish Path Chest",
+    "key_rando": "Helpers.Shared36Fusion"
   },
   {
     "id": 6029655,
@@ -7568,7 +8148,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Minish Woods Minish Path Chest"
+    "vanilla_item": "Minish Woods Minish Path Chest",
+    "key_rando": "Helpers.Shared37Fusion"
   },
   {
     "id": 6029656,
@@ -7582,7 +8163,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Minish Woods Southwest Chest"
+    "vanilla_item": "Minish Woods Southwest Chest",
+    "key_rando": "Helpers.MinesMinishExitFusion"
   },
   {
     "id": 6029657,
@@ -7596,7 +8178,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Minish Woods Middle Chest"
+    "vanilla_item": "Minish Woods Middle Chest",
+    "key_rando": "Helpers.Shared39Fusion"
   },
   {
     "id": 6029658,
@@ -7610,7 +8193,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Middle tree in Western Wood fixed"
+    "vanilla_item": "Middle tree in Western Wood fixed",
+    "key_rando": "Helpers.Gina2Fusion"
   },
   {
     "id": 6029659,
@@ -7624,7 +8208,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Golden Tektite in Mount Crenel South"
+    "vanilla_item": "Golden Tektite in Mount Crenel South",
+    "key_rando": "Helpers.MinesMinishKitchenFusion"
   },
   {
     "id": 6029660,
@@ -7638,7 +8223,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Golden Rope in Castle Garden"
+    "vanilla_item": "Golden Rope in Castle Garden",
+    "key_rando": "Helpers.Shared3CFusion"
   },
   {
     "id": 6029661,
@@ -7652,7 +8238,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Golden Octorok in Western Wood"
+    "vanilla_item": "Golden Octorok in Western Wood",
+    "key_rando": "Helpers.MinishScrub1Fusion"
   },
   {
     "id": 6029662,
@@ -7666,7 +8253,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Middle Minish Leaf in Castor Wilds"
+    "vanilla_item": "Middle Minish Leaf in Castor Wilds",
+    "key_rando": "Helpers.TFZ3Fusion"
   },
   {
     "id": 6029663,
@@ -7680,7 +8268,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Drained water in Western Wood"
+    "vanilla_item": "Drained water in Western Wood",
+    "key_rando": "Helpers.TrilbyMinishFusion"
   },
   {
     "id": 6029664,
@@ -7694,7 +8283,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Top Right Tree Outside Castle Open"
+    "vanilla_item": "Top Right Tree Outside Castle Open",
+    "key_rando": "Helpers.AnkleFusion"
   },
   {
     "id": 6029665,
@@ -7708,7 +8298,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Minish Hole in Wind Ruins"
+    "vanilla_item": "Minish Hole in Wind Ruins",
+    "key_rando": "Helpers.Dampe2Fusion"
   },
   {
     "id": 6029666,
@@ -7722,7 +8313,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Hyrule Town Waterfall Open"
+    "vanilla_item": "Hyrule Town Waterfall Open",
+    "key_rando": "Helpers.Gina1Fusion"
   },
   {
     "id": 6029667,
@@ -7736,7 +8328,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Chest in Crenel Rainy Minish Path"
+    "vanilla_item": "Chest in Crenel Rainy Minish Path",
+    "key_rando": "Helpers.MinesMinishBedroomFusion"
   },
   {
     "id": 6029668,
@@ -7750,7 +8343,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Minish Woods West Chest above pond"
+    "vanilla_item": "Minish Woods West Chest above pond",
+    "key_rando": "Helpers.Shared44Fusion"
   },
   {
     "id": 6029669,
@@ -7764,7 +8358,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Chest in Melari's Mine Minish Path"
+    "vanilla_item": "Chest in Melari's Mine Minish Path",
+    "key_rando": "Helpers.DavidJr2Fusion"
   },
   {
     "id": 6029670,
@@ -7778,7 +8373,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Minish Woods East Chest"
+    "vanilla_item": "Minish Woods East Chest",
+    "key_rando": "Helpers.Shared46Fusion"
   },
   {
     "id": 6029671,
@@ -7792,7 +8388,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Minish Woods West Chest below pond"
+    "vanilla_item": "Minish Woods West Chest below pond",
+    "key_rando": "Helpers.Shared47Fusion"
   },
   {
     "id": 6029672,
@@ -7806,7 +8403,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Northern Tree in Western Wood fixed"
+    "vanilla_item": "Northern Tree in Western Wood fixed",
+    "key_rando": "Helpers.Flurris2Fusion"
   },
   {
     "id": 6029673,
@@ -7820,7 +8418,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Golden Rope in Castor Wilds"
+    "vanilla_item": "Golden Rope in Castor Wilds",
+    "key_rando": "Helpers.Flurris1Fusion"
   },
   {
     "id": 6029674,
@@ -7834,7 +8433,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Golden Tektite in Veil Falls"
+    "vanilla_item": "Golden Tektite in Veil Falls",
+    "key_rando": "Helpers.HaileyFusion"
   },
   {
     "id": 6029675,
@@ -7848,7 +8448,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "North Minish Leaf in Castor Wilds"
+    "vanilla_item": "North Minish Leaf in Castor Wilds",
+    "key_rando": "Helpers.TFZ1Fusion"
   },
   {
     "id": 6029676,
@@ -7862,7 +8463,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Southeast Tree in Western Wood Fixed"
+    "vanilla_item": "Southeast Tree in Western Wood Fixed",
+    "key_rando": "Helpers.CastleMinishFusion"
   },
   {
     "id": 6029677,
@@ -7876,7 +8478,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Bottom Left Tree Outside Castle Open"
+    "vanilla_item": "Bottom Left Tree Outside Castle Open",
+    "key_rando": "Helpers.KnuckleFusion"
   },
   {
     "id": 6029678,
@@ -7890,7 +8493,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Minish Hole near pond to Minish Village"
+    "vanilla_item": "Minish Hole near pond to Minish Village",
+    "key_rando": "Helpers.Shared4EFusion"
   },
   {
     "id": 6029679,
@@ -7904,7 +8508,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Crenel Spring Minish Path Chest"
+    "vanilla_item": "Crenel Spring Minish Path Chest",
+    "key_rando": "Helpers.MinesMinishNWFusion"
   },
   {
     "id": 6029680,
@@ -7918,7 +8523,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Lon Lon Ranch Minish Path Chest"
+    "vanilla_item": "Lon Lon Ranch Minish Path Chest",
+    "key_rando": "Helpers.Shared50Fusion"
   },
   {
     "id": 6029681,
@@ -7932,7 +8538,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Mayor's Cabin Minish Path Chest"
+    "vanilla_item": "Mayor's Cabin Minish Path Chest",
+    "key_rando": "Helpers.FifiFusion"
   },
   {
     "id": 6029682,
@@ -7946,7 +8553,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Trilby Highlands North Chest"
+    "vanilla_item": "Trilby Highlands North Chest",
+    "key_rando": "Helpers.Smith2Fusion"
   },
   {
     "id": 6029683,
@@ -7960,7 +8568,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Chest near Link's House"
+    "vanilla_item": "Chest near Link's House",
+    "key_rando": "Helpers.Shared53Fusion"
   },
   {
     "id": 6029684,
@@ -7974,7 +8583,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Golden Octorok in Wind Ruins"
+    "vanilla_item": "Golden Octorok in Wind Ruins",
+    "key_rando": "Helpers.LibrariFusion"
   },
   {
     "id": 6029685,
@@ -7988,7 +8598,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Golden Rope near Farm"
+    "vanilla_item": "Golden Rope near Farm",
+    "key_rando": "Helpers.Shared55Fusion"
   },
   {
     "id": 6029686,
@@ -8002,7 +8613,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Golden Octorok near Witch's Hut"
+    "vanilla_item": "Golden Octorok near Witch's Hut",
+    "key_rando": "Helpers.Shared56Fusion"
   },
   {
     "id": 6029687,
@@ -8016,7 +8628,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "West Minish Leaf in Castor Wilds"
+    "vanilla_item": "West Minish Leaf in Castor Wilds",
+    "key_rando": "Helpers.TFZ2Fusion"
   },
   {
     "id": 6029688,
@@ -8030,7 +8643,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Drained Water West of South Hyrule"
+    "vanilla_item": "Drained Water West of South Hyrule",
+    "key_rando": "Helpers.Shared58Fusion"
   },
   {
     "id": 6029689,
@@ -8044,7 +8658,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Top Left Tree Outside Castle Open"
+    "vanilla_item": "Top Left Tree Outside Castle Open",
+    "key_rando": "Helpers.Tingle1Fusion"
   },
   {
     "id": 6029690,
@@ -8058,7 +8673,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Bottom Right Tree Outside Castle Open"
+    "vanilla_item": "Bottom Right Tree Outside Castle Open",
+    "key_rando": "Helpers.DavidJr1Fusion"
   },
   {
     "id": 6029691,
@@ -8072,7 +8688,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Minish Hole near Bow in Castor Wilds"
+    "vanilla_item": "Minish Hole near Bow in Castor Wilds",
+    "key_rando": "Helpers.MinishScrub2Fusion"
   },
   {
     "id": 6029692,
@@ -8086,7 +8703,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Chest northwest of Graveyard"
+    "vanilla_item": "Chest northwest of Graveyard",
+    "key_rando": "Helpers.Siroc1Fusion"
   },
   {
     "id": 6029693,
@@ -8100,7 +8718,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Chest northeast of Graveyard"
+    "vanilla_item": "Chest northeast of Graveyard",
+    "key_rando": "Helpers.Siroc2Fusion"
   },
   {
     "id": 6029694,
@@ -8114,7 +8733,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Trilby Highlands Chest in rocks"
+    "vanilla_item": "Trilby Highlands Chest in rocks",
+    "key_rando": "Helpers.TinaFusion"
   },
   {
     "id": 6029695,
@@ -8128,7 +8748,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Chest near entrance to Royal Valley"
+    "vanilla_item": "Chest near entrance to Royal Valley",
+    "key_rando": "Helpers.Shared5FFusion"
   },
   {
     "id": 6029696,
@@ -8142,7 +8763,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Chest in north edge of Lon Lon Ranch"
+    "vanilla_item": "Chest in north edge of Lon Lon Ranch",
+    "key_rando": "Helpers.Shared60Fusion"
   },
   {
     "id": 6029697,
@@ -8156,7 +8778,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Blue S Kinstone Chest spawns in Veil Falls"
+    "vanilla_item": "Blue S Kinstone Chest spawns in Veil Falls",
+    "key_rando": "Helpers.CapriceFusion"
   },
   {
     "id": 6029698,
@@ -8170,7 +8793,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Chest in middle of Crenel Wall"
+    "vanilla_item": "Chest in middle of Crenel Wall",
+    "key_rando": "Helpers.MeenieFusion"
   },
   {
     "id": 6029699,
@@ -8184,7 +8808,8 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Northwest chest in Crenel Base"
+    "vanilla_item": "Northwest chest in Crenel Base",
+    "key_rando": "Helpers.CrenelLowerMinishFusion"
   },
   {
     "id": 6029700,
@@ -8198,6 +8823,7 @@
     ],
     "room_area": null,
     "scoutable": false,
-    "vanilla_item": "Wind Ruins Chest in middle of pillars"
+    "vanilla_item": "Wind Ruins Chest in middle of pillars",
+    "key_rando": "Helpers.NHFMinishFusion"
   }
 ]

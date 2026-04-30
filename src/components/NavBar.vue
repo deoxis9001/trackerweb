@@ -60,9 +60,6 @@ function handleReset() {
 function openBroadcastItems() {
   window.open(router.resolve('/broadcast').href, '_blank', 'width=340,height=700,noopener')
 }
-function openBroadcastRegions() {
-  window.open(router.resolve('/broadcast-regions').href, '_blank', 'width=260,height=400,noopener')
-}
 </script>
 
 <template>
@@ -140,25 +137,17 @@ function openBroadcastRegions() {
     </div>
 
     <div class="nav-right">
-      <button
-        v-if="isDev"
-        :class="['settings-btn', store.showDevPanel && 'active']"
-        @click="store.showDevPanel = !store.showDevPanel"
-        title="Dev panel"
-      >🛠 {{ t('navbar.dev') }}</button>
-      <button
-        v-if="isDev"
-        :class="['settings-btn', store.showRegionPopup && 'active']"
-        @click="store.toggleRegionPopup()"
-        title="Régions accessibles"
-      >{{ t('navbar.regions') }}</button>
       <button class="settings-btn" @click="openBroadcastItems()" title="Broadcast items">{{ t('navbar.items_broadcast') }}</button>
-      <button v-if="isDev" class="settings-btn" @click="openBroadcastRegions()" title="Broadcast régions [dev]">{{ t('navbar.regions_broadcast') }}</button>
       <button
-        v-if="store.apConnected"
-        :class="['settings-btn', store.showChat && 'active']"
-        @click="store.showChat = !store.showChat"
-      >{{ t('navbar.chat') }}</button>
+        :class="['settings-btn', store.showApPanel && 'active']"
+        @click="store.showApPanel = !store.showApPanel"
+        title="Archipelago"
+      >{{ t('navbar.ap') }}</button>
+      <button
+        :class="['settings-btn', store.showFaq && 'active']"
+        @click="store.showFaq = !store.showFaq"
+        title="Aide / Help"
+      >{{ t('navbar.faq') }}</button>
       <button
         :class="['settings-btn', store.showSettings && 'active']"
         @click="store.toggleSettings()"

@@ -88,9 +88,10 @@ async function poll() {
     }
   } catch {
     failStreak++
-    if (failStreak >= MAX_FAILS && store.bizhawkConnected) {
+    if (failStreak >= MAX_FAILS) {
       store.bizhawkConnected = false
       store.setAutotrackItems({})
+      _disconnect()
     }
   } finally {
     polling = false
