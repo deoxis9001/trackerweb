@@ -127,6 +127,9 @@ export const useSettingsStore = defineStore('settings', () => {
   const logicSource     = ref('ap_world') // 'ap_world' | 'default_logic' | 'custom'
   // Raw text of a user-imported .logic file — not persisted (session only, can be large)
   const customLogicText = ref(null)
+  // Rando defines set by the user in logic mode — { [DEFINE_NAME]: bool|string|number }
+  // null = not yet initialized (falls back to AP World logic)
+  const randoDefines    = ref(null)
 
   // ── Tracker Display ───────────────────────────────────────────────────────────
   const showInaccessible = ref(false)
@@ -182,6 +185,7 @@ export const useSettingsStore = defineStore('settings', () => {
       autoTabOverworld: autoTabOverworld.value,
       dungeonEntranceShuffle: dungeonEntranceShuffle.value,
       logicSource: logicSource.value,
+      randoDefines: randoDefines.value,
     }
   }
 
@@ -213,6 +217,7 @@ export const useSettingsStore = defineStore('settings', () => {
     for (const [k, r] of Object.entries(refs)) {
       if (s[k] != null) r.value = s[k]
     }
+    if ('randoDefines' in s) randoDefines.value = s.randoDefines
   }
 
   function importFromSlotData(sd) {
@@ -421,7 +426,7 @@ export const useSettingsStore = defineStore('settings', () => {
     replicaTODBossDoor, trapsEnabled,
     showInaccessible, autoTabDungeons, autoTabOverworld,
     dungeonEntranceShuffle,
-    logicSource, customLogicText,
+    logicSource, customLogicText, randoDefines,
     exportSettings, importSettings, importFromSlotData, save, load,
   }
 })
