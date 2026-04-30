@@ -23,8 +23,14 @@
  */
 export function preprocessLogic(rawText, defines) {
   const activeDefines = { ...defines }
-  // substitutions[NAME] = expansion string for `NAME` backtick references
+  // substitutions[NAME] = expansion string for `NAME` backtick references.
+  // Pre-seeded from defines so that numberbox values (e.g. START_KINSTONES_GOLD_SWAMP='0')
+  // are immediately available for backtick substitution in logicStrs, even when the logic
+  // file has no `!define - `NAME`` line to propagate them.
   const substitutions = {}
+  for (const [k, v] of Object.entries(defines)) {
+    if (v !== true) substitutions[k] = String(v)
+  }
 
   // Conditional stack: each frame = { active: bool, seenElse: bool }
   // `active` already incorporates parent activation.
@@ -98,8 +104,12 @@ export function preprocessLogic(rawText, defines) {
             substitutions[name] = value
             activeDefines[name] = value  // visible to subsequent !ifdef checks
           } else {
-            substitutions[rest] = ''
-            activeDefines[rest] = true   // bare !define → marks name as defined
+            // Resolve backtick refs in the name itself:
+            // e.g. !define - START_KINSTONES_GOLD_SWAMP_`START_KINSTONES_GOLD_SWAMP`
+            // with substitutions['START_KINSTONES_GOLD_SWAMP']='0' → 'START_KINSTONES_GOLD_SWAMP_0'
+            const resolvedName = _applySubs(rest, substitutions)
+            substitutions[resolvedName] = ''
+            activeDefines[resolvedName] = true
           }
         }
         break
@@ -153,7 +163,7 @@ const _IS_DEFINE = /^[A-Z0-9][A-Z0-9_]+$/
  * @returns {{ flags: object[], dropdowns: object[], numberboxes: object[] }}
  */
 export function parseDirectives(rawText) {
-  const result = { flags: [], dropdowns: [], numberboxes: [] }
+  const result = { flags: [], dropdowns: [], numberboxes: [], directives: [] }
 
   for (const rawLine of rawText.split('\n')) {
     let line = rawLine
@@ -162,10 +172,17 @@ export function parseDirectives(rawText) {
     const trimmed = line.trim()
     if (!trimmed.startsWith('!')) continue
 
-    // strip trailing " -" that some entries append after their last option description
-    const parts = trimmed.split(' - ').map(p => p.replace(/ -$/, '').trim())
+    // Split on single '-' and trim, exactly matching C# DirectiveParser.SplitDirective().
+    // Using ' - ' would fail on empty descriptions: "X - - Y" splits as ["X","- Y"] not ["X","","Y"].
+    const parts = trimmed.split('-').map(p => p.trim())
     const keyword = parts[0].slice(1)
     if (keyword !== 'flag' && keyword !== 'dropdown' && keyword !== 'numberbox') continue
+
+    // Tab, optionType and group are always at fixed positions in the format:
+    //   !keyword - TAB - Setting|Cosmetic - GROUP - DEFINE_NAME - label - ...
+    const tab        = parts[1] ?? ''
+    const optionType = parts[2] ?? ''   // "Setting" or "Cosmetic"
+    const group      = parts[3] ?? ''
 
     // Locate the first define-like token — that is the setting's DEFINE_NAME
     let di = -1
@@ -181,7 +198,9 @@ export function parseDirectives(rawText) {
       // optional trailing "true" / "false" indicates the default value
       const last = parts[parts.length - 1]
       const defaultValue = last === 'true' ? true : last === 'false' ? false : undefined
-      result.flags.push({ defineName, label, defaultValue })
+      const entry = { type: 'flag', defineName, label, defaultValue, tab, optionType, group }
+      result.flags.push(entry)
+      result.directives.push(entry)
     }
 
     else if (keyword === 'numberbox') {
@@ -190,54 +209,29 @@ export function parseDirectives(rawText) {
       const defVal  = Number(parts[di + 3] ?? parts[di + 2] ?? 0)
       const min     = Number(parts[di + 4] ?? parts[di + 3] ?? 0)
       const max     = Number(parts[di + 5] ?? parts[di + 4] ?? 0)
-      result.numberboxes.push({ defineName, label, default: defVal, min, max })
+      const entry = { type: 'numberbox', defineName, label, default: defVal, min, max, tab, optionType, group }
+      result.numberboxes.push(entry)
+      result.directives.push(entry)
     }
 
     else { // dropdown
-      // After DEFINE: label [description_parts…] DEFAULT_DEFINE [opt_label OPT_DEFINE [opt_desc…]]…
-      // Option descriptions always start with ' (single-quote).
-      // Empty parts (from consecutive " - ") also count as descriptions to skip.
-      const label = parts[di + 1] ?? ''
+      // C# positional format (DirectiveParser.ParseDropdownDirective):
+      //   [0]=!dropdown [1]=tab [2]=type [3]=group [4]=define [5]=label [6]=desc [7]=default
+      //   then triplets: [8+3k]=optLabel [9+3k]=optDefine [10+3k]=optDesc
+      // C# validates: length % 3 == 2 && length >= 11 (at least 1 option).
+      if (parts.length % 3 !== 2 || parts.length < 11) continue
 
-      let i = di + 2
-      // skip description parts (non-define, non-empty) until we reach DEFAULT_DEFINE
-      while (i < parts.length && !_IS_DEFINE.test(parts[i])) i++
-      const defaultValue = parts[i] ?? ''
-      i++
+      const label        = parts[5] ?? ''
+      const defaultValue = parts[7] ?? ''
 
       const options = []
-      while (i < parts.length) {
-        // collect label words (non-define, non-quote, non-empty)
-        // Strip leading "- " prefix: bare "-" description placeholders bleed into
-        // the next part when the separator " - " is consumed (e.g. SWORD_SETTING).
-        const labelParts = []
-        while (i < parts.length &&
-               !_IS_DEFINE.test(parts[i]) &&
-               !parts[i].startsWith("'") &&
-               parts[i] !== '') {
-          const word = parts[i].replace(/^-\s+/, '')
-          if (word) labelParts.push(word)
-          i++
-        }
-
-        if (!_IS_DEFINE.test(parts[i] ?? '')) {
-          // hit a quote-description or empty without finding a define — skip to next define
-          while (i < parts.length && !_IS_DEFINE.test(parts[i])) i++
-          continue
-        }
-
-        const optDefine = parts[i]
-        i++
-
-        // skip option description (empty or starts with ')
-        while (i < parts.length && (parts[i] === '' || parts[i].startsWith("'"))) i++
-
-        if (labelParts.length > 0) {
-          options.push({ label: labelParts.join(' - '), defineName: optDefine })
-        }
+      for (let oi = 8; oi + 1 < parts.length; oi += 3) {
+        options.push({ label: parts[oi], defineName: parts[oi + 1] })
       }
 
-      result.dropdowns.push({ defineName, label, defaultValue, options })
+      const entry = { type: 'dropdown', defineName, label, defaultValue, options, tab, optionType, group }
+      result.dropdowns.push(entry)
+      result.directives.push(entry)
     }
   }
 
@@ -284,6 +278,16 @@ export function parseLocations(lines) {
     if (_ADDR_PAT.test(type)) {
       const ticks = nameField.match(/`[^`]*`/g)
       type = ticks ? ticks[ticks.length - 1] : ''
+    }
+
+    // Explicitly inaccessible in current settings (e.g. REDFUSIONDUNGEON substituted
+    // to 'Inaccessible' when NO_RED_FUSIONS is active). Include so parseLogic can
+    // compile them to () => false instead of leaving the rule undefined (fail-open).
+    if (type === 'Inaccessible') {
+      const name = nameField.replace(/`[^`]*`/g, '').split(':')[0].trim()
+      if (!name || _SKIP_PREFIXES.some(p => name.startsWith(p))) continue
+      result.push({ name, type: 'Inaccessible', logicStr: '' })
+      continue
     }
 
     // Filter by type — keep helpers and trackable location types only.
@@ -391,6 +395,14 @@ function _compileTerm(term, helperMap) {
       const contributors = parts.slice(1).map(p => {
         p = p.trim()
         if (p.startsWith('Helpers.') || p.startsWith('Locations.')) {
+          // Helpers.X:K — explicit numeric weight (e.g. Helpers.StartInv:0 = 0 start kinstones).
+          // The helper itself is treated as always-true; K is the direct contribution.
+          const ci = p.lastIndexOf(':')
+          if (ci > p.indexOf('.') && /^\d+$/.test(p.slice(ci + 1))) {
+            const k = parseInt(p.slice(ci + 1), 10)
+            const fn = _compileTerm(p.slice(0, ci), helperMap)
+            return (inv, s) => fn(inv, s) ? k : 0
+          }
           // Boolean helper → contributes 0 or 1
           const fn = _compileTerm(p, helperMap)
           return (inv, s) => fn(inv, s) ? 1 : 0
@@ -763,6 +775,51 @@ export function settingsToDefines(settings) {
   else if (dhc === 'closed') setOption('DHC_SETTING', 'NODHC')
   else                    setOption('DHC_SETTING', 'NORMALDHC')
 
+  // ── Kinstone pack multipliers (dropdowns, all default = 1 per pick-up) ─────
+  // These resolve `XMULTIPLIER` backtick refs in logicStrs (e.g. Items.Kinstone.X:`GOLD2MULTIPLIER`).
+  // Without them the backtick stays unresolved → trailing colon → _itemCount returns Infinity.
+  d['GOLD1MULTIPLIER']  = '1'
+  d['GOLD2MULTIPLIER']  = '1'
+  d['REDWMULTIPLIER']   = '1'
+  d['REDVMULTIPLIER']   = '1'
+  d['REDEMULTIPLIER']   = '1'
+  d['BLUELMULTIPLIER']  = '1'
+  d['BLUESMULTIPLIER']  = '1'
+  d['GREENCMULTIPLIER'] = '1'
+  d['GREENGMULTIPLIER'] = '1'
+  d['GREENPMULTIPLIER'] = '1'
+
+  // ── Key chain multipliers (dropdowns, default = 1 key per chain) ──────────
+  // Activates DWS1KEY/COF1KEY/… so that !ifdef - DWS1KEY blocks run and
+  // DWSKEYAMOUNT / FOWKEYAMOUNT etc. get defined = 1.
+  setOption('KEYDWSMULTIPLIER', 'DWS1KEY')
+  setOption('KEYCOFMULTIPLIER', 'COF1KEY')
+  setOption('KEYFOWMULTIPLIER', 'FOW1KEY')
+  setOption('KEYTODMULTIPLIER', 'TOD1KEY')
+  setOption('KEYRCMULTIPLIER',  'RC1KEY')
+  setOption('KEYPOWMULTIPLIER', 'POW1KEY')
+  setOption('KEYDHCMULTIPLIER', 'DHC1KEY')
+
+  // ── Start inventory kinstones (numberboxes, AP always starts with 0) ──────
+  // Resolve `START_KINSTONES_X` backtick refs (e.g. Helpers.StartInv:`START_KINSTONES_GOLD_SWAMP`).
+  // Also causes !define - START_KINSTONES_GOLD_SWAMP_`START_KINSTONES_GOLD_SWAMP` → _0 (not _`…`).
+  d['START_KINSTONES_GOLD_CLOUD'] = '0'
+  d['START_KINSTONES_GOLD_SWAMP'] = '0'
+  d['START_KINSTONES_RED_W']      = '0'
+  d['START_KINSTONES_RED_V']      = '0'
+  d['START_KINSTONES_RED_E']      = '0'
+  d['START_KINSTONES_BLUE_L']     = '0'
+  d['START_KINSTONES_BLUE_S']     = '0'
+  d['START_KINSTONES_GREEN_C']    = '0'
+  d['START_KINSTONES_GREEN_G']    = '0'
+  d['START_KINSTONES_GREEN_P']    = '0'
+
+  // ── Start capacity dropdowns (AP always starts with 0 extra capacity) ─────
+  setOption('START_BOMBBAGS', 'START_BOMBBAGS_0')
+  setOption('START_QUIVERS',  'START_QUIVERS_0')
+  setOption('START_WALLETS',  'START_WALLETS_0')
+  setOption('START_BOTTLES',  'START_BOTTLES_0')
+
   // ── Kinstone Fusions ─────────────────────────────────────────────────────
   // 'closed' in AP ≡ no fusions in pool (same as rando 'none')
   const gold = settings.goldFusionAccess ?? 'vanilla'
@@ -827,7 +884,36 @@ export function settingsToDefines(settings) {
   setFlag('LAKE_MINISH_TRICKS', hasTrick('lake_minish'))
   setFlag('YESLAKEMINISH',      hasTrick('lake_minish'))
 
+  // ── Logic mode: merge randoDefines on top of AP defaults ──────────────────
+  const rd = settings.randoDefines
+  if (rd && (settings.logicSource === 'default_logic' || settings.logicSource === 'custom')) {
+    _mergeRandoDefines(d, rd)
+  }
+
   return d
+}
+
+/**
+ * Merge user-controlled rando defines into an existing defines object.
+ * For dropdown settings: writes both key=optionValue AND optionValue=true,
+ * replacing whatever the AP mapping had set.
+ */
+function _mergeRandoDefines(d, rd) {
+  // First pass: clear old option-level trues for any dropdown keys being overridden
+  // (e.g. if AP set OPEN_GOLD_FUSIONS=true and user wants VANILLA, clear the old one)
+  for (const [k, v] of Object.entries(rd)) {
+    if (typeof v === 'string' && v && k in d) {
+      const old = d[k]
+      if (typeof old === 'string' && old !== v) delete d[old]
+    }
+  }
+  // Second pass: apply new values
+  for (const [k, v] of Object.entries(rd)) {
+    if (v === true)                          d[k] = true
+    else if (v === false)                    delete d[k]
+    else if (typeof v === 'string' && v)   { d[k] = v; d[v] = true }
+    else if (typeof v === 'number')          d[k] = String(v)
+  }
 }
 
 
@@ -885,7 +971,9 @@ export function parseLogic(rawText, settings) {
     LOCATION_RULES[`Helpers.${name}`] = fn
   }
   for (const entry of allEntries) {
-    if (entry.type !== 'Helper') {
+    if (entry.type === 'Inaccessible') {
+      LOCATION_RULES[entry.name] = () => false
+    } else if (entry.type !== 'Helper') {
       LOCATION_RULES[entry.name] = compileExpr(entry.logicStr, helperMap)
     }
   }
