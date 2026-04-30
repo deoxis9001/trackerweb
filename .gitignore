@@ -26,3 +26,7 @@ src_info/
 # OS
 .DS_Store
 Thumbs.db
+
+# Test artifacts
+test-results/
+mock_test.log
