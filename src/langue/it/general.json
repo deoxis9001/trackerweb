@@ -244,6 +244,9 @@
   },
   "faq": {
     "title": "Aiuto e FAQ",
+    "links_title": "Link",
+    "latest_release": "Ultima versione",
+    "repo_link": "Repository GitHub",
     "bizhawk_title": "Connettore Bizhawk",
     "bizhawk_desc": "Per usare l'autotracking di Bizhawk, scarica lo script Lua e caricalo in Bizhawk (Strumenti → Console Lua → Script → Apri script). Poi clicca su «Bizhawk Lua» nel tracker (porta 65399).",
     "connector_download": "Scarica bizhawk_tracker.lua",

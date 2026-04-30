@@ -244,6 +244,9 @@
   },
   "faq": {
     "title": "Hilfe & FAQ",
+    "links_title": "Links",
+    "latest_release": "Neueste Version",
+    "repo_link": "GitHub-Repository",
     "bizhawk_title": "Bizhawk-Connector",
     "bizhawk_desc": "Um Bizhawk-Autotracking zu nutzen, lade das Lua-Skript herunter und öffne es in Bizhawk (Werkzeuge → Lua-Konsole → Skript → Skript öffnen). Klicke dann im Tracker auf «Bizhawk Lua» (Port 65399).",
     "connector_download": "bizhawk_tracker.lua herunterladen",
