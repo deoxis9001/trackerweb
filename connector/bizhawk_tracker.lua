@@ -41,16 +41,6 @@ local LOCATION_CHECKS = {
   {6029021,0x2ca3,0x4},
   {6029162,0x2ca3,0x1},
   {6029219,0x2ca3,0x2},
-  {6029068,0x2ca5,0x8},
-  {6029069,0x2ca5,0x10},
-  {6029070,0x2ca5,0x18},
-  {6029071,0x2ca5,0x20},
-  {6029072,0x2ca5,0x28},
-  {6029073,0x2ca5,0x30},
-  {6029074,0x2ca5,0x38},
-  {6029075,0x2ca5,0x40},
-  {6029076,0x2ca5,0x48},
-  {6029077,0x2ca5,0x80},
   {6029190,0x2ca7,0x4},
   {6029138,0x2cbd,0x2},
   {6029140,0x2cbd,0x1},
@@ -630,6 +620,13 @@ local function readItems()
   out.PROGRESSIVE_WALLET = g_ae8
   out.HEART_TOTAL = math.floor(g_aeb / 4)
 
+  -- Books (0x2B40): bookFlags={0x04,0x10,0x40}, usedBooks={0x08,0x20,0x80}
+  local bookCount = 0
+  if (b40 & 0x0C) ~= 0 then bookCount = bookCount + 1 end
+  if (b40 & 0x30) ~= 0 then bookCount = bookCount + 1 end
+  if (b40 & 0xC0) ~= 0 then bookCount = bookCount + 1 end
+  out.PROGRESSIVE_BOOK = bookCount
+
   local r0 = memory.readbyte(0x0BF4, "IWRAM")
   local r1 = memory.readbyte(0x0BF5, "IWRAM")
   out._room_area = r0 | (r1 << 8)
@@ -646,6 +643,50 @@ local function readCheckedLocations()
       checked[#checked + 1] = id
     end
   end
+
+  -- Cuccos (Town - 10 niveaux, codage binaire a 0x2CA5)
+  -- count = bits: 0x08=1, 0x10=2, 0x20=4, 0x40=8  (valeur 0-15)
+  -- niveau 10 = flag séparé 0x2CA5 & 0x80
+  do
+    local ca5   = getbyte(0x2CA5)
+    local count = flag(ca5, 0x08) + flag(ca5, 0x10)*2 + flag(ca5, 0x20)*4 + flag(ca5, 0x40)*8
+    local cucco_ids = {6029068,6029069,6029070,6029071,6029072,6029073,6029074,6029075,6029076}
+    for lv = 1, 9 do
+      if count >= lv then checked[#checked + 1] = cucco_ids[lv] end
+    end
+    if (ca5 & 0x80) ~= 0 then checked[#checked + 1] = 6029077 end
+  end
+
+  -- Goron Merchant (5 sets x 3 emplacements = 15 locations)
+  -- count = nb de restocks effectues (bits cumulatifs 0x2CA3.40/80 et 0x2CA4.01/02)
+  -- flags courants : 0x2CA4.04=gauche 0x04=centre 0x10=droit (bit set = acheté)
+  do
+    local ca3   = getbyte(0x2CA3)
+    local ca4   = getbyte(0x2CA4)
+    local count = flag(ca3, 0x40) + flag(ca3, 0x80) + flag(ca4, 0x01) + flag(ca4, 0x02)
+    local sets  = {
+      {6029034, 6029035, 6029036},
+      {6029037, 6029038, 6029039},
+      {6029040, 6029041, 6029042},
+      {6029043, 6029044, 6029045},
+      {6029046, 6029047, 6029048},
+    }
+    for s = 1, 5 do
+      local ids = sets[s]
+      if count >= s then
+        -- set dépassé : les 3 emplacements sont considérés cochés
+        checked[#checked + 1] = ids[1]
+        checked[#checked + 1] = ids[2]
+        checked[#checked + 1] = ids[3]
+      elseif count == s - 1 then
+        -- set courant : vérifier les flags individuels
+        if (ca4 & 0x04) ~= 0 then checked[#checked + 1] = ids[1] end
+        if (ca4 & 0x08) ~= 0 then checked[#checked + 1] = ids[2] end
+        if (ca4 & 0x10) ~= 0 then checked[#checked + 1] = ids[3] end
+      end
+    end
+  end
+
   return checked
 end
 
