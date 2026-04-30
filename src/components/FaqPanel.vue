@@ -5,7 +5,7 @@ import { useLocale } from '../composables/useLocale'
 const store = useStateStore()
 const { t } = useLocale()
 
-const CONNECTOR_URL = 'https://raw.githubusercontent.com/deoxis9001/trackerweb/main/connector/bizhawk_tracker.lua'
+const CONNECTOR_URL = `${import.meta.env.BASE_URL}bizhawk_tracker.lua`
 </script>
 
 <template>
