@@ -136,16 +136,38 @@ export const useStateStore = defineStore('state', () => {
 
   function isLocationVisible(loc) {
     const pools = loc.pools || []
-    if (pools.includes('rupee')      && !settings.rupeesanity)           return false
-    if (pools.includes('pot')        && !settings.shufflePots)           return false
-    if (pools.includes('dig')        && !settings.shuffleDigging)        return false
-    if (pools.includes('water')      && !settings.shuffleUnderwater)     return false
-    if (pools.includes('enemy')      && !settings.shuffleGoldEnemies)    return false
-    const fuseAccessMap = {
-      fuse_gold:  settings.goldFusionAccess,
-      fuse_red:   settings.redFusionAccess,
-      fuse_blue:  settings.blueFusionAccess,
-      fuse_green: settings.greenFusionAccess,
+    const rd = settings.logicSource !== 'ap_world' ? settings.randoDefines : null
+
+    // In logic mode, pool visibility uses randoDefines flags; in AP mode use AP settings.
+    const flag = (apVal, rdKey) => rd ? !!(rd?.[rdKey]) : apVal
+    if (pools.includes('rupee')      && !flag(settings.rupeesanity,        'RUPEEMANIA'))   return false
+    if (pools.includes('pot')        && !flag(settings.shufflePots,        'SPECIALPOTS'))  return false
+    if (pools.includes('dig')        && !flag(settings.shuffleDigging,     'DIGGING'))      return false
+    if (pools.includes('water')      && !flag(settings.shuffleUnderwater,  'UNDERWATER'))   return false
+    if (pools.includes('enemy')      && !flag(settings.shuffleGoldEnemies, 'GOLDEN_ENEMY')) return false
+    // In logic mode, fusion visibility is driven by randoDefines, not AP fusion settings.
+    // Map rando define values to the same 'closed'|'vanilla'|'open' vocabulary.
+    let fuseAccessMap
+    if (rd) {
+      const rdAccess = (key, noVal, openVal) => {
+        const v = rd[key] ?? noVal
+        if (v === noVal)  return 'closed'
+        if (v === openVal) return 'open'
+        return 'vanilla'  // vanilla or combined → show all (logic handles accessibility)
+      }
+      fuseAccessMap = {
+        fuse_gold:  rdAccess('GOLD_FUSION_SETTING', 'NO_GOLD_FUSIONS',  'OPEN_GOLD_FUSIONS'),
+        fuse_red:   rdAccess('RED_FUSION_SETTING',  'NO_RED_FUSIONS',   'OPEN_RED_FUSIONS'),
+        fuse_blue:  rdAccess('BLUE_FUSION_SETTING', 'NO_BLUE_FUSIONS',  'OPEN_BLUE_FUSIONS'),
+        fuse_green: rdAccess('GREEN_FUSION_SETTING','NO_GREEN_FUSIONS', 'OPEN_GREEN_FUSIONS'),
+      }
+    } else {
+      fuseAccessMap = {
+        fuse_gold:  settings.goldFusionAccess,
+        fuse_red:   settings.redFusionAccess,
+        fuse_blue:  settings.blueFusionAccess,
+        fuse_green: settings.greenFusionAccess,
+      }
     }
     for (const [pool, access] of Object.entries(fuseAccessMap)) {
       if (!pools.includes(pool)) continue
@@ -213,6 +235,13 @@ export const useStateStore = defineStore('state', () => {
 
   // manualItems is mutated in place by the UI — watch it for auto-save
   watch(manualItems, saveState, { deep: true })
+
+  // Sync broadcast windows: reload state when another window writes to localStorage
+  if (typeof window !== 'undefined') {
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'tmc_state') loadState()
+    })
+  }
 
   // ---------------------------------------------------------------------------
   // Actions
@@ -310,6 +339,8 @@ export const useStateStore = defineStore('state', () => {
   }
 
   const showDevPanel = ref(false)
+  const showApPanel  = ref(false)
+  const showFaq      = ref(false)
 
   const showChat     = ref(false)
   const chatMessages = ref([])  // { text, nodes }[]
@@ -375,6 +406,8 @@ export const useStateStore = defineStore('state', () => {
     apPlayers,
     setApPlayers,
     showDevPanel,
+    showApPanel,
+    showFaq,
     saveState,
     loadState,
   }
