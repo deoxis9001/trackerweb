@@ -1,0 +1,3 @@
+[submodule "SubModule/tmcrando_maptracker_deoxis"]
+	path = SubModule/tmcrando_maptracker_deoxis
+	url = https://github.com/deoxis9001/tmcrando_maptracker_deoxis.git
