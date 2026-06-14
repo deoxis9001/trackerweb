@@ -1,7 +1,8 @@
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
-import locationsData from '../../data/locations.json'
+import locationsData from '../../data/location_meta.json'
 import roomAreaToZoneRaw from '../../data/room_area_to_zone.json'
+import roomAreaToFloor from '../../data/room_area_to_floor.json'
 
 const BRIDGE_URL = 'http://localhost:65399'
 const POLL_MS    = 1000
@@ -74,16 +75,23 @@ async function poll() {
     }
 
     const roomArea = data._room_area
-    if (roomArea) {
-      const settings = useSettingsStore()
-      const dungeon  = ROOM_AREA_TO_DUNGEON[roomArea] ?? null
-      if (dungeon && settings.autoTabDungeons !== 'non') {
-        store.setActiveView(dungeon)
+    if (roomArea != null) {
+      const settings  = useSettingsStore()
+      const floorInfo = roomAreaToFloor[roomArea] ?? null
+      if (floorInfo && settings.autoTabDungeons !== 'non') {
+        store.setActiveView(floorInfo.dungeon)
         store.setActiveZone(null)
-      } else if (!dungeon && settings.autoTabOverworld !== 'non') {
-        store.setActiveView('overworld')
-        const zone = ROOM_AREA_TO_ZONE[roomArea] ?? null
-        store.setActiveZone(zone)
+        store.setBizhawkFloor(floorInfo.floor)
+      } else if (!floorInfo) {
+        if (settings.autoTabOverworld !== 'non') {
+          store.setActiveView('overworld')
+          store.setActiveZone(ROOM_AREA_TO_ZONE[roomArea] ?? null)
+          store.setBizhawkFloor(null)
+        } else if (settings.autoTabDungeons !== 'non') {
+          // Dungeons tab enabled but overworld off: still switch back to overworld without zone
+          store.setActiveView('overworld')
+          store.setBizhawkFloor(null)
+        }
       }
     }
   } catch {

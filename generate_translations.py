@@ -68,7 +68,7 @@ def write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    print(f"  ✓ {path.relative_to(ROOT)}  ({len(data)} entries)")
+    print(f"  ok {path.relative_to(ROOT)}  ({len(data)} entries)")
 
 
 def generate_en_files(enums: dict) -> dict[str, dict[str, str]]:
@@ -76,7 +76,7 @@ def generate_en_files(enums: dict) -> dict[str, dict[str, str]]:
     locations = dict(enums.get("TMCLocation", {}))
     regions   = dict(enums.get("TMCRegion", {}))
 
-    print("\n[EN] Generating reference files…")
+    print("\n[EN] Generating reference files...")
     write_json(LANGUE_DIR / "en/items.json",     items)
     write_json(LANGUE_DIR / "en/locations.json", locations)
     write_json(LANGUE_DIR / "en/regions.json",   regions)
@@ -131,7 +131,7 @@ def main() -> None:
         print("Run: git submodule update --init")
         sys.exit(1)
 
-    print(f"Parsing {CONSTANTS_PY.relative_to(ROOT)} …")
+    print(f"Parsing {CONSTANTS_PY.relative_to(ROOT)} ...")
     enums   = parse_constants()
     en_data = generate_en_files(enums)
 

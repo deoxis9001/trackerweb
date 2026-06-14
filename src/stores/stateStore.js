@@ -44,6 +44,7 @@ export const useStateStore = defineStore('state', () => {
   const apVersion        = ref('')        // slotData.version from AP login
   // Bizhawk NWA autotracking
   const bizhawkConnected = ref(false)
+  const bizhawkFloor     = ref(null)
   const autotrackItems   = ref({})  // { itemKey: count } — set by bizhawk.js
   const apServer       = ref('archipelago.gg')
   const apPort         = ref(38281)
@@ -135,6 +136,9 @@ export const useStateStore = defineStore('state', () => {
   })
 
   function isLocationVisible(loc) {
+    if (loc.key === 'GOAL_VAATI') return settings.goal === 'vaati'
+    if (loc.key === 'GOAL_PED')   return settings.goal === 'pedestal'
+
     const pools = loc.pools || []
     const rd = settings.logicSource !== 'ap_world' ? settings.randoDefines : null
 
@@ -307,6 +311,10 @@ export const useStateStore = defineStore('state', () => {
     activeZone.value = zone
   }
 
+  function setBizhawkFloor(floor) {
+    bizhawkFloor.value = floor
+  }
+
   function setActivePanel(panel) {
     activePanel.value = panel
   }
@@ -371,6 +379,7 @@ export const useStateStore = defineStore('state', () => {
     receivedItems,
     manualItems,
     activeView, activeZone, setActiveZone,
+    bizhawkFloor, setBizhawkFloor,
     dungeonEntranceMap, setDungeonEntrance, clearDungeonEntrance, resetDungeonEntrances,
     activePanel,
     hoveredPinLocs,

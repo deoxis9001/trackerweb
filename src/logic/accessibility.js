@@ -10,13 +10,17 @@
  */
 
 import { REGION_RULES, LOCATION_RULES } from './rules_generated.js'
-import { always } from './rules.js'
+import { always, canActivatePedestal } from './rules.js'
 import locationsRaw from '../../data/location_meta.json'
 import defaultLogicRaw from './defaultLogic.js'
 import { computeAccessibility_rando } from './accessibility_rando.js'
 
 // Pre-index locations by name for O(1) rule lookup
-const RULE_BY_NAME = LOCATION_RULES
+const RULE_BY_NAME = {
+  ...LOCATION_RULES,
+  "Kill Vaati": always,
+  "Ped Finish": canActivatePedestal,
+}
 
 // Pre-index locations by region key for grouping
 const locationsByRegion = {}

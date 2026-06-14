@@ -486,6 +486,21 @@ def main():
         }
         for l in locations
     ]
+    # Tracker-only goal locations (not in AP World data, use sentinel IDs)
+    loc_meta += [
+        {
+            "id": -1, "key": "GOAL_VAATI", "name": "Kill Vaati",
+            "region_key": "DUNGEON_DHC_BLUE_WARP", "region_name": "Vaati",
+            "dungeon": "DHC", "pools": [], "room_area": None,
+            "scoutable": False, "vanilla_item": None,
+        },
+        {
+            "id": -2, "key": "GOAL_PED", "name": "Ped Finish",
+            "region_key": "SANCTUARY", "region_name": "Sanctuary",
+            "dungeon": "DHC", "pools": [], "room_area": None,
+            "scoutable": False, "vanilla_item": None,
+        },
+    ]
     (DATA_OUT / "location_meta.json").write_text(
         json.dumps(loc_meta, indent=2, ensure_ascii=False), encoding="utf-8"
     )

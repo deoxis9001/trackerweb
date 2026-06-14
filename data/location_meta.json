@@ -8825,5 +8825,31 @@
     "scoutable": false,
     "vanilla_item": "Wind Ruins Chest in middle of pillars",
     "key_rando": "Helpers.NHFMinishFusion"
+  },
+  {
+    "id": -1,
+    "key": "GOAL_VAATI",
+    "name": "Kill Vaati",
+    "region_key": "DUNGEON_DHC_BLUE_WARP",
+    "region_name": "Vaati",
+    "dungeon": "DHC",
+    "pools": [],
+    "room_area": null,
+    "scoutable": false,
+    "vanilla_item": null,
+    "key_rando": null
+  },
+  {
+    "id": -2,
+    "key": "GOAL_PED",
+    "name": "Ped Finish",
+    "region_key": "SANCTUARY",
+    "region_name": "Sanctuary",
+    "dungeon": "DHC",
+    "pools": [],
+    "room_area": null,
+    "scoutable": false,
+    "vanilla_item": null,
+    "key_rando": null
   }
 ]

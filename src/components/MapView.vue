@@ -248,6 +248,12 @@ watch(() => state.activeView, (view) => {
   if (view === 'overworld') currentArea.value = state.activeZone ?? null
 }, { immediate: true })
 
+watch(() => state.bizhawkFloor, (floor) => {
+  if (floor && useFloors.value && availableFloors.value.includes(floor)) {
+    setFloor(floor)
+  }
+})
+
 watch(() => state.activeZone, (zone) => {
   if (state.activeView === 'overworld') {
     currentArea.value = zone

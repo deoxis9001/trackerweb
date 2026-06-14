@@ -3,22 +3,11 @@ import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import apTables from '../../data/ap_tables.json'
 import roomAreaToZoneRaw from '../../data/room_area_to_zone.json'
+import roomAreaToFloor from '../../data/room_area_to_floor.json'
 
 const ROOM_AREA_TO_ZONE = {}
 for (const [k, v] of Object.entries(roomAreaToZoneRaw)) {
   ROOM_AREA_TO_ZONE[Number(k)] = v
-}
-
-// Low byte of room_area_id → dungeon key. Derived from room_mapping.lua (authoritative).
-// Covers all rooms including corridors/boss rooms without chests.
-const AREA_BYTE_TO_DUNGEON = {
-  0x48: 'DWS', 0x49: 'DWS',
-  0x50: 'CoF', 0x51: 'CoF',
-  0x18: 'FoW', 0x58: 'FoW', 0x59: 'FoW', 0x5A: 'FoW',
-  0x60: 'ToD',
-  0x68: 'RC',
-  0x70: 'PoW', 0x71: 'PoW',
-  0x78: 'DHC', 0x88: 'DHC', 0x89: 'DHC', 0x8A: 'DHC', 0x8B: 'DHC', 0x8C: 'DHC', 0x8D: 'DHC',
 }
 
 let client = null
@@ -99,14 +88,21 @@ export async function connectToAP(server, port, slot, password = '') {
       [`tmc_room_${_me.team}_${_me.slot}`],
       (_key, roomAreaId) => {
         if (!roomAreaId) return
-        const settings = useSettingsStore()
-        const dungeon  = AREA_BYTE_TO_DUNGEON[roomAreaId & 0xFF] ?? null
-        if (dungeon && settings.autoTabDungeons !== 'non') {
-          store.setActiveView(dungeon)
+        const settings  = useSettingsStore()
+        const floorInfo = roomAreaToFloor[roomAreaId] ?? null
+        if (floorInfo && settings.autoTabDungeons !== 'non') {
+          store.setActiveView(floorInfo.dungeon)
           store.setActiveZone(null)
-        } else if (!dungeon && settings.autoTabOverworld !== 'non') {
-          store.setActiveView('overworld')
-          store.setActiveZone(ROOM_AREA_TO_ZONE[roomAreaId] ?? null)
+          store.setBizhawkFloor(floorInfo.floor)
+        } else if (!floorInfo) {
+          if (settings.autoTabOverworld !== 'non') {
+            store.setActiveView('overworld')
+            store.setActiveZone(ROOM_AREA_TO_ZONE[roomAreaId] ?? null)
+            store.setBizhawkFloor(null)
+          } else if (settings.autoTabDungeons !== 'non') {
+            store.setActiveView('overworld')
+            store.setBizhawkFloor(null)
+          }
         }
       }
     )
