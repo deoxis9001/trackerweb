@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
-import { disconnectFromAP, resyncFromAP } from '../archipelago/client'
 import ArchipelagoLogo from './ArchipelagoLogo.vue'
 import { useLocale } from '../composables/useLocale'
 
@@ -49,12 +48,7 @@ function assignEntrance(slot, target) {
 }
 
 function handleReset() {
-  if (store.apConnected) {
-    resyncFromAP()
-  } else {
-    disconnectFromAP()
-    store.resetTracker()
-  }
+  store.resetTracker()
 }
 
 function openBroadcastItems() {
@@ -88,34 +82,6 @@ function openBroadcastItems() {
         <ellipse cx="15" cy="30.5" rx="13" ry="2.8" fill="#2a5e14"/>
       </svg>
       <span class="brand-text">TMC Tracker</span>
-    </div>
-
-    <div class="map-tabs">
-      <button
-        :class="['tab', store.activeView === 'overworld' && 'active']"
-        @click="goToTracker(); store.setActiveView('overworld')"
-      >{{ t('navbar.overworld') }}</button>
-      <div
-        v-for="dungeon in store.dungeonRegions"
-        :key="dungeon"
-        class="dungeon-tab-wrap"
-      >
-        <button
-          :class="['tab', (settings.dungeonEntranceShuffle ? store.dungeonEntranceMap[dungeon] && store.activeView === store.dungeonEntranceMap[dungeon] : store.activeView === dungeon) && 'active', settings.dungeonEntranceShuffle && store.dungeonEntranceMap[dungeon] && 'mapped']"
-          @click="onDungeonTabClick(dungeon)"
-          @contextmenu="onDungeonTabRightClick($event, dungeon)"
-        >
-          {{ dungeon }}<template v-if="settings.dungeonEntranceShuffle && store.dungeonEntranceMap[dungeon]">→{{ store.dungeonEntranceMap[dungeon] }}</template>
-        </button>
-        <div v-if="entrancePicker === dungeon" class="entrance-picker">
-          <button
-            v-for="d in store.dungeonRegions"
-            :key="d"
-            :class="['ep-btn', { active: store.dungeonEntranceMap[dungeon] === d }]"
-            @click="assignEntrance(dungeon, d)"
-          >{{ d }}</button>
-        </div>
-      </div>
     </div>
 
     <div class="panel-tabs">

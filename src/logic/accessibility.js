@@ -1,202 +1,110 @@
-/**
- * Computes accessibility for every AP location given the current inventory and settings.
- *
- * Returns a Map<locationId, 'accessible' | 'out_of_logic' | 'inaccessible'>
- *
- * Algorithm:
- *  1. BFS the region graph from MENU using the provided inventory+settings.
- *  2. For each reachable region, evaluate location rules.
- *  3. Repeat with tricks enabled (settings clone) to detect out-of-logic access.
- */
+// EMO Tracker rule evaluation engine
+// Ref: https://github.com/EmoTracker-Community/EmoTracker/wiki/Authoring-Locations-Accessibility-Logic
 
-import { REGION_RULES, LOCATION_RULES } from './rules_generated.js'
-import { always, canActivatePedestal } from './rules.js'
-import locationsRaw from '../../data/location_meta.json'
-import defaultLogicRaw from './defaultLogic.js'
-import { computeAccessibility_rando } from './accessibility_rando.js'
-
-// Pre-index locations by name for O(1) rule lookup
-const RULE_BY_NAME = {
-  ...LOCATION_RULES,
-  "Kill Vaati": always,
-  "Ped Finish": canActivatePedestal,
+export const LEVEL_RANK = {
+  none:             0,
+  inspect:          1,
+  'sequence-break': 2,
+  partial:          3,
+  normal:           4,
+  cleared:          5,
 }
 
-// Pre-index locations by region key for grouping
-const locationsByRegion = {}
-for (const loc of locationsRaw) {
-  const rk = loc.region_key || loc.region_name || 'UNKNOWN'
-  if (!locationsByRegion[rk]) locationsByRegion[rk] = []
-  locationsByRegion[rk].push(loc)
+function bestLevel(a, b) {
+  return LEVEL_RANK[a] >= LEVEL_RANK[b] ? a : b
 }
 
-// Entry region key per dungeon slot
-const DUNGEON_ENTRY_REGION = {
-  DWS: 'DUNGEON_DWS_ENTRANCE',
-  CoF: 'DUNGEON_COF_ENTRANCE',
-  FoW: 'DUNGEON_FOW_ENTRANCE',
-  ToD: 'DUNGEON_TOD_ENTRANCE',
-  RC:  'DUNGEON_RC',
-  PoW: 'DUNGEON_POW_ENTRANCE',
-  DHC: 'DUNGEON_DHC_ENTRANCE',
+function worstLevel(a, b) {
+  return LEVEL_RANK[a] <= LEVEL_RANK[b] ? a : b
 }
 
-/**
- * BFS to find all reachable regions given inv+settings.
- * Returns a Set of region keys.
- */
-function reachableRegions(inv, settings) {
-  const visited = new Set(['MENU'])
-  const queue = ['MENU']
+// Evaluate one code token — handles [seq-break], $func|args, @location, code:N
+function evaluateCode(token, provider) {
+  token = token.trim()
+  if (!token) return { count: 1, level: 'normal' }
 
-  while (queue.length) {
-    const current = queue.shift()
-    const edges = REGION_RULES[current]
-    if (!edges) continue
-
-    for (const [target, rule] of Object.entries(edges)) {
-      if (visited.has(target)) continue
-      const pass = rule === null || rule === always || rule(inv, settings)
-      if (pass) {
-        visited.add(target)
-        queue.push(target)
-      }
-    }
+  let seqBreak = false
+  if (token.startsWith('[') && token.endsWith(']')) {
+    seqBreak = true
+    token = token.slice(1, -1).trim()
   }
 
-  return visited
+  let count, level = 'normal'
+
+  if (token.startsWith('$')) {
+    const parts = token.slice(1).split('|')
+    const result = provider.callFunction(parts[0], parts.slice(1))
+    count = result?.count ?? 0
+    level = result?.level ?? 'normal'
+  } else if (token.startsWith('@')) {
+    count = provider.locationReachable(token.slice(1)) ? 1 : 0
+  } else {
+    const colonIdx = token.lastIndexOf(':')
+    const code = colonIdx >= 0 ? token.slice(0, colonIdx).trim() : token
+    const min  = colonIdx >= 0 ? (parseInt(token.slice(colonIdx + 1)) || 1) : 1
+    count = (provider.itemCount(code) >= min) ? 1 : 0
+  }
+
+  if (count === 0) {
+    if (seqBreak) return { count: 1, level: 'sequence-break' }
+    return { count: 0, level: 'none' }
+  }
+  return { count, level }
 }
 
-/**
- * Build a fake settings proxy with all tricks enabled.
- */
-function settingsWithAllTricks(settings) {
-  return new Proxy(settings, {
-    get(target, prop) {
-      if (prop === 'hasTrick') return () => true
-      return target[prop]
-    }
-  })
+// Evaluate one rule string — comma = AND, {rule} = inspect cap
+function evaluateRule(rule, provider) {
+  rule = rule.trim()
+  if (!rule) return { count: 1, level: 'normal' }
+
+  let inspectCap = false
+  if (rule.startsWith('{') && rule.endsWith('}')) {
+    inspectCap = true
+    rule = rule.slice(1, -1).trim()
+  }
+
+  const codes = rule.split(',').map(c => c.trim()).filter(Boolean)
+  if (!codes.length) return { count: 1, level: inspectCap ? 'inspect' : 'normal' }
+
+  let level = 'normal'
+  for (const code of codes) {
+    const r = evaluateCode(code, provider)
+    if (r.count === 0) return { count: 0, level: 'none' }
+    level = worstLevel(level, r.level)
+  }
+
+  if (inspectCap) level = worstLevel(level, 'inspect')
+  return { count: 1, level }
 }
 
-/**
- * Build the inventory map from the state store's received + manual items.
- */
-export function buildInventory(stateStore) {
-  const inv = {}
-
-  // Items received from AP
-  for (const name of stateStore.receivedItems) {
-    inv[name] = (inv[name] || 0) + 1
+// Evaluate an array of rules (OR — best result wins)
+// provider: { itemCount(code), callFunction(name, args), locationReachable(name) }
+export function evaluateRules(rules, provider) {
+  if (!rules || rules.length === 0) return 'normal'
+  let best = 'none'
+  for (const rule of rules) {
+    const r = evaluateRule(rule, provider)
+    if (r.count > 0) {
+      best = bestLevel(best, r.level)
+      if (best === 'normal') break
+    }
   }
-
-  // Bizhawk autotrack takes priority over manual items when active
-  const itemSource = (stateStore.bizhawkConnected && Object.keys(stateStore.autotrackItems).length > 0)
-    ? stateStore.autotrackItems
-    : stateStore.manualItems
-
-  // Manually toggled or autotracked items
-  for (const [key, count] of Object.entries(itemSource)) {
-    if (!count) continue
-
-    // PROGRESSIVE_SPIN_SCROLL: maps to "Progressive Spin Scroll" for scrollLevel() in rules
-    if (key === 'PROGRESSIVE_SPIN_SCROLL') {
-      inv['Progressive Spin Scroll'] = Math.max(inv['Progressive Spin Scroll'] || 0, count)
-      continue
-    }
-    // PROGRESSIVE_WALLET: each level = 1 Big Wallet (name used by rules.js)
-    if (key === 'PROGRESSIVE_WALLET') {
-      inv['Big Wallet'] = Math.max(inv['Big Wallet'] || 0, count)
-      continue
-    }
-    // HEART_TOTAL: manual clicks represent additional heart containers (used as Heart Container count in logic)
-    if (key === 'HEART_TOTAL') {
-      inv['Heart Container'] = Math.max(inv['Heart Container'] || 0, count)
-      continue
-    }
-    // PROGRESSIVE_BOMB_BAG does not exist in items.json; each level = 1 Bomb Bag
-    if (key === 'PROGRESSIVE_BOMB_BAG') {
-      inv['Bomb Bag'] = Math.max(inv['Bomb Bag'] || 0, count)
-      continue
-    }
-    // PROGRESSIVE_BOOK: level 1=Red, 2=+Green, 3=+Blue
-    if (key === 'PROGRESSIVE_BOOK') {
-      if (count >= 1) inv['Red Book (Hyrulian Bestiary)'] = 1
-      if (count >= 2) inv['Green Book (Picori Legend)']   = 1
-      if (count >= 3) inv['Blue Book (History of Masks)'] = 1
-      continue
-    }
-    // BOTTLE counter represents N distinct bottles
-    if (key === 'BOTTLE') {
-      for (let i = 1; i <= count; i++) inv[`Bottle ${i}`] = 1
-      continue
-    }
-
-    const item = stateStore.allItems.find(i => i.key === key)
-    if (item) inv[item.name] = Math.max(inv[item.name] || 0, count)
-  }
-
-  return inv
+  return best
 }
 
-/**
- * Main function: returns Map<id, 'accessible' | 'out_of_logic' | 'inaccessible'>
- *
- * out_of_logic (yellow) means: accessible with tricks AND items still required
- * (i.e. the trick doesn't fully bypass item requirements).
- * If a location is reachable with an empty inventory + all tricks, the trick is
- * a pure skill bypass — no items needed — so it stays inaccessible (red) until
- * either the player has the item or enables the trick in settings.
- */
-export function computeAccessibility(inv, settings, entranceMap = {}) {
-  // Dispatch to rando logic when logicSource is not 'ap_world'
-  const source = settings.logicSource ?? 'ap_world'
-  if (source === 'default_logic' || source === 'custom') {
-    const logicText = source === 'custom' && settings.customLogicText
-      ? settings.customLogicText
-      : defaultLogicRaw
-    return computeAccessibility_rando(inv, settings, logicText)
+// Compute location-level accessibility from its sections' individual levels
+export function locationAccessibility(sections, getSectionLevel) {
+  if (!sections?.length) return 'none'
+  let hasAccessible = false
+  let hasInaccessible = false
+  let best = 'none'
+  for (const section of sections) {
+    const level = getSectionLevel(section)
+    if (level === 'cleared') continue
+    if (LEVEL_RANK[level] >= LEVEL_RANK['normal']) hasAccessible = true
+    else hasInaccessible = true
+    best = bestLevel(best, level)
   }
-
-  const result = new Map()
-
-  // When DHC→DWS is set, all DWS locations use DUNGEON_DHC_ENTRANCE as their effective
-  // region key — accessible when DHC entrance is accessible, not DWS's own entrance.
-  const dungeonToEntryRegion = {}
-  for (const [slot, dungeon] of Object.entries(entranceMap)) {
-    const slotEntry = DUNGEON_ENTRY_REGION[slot]
-    if (slotEntry) dungeonToEntryRegion[dungeon] = slotEntry
-  }
-
-  const allTricks = settingsWithAllTricks(settings)
-  const emptyInv  = {}
-
-  const reachable         = reachableRegions(inv,      settings)
-  const reachableOOL      = reachableRegions(inv,      allTricks)
-  const reachableOOLEmpty = reachableRegions(emptyInv, allTricks)
-
-  for (const loc of locationsRaw) {
-    if (loc.id == null) continue
-
-    let regionKey = loc.region_key || loc.region_name || ''
-    if (loc.dungeon && dungeonToEntryRegion[loc.dungeon]) {
-      regionKey = dungeonToEntryRegion[loc.dungeon]
-    }
-
-    const rule = RULE_BY_NAME[loc.name] ?? always
-
-    const inLogic  = reachable.has(regionKey)         && rule(inv,      settings)
-    const ool      = reachableOOL.has(regionKey)      && rule(inv,      allTricks)
-    const oolEmpty = reachableOOLEmpty.has(regionKey) && rule(emptyInv, allTricks)
-
-    if (inLogic) {
-      result.set(loc.id, 'accessible')
-    } else if (ool && !oolEmpty) {
-      result.set(loc.id, 'out_of_logic')
-    } else {
-      result.set(loc.id, 'inaccessible')
-    }
-  }
-
-  return result
+  if (hasAccessible && hasInaccessible) return 'partial'
+  return best
 }

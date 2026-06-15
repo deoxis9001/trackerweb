@@ -124,7 +124,7 @@ export const useSettingsStore = defineStore('settings', () => {
   })
 
   // ── Logic Source ─────────────────────────────────────────────────────────────
-  const logicSource     = ref('ap_world') // 'ap_world' | 'default_logic' | 'custom'
+  const logicSource     = ref('default_logic') // 'default_logic' | 'custom'
   // Raw text of a user-imported .logic file — not persisted (session only, can be large)
   const customLogicText = ref(null)
   // Rando defines set by the user in logic mode — { [DEFINE_NAME]: bool|string|number }
@@ -395,8 +395,12 @@ export const useSettingsStore = defineStore('settings', () => {
     localStorage.setItem('tmc_settings', JSON.stringify(exportSettings()))
   }
 
-  // Auto-save on every setting change (skips initial run to avoid overwriting before load())
-  watch(() => exportSettings(), save, { deep: true })
+  // Auto-save on every setting change, debounced to avoid thrashing localStorage
+  let _saveTid
+  watch(() => exportSettings(), () => {
+    clearTimeout(_saveTid)
+    _saveTid = setTimeout(save, 300)
+  })
 
   function load() {
     try {

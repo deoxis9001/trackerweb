@@ -1,75 +1,55 @@
 import { defineStore } from 'pinia'
 import { ref, computed, watch } from 'vue'
-
-import itemsAP       from '../../data/items.json'
-import locationsAP   from '../../data/locations.json'
-import locationMeta  from '../../data/location_meta.json'
-import namesData     from '../../data/names.json'
-import regionsData   from '../../data/regions.json'
-import apTables      from '../../data/ap_tables.json'
-import { useSettingsStore } from './settingsStore'
-
-// Build enriched items list: merge AP table with names
-const _itemKeyById = Object.fromEntries(itemsAP.map(i => [i.item_id, i.key]))
-const allItemsBuilt = itemsAP.map(i => ({
-  ...i,
-  name: namesData.items[i.key] ?? i.key,
-}))
-
-// locations.json = [{id, key}] — just the AP table
-// location_meta.json = [{id, key, name, region_key, region_name, dungeon, pools, ...}] — full metadata
-// allLocations = location_meta (already has all fields including name)
-const allLocationsBuilt = locationMeta
+import { allLocations as rawLocations } from '../data/locations.js'
 
 export const useStateStore = defineStore('state', () => {
-  const settings = useSettingsStore()
+  // EMO-format locations from deoxis submodule [{name, map_locations, sections}]
+  const allLocations = rawLocations
+  const allItems     = []
+  const allRegions   = []
 
-  // Raw data (enriched)
-  const allItems     = allItemsBuilt
-  const allLocations = allLocationsBuilt
-  const allRegions   = regionsData
-
-  // First fusion ID per pool (for 'combined' mode — only the lowest ID is shown)
-  const firstFusionIdByPool = {}
-  for (const loc of allLocations) {
-    if (loc.region_key !== 'FUSIONS') continue
-    for (const pool of (loc.pools || [])) {
-      if (firstFusionIdByPool[pool] == null || loc.id < firstFusionIdByPool[pool])
-        firstFusionIdByPool[pool] = loc.id
-    }
-  }
-
-  // AP connection state
-  const apConnected      = ref(false)
-  const apVersion        = ref('')        // slotData.version from AP login
-  // Bizhawk NWA autotracking
+  // Bizhawk autotracking
   const bizhawkConnected = ref(false)
   const bizhawkFloor     = ref(null)
-  const autotrackItems   = ref({})  // { itemKey: count } — set by bizhawk.js
-  const apServer       = ref('archipelago.gg')
-  const apPort         = ref(38281)
-  const apSlot         = ref('')
-  const apPassword     = ref('')
+  const autotrackItems   = ref({})
 
-  // Tracker state: which locations have been checked
+  // Checked sections: "Location Name/Section Name" → cleared chest count
+  const checkedSections = ref({})
+
+  // Legacy numeric id tracking (used by bizhawk.js)
   const checkedLocations = ref(new Set())
 
-  // Items received from AP server
-  const receivedItems = ref([])  // array of item names
+  // Manually toggled items { code: count }
+  const manualItems = ref({})
 
-  // Manually toggled items (for offline use)
-  const manualItems = ref({})  // { itemKey: count }
+  // Received items (AP compat stub)
+  const receivedItems = ref([])
 
-  // Active map/view
-  const activeView      = ref('overworld')  // 'overworld' | dungeon key
-  const activeZone      = ref(null)         // overworld sub-area, null = full map
-  const activePanel     = ref('map')        // 'map' | 'checklist'
-  const hoveredPinLocs  = ref([])           // locations du pin survolé sur la map
-  const showSettings      = ref(false)
-  const showRegionPopup   = ref(false)
+  // Active view/panel
+  const activeView     = ref('overworld')
+  const activeZone     = ref(null)
+  const activePanel    = ref('map')
+  const hoveredPinLocs = ref([])
 
-  // Entrance shuffle: entrance slot → dungeon key (e.g. { 'DWS': 'RC' } = DWS entrance leads to RC)
-  const dungeonEntranceMap = ref({})  // keys: dungeon slots, values: dungeon keys
+  // UI toggles
+  const showSettings    = ref(false)
+  const showRegionPopup = ref(false)
+  const showApPanel     = ref(false)
+  const showFaq         = ref(false)
+
+  // AP compat stubs (keep refs so AP components don't crash)
+  const apConnected = ref(false)
+  const apVersion   = ref('')
+  const apServer    = ref('archipelago.gg')
+  const apPort      = ref(38281)
+  const apSlot      = ref('')
+  const apPassword  = ref('')
+  const apPlayers   = ref({})
+  const rawSlotData = ref({})
+  const apLocationItems = ref({})
+
+  // Entrance shuffle: slot → dungeon key
+  const dungeonEntranceMap = ref({})
   function setDungeonEntrance(slot, dungeon) {
     dungeonEntranceMap.value = { ...dungeonEntranceMap.value, [slot]: dungeon }
   }
@@ -78,191 +58,100 @@ export const useStateStore = defineStore('state', () => {
     delete next[slot]
     dungeonEntranceMap.value = next
   }
-  function resetDungeonEntrances() {
-    dungeonEntranceMap.value = {}
+  function resetDungeonEntrances() { dungeonEntranceMap.value = {} }
+
+  // Pinned locations (array of EMO location names, ordered)
+  const pinnedLocations = ref([])
+
+  function pinLocation(name) {
+    if (!pinnedLocations.value.includes(name))
+      pinnedLocations.value = [...pinnedLocations.value, name]
+    saveState()
+  }
+  function unpinLocation(name) {
+    pinnedLocations.value = pinnedLocations.value.filter(n => n !== name)
+    saveState()
+  }
+  function isPinned(name) { return pinnedLocations.value.includes(name) }
+
+  // Step section cleared count by dir (+1 or -1), clamped to [0, maxCount]
+  function stepSection(locationName, sectionName, dir, maxCount) {
+    const key = sectionKey(locationName, sectionName)
+    const current = checkedSections.value[key] ?? 0
+    const next = Math.max(0, Math.min(maxCount, current + dir))
+    checkedSections.value = { ...checkedSections.value, [key]: next }
+    saveState()
   }
 
-  // Manual item notes: locationId → itemKey (persisted)
+  // Location notes
   const locationNotes = ref({})
 
-  // AP hint-derived notes: locationId → itemKey (not persisted, cleared on disconnect)
-  const apLocationItems = ref({})
+  // Chat
+  const showChat     = ref(false)
+  const chatMessages = ref([])
+  function addChatMessage(msg) {
+    chatMessages.value.push(msg)
+    if (chatMessages.value.length > 300) chatMessages.value.shift()
+  }
+  function clearChat() { chatMessages.value = [] }
 
-  // Raw slot_data from AP login (for dev panel)
-  const rawSlotData = ref({})
+  // ── Computed ────────────────────────────────────────────────────────────────
 
-  // AP players: slot → name
-  const apPlayers = ref({})
+  const visibleLocations = computed(() => allLocations)
 
-
-  function toggleSettings()     { showSettings.value    = !showSettings.value }
-  function toggleRegionPopup()  { showRegionPopup.value = !showRegionPopup.value }
-
-  // ---------------------------------------------------------------------------
-  // Computed
-  // ---------------------------------------------------------------------------
-
-  const locationById = computed(() => {
-    const map = {}
+  const totalCount = computed(() => {
+    let n = 0
     for (const loc of allLocations) {
-      if (loc.id != null) map[loc.id] = loc
+      for (const sec of (loc.sections || [])) n += sec.item_count ?? 1
     }
-    return map
+    return n
   })
 
-  const locationsByRegion = computed(() => {
-    const map = {}
-    for (const loc of allLocations) {
-      if (!map[loc.region_key]) map[loc.region_key] = []
-      map[loc.region_key].push(loc)
+  const checkedCount = computed(() => {
+    let n = 0
+    for (const id of checkedLocations.value) {
+      const loc = allLocations[id]
+      if (loc) for (const sec of (loc.sections || [])) n += sec.item_count ?? 1
     }
-    return map
+    return n
   })
 
-  const overworldRegions = computed(() =>
-    allRegions.filter(r => !r.is_dungeon_region && r.key !== 'MENU')
-  )
+  // ── Section tracking (new EMO model) ─────────────────────────────────────
 
-  const dungeonRegions = computed(() => {
-    const seen = new Set()
-    const result = []
-    for (const r of allRegions) {
-      if (r.dungeon && !seen.has(r.dungeon)) {
-        seen.add(r.dungeon)
-        result.push(r.dungeon)
-      }
-    }
-    return result
-  })
-
-  function isLocationVisible(loc) {
-    if (loc.key === 'GOAL_VAATI') return settings.goal === 'vaati'
-    if (loc.key === 'GOAL_PED')   return settings.goal === 'pedestal'
-
-    const pools = loc.pools || []
-    const rd = settings.logicSource !== 'ap_world' ? settings.randoDefines : null
-
-    // In logic mode, pool visibility uses randoDefines flags; in AP mode use AP settings.
-    const flag = (apVal, rdKey) => rd ? !!(rd?.[rdKey]) : apVal
-    if (pools.includes('rupee')      && !flag(settings.rupeesanity,        'RUPEEMANIA'))   return false
-    if (pools.includes('pot')        && !flag(settings.shufflePots,        'SPECIALPOTS'))  return false
-    if (pools.includes('dig')        && !flag(settings.shuffleDigging,     'DIGGING'))      return false
-    if (pools.includes('water')      && !flag(settings.shuffleUnderwater,  'UNDERWATER'))   return false
-    if (pools.includes('enemy')      && !flag(settings.shuffleGoldEnemies, 'GOLDEN_ENEMY')) return false
-    // In logic mode, fusion visibility is driven by randoDefines, not AP fusion settings.
-    // Map rando define values to the same 'closed'|'vanilla'|'open' vocabulary.
-    let fuseAccessMap
-    if (rd) {
-      const rdAccess = (key, noVal, openVal) => {
-        const v = rd[key] ?? noVal
-        if (v === noVal)  return 'closed'
-        if (v === openVal) return 'open'
-        return 'vanilla'  // vanilla or combined → show all (logic handles accessibility)
-      }
-      fuseAccessMap = {
-        fuse_gold:  rdAccess('GOLD_FUSION_SETTING', 'NO_GOLD_FUSIONS',  'OPEN_GOLD_FUSIONS'),
-        fuse_red:   rdAccess('RED_FUSION_SETTING',  'NO_RED_FUSIONS',   'OPEN_RED_FUSIONS'),
-        fuse_blue:  rdAccess('BLUE_FUSION_SETTING', 'NO_BLUE_FUSIONS',  'OPEN_BLUE_FUSIONS'),
-        fuse_green: rdAccess('GREEN_FUSION_SETTING','NO_GREEN_FUSIONS', 'OPEN_GREEN_FUSIONS'),
-      }
-    } else {
-      fuseAccessMap = {
-        fuse_gold:  settings.goldFusionAccess,
-        fuse_red:   settings.redFusionAccess,
-        fuse_blue:  settings.blueFusionAccess,
-        fuse_green: settings.greenFusionAccess,
-      }
-    }
-    for (const [pool, access] of Object.entries(fuseAccessMap)) {
-      if (!pools.includes(pool)) continue
-      if (access === 'closed' || access === 'open') return false
-      if (access === 'combined' && loc.id !== firstFusionIdByPool[pool]) return false
-    }
-    if (pools.includes('ped')        && settings.pedReward          === 'none')   return false
-
-    if (loc.name.startsWith('Town Cuccos Lv ')) {
-      const level = parseInt(loc.name.replace('Town Cuccos Lv ', ''))
-      return level >= 11 - (settings.cuccoRounds ?? 0)
-    }
-    const goronMatch = loc.name.match(/^Town Goron Merchant (\d+)/)
-    if (goronMatch) return parseInt(goronMatch[1]) <= (settings.goronSets ?? 0)
-
-    if (loc.region_key === 'SANCTUARY')        return !!settings.shuffleSanctuary
-    if (loc.name === 'Falls Biggoron Item')    return settings.biggoron !== 'disabled'
-    if (loc.name === 'Town Shop 600 Item 2')   return !!settings.extraShopItem
-
-    return true
+  function sectionKey(locationName, sectionName) {
+    return `${locationName}/${sectionName}`
   }
 
-  const visibleLocations = computed(() => allLocations.filter(isLocationVisible))
-  const checkedCount = computed(() =>
-    visibleLocations.value.filter(l => l.id != null && checkedLocations.value.has(l.id)).length
-  )
-  const totalCount = computed(() => visibleLocations.value.filter(l => l.id != null).length)
-
-  // ---------------------------------------------------------------------------
-  // Persistence
-  // ---------------------------------------------------------------------------
-
-  function saveState() {
-    try {
-      localStorage.setItem('tmc_state', JSON.stringify({
-        checkedLocations:  [...checkedLocations.value],
-        receivedItems:     receivedItems.value,
-        manualItems:       manualItems.value,
-        locationNotes:     locationNotes.value,
-        activeView:        activeView.value,
-        apServer:          apServer.value,
-        apPort:            apPort.value,
-        apSlot:            apSlot.value,
-        dungeonEntranceMap: dungeonEntranceMap.value,
-      }))
-    } catch {}
+  function getSectionCleared(locationName, sectionName) {
+    return checkedSections.value[sectionKey(locationName, sectionName)] ?? 0
   }
 
-  function loadState() {
-    try {
-      const raw = localStorage.getItem('tmc_state')
-      if (!raw) return
-      const s = JSON.parse(raw)
-      if (s.checkedLocations) checkedLocations.value = new Set(s.checkedLocations)
-      if (s.receivedItems)    receivedItems.value    = s.receivedItems
-      if (s.manualItems)      manualItems.value      = s.manualItems
-      if (s.activeView)       activeView.value       = s.activeView
-      if (s.apServer)          apServer.value          = s.apServer
-      if (s.apPort  != null)   apPort.value            = s.apPort
-      if (s.apSlot)            apSlot.value            = s.apSlot
-      if (s.dungeonEntranceMap) dungeonEntranceMap.value = s.dungeonEntranceMap
-      if (s.locationNotes)     locationNotes.value     = s.locationNotes
-    } catch {}
+  function setSectionCleared(locationName, sectionName, count) {
+    checkedSections.value = {
+      ...checkedSections.value,
+      [sectionKey(locationName, sectionName)]: count,
+    }
+    saveState()
   }
 
-  // manualItems is mutated in place by the UI — watch it for auto-save
-  watch(manualItems, saveState, { deep: true })
-
-  // Sync broadcast windows: reload state when another window writes to localStorage
-  if (typeof window !== 'undefined') {
-    window.addEventListener('storage', (e) => {
-      if (e.key === 'tmc_state') loadState()
-    })
+  function toggleSection(locationName, sectionName, maxCount = 1) {
+    const key = sectionKey(locationName, sectionName)
+    const current = checkedSections.value[key] ?? 0
+    const next = current >= maxCount ? 0 : maxCount
+    checkedSections.value = { ...checkedSections.value, [key]: next }
+    saveState()
   }
 
-  // ---------------------------------------------------------------------------
-  // Actions
-  // ---------------------------------------------------------------------------
+  function isSectionCleared(locationName, sectionName, itemCount = 1) {
+    return (checkedSections.value[sectionKey(locationName, sectionName)] ?? 0) >= itemCount
+  }
+
+  // ── Legacy numeric id actions (bizhawk compat) ───────────────────────────
 
   function toggleLocation(locationId) {
     const id = Number(locationId)
-    if (checkedLocations.value.has(id)) {
-      checkedLocations.value.delete(id)
-    } else {
-      checkedLocations.value.add(id)
-      if (locationNotes.value[id] != null) {
-        const next = { ...locationNotes.value }
-        delete next[id]
-        locationNotes.value = next
-      }
-    }
+    if (checkedLocations.value.has(id)) checkedLocations.value.delete(id)
+    else checkedLocations.value.add(id)
     saveState()
   }
 
@@ -271,153 +160,122 @@ export const useStateStore = defineStore('state', () => {
   }
 
   function markLocationsChecked(ids) {
-    const notesToClear = []
-    for (const id of ids) {
-      const n = Number(id)
-      checkedLocations.value.add(n)
-      if (locationNotes.value[n] != null) notesToClear.push(n)
-    }
-    if (notesToClear.length) {
-      const next = { ...locationNotes.value }
-      for (const n of notesToClear) delete next[n]
-      locationNotes.value = next
-    }
+    for (const id of ids) checkedLocations.value.add(Number(id))
     saveState()
   }
 
-  function receiveItem(apItemId) {
-    const name = apTables.items[String(apItemId)]
-    if (name) {
-      receivedItems.value.push(name)
-      saveState()
-    }
-  }
+
+  // ── Actions ──────────────────────────────────────────────────────────────
 
   function resetTracker() {
+    checkedSections.value  = {}
     checkedLocations.value = new Set()
-    receivedItems.value = []
-    manualItems.value = {}
-    locationNotes.value = {}
+    manualItems.value      = {}
+    receivedItems.value    = []
+    locationNotes.value    = {}
     dungeonEntranceMap.value = {}
     saveState()
   }
 
-  function setActiveView(view) {
-    activeView.value = view
-    saveState()
-  }
-
-  function setActiveZone(zone) {
-    activeZone.value = zone
-  }
-
-  function setBizhawkFloor(floor) {
-    bizhawkFloor.value = floor
-  }
-
-  function setActivePanel(panel) {
-    activePanel.value = panel
-  }
-
-  function setAutotrackItems(items) {
-    autotrackItems.value = items
-  }
-
-  function setApLocationItems(map) {
-    apLocationItems.value = map ?? {}
-  }
+  function setActiveView(view)   { activeView.value = view; saveState() }
+  function setActiveZone(zone)   { activeZone.value = zone }
+  function setActivePanel(panel) { activePanel.value = panel }
+  function setBizhawkFloor(floor) { bizhawkFloor.value = floor }
+  function setAutotrackItems(items) { autotrackItems.value = items }
+  function toggleSettings()    { showSettings.value    = !showSettings.value }
+  function toggleRegionPopup() { showRegionPopup.value = !showRegionPopup.value }
 
   function setLocationNote(id, itemKey) {
-    locationNotes.value = { ...locationNotes.value, [Number(id)]: itemKey }
+    locationNotes.value = { ...locationNotes.value, [id]: itemKey }
     saveState()
   }
   function clearLocationNote(id) {
     const next = { ...locationNotes.value }
-    delete next[Number(id)]
+    delete next[id]
     locationNotes.value = next
     saveState()
   }
 
-  function setRawSlotData(data) {
-    rawSlotData.value = data ?? {}
+  function setApLocationItems(map) { apLocationItems.value = map ?? {} }
+  function setRawSlotData(data)    { rawSlotData.value = data ?? {} }
+  function setApPlayers(map)       { apPlayers.value = map }
+
+  // ── Persistence ──────────────────────────────────────────────────────────
+
+  let _stateTid
+  function saveState() {
+    clearTimeout(_stateTid)
+    _stateTid = setTimeout(() => {
+      try {
+        localStorage.setItem('tmc_state', JSON.stringify({
+          checkedSections:    checkedSections.value,
+          checkedLocations:   [...checkedLocations.value],
+          manualItems:        manualItems.value,
+          locationNotes:      locationNotes.value,
+          activeView:         activeView.value,
+          dungeonEntranceMap: dungeonEntranceMap.value,
+          pinnedLocations:    pinnedLocations.value,
+        }))
+      } catch {}
+    }, 200)
   }
 
-  function setApPlayers(map) {
-    apPlayers.value = map
+  function loadState() {
+    try {
+      const raw = localStorage.getItem('tmc_state')
+      if (!raw) return
+      const s = JSON.parse(raw)
+      if (s.checkedSections)    checkedSections.value    = s.checkedSections
+      if (s.checkedLocations)   checkedLocations.value   = new Set(s.checkedLocations)
+      if (s.manualItems)        manualItems.value        = s.manualItems
+      if (s.locationNotes)      locationNotes.value      = s.locationNotes
+      if (s.activeView)         activeView.value         = s.activeView
+      if (s.dungeonEntranceMap) dungeonEntranceMap.value = s.dungeonEntranceMap
+      if (s.pinnedLocations)    pinnedLocations.value    = s.pinnedLocations
+    } catch {}
   }
 
-  const showDevPanel = ref(false)
-  const showApPanel  = ref(false)
-  const showFaq      = ref(false)
+  watch(manualItems, saveState, { deep: true })
 
-  const showChat     = ref(false)
-  const chatMessages = ref([])  // { text, nodes }[]
-
-  function addChatMessage(msg) {
-    chatMessages.value.push(msg)
-    if (chatMessages.value.length > 300) chatMessages.value.shift()
-  }
-
-  function clearChat() {
-    chatMessages.value = []
+  if (typeof window !== 'undefined') {
+    window.addEventListener('storage', e => {
+      if (e.key === 'tmc_state') loadState()
+    })
   }
 
   return {
-    allItems,
     allLocations,
-    visibleLocations,
+    allItems,
     allRegions,
-    apConnected,
-    apVersion,
-    bizhawkConnected,
-    autotrackItems,
-    apServer,
-    apPort,
-    apSlot,
-    apPassword,
+    checkedSections,
     checkedLocations,
-    receivedItems,
     manualItems,
-    activeView, activeZone, setActiveZone,
-    bizhawkFloor, setBizhawkFloor,
-    dungeonEntranceMap, setDungeonEntrance, clearDungeonEntrance, resetDungeonEntrances,
-    activePanel,
+    receivedItems,
+    bizhawkConnected,
+    bizhawkFloor,
+    autotrackItems,
+    activeView, setActiveView,
+    activeZone, setActiveZone,
+    activePanel, setActivePanel,
     hoveredPinLocs,
-    locationById,
-    locationsByRegion,
-    overworldRegions,
-    dungeonRegions,
+    dungeonEntranceMap, setDungeonEntrance, clearDungeonEntrance, resetDungeonEntrances,
+    locationNotes, setLocationNote, clearLocationNote,
+    visibleLocations,
     checkedCount,
     totalCount,
-    toggleLocation,
-    isChecked,
-    markLocationsChecked,
-    receiveItem,
+    pinnedLocations, pinLocation, unpinLocation, isPinned,
+    toggleLocation, isChecked, markLocationsChecked,
+    getSectionCleared, setSectionCleared, toggleSection, isSectionCleared, stepSection, sectionKey,
     resetTracker,
-    setActiveView,
-    setActivePanel,
-    showSettings,
-    toggleSettings,
-    showRegionPopup,
-    toggleRegionPopup,
-    locationNotes,
-    setLocationNote,
-    clearLocationNote,
-    apLocationItems,
-    setApLocationItems,
-    showChat,
-    chatMessages,
-    addChatMessage,
-    clearChat,
-    setAutotrackItems,
-    rawSlotData,
-    setRawSlotData,
-    apPlayers,
-    setApPlayers,
-    showDevPanel,
-    showApPanel,
-    showFaq,
-    saveState,
-    loadState,
+    setBizhawkFloor, setAutotrackItems,
+    showSettings, toggleSettings,
+    showRegionPopup, toggleRegionPopup,
+    showApPanel, showFaq,
+    apConnected, apVersion, apServer, apPort, apSlot, apPassword,
+    apPlayers, setApPlayers,
+    rawSlotData, setRawSlotData,
+    apLocationItems, setApLocationItems,
+    showChat, chatMessages, addChatMessage, clearChat,
+    saveState, loadState,
   }
 })

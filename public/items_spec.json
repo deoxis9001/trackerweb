@@ -1,0 +1,382 @@
+{
+  "grid_rows": [
+    ["smithsword","greensword","redsword","bluesword","foursword","wallet","earth","dwsx","cofx","fowx","todx","rcx","powx","dhc","universal_dungeons"],
+    ["sword0","gust","cane","boomerang","10hearts","books","fire","dws_smallkey","cof_smallkey","fow_smallkey","tod_smallkey","rc_smallkey","pow_smallkey","dhc_smallkey","ud_smallkey"],
+    ["shield","mittsandfly","lamp","bombsremote","dogbottle","figurine","water","dws_bigkey","cof_bigkey","fow_bigkey","tod_bigkey","","pow_bigkey","dhc_bigkey","ud_bigkey"],
+    ["boots","cape","ocarina","bowandfly","quiver","gomode","wind","dws_cm","cof_cm","fow_cm","tod_cm","","pow_cm","dhc_cm",""],
+    ["flippersandfly","ringandbracelets","carlovtingle","nutandshroom","bothkeys","clouds","wilds","falls","spinattack","fastspin","fastsplit","greatspin","longspin","sevenscrolls",""],
+    ["redW","redV","redE","blueL","blueS","greenC","greenG","greenP","perilbeam","swordbeam","rockbreaker","dashattack","downthrust","rollattack",""]
+  ],
+  "items": [
+    { "codes": "smithsword", "name": "Smith's Sword", "type": "toggle", "img": "images/items/Smith's Sword.png" },
+    { "codes": "greensword", "name": "Green Sword", "type": "toggle", "img": "images/items/Green Sword.png" },
+    { "codes": "redsword", "name": "Red Sword", "type": "toggle", "img": "images/items/Red Sword.png" },
+    { "codes": "bluesword", "name": "Blue Sword", "type": "toggle", "img": "images/items/Blue Sword.png" },
+    { "codes": "foursword", "name": "Four Sword", "type": "toggle", "img": "images/items/Four Sword.png" },
+    {
+      "codes": "sword0",
+      "name": "Sword Progression",
+      "type": "progressive",
+      "stages": [
+        { "codes": "sword0", "img": "images/items/Smith's Sword.png", "img_mods": "@disabled" },
+        { "codes": "sword", "img": "images/items/Smith's Sword.png" },
+        { "codes": "sword2", "img": "images/items/Green Sword.png" },
+        { "codes": "sword3", "img": "images/items/Red Sword.png" },
+        { "codes": "sword4", "img": "images/items/Blue Sword.png" },
+        { "codes": "sword5", "img": "images/items/Four Sword.png" }
+      ]
+    },
+    {
+      "codes": "wallet",
+      "name": "Wallet",
+      "type": "progressive",
+      "allow_disabled": false,
+      "stages": [
+        { "codes": "", "img": "images/items/Wallet999.png", "img_mods": "@disabled" },
+        { "codes": "wallet", "img": "images/items/Wallet300alt.png" },
+        { "codes": "wallet2", "img": "images/items/Wallet500alt.png" },
+        { "codes": "wallet3", "img": "images/items/Wallet999alt.png" }
+      ]
+    },
+    { "codes": "earth", "name": "Earth Element", "type": "toggle", "img": "images/items/Earth Element.png" },
+    { "codes": "fire", "name": "Fire Element", "type": "toggle", "img": "images/items/Fire Element.png" },
+    { "codes": "water", "name": "Water Element", "type": "toggle", "img": "images/items/Water Element.png" },
+    { "codes": "wind", "name": "Wind Element", "type": "toggle", "img": "images/items/Wind Element.png" },
+    { "codes": "dws", "name": "Deepwood Shrine Boss", "type": "toggle", "img": "images/dungeons/chu.png" },
+    { "codes": "dwsx", "name": "Deepwood Shrine Element", "type": "toggle_badged", "base_item": "dws", "img": "images/dungeons/overlay_elements.png" },
+    { "codes": "cof", "name": "Cave of Flames Boss", "type": "toggle", "img": "images/dungeons/gleerok.png" },
+    { "codes": "cofx", "name": "Cave of Flames Element", "type": "toggle_badged", "base_item": "cof", "img": "images/dungeons/overlay_elements.png" },
+    { "codes": "fow", "name": "Fortress of Winds Boss", "type": "toggle", "img": "images/dungeons/mazaal.png" },
+    { "codes": "fowx", "name": "Fortress of Winds Element", "type": "toggle_badged", "base_item": "fow", "img": "images/dungeons/overlay_elements.png" },
+    { "codes": "tod", "name": "Temple of Droplets Boss", "type": "toggle", "img": "images/dungeons/octo.png" },
+    { "codes": "todx", "name": "Temple of Droplets Element", "type": "toggle_badged", "base_item": "tod", "img": "images/dungeons/overlay_elements.png" },
+    { "codes": "rc", "name": "Royal Crypt Boss", "type": "toggle", "img": "images/dungeons/gustaf.png" },
+    { "codes": "rcx", "name": "Royal Crypt Element", "type": "toggle_badged", "base_item": "rc", "img": "images/dungeons/overlay_elements.png" },
+    { "codes": "pow", "name": "Palace of Winds Boss", "type": "toggle", "img": "images/dungeons/gyorg.png" },
+    { "codes": "powx", "name": "Palace of Winds Element", "type": "toggle_badged", "base_item": "pow", "img": "images/dungeons/overlay_elements.png" },
+    { "codes": "dhc", "name": "Dark Hyrule Castle", "type": "toggle", "img": "images/dungeons/vaati.png" },
+    { "codes": "universal_dungeons", "name": "Universal Dungeons", "type": "toggle", "img": "images/dungeons/universal_dungeons.png" },
+    { "codes": "gust", "name": "Gust Jar", "type": "toggle", "img": "images/items/Gust Jar.png" },
+    { "codes": "cane", "name": "Cane of Pacci", "type": "toggle", "img": "images/items/Cane of Pacci.png" },
+    {
+      "codes": "boomerang",
+      "name": "Boomerang",
+      "type": "progressive",
+      "stages": [
+        { "codes": "boomerang", "img": "images/items/Boomerang.png" },
+        { "codes": "magicboomerang", "img": "images/items/Magical Boomerang.png" }
+      ]
+    },
+    {
+      "codes": "10hearts",
+      "name": "Hearts",
+      "type": "consumable",
+      "img": "images/items/Heart Container10.png",
+      "min_quantity": 0,
+      "max_quantity": 20
+    },
+    {
+      "codes": "books",
+      "name": "Book Quest",
+      "type": "progressive",
+      "stages": [
+        { "codes": "books,book1", "img": "images/items/Book1.png" },
+        { "codes": "books,book2", "img": "images/items/Book2.png" },
+        { "codes": "books,book3", "img": "images/items/Book3.png" }
+      ]
+    },
+    { "codes": "dws_smallkey", "name": "DWS Small Key", "type": "consumable", "img": "images/dungeons/Small Key.png", "min_quantity": 0, "max_quantity": 4 },
+    { "codes": "cof_smallkey", "name": "CoF Small Key", "type": "consumable", "img": "images/dungeons/Small Key.png", "min_quantity": 0, "max_quantity": 2 },
+    { "codes": "fow_smallkey", "name": "FoW Small Key", "type": "consumable", "img": "images/dungeons/Small Key.png", "min_quantity": 0, "max_quantity": 4 },
+    { "codes": "tod_smallkey", "name": "ToD Small Key", "type": "consumable", "img": "images/dungeons/Small Key.png", "min_quantity": 0, "max_quantity": 4 },
+    { "codes": "rc_smallkey", "name": "RC Small Key", "type": "consumable", "img": "images/dungeons/Small Key.png", "min_quantity": 0, "max_quantity": 3 },
+    { "codes": "pow_smallkey", "name": "PoW Small Key", "type": "consumable", "img": "images/dungeons/Small Key.png", "min_quantity": 0, "max_quantity": 6 },
+    { "codes": "dhc_smallkey", "name": "DHC Small Key", "type": "consumable", "img": "images/dungeons/Small Key.png", "min_quantity": 0, "max_quantity": 5 },
+    { "codes": "ud_smallkey", "name": "Universal Small Key", "type": "consumable", "img": "images/dungeons/Small Key.png", "min_quantity": 0, "max_quantity": 28 },
+    {
+      "codes": "shield",
+      "name": "Shield",
+      "type": "progressive",
+      "stages": [
+        { "codes": "shield", "img": "images/items/Small Shield.png" },
+        { "codes": "shield,mirrorshield", "img": "images/items/Mirror Shield.png" }
+      ]
+    },
+    { "codes": "mitts", "name": "Mole Mitts", "type": "toggle", "img": "images/items/Mole Mitts.png" },
+    { "codes": "mittsButterfly", "name": "Mole Mitts Butterfly", "type": "toggle", "img": "images/items/Mole Mitts B.png" },
+    {
+      "codes": "mittsandfly",
+      "name": "Mole Mitts + Butterfly",
+      "type": "composite_toggle",
+      "item_left": "mitts",
+      "item_right": "mittsButterfly",
+      "images": [
+        { "left": false, "right": false, "img": "images/items/Mole Mitts.png", "img_mods": "@disabled" },
+        { "left": true, "right": false, "img": "images/items/Mole Mitts.png" },
+        { "left": false, "right": true, "img": "images/items/Mole Mitts B Gray.png" },
+        { "left": true, "right": true, "img": "images/items/Mole Mitts B.png" }
+      ]
+    },
+    {
+      "codes": "lamp",
+      "name": "Lamp",
+      "type": "progressive",
+      "allow_disabled": false,
+      "stages": [
+        { "codes": "", "img": "images/items/Lamp.png", "img_mods": "@disabled" },
+        { "codes": "lamp", "img": "images/items/Lamp (Lit).png" }
+      ]
+    },
+    {
+      "codes": "bombs",
+      "name": "Bombs",
+      "type": "progressive",
+      "allow_disabled": false,
+      "stages": [
+        { "codes": "", "img": "images/items/Bomb.png", "img_mods": "@disabled" },
+        { "codes": "bombs,bombs10", "img": "images/items/Bomb10.png" },
+        { "codes": "bombs,bombs30", "img": "images/items/Bomb30.png" },
+        { "codes": "bombs,bombs50", "img": "images/items/Bomb50.png" },
+        { "codes": "bombs,bombs99", "img": "images/items/Bomb99.png" }
+      ]
+    },
+    { "codes": "bombsremote", "name": "Bombs + Remote", "type": "toggle_badged", "base_item": "bombs", "img": "images/items/overlay_remote.png" },
+    {
+      "codes": "bottle",
+      "name": "Bottles",
+      "type": "progressive",
+      "allow_disabled": false,
+      "stages": [
+        { "codes": "", "img": "images/items/Empty Bottle.png", "img_mods": "@disabled" },
+        { "codes": "bottle", "img": "images/items/Empty Bottle1.png" },
+        { "codes": "bottle", "img": "images/items/Empty Bottle2.png" },
+        { "codes": "bottle", "img": "images/items/Empty Bottle3.png" },
+        { "codes": "bottle", "img": "images/items/Empty Bottle4.png" }
+      ]
+    },
+    { "codes": "dogbottle", "name": "Dog Food Bottle", "type": "toggle_badged", "base_item": "bottle", "img": "images/items/overlay_dogfood.png" },
+    { "codes": "figurine", "name": "Figurine", "type": "consumable", "img": "images/items/figurine.png", "min_quantity": 0, "max_quantity": 136 },
+    { "codes": "dws_bigkey", "name": "DWS Big Key", "type": "toggle", "img": "images/dungeons/Big Key.png" },
+    { "codes": "cof_bigkey", "name": "CoF Big Key", "type": "toggle", "img": "images/dungeons/Big Key.png" },
+    { "codes": "fow_bigkey", "name": "FoW Big Key", "type": "toggle", "img": "images/dungeons/Big Key.png" },
+    { "codes": "tod_bigkey", "name": "ToD Big Key", "type": "toggle", "img": "images/dungeons/Big Key.png" },
+    { "codes": "pow_bigkey", "name": "PoW Big Key", "type": "toggle", "img": "images/dungeons/Big Key.png" },
+    { "codes": "dhc_bigkey", "name": "DHC Big Key", "type": "toggle", "img": "images/dungeons/Big Key.png" },
+    { "codes": "ud_bigkey", "name": "Universal Big Key", "type": "toggle", "img": "images/dungeons/Big Key.png" },
+    { "codes": "boots", "name": "Pegasus Boots", "type": "toggle", "img": "images/items/Pegasus Boots.png" },
+    { "codes": "cape", "name": "Roc's Cape", "type": "toggle", "img": "images/items/Roc's Cape.png" },
+    { "codes": "ocarina", "name": "Ocarina", "type": "toggle", "img": "images/items/Ocarina of Wind.png" },
+    {
+      "codes": "bow",
+      "name": "Bow",
+      "type": "progressive",
+      "loop": true,
+      "stages": [
+        { "codes": "bow", "img": "images/items/Bow0.png" },
+        { "codes": "bow,lights", "img": "images/items/Light Arrows Smaller.png" }
+      ]
+    },
+    { "codes": "bowandfly", "name": "Bow + Butterfly", "type": "toggle_badged", "base_item": "bow", "img": "images/items/overlay_butterfly.png" },
+    {
+      "codes": "quiver",
+      "name": "Quiver",
+      "type": "progressive",
+      "allow_disabled": false,
+      "stages": [
+        { "codes": "quiver", "img": "images/items/Quiver.png", "img_mods": "@disabled" },
+        { "codes": "quiver", "img": "images/items/Quiver50.png" },
+        { "codes": "quiver", "img": "images/items/Quiver70.png" },
+        { "codes": "quiver", "img": "images/items/Quiver99.png" }
+      ]
+    },
+    { "codes": "gomode", "name": "Go Mode!", "type": "toggle", "img": "images/items/gomode.png" },
+    { "codes": "dws_Map", "name": "DWS Map", "type": "toggle", "img": "images/dungeons/Map.png" },
+    { "codes": "dws_Compass", "name": "DWS Compass", "type": "toggle", "img": "images/dungeons/Compass.png" },
+    {
+      "codes": "dws_cm",
+      "name": "DWS Map+Compass",
+      "type": "composite_toggle",
+      "item_left": "dws_Map",
+      "item_right": "dws_Compass",
+      "images": [
+        { "left": false, "right": false, "img": "images/dungeons/Compass_Map_gray.png" },
+        { "left": false, "right": true, "img": "images/dungeons/Compass_Map_C.png" },
+        { "left": true, "right": false, "img": "images/dungeons/Compass_Map_M.png" },
+        { "left": true, "right": true, "img": "images/dungeons/Compass_Map.png" }
+      ]
+    },
+    { "codes": "cof_Map", "name": "CoF Map", "type": "toggle", "img": "images/dungeons/Map.png" },
+    { "codes": "cof_Compass", "name": "CoF Compass", "type": "toggle", "img": "images/dungeons/Compass.png" },
+    {
+      "codes": "cof_cm",
+      "name": "CoF Map+Compass",
+      "type": "composite_toggle",
+      "item_left": "cof_Map",
+      "item_right": "cof_Compass",
+      "images": [
+        { "left": false, "right": false, "img": "images/dungeons/Compass_Map_gray.png" },
+        { "left": false, "right": true, "img": "images/dungeons/Compass_Map_C.png" },
+        { "left": true, "right": false, "img": "images/dungeons/Compass_Map_M.png" },
+        { "left": true, "right": true, "img": "images/dungeons/Compass_Map.png" }
+      ]
+    },
+    { "codes": "fow_Map", "name": "FoW Map", "type": "toggle", "img": "images/dungeons/Map.png" },
+    { "codes": "fow_Compass", "name": "FoW Compass", "type": "toggle", "img": "images/dungeons/Compass.png" },
+    {
+      "codes": "fow_cm",
+      "name": "FoW Map+Compass",
+      "type": "composite_toggle",
+      "item_left": "fow_Map",
+      "item_right": "fow_Compass",
+      "images": [
+        { "left": false, "right": false, "img": "images/dungeons/Compass_Map_gray.png" },
+        { "left": false, "right": true, "img": "images/dungeons/Compass_Map_C.png" },
+        { "left": true, "right": false, "img": "images/dungeons/Compass_Map_M.png" },
+        { "left": true, "right": true, "img": "images/dungeons/Compass_Map.png" }
+      ]
+    },
+    { "codes": "tod_Map", "name": "ToD Map", "type": "toggle", "img": "images/dungeons/Map.png" },
+    { "codes": "tod_Compass", "name": "ToD Compass", "type": "toggle", "img": "images/dungeons/Compass.png" },
+    {
+      "codes": "tod_cm",
+      "name": "ToD Map+Compass",
+      "type": "composite_toggle",
+      "item_left": "tod_Map",
+      "item_right": "tod_Compass",
+      "images": [
+        { "left": false, "right": false, "img": "images/dungeons/Compass_Map_gray.png" },
+        { "left": false, "right": true, "img": "images/dungeons/Compass_Map_C.png" },
+        { "left": true, "right": false, "img": "images/dungeons/Compass_Map_M.png" },
+        { "left": true, "right": true, "img": "images/dungeons/Compass_Map.png" }
+      ]
+    },
+    { "codes": "pow_Map", "name": "PoW Map", "type": "toggle", "img": "images/dungeons/Map.png" },
+    { "codes": "pow_Compass", "name": "PoW Compass", "type": "toggle", "img": "images/dungeons/Compass.png" },
+    {
+      "codes": "pow_cm",
+      "name": "PoW Map+Compass",
+      "type": "composite_toggle",
+      "item_left": "pow_Map",
+      "item_right": "pow_Compass",
+      "images": [
+        { "left": false, "right": false, "img": "images/dungeons/Compass_Map_gray.png" },
+        { "left": false, "right": true, "img": "images/dungeons/Compass_Map_C.png" },
+        { "left": true, "right": false, "img": "images/dungeons/Compass_Map_M.png" },
+        { "left": true, "right": true, "img": "images/dungeons/Compass_Map.png" }
+      ]
+    },
+    { "codes": "dhc_Map", "name": "DHC Map", "type": "toggle", "img": "images/dungeons/Map.png" },
+    { "codes": "dhc_Compass", "name": "DHC Compass", "type": "toggle", "img": "images/dungeons/Compass.png" },
+    {
+      "codes": "dhc_cm",
+      "name": "DHC Map+Compass",
+      "type": "composite_toggle",
+      "item_left": "dhc_Map",
+      "item_right": "dhc_Compass",
+      "images": [
+        { "left": false, "right": false, "img": "images/dungeons/Compass_Map_gray.png" },
+        { "left": false, "right": true, "img": "images/dungeons/Compass_Map_C.png" },
+        { "left": true, "right": false, "img": "images/dungeons/Compass_Map_M.png" },
+        { "left": true, "right": true, "img": "images/dungeons/Compass_Map.png" }
+      ]
+    },
+    { "codes": "flippers", "name": "Flippers", "type": "toggle", "img": "images/items/Flippers.png" },
+    { "codes": "flippersButterfly", "name": "Flippers Butterfly", "type": "toggle", "img": "images/items/Flippers Butterfly.png" },
+    {
+      "codes": "flippersandfly",
+      "name": "Flippers + Butterfly",
+      "type": "composite_toggle",
+      "item_left": "flippers",
+      "item_right": "flippersButterfly",
+      "images": [
+        { "left": false, "right": false, "img": "images/items/Flippers.png", "img_mods": "@disabled" },
+        { "left": true, "right": false, "img": "images/items/Flippers.png" },
+        { "left": false, "right": true, "img": "images/items/Flippers B Gray.png" },
+        { "left": true, "right": true, "img": "images/items/Flippers B.png" }
+      ]
+    },
+    { "codes": "grip", "name": "Grip Ring", "type": "toggle", "img": "images/items/Grip Ring.png" },
+    { "codes": "bracelets", "name": "Power Bracelets", "type": "toggle", "img": "images/items/Power Bracelets.png" },
+    {
+      "codes": "ringandbracelets",
+      "name": "Grip + Bracelets",
+      "type": "composite_toggle",
+      "item_left": "grip",
+      "item_right": "bracelets",
+      "images": [
+        { "left": false, "right": false, "img": "images/items/Power_Grips_Gray.png" },
+        { "left": true, "right": false, "img": "images/items/Power_Grips_G.png" },
+        { "left": false, "right": true, "img": "images/items/Power_Grips_P.png" },
+        { "left": true, "right": true, "img": "images/items/Power_Grips.png" }
+      ]
+    },
+    { "codes": "carlov", "name": "Carlov Medal", "type": "toggle", "img": "images/items/Carlov Medal.png" },
+    { "codes": "trophy", "name": "Tingle Trophy", "type": "toggle", "img": "images/items/Tingle Trophy.png" },
+    {
+      "codes": "carlovtingle",
+      "name": "Carlov + Tingle",
+      "type": "composite_toggle",
+      "item_left": "carlov",
+      "item_right": "trophy",
+      "images": [
+        { "left": false, "right": false, "img": "images/items/carlov_tingle_gray.png" },
+        { "left": true, "right": false, "img": "images/items/carlov_tingle_c.png" },
+        { "left": false, "right": true, "img": "images/items/carlov_tingle_t.png" },
+        { "left": true, "right": true, "img": "images/items/carlov_tingle.png" }
+      ]
+    },
+    { "codes": "jabber", "name": "Jabber Nut", "type": "toggle", "img": "images/items/Jabber Nut.png" },
+    { "codes": "mushroom", "name": "Mushroom", "type": "toggle", "img": "images/items/Mushroom.png" },
+    {
+      "codes": "nutandshroom",
+      "name": "Jabber + Mushroom",
+      "type": "composite_toggle",
+      "item_left": "jabber",
+      "item_right": "mushroom",
+      "images": [
+        { "left": false, "right": false, "img": "images/items/Jabber_Shroom_Gray.png" },
+        { "left": true, "right": false, "img": "images/items/Jabber_Shroom_J.png" },
+        { "left": false, "right": true, "img": "images/items/Jabber_Shroom_S.png" },
+        { "left": true, "right": true, "img": "images/items/Jabber_Shroom.png" }
+      ]
+    },
+    { "codes": "gravekey", "name": "Graveyard Key", "type": "toggle", "img": "images/items/Graveyard Key.png" },
+    { "codes": "llrkey", "name": "Lon Lon Ranch Key", "type": "toggle", "img": "images/items/Lon Lon Ranch Key.png" },
+    {
+      "codes": "bothkeys",
+      "name": "Both Keys",
+      "type": "composite_toggle",
+      "item_left": "gravekey",
+      "item_right": "llrkey",
+      "images": [
+        { "left": false, "right": false, "img": "images/items/Both_Keys_Gray.png" },
+        { "left": true, "right": false, "img": "images/items/Both_Keys_G.png" },
+        { "left": false, "right": true, "img": "images/items/Both_Keys_L.png" },
+        { "left": true, "right": true, "img": "images/items/Both_Keys.png" }
+      ]
+    },
+    { "codes": "clouds", "name": "Kinstone Clouds", "type": "consumable", "img": "images/items/Kinstone Clouds Half.png", "min_quantity": 0, "max_quantity": 5 },
+    { "codes": "wilds", "name": "Kinstone Swamp", "type": "consumable", "img": "images/items/Kinstone Wilds Half.png", "min_quantity": 0, "max_quantity": 3 },
+    { "codes": "falls", "name": "Kinstone Falls", "type": "consumable", "img": "images/items/Kinstone Falls Half.png", "min_quantity": 0, "max_quantity": 1 },
+    { "codes": "spinattack", "name": "Spin Attack", "type": "toggle", "img": "images/items/Spin Attack.png" },
+    { "codes": "fastspin", "name": "Fast Spin Charge", "type": "toggle", "img": "images/items/Fast Spin.png" },
+    { "codes": "fastsplit", "name": "Fast Split", "type": "toggle", "img": "images/items/Fast Split.png" },
+    { "codes": "greatspin", "name": "Great Spin Attack", "type": "toggle", "img": "images/items/Great Spin Attack.png" },
+    { "codes": "longspin", "name": "Long Great Spin", "type": "toggle", "img": "images/items/Long Great Spin.png" },
+    { "codes": "sevenscrolls", "name": "Tiger Scrolls", "type": "consumable", "img": "images/items/Tiger Scroll.png", "min_quantity": 0, "max_quantity": 11 },
+    { "codes": "redW", "name": "Kinstone Red W", "type": "consumable", "img": "images/items/KinstoneRedW.png", "min_quantity": 0, "max_quantity": 9 },
+    { "codes": "redV", "name": "Kinstone Red V", "type": "consumable", "img": "images/items/KinstoneRedV.png", "min_quantity": 0, "max_quantity": 7 },
+    { "codes": "redE", "name": "Kinstone Red E", "type": "consumable", "img": "images/items/KinstoneRedE.png", "min_quantity": 0, "max_quantity": 9 },
+    { "codes": "blueL", "name": "Kinstone Blue L", "type": "consumable", "img": "images/items/KinstoneBlueL.png", "min_quantity": 0, "max_quantity": 18 },
+    { "codes": "blueS", "name": "Kinstone Blue S", "type": "consumable", "img": "images/items/KinstoneBlueS.png", "min_quantity": 0, "max_quantity": 24 },
+    { "codes": "greenC", "name": "Kinstone Green C", "type": "consumable", "img": "images/items/KinstoneGreenC.png", "min_quantity": 0, "max_quantity": 17 },
+    { "codes": "greenG", "name": "Kinstone Green G", "type": "consumable", "img": "images/items/KinstoneGreenG.png", "min_quantity": 0, "max_quantity": 49 },
+    { "codes": "greenP", "name": "Kinstone Green P", "type": "consumable", "img": "images/items/KinstoneGreenP.png", "min_quantity": 0, "max_quantity": 16 },
+    { "codes": "perilbeam", "name": "Peril Beam", "type": "toggle", "img": "images/items/Peril Beam.png" },
+    { "codes": "swordbeam", "name": "Sword Beam", "type": "toggle", "img": "images/items/Sword Beam.png" },
+    { "codes": "rockbreaker", "name": "Rock Breaker", "type": "toggle", "img": "images/items/Rock Breaker.png" },
+    { "codes": "dashattack", "name": "Dash Attack", "type": "toggle", "img": "images/items/Dash Attack.png" },
+    { "codes": "downthrust", "name": "Down Thrust", "type": "toggle", "img": "images/items/Down Thrust.png" },
+    { "codes": "rollattack", "name": "Roll Attack", "type": "toggle", "img": "images/items/Roll Attack.png" }
+  ]
+}

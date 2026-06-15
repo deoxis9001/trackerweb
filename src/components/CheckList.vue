@@ -2,7 +2,6 @@
 import { ref, computed } from 'vue'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
-import { computeAccessibility, buildInventory } from '../logic/accessibility'
 import { useLocale } from '../composables/useLocale'
 import LocationTreeNode from './LocationTreeNode.vue'
 
@@ -50,32 +49,18 @@ const DUNGEON_LABELS = {
   DHC: 'Dark Hyrule Castle',
 }
 
-const accessibility = computed(() => {
-  const inv = buildInventory(store)
-  return computeAccessibility(inv, settings)
-})
-
-function locColor(loc) {
-  if (store.isChecked(loc.id)) return '#3e2408'
-  return STATUS_COLOR[accessibility.value.get(loc.id)] ?? '#e03030'
-}
+function locColor() { return '#d82828' }
 
 const visibleLocations = computed(() => {
-  return store.visibleLocations.filter(loc => {
-    if (loc.id == null) return false
-
-    const q = searchQuery.value.toLowerCase()
-    if (q && !loc.name.toLowerCase().includes(q) && !loc.region_name.toLowerCase().includes(q)) return false
-
-    if (filterPool.value !== 'all' && !loc.pools.includes(filterPool.value)) return false
-
-    const isGoal = loc.key === 'GOAL_VAATI' || loc.key === 'GOAL_PED'
-    if (!isGoal && !store.isChecked(loc.id) && !settings.showInaccessible) {
-      if (accessibility.value.get(loc.id) === 'inaccessible') return false
-    }
-
-    return true
-  })
+  let locs = store.visibleLocations
+  if (filterPool.value !== 'all') {
+    locs = locs.filter(l => l.pools?.includes(filterPool.value))
+  }
+  if (searchQuery.value.trim()) {
+    const q = searchQuery.value.trim().toLowerCase()
+    locs = locs.filter(l => tLocation(l.key, l.name).toLowerCase().includes(q))
+  }
+  return locs
 })
 
 // Group dungeon locations by dungeon key; overworld by region_key

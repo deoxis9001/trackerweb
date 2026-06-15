@@ -37,14 +37,6 @@
         <FaqPanel />
       </div>
 
-      <!-- Region popup -->
-      <div v-if="store.showRegionPopup" class="region-popup">
-        <div class="region-popup-header">
-          <span>Régions</span>
-          <button class="popup-close" @click="store.showRegionPopup = false">✕</button>
-        </div>
-        <RegionGuide />
-      </div>
     </Teleport>
   </div>
 </template>
@@ -54,7 +46,6 @@ import { computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import NavBar from './components/NavBar.vue'
 import SettingsView from './views/SettingsView.vue'
-import RegionGuide from './components/RegionGuide.vue'
 import APPanel from './components/APPanel.vue'
 import FaqPanel from './components/FaqPanel.vue'
 import { useStateStore } from './stores/stateStore'
@@ -69,7 +60,6 @@ const isBroadcastRoute = computed(() =>
 function onKeydown(e) {
   if (e.key === 'Escape') {
     if (store.showSettings)    store.showSettings    = false
-    if (store.showRegionPopup) store.showRegionPopup = false
     if (store.showApPanel)     store.showApPanel     = false
     if (store.showFaq)         store.showFaq         = false
   }
@@ -102,10 +92,14 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
   --unchecked:        #4a2c0e;
   --inaccessible:     #2a1808;
 
-  /* Map pins */
-  --pin-accessible:   #7ac038;
-  --pin-outoflogic:   #d4901a;
-  --pin-inaccessible: #d82828;
+  /* Map pins — 6 états EMO tracker */
+  --pin-accessible:      #7ac038;
+  --pin-sequence-break:  #e8d020;
+  --pin-partial:         #d4901a;
+  --pin-outoflogic:      var(--pin-partial); /* deprecated alias */
+  --pin-inspect:         #3878e0;
+  --pin-inaccessible:    #d82828;
+  --pin-cleared:         #606060;
 }
 
 * { box-sizing: border-box; }
@@ -198,46 +192,6 @@ body {
   flex-direction: column;
   overflow: hidden;
 }
-
-.region-popup {
-  position: fixed;
-  top: 52px;
-  right: 12px;
-  z-index: 500;
-  background: var(--bg-panel);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  min-width: 180px;
-  max-width: 260px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-  overflow: hidden;
-}
-
-.region-popup-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 8px;
-  background: var(--bg-dark);
-  border-bottom: 1px solid var(--border);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent-gold);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.popup-close {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-size: 13px;
-  cursor: pointer;
-  padding: 1px 4px;
-  border-radius: 3px;
-  line-height: 1;
-}
-.popup-close:hover { color: var(--text); background: var(--bg-card); }
 
 .changelog-link {
   position: fixed;

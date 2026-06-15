@@ -15,6 +15,9 @@ export default defineConfig(({ mode }) => ({
     ],
   },
   publicDir: 'public',
+  server: {
+    fs: { allow: ['..'] },
+  },
   build: {
     outDir: '../dist',
     emptyOutDir: true,
