@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed, watch } from 'vue'
-
-const ENTRANCE_SHUFFLE_ENABLED = import.meta.env.MODE === 'alpha'
+import { ref, watch } from 'vue'
 
 export const TRICKS = {
   BOMB_DUST:            { key: 'bomb_dust',            label: 'Bomb Dust (Bomb/Gust blows dust)' },
@@ -117,11 +115,7 @@ export const useSettingsStore = defineStore('settings', () => {
   const windCrestMinishWoods = ref(false)
 
   // ── Entrance Shuffle ──────────────────────────────────────────────────────────
-  const _dungeonEntranceShuffle = ref(false)
-  const dungeonEntranceShuffle = computed({
-    get: () => ENTRANCE_SHUFFLE_ENABLED && _dungeonEntranceShuffle.value,
-    set: (v) => { if (ENTRANCE_SHUFFLE_ENABLED) _dungeonEntranceShuffle.value = v },
-  })
+  const dungeonEntranceShuffle = ref(false)
 
   // ── Logic Source ─────────────────────────────────────────────────────────────
   const logicSource     = ref('default_logic') // 'default_logic' | 'custom'
