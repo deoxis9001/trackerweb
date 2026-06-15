@@ -1,4 +1,16 @@
 import { setProvider, resetCache, callLuaFunction } from './luaEngine'
+import itemsSpec from '../data/items_spec.json'
+
+// Map stage codes → { parentCode, minStage } for progressive items
+const STAGE_CODE_MAP = {}
+for (const item of itemsSpec.items ?? []) {
+  if (item.type !== 'progressive') continue
+  item.stages?.forEach((stage, idx) => {
+    for (const code of (stage.codes ?? '').split(',').map(s => s.trim()).filter(Boolean)) {
+      if (!(code in STAGE_CODE_MAP)) STAGE_CODE_MAP[code] = { parentCode: item.codes, minStage: idx }
+    }
+  })
+}
 
 // luaLevel: 0=normal, 2=SequenceBreak, 3=Inspect
 function levelFromLuaLevel(luaLevel) {
@@ -123,6 +135,12 @@ function makeProvider(stateStore, settingsStore) {
       if (code.endsWith('_off')) return 1
       if (code.endsWith('_on'))  return 0
 
+      const stageInfo = STAGE_CODE_MAP[code]
+      if (stageInfo) {
+        const cur = (stateStore.manualItems[stageInfo.parentCode] ?? 0)
+                  + (stateStore.autotrackItems[stageInfo.parentCode] ?? 0)
+        return cur >= stageInfo.minStage ? 1 : 0
+      }
       const manual = stateStore.manualItems[code] ?? 0
       const auto   = stateStore.autotrackItems[code] ?? 0
       return manual + auto
