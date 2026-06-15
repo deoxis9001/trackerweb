@@ -16,9 +16,7 @@ import lua_Overworld      from '../../SubModule/tmcrando_maptracker_deoxis/scrip
 import lua_Openworld      from '../../SubModule/tmcrando_maptracker_deoxis/scripts/logic/common/Openworld.lua?raw'
 import lua_PalaceOfWind   from '../../SubModule/tmcrando_maptracker_deoxis/scripts/logic/common/PalaceOfWind.lua?raw'
 import lua_Settings       from '../../SubModule/tmcrando_maptracker_deoxis/scripts/logic/common/Settings.lua?raw'
-import lua_Sword          from '../../SubModule/tmcrando_maptracker_deoxis/scripts/logic/common/Sword.lua?raw'
 import lua_CanDamage      from '../../SubModule/tmcrando_maptracker_deoxis/scripts/logic/common/CanDamage.lua?raw'
-import lua_CanSplit       from '../../SubModule/tmcrando_maptracker_deoxis/scripts/logic/common/CanSplit.lua?raw'
 import lua_NoCloudtop     from '../../SubModule/tmcrando_maptracker_deoxis/scripts/logic/common/NoCloudtop.lua?raw'
 import lua_Options        from '../../SubModule/tmcrando_maptracker_deoxis/scripts/logic/common/Options.lua?raw'
 
@@ -96,9 +94,7 @@ const LUA_FILES = [
   ['common/Openworld',          lua_Openworld],
   ['common/PalaceOfWind',       lua_PalaceOfWind],
   ['common/Settings',           lua_Settings],
-  ['common/Sword',              lua_Sword],
   ['common/CanDamage',          lua_CanDamage],
-  ['common/CanSplit',           lua_CanSplit],
   ['common/NoCloudtop',         lua_NoCloudtop],
   ['common/Options',            lua_Options],
   ['dungeons/CaveOfFlame',      lua_d_CaveOfFlame],
