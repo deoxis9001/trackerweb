@@ -22,9 +22,6 @@ export const useStateStore = defineStore('state', () => {
   // Manually toggled items { code: count }
   const manualItems = ref({})
 
-  // Received items (AP compat stub)
-  const receivedItems = ref([])
-
   // Active view/panel
   const activeView     = ref('overworld')
   const activeZone     = ref(null)
@@ -34,19 +31,7 @@ export const useStateStore = defineStore('state', () => {
   // UI toggles
   const showSettings    = ref(false)
   const showRegionPopup = ref(false)
-  const showApPanel     = ref(false)
   const showFaq         = ref(false)
-
-  // AP compat stubs (keep refs so AP components don't crash)
-  const apConnected = ref(false)
-  const apVersion   = ref('')
-  const apServer    = ref('archipelago.gg')
-  const apPort      = ref(38281)
-  const apSlot      = ref('')
-  const apPassword  = ref('')
-  const apPlayers   = ref({})
-  const rawSlotData = ref({})
-  const apLocationItems = ref({})
 
   // Entrance shuffle: slot → dungeon key
   const dungeonEntranceMap = ref({})
@@ -85,15 +70,6 @@ export const useStateStore = defineStore('state', () => {
 
   // Location notes
   const locationNotes = ref({})
-
-  // Chat
-  const showChat     = ref(false)
-  const chatMessages = ref([])
-  function addChatMessage(msg) {
-    chatMessages.value.push(msg)
-    if (chatMessages.value.length > 300) chatMessages.value.shift()
-  }
-  function clearChat() { chatMessages.value = [] }
 
   // ── Computed ────────────────────────────────────────────────────────────────
 
@@ -171,7 +147,6 @@ export const useStateStore = defineStore('state', () => {
     checkedSections.value  = {}
     checkedLocations.value = new Set()
     manualItems.value      = {}
-    receivedItems.value    = []
     locationNotes.value    = {}
     dungeonEntranceMap.value = {}
     saveState()
@@ -195,10 +170,6 @@ export const useStateStore = defineStore('state', () => {
     locationNotes.value = next
     saveState()
   }
-
-  function setApLocationItems(map) { apLocationItems.value = map ?? {} }
-  function setRawSlotData(data)    { rawSlotData.value = data ?? {} }
-  function setApPlayers(map)       { apPlayers.value = map }
 
   // ── Persistence ──────────────────────────────────────────────────────────
 
@@ -250,7 +221,6 @@ export const useStateStore = defineStore('state', () => {
     checkedSections,
     checkedLocations,
     manualItems,
-    receivedItems,
     bizhawkConnected,
     bizhawkFloor,
     autotrackItems,
@@ -270,12 +240,7 @@ export const useStateStore = defineStore('state', () => {
     setBizhawkFloor, setAutotrackItems,
     showSettings, toggleSettings,
     showRegionPopup, toggleRegionPopup,
-    showApPanel, showFaq,
-    apConnected, apVersion, apServer, apPort, apSlot, apPassword,
-    apPlayers, setApPlayers,
-    rawSlotData, setRawSlotData,
-    apLocationItems, setApLocationItems,
-    showChat, chatMessages, addChatMessage, clearChat,
+    showFaq,
     saveState, loadState,
   }
 })

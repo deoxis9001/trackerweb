@@ -20,18 +20,6 @@
         </div>
       </div>
 
-      <!-- AP panel -->
-      <div
-        v-if="store.showApPanel"
-        class="settings-overlay"
-        @click.self="store.showApPanel = false"
-      >
-        <div class="settings-modal ap-modal">
-          <button class="modal-close" @click="store.showApPanel = false">✕</button>
-          <APPanel />
-        </div>
-      </div>
-
       <!-- FAQ panel -->
       <div v-if="store.showFaq" class="faq-popup">
         <FaqPanel />
@@ -46,7 +34,6 @@ import { computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import NavBar from './components/NavBar.vue'
 import SettingsView from './views/SettingsView.vue'
-import APPanel from './components/APPanel.vue'
 import FaqPanel from './components/FaqPanel.vue'
 import { useStateStore } from './stores/stateStore'
 
@@ -60,7 +47,6 @@ const isBroadcastRoute = computed(() =>
 function onKeydown(e) {
   if (e.key === 'Escape') {
     if (store.showSettings)    store.showSettings    = false
-    if (store.showApPanel)     store.showApPanel     = false
     if (store.showFaq)         store.showFaq         = false
   }
 }

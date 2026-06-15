@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
-import ArchipelagoLogo from './ArchipelagoLogo.vue'
 import { useLocale } from '../composables/useLocale'
 
 const store    = useStateStore()
@@ -99,16 +98,10 @@ function openBroadcastItems() {
 
     <div class="ap-status">
       <button class="tab reset-btn" @click="handleReset()">{{ t('navbar.reset') }}</button>
-      <ArchipelagoLogo :size="22" :active="store.apConnected" :title="store.apConnected ? t('navbar.connected') : t('navbar.offline')"/>
     </div>
 
     <div class="nav-right">
       <button class="settings-btn" @click="openBroadcastItems()" title="Broadcast items">{{ t('navbar.items_broadcast') }}</button>
-      <button
-        :class="['settings-btn', store.showApPanel && 'active']"
-        @click="store.showApPanel = !store.showApPanel"
-        title="Archipelago"
-      >{{ t('navbar.ap') }}</button>
       <button
         :class="['settings-btn', store.showFaq && 'active']"
         @click="store.showFaq = !store.showFaq"

@@ -499,8 +499,8 @@ function secLevelColor(rawLevel) {
 
 function noteImgSrcForLocs(locs) {
   for (const loc of locs) {
-    // Note de localisation (annotée manuellement ou AP)
-    const key = state.locationNotes[loc.id] ?? state.apLocationItems[loc.id]
+    // Note de localisation (annotée manuellement)
+    const key = state.locationNotes[loc.id]
     if (key) {
       const img = ITEM_IMAGES[key]
       if (img) {
