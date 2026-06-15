@@ -12,6 +12,10 @@ for (const item of itemsSpec.items ?? []) {
   })
 }
 
+// Dungeon entrance shuffle: tracker dungeon/slot key → Lua entrance token (RC → crypt)
+const ENTRANCE_TOKEN = { DWS: 'dws', CoF: 'cof', FoW: 'fow', ToD: 'tod', RC: 'crypt', PoW: 'pow', DHC: 'dhc' }
+const ENTRANCE_CODE_RE = /^(dws|cof|fow|tod|crypt|pow|dhc)_(dws|cof|fow|tod|crypt|pow|dhc)$/
+
 // luaLevel: 0=normal, 2=SequenceBreak, 3=Inspect
 function levelFromLuaLevel(luaLevel) {
   if (luaLevel === 2) return 'sequence-break'
@@ -73,6 +77,18 @@ function fusionAccess(settingsStore, color) {
 // Build a provider from the current stateStore snapshot.
 // sectionAvailable(code): handles "@Location/Section" refs used by FindObjectForCode.
 function makeProvider(stateStore, settingsStore) {
+  // Dungeon entrance shuffle: `<dungeon>_<entrance>` codes the Lua XxxDungeons()
+  // functions read. Map slot→dungeon assignments to the active code set.
+  const entranceShuffleOn = !!settingsStore?.dungeonEntranceShuffle
+  const activeEntranceCodes = new Set()
+  if (entranceShuffleOn) {
+    for (const [slot, dungeon] of Object.entries(stateStore.dungeonEntranceMap ?? {})) {
+      const d = ENTRANCE_TOKEN[dungeon]
+      const e = ENTRANCE_TOKEN[slot]
+      if (d && e) activeEntranceCodes.add(`${d}_${e}`)
+    }
+  }
+
   return {
     getFusionCombined(color) {
       return fusionAccess(settingsStore, color) === 'combined'
@@ -120,6 +136,11 @@ function makeProvider(stateStore, settingsStore) {
           case 'dhc_warps_red':   return (settingsStore.warpDHC === 2 || settingsStore.warpDHC === 3) ? 1 : 0
         }
       }
+      // Dungeon entrance shuffle (must precede the generic _off/_on fallback below)
+      if (code === 'dungeonser_off') return entranceShuffleOn ? 0 : 1
+      if (code === 'dungeonser_on')  return entranceShuffleOn ? 1 : 0
+      if (ENTRANCE_CODE_RE.test(code)) return activeEntranceCodes.has(code) ? 1 : 0
+
       // Known tricks: _out_on=sequence break (1 if enabled), _on=never in-logic (0), _off=1 if disabled
       const suffix = code.endsWith('_out_on') ? '_out_on' : code.endsWith('_on') ? '_on' : code.endsWith('_off') ? '_off' : null
       if (suffix) {

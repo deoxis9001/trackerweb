@@ -251,6 +251,7 @@ const accessibility = computed(() => {
   void settings.warpDWS; void settings.warpCoF; void settings.warpFoW
   void settings.warpToD; void settings.warpPoW; void settings.warpDHC
   void settings.tricks
+  void settings.dungeonEntranceShuffle; void JSON.stringify(state.dungeonEntranceMap)
   // Force deep tracking of all manual/autotrack items — items gated behind false conditions
   // are never read by Lua (short-circuit and), so we must establish the dependency here.
   void JSON.stringify(state.manualItems)
