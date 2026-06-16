@@ -454,8 +454,8 @@ function pinSegments(locs) {
   const unchecked = locs.filter(l => !state.isChecked(l.id))
   if (unchecked.length === 0) return [{ status: 'checked' }]
 
-  const order = ['accessible', 'out_of_logic', 'inaccessible']
-  const counts = { accessible: 0, out_of_logic: 0, inaccessible: 0 }
+  const order  = ['accessible', 'out_of_logic', 'inaccessible', 'checked']
+  const counts = { accessible: 0, out_of_logic: 0, inaccessible: 0, checked: 0 }
   for (const l of unchecked) counts[accessibility.value.get(l.id) ?? 'inaccessible']++
 
   return order.filter(s => counts[s] > 0).map(status => ({ status }))
@@ -475,11 +475,17 @@ function dungeonPath(x, y) {
   return `M ${x-7},${y+7} H ${x+7} V ${y} A 7,7 0 0 0 ${x-7},${y} Z`
 }
 
+function pinOpacity(pin) {
+  if (pin.allChecked) return 0.4
+  if (pin.segments.length === 1 && pin.segments[0].status === 'checked') return 0.5
+  return 0.9
+}
+
 const PIN_COLOR = {
   accessible:   '#7ac038',
   out_of_logic: '#d4901a',
   inaccessible: '#d82828',
-  checked:      '#3e2408',
+  checked:      '#606060',
 }
 
 const SEC_DOT_COLOR = {
@@ -885,7 +891,7 @@ function toggleLocPin(loc) {
               </clipPath>
             </defs>
 
-            <g :clip-path="`url(#pc-${pin.x}-${pin.y})`" :opacity="pin.allChecked ? 0.4 : 0.9">
+            <g :clip-path="`url(#pc-${pin.x}-${pin.y})`" :opacity="pinOpacity(pin)">
               <template v-if="pin.segments.length === 3">
                 <polygon
                   :points="`${pin.x},${pin.y} ${pin.x},${pin.y-30} ${pin.x+26},${pin.y+15}`"
@@ -922,21 +928,21 @@ function toggleLocPin(loc) {
               v-if="mapName !== 'map' || pin.type === 'location'"
               :x="pin.x - 7" :y="pin.y - 7" width="14" height="14"
               fill="none" stroke="#000" stroke-width="1.5"
-              :opacity="pin.allChecked ? 0.4 : 0.9"
+              :opacity="pinOpacity(pin)"
               class="pin"
             />
             <circle
               v-else-if="pin.type === 'fused'"
               :cx="pin.x" :cy="pin.y" r="7"
               fill="none" stroke="#000" stroke-width="1.5"
-              :opacity="pin.allChecked ? 0.4 : 0.9"
+              :opacity="pinOpacity(pin)"
               class="pin"
             />
             <path
               v-else
               :d="dungeonPath(pin.x, pin.y)"
               fill="none" stroke="#000" stroke-width="1.5"
-              :opacity="pin.allChecked ? 0.4 : 0.9"
+              :opacity="pinOpacity(pin)"
               class="pin"
             />
 

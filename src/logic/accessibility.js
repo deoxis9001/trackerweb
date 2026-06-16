@@ -97,14 +97,17 @@ export function locationAccessibility(sections, getSectionLevel) {
   if (!sections?.length) return 'none'
   let hasAccessible = false
   let hasInaccessible = false
+  let allCleared = true
   let best = 'none'
   for (const section of sections) {
     const level = getSectionLevel(section)
     if (level === 'cleared') continue
+    allCleared = false
     if (LEVEL_RANK[level] >= LEVEL_RANK['normal']) hasAccessible = true
     else hasInaccessible = true
     best = bestLevel(best, level)
   }
+  if (allCleared) return 'cleared'
   if (hasAccessible && hasInaccessible) return 'partial'
   return best
 }
