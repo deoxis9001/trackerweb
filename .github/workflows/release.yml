@@ -17,20 +17,10 @@ jobs:
           submodules: true
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
-      - name: Generate data, rules & changelog
-        run: |
-          python scripts/extract_tmc_data.py
-          python scripts/gen_rules.py
-          python scripts/gen_changelog.py
 
       - name: Install dependencies
         run: npm ci
@@ -64,20 +54,10 @@ jobs:
           submodules: true
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
-      - name: Generate data, rules & changelog
-        run: |
-          python scripts/extract_tmc_data.py
-          python scripts/gen_rules.py
-          python scripts/gen_changelog.py
 
       - name: Install & build
         run: |
