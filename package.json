@@ -4,15 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate": "py scripts/extract_tmc_data.py && py scripts/gen_rando_loc_keys.py --apply && py scripts/gen_rules.py && py scripts/gen_presets.py && py scripts/gen_preset_mapper.py && py generate_translations.py && node -e \"require('fs').copyFileSync('connector/bizhawk_tracker.lua','public/bizhawk_tracker.lua')\"",
-    "predev": "npm run generate",
     "dev": "vite",
-    "prebuild": "npm run generate",
     "build": "vite build",
     "build:ci": "vite build",
-    "prealpha": "npm run generate",
     "alpha": "vite build --mode alpha",
-    "predevbuild": "npm run generate",
     "devbuild": "vite build --mode dev",
     "build:all": "npm run build && npm run alpha && npm run devbuild",
     "all": "npm run build:all && npx serve dist -p 4173",
@@ -23,6 +18,8 @@
   "dependencies": {
     "archipelago.js": "^2.0.4",
     "bootstrap": "^5.3.8",
+    "fengari-web": "^0.1.4",
+    "js-yaml": "^4.2.0",
     "pinia": "^3.0.4",
     "vue": "^3.5.23",
     "vue-router": "^4.6.3"

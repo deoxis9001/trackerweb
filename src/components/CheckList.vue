@@ -2,8 +2,8 @@
 import { ref, computed } from 'vue'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
-import { computeAccessibility, buildInventory } from '../logic/accessibility'
 import { useLocale } from '../composables/useLocale'
+import LocationTreeNode from './LocationTreeNode.vue'
 
 const store    = useStateStore()
 const settings = useSettingsStore()
@@ -38,42 +38,44 @@ const STATUS_COLOR = {
   inaccessible: '#d82828',
 }
 
-const accessibility = computed(() => {
-  const inv = buildInventory(store)
-  return computeAccessibility(inv, settings)
-})
-
-function locColor(loc) {
-  if (store.isChecked(loc.id)) return '#3e2408'
-  return STATUS_COLOR[accessibility.value.get(loc.id)] ?? '#e03030'
+// Display names for dungeon keys (used as group headers when grouping by dungeon)
+const DUNGEON_LABELS = {
+  DWS: 'Deepwood Shrine',
+  CoF: 'Cave of Flames',
+  FoW: 'Fortress of Winds',
+  ToD: 'Temple of Droplets',
+  RC:  'Royal Crypt',
+  PoW: 'Palace of Winds',
+  DHC: 'Dark Hyrule Castle',
 }
 
+function locColor() { return '#d82828' }
 
 const visibleLocations = computed(() => {
-  return store.visibleLocations.filter(loc => {
-    if (loc.id == null) return false
-
-    // Search filter
-    const q = searchQuery.value.toLowerCase()
-    if (q && !loc.name.toLowerCase().includes(q) && !loc.region_name.toLowerCase().includes(q)) return false
-
-    // Pool filter
-    if (filterPool.value !== 'all' && !loc.pools.includes(filterPool.value)) return false
-
-    // Hide inaccessible unchecked unless setting enabled
-    if (!store.isChecked(loc.id) && !settings.showInaccessible) {
-      if (accessibility.value.get(loc.id) === 'inaccessible') return false
-    }
-
-    return true
-  })
+  let locs = store.visibleLocations
+  if (filterPool.value !== 'all') {
+    locs = locs.filter(l => l.pools?.includes(filterPool.value))
+  }
+  if (searchQuery.value.trim()) {
+    const q = searchQuery.value.trim().toLowerCase()
+    locs = locs.filter(l => tLocation(l.key, l.name).toLowerCase().includes(q))
+  }
+  return locs
 })
 
+// Group dungeon locations by dungeon key; overworld by region_key
 const groupedLocations = computed(() => {
   const groups = {}
   for (const loc of visibleLocations.value) {
-    const key = loc.region_key || loc.region_name || 'Unknown'
-    if (!groups[key]) groups[key] = { locs: [], fallback: loc.region_name || key }
+    let key, fallback
+    if (loc.dungeon) {
+      key      = '__dungeon__' + loc.dungeon
+      fallback = DUNGEON_LABELS[loc.dungeon] ?? loc.dungeon
+    } else {
+      key      = loc.region_key || loc.region_name || 'Unknown'
+      fallback = loc.region_name || key
+    }
+    if (!groups[key]) groups[key] = { locs: [], fallback }
     groups[key].locs.push(loc)
   }
   return Object.entries(groups)
@@ -81,11 +83,112 @@ const groupedLocations = computed(() => {
     .sort(([, , a], [, , b]) => a.localeCompare(b))
 })
 
-const collapsedRegions = ref(new Set())
+// ── Prefix tree ─────────────────────────────────────────────────────────────
 
-function toggleRegion(region) {
-  if (collapsedRegions.value.has(region)) collapsedRegions.value.delete(region)
-  else collapsedRegions.value.add(region)
+function buildPrefixTree(locs, keyPrefix = '', depth = 0) {
+  if (locs.length === 0) return null
+
+  const getDisplay = loc => loc._treeDisplay ?? loc.name
+
+  // Safety: empty display names → flat
+  if (locs.some(l => !getDisplay(l))) {
+    return {
+      nodeKey: keyPrefix || 'root',
+      label:   '',
+      leaves:  locs.map(loc => ({ loc, shortName: loc.name })),
+      children: [],
+    }
+  }
+
+  if (locs.length === 1) {
+    return {
+      nodeKey: (keyPrefix || 'root') + '_' + locs[0].id,
+      label:   '',
+      leaves:  [{ loc: locs[0], shortName: getDisplay(locs[0]) }],
+      children: [],
+    }
+  }
+
+  if (depth > 10) {
+    return {
+      nodeKey: keyPrefix || 'root',
+      label:   '',
+      leaves:  locs.map(loc => ({ loc, shortName: getDisplay(loc) })),
+      children: [],
+    }
+  }
+
+  const allWords = locs.map(loc => getDisplay(loc).split(' '))
+  const minLen   = Math.min(...allWords.map(w => w.length))
+
+  // Common prefix (leave at least 1 word different per location)
+  let commonLen = 0
+  for (let i = 0; i < minLen - 1; i++) {
+    if (allWords.every(w => w[i] === allWords[0][i])) commonLen++
+    else break
+  }
+
+  const label = allWords[0].slice(0, commonLen).join(' ')
+
+  // Group by first non-shared word
+  const grouped = new Map()
+  for (let i = 0; i < locs.length; i++) {
+    const remaining  = allWords[i].slice(commonLen)
+    const firstWord  = remaining[0] ?? ''
+    const afterFirst = remaining.slice(1).join(' ')
+    if (!grouped.has(firstWord)) grouped.set(firstWord, [])
+    grouped.get(firstWord).push({ loc: locs[i], afterFirst })
+  }
+
+  const leaves   = []
+  const children = []
+
+  for (const [firstWord, entries] of grouped) {
+    if (entries.length === 1) {
+      const { loc, afterFirst } = entries[0]
+      leaves.push({ loc, shortName: (firstWord + (afterFirst ? ' ' + afterFirst : '')).trim() })
+    } else {
+      const subLocs = entries.map(({ loc, afterFirst }) => ({
+        ...loc,
+        _treeDisplay: afterFirst || firstWord,
+      }))
+      const subKey  = (keyPrefix || 'root') + '_' + firstWord
+      const subtree = buildPrefixTree(subLocs, subKey, depth + 1)
+      if (subtree) {
+        children.push({
+          nodeKey:  subKey,
+          label:    (firstWord + (subtree.label ? ' ' + subtree.label : '')).trim(),
+          leaves:   subtree.leaves,
+          children: subtree.children,
+        })
+      }
+    }
+  }
+
+  return { nodeKey: keyPrefix || 'root', label, leaves, children }
+}
+
+const locationTrees = computed(() => {
+  const result = {}
+  for (const [key, locs] of groupedLocations.value) {
+    result[key] = buildPrefixTree(locs, key)
+  }
+  return result
+})
+
+// ── Region helpers ───────────────────────────────────────────────────────────
+
+const collapsedRegions = ref(new Set())
+const collapsedTreeKeys = ref(new Set())
+
+function toggleRegion(key) {
+  if (collapsedRegions.value.has(key)) collapsedRegions.value.delete(key)
+  else collapsedRegions.value.add(key)
+}
+
+function toggleTreeKey(nodeKey) {
+  if (collapsedTreeKeys.value.has(nodeKey)) collapsedTreeKeys.value.delete(nodeKey)
+  else collapsedTreeKeys.value.add(nodeKey)
 }
 
 function regionCheckedCount(locs) {
@@ -96,63 +199,8 @@ function onRightClickLoc(e, loc) {
   if (store.isChecked(loc.id)) store.toggleLocation(loc.id)
 }
 
-// ── Dungeon sub-area grouping ─────────────────────────────────────────────────
-function isFloorCode(w) {
-  return /^B\d+$/i.test(w) || /^\d+F$/i.test(w) || w === 'Sanc'
-}
-
-function parseSubArea(name, regionName) {
-  let rest = name
-  if (regionName && rest.startsWith(regionName + ' '))
-    rest = rest.slice(regionName.length + 1)
-  const words = rest.split(' ')
-  const fi = words.findIndex(isFloorCode)
-  if (fi >= 0) return {
-    subArea: words.slice(0, fi + 1).join(' '),
-    shortName: words.slice(fi + 1).join(' ') || rest,
-  }
-  return { subArea: null, shortName: rest }
-}
-
-function isDungeonRegion(locs) {
-  return locs.some(l => l.dungeon != null)
-}
-
-const dungeonSubAreas = computed(() => {
-  const result = {}
-  for (const [key, locs] of groupedLocations.value) {
-    if (!isDungeonRegion(locs)) continue
-    const grouped = new Map()
-    const flat = []
-    for (const loc of locs) {
-      const { subArea } = parseSubArea(loc.name, loc.region_name)
-      if (subArea != null) {
-        if (!grouped.has(subArea)) grouped.set(subArea, [])
-        grouped.get(subArea).push(loc)
-      } else {
-        flat.push(loc)
-      }
-    }
-    result[key] = {
-      groups: [...grouped.entries()].map(([name, ls]) => ({ name, locs: ls })),
-      flat,
-    }
-  }
-  return result
-})
-
-function shortLocName(locName, regionName) {
-  return parseSubArea(locName, regionName).shortName
-}
-
-const collapsedSubAreas = ref(new Set())
-function toggleSubArea(key) {
-  if (collapsedSubAreas.value.has(key)) collapsedSubAreas.value.delete(key)
-  else collapsedSubAreas.value.add(key)
-}
-
-const totalVisible  = computed(() => visibleLocations.value.length)
-const totalChecked  = computed(() => visibleLocations.value.filter(l => store.isChecked(l.id)).length)
+const totalVisible = computed(() => visibleLocations.value.length)
+const totalChecked = computed(() => visibleLocations.value.filter(l => store.isChecked(l.id)).length)
 </script>
 
 <template>
@@ -179,62 +227,33 @@ const totalChecked  = computed(() => visibleLocations.value.filter(l => store.is
 
         <div v-if="!collapsedRegions.has(key)" class="region-locations">
 
-          <!-- Dungeon: sub-area grouping (désactivé si recherche active) -->
-          <template v-if="dungeonSubAreas[key] && !searchQuery">
+          <!-- Tree view when no active search -->
+          <LocationTreeNode
+            v-if="!searchQuery && locationTrees[key]"
+            :node="locationTrees[key]"
+            :is-root="true"
+            :depth="0"
+            :collapsed-keys="collapsedTreeKeys"
+            :toggle-collapse="toggleTreeKey"
+            :loc-color="locColor"
+            :is-checked="(id) => store.isChecked(id)"
+            :toggle-location="(id) => store.toggleLocation(id)"
+            :on-right-click="onRightClickLoc"
+            :t-location="tLocation"
+          />
 
-            <!-- Locations sans code de floor (Boss, Prize…) -->
-            <div
-              v-for="loc in dungeonSubAreas[key].flat"
-              :key="loc.id"
-              :class="['location-row', store.isChecked(loc.id) && 'checked']"
-              @click="!store.isChecked(loc.id) && store.toggleLocation(loc.id)"
-              @contextmenu="onRightClickLoc($event, loc)"
-            >
-              <span class="check-dot" :style="{ color: locColor(loc) }">●</span>
-              <span class="loc-name">{{ tLocation(loc.key, shortLocName(loc.name, loc.region_name)) }}</span>
-              <span v-if="loc.pools.length" class="loc-pools">{{ loc.pools.slice(0,2).join(', ') }}</span>
-            </div>
-
-            <!-- Sous-groupes par étage -->
-            <div
-              v-for="sg in dungeonSubAreas[key].groups"
-              :key="sg.name"
-              class="subarea-group"
-            >
-              <div class="subarea-header" @click="toggleSubArea(key + ':' + sg.name)">
-                <span class="subarea-toggle">{{ collapsedSubAreas.has(key + ':' + sg.name) ? '▶' : '▼' }}</span>
-                <span class="subarea-name">{{ sg.name }}</span>
-                <span class="subarea-count">{{ regionCheckedCount(sg.locs) }}/{{ sg.locs.length }}</span>
-              </div>
-              <div v-if="!collapsedSubAreas.has(key + ':' + sg.name)" class="subarea-locs">
-                <div
-                  v-for="loc in sg.locs"
-                  :key="loc.id"
-                  :class="['location-row', 'location-row--sub', store.isChecked(loc.id) && 'checked']"
-                  @click="!store.isChecked(loc.id) && store.toggleLocation(loc.id)"
-                  @contextmenu="onRightClickLoc($event, loc)"
-                >
-                  <span class="check-dot" :style="{ color: locColor(loc) }">●</span>
-                  <span class="loc-name">{{ tLocation(loc.key, shortLocName(loc.name, loc.region_name)) }}</span>
-                  <span v-if="loc.pools.length" class="loc-pools">{{ loc.pools.slice(0,2).join(', ') }}</span>
-                </div>
-              </div>
-            </div>
-
-          </template>
-
-          <!-- Non-donjon ou recherche active : liste plate avec nom complet -->
+          <!-- Flat list when search is active -->
           <template v-else>
             <div
               v-for="loc in locs"
               :key="loc.id"
               :class="['location-row', store.isChecked(loc.id) && 'checked']"
               @click="!store.isChecked(loc.id) && store.toggleLocation(loc.id)"
-              @contextmenu="onRightClickLoc($event, loc)"
+              @contextmenu.prevent="onRightClickLoc($event, loc)"
             >
               <span class="check-dot" :style="{ color: locColor(loc) }">●</span>
               <span class="loc-name">{{ tLocation(loc.key, loc.name) }}</span>
-              <span v-if="loc.pools.length" class="loc-pools">{{ loc.pools.slice(0,2).join(', ') }}</span>
+              <span v-if="loc.pools.length" class="loc-pools">{{ loc.pools.slice(0, 2).join(', ') }}</span>
             </div>
           </template>
 
@@ -313,6 +332,7 @@ const totalChecked  = computed(() => visibleLocations.value.filter(l => store.is
 
 .region-locations { padding: 2px 0; }
 
+/* Flat search results */
 .location-row {
   display: flex;
   align-items: center;
@@ -323,30 +343,11 @@ const totalChecked  = computed(() => visibleLocations.value.filter(l => store.is
   color: var(--text);
   transition: background 0.1s;
 }
-.location-row:hover { background: rgba(255,255,255,0.04); }
+.location-row:hover { background: rgba(255, 255, 255, 0.04); }
 .location-row.checked { color: var(--text-muted); }
 .location-row.checked .loc-name { text-decoration: line-through; }
 
 .check-dot { font-size: 9px; flex-shrink: 0; }
 .loc-name  { flex: 1; }
 .loc-pools { font-size: 10px; color: var(--text-muted); white-space: nowrap; }
-
-.subarea-group { margin-bottom: 1px; }
-.subarea-header {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3px 10px 3px 20px;
-  background: rgba(0,0,0,0.18);
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-muted);
-  user-select: none;
-}
-.subarea-header:hover { background: rgba(255,255,255,0.03); }
-.subarea-toggle { font-size: 9px; width: 10px; }
-.subarea-name   { flex: 1; }
-.subarea-count  { font-size: 10px; }
-.location-row--sub { padding-left: 32px; }
 </style>

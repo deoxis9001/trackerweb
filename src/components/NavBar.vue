@@ -3,8 +3,6 @@ import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
-import { disconnectFromAP, resyncFromAP } from '../archipelago/client'
-import ArchipelagoLogo from './ArchipelagoLogo.vue'
 import { useLocale } from '../composables/useLocale'
 
 const store    = useStateStore()
@@ -49,12 +47,7 @@ function assignEntrance(slot, target) {
 }
 
 function handleReset() {
-  if (store.apConnected) {
-    resyncFromAP()
-  } else {
-    disconnectFromAP()
-    store.resetTracker()
-  }
+  store.resetTracker()
 }
 
 function openBroadcastItems() {
@@ -90,34 +83,6 @@ function openBroadcastItems() {
       <span class="brand-text">TMC Tracker</span>
     </div>
 
-    <div class="map-tabs">
-      <button
-        :class="['tab', store.activeView === 'overworld' && 'active']"
-        @click="goToTracker(); store.setActiveView('overworld')"
-      >{{ t('navbar.overworld') }}</button>
-      <div
-        v-for="dungeon in store.dungeonRegions"
-        :key="dungeon"
-        class="dungeon-tab-wrap"
-      >
-        <button
-          :class="['tab', (settings.dungeonEntranceShuffle ? store.dungeonEntranceMap[dungeon] && store.activeView === store.dungeonEntranceMap[dungeon] : store.activeView === dungeon) && 'active', settings.dungeonEntranceShuffle && store.dungeonEntranceMap[dungeon] && 'mapped']"
-          @click="onDungeonTabClick(dungeon)"
-          @contextmenu="onDungeonTabRightClick($event, dungeon)"
-        >
-          {{ dungeon }}<template v-if="settings.dungeonEntranceShuffle && store.dungeonEntranceMap[dungeon]">→{{ store.dungeonEntranceMap[dungeon] }}</template>
-        </button>
-        <div v-if="entrancePicker === dungeon" class="entrance-picker">
-          <button
-            v-for="d in store.dungeonRegions"
-            :key="d"
-            :class="['ep-btn', { active: store.dungeonEntranceMap[dungeon] === d }]"
-            @click="assignEntrance(dungeon, d)"
-          >{{ d }}</button>
-        </div>
-      </div>
-    </div>
-
     <div class="panel-tabs">
       <button
         :class="['tab', store.activePanel === 'map' && 'active']"
@@ -133,16 +98,10 @@ function openBroadcastItems() {
 
     <div class="ap-status">
       <button class="tab reset-btn" @click="handleReset()">{{ t('navbar.reset') }}</button>
-      <ArchipelagoLogo :size="22" :active="store.apConnected" :title="store.apConnected ? t('navbar.connected') : t('navbar.offline')"/>
     </div>
 
     <div class="nav-right">
       <button class="settings-btn" @click="openBroadcastItems()" title="Broadcast items">{{ t('navbar.items_broadcast') }}</button>
-      <button
-        :class="['settings-btn', store.showApPanel && 'active']"
-        @click="store.showApPanel = !store.showApPanel"
-        title="Archipelago"
-      >{{ t('navbar.ap') }}</button>
       <button
         :class="['settings-btn', store.showFaq && 'active']"
         @click="store.showFaq = !store.showFaq"

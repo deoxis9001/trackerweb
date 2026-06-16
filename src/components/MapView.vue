@@ -1,22 +1,32 @@
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 
+const props = defineProps({ mapId: { type: String, default: null } })
+
 const isDev = import.meta.env.DEV
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
-import { computeAccessibility, buildInventory } from '../logic/accessibility'
 import { ITEM_IMAGES } from '../metadata/itemImages'
 import ItemNotePicker from './ItemNotePicker.vue'
-import { useLocale } from '../composables/useLocale'
-const overworldAreaModules = import.meta.glob('../../data/map_coords_overworld_*.json', { eager: true })
+import fusionDataRaw from '../../SubModule/tmcrando_maptracker_deoxis/items/items/fusion.json'
 
-import dungeonCoordsDws from '../../data/map_coords_dungeons_dws.json'
-import dungeonCoordsCof from '../../data/map_coords_dungeons_cof.json'
-import dungeonCoordsRc  from '../../data/map_coords_dungeons_rc.json'
-import dungeonCoordsFow from '../../data/map_coords_dungeons_fow.json'
-import dungeonCoordsTod from '../../data/map_coords_dungeons_tod.json'
-import dungeonCoordsPow from '../../data/map_coords_dungeons_pow.json'
-import dungeonCoordsDhc from '../../data/map_coords_dungeons_dhc.json'
+const FUSION_MAP = {}
+for (const item of fusionDataRaw) {
+  FUSION_MAP[item.codes] = { img: item.img, fused_img: item.disabled_img }
+}
+import { useLocale } from '../composables/useLocale'
+import { evalRules } from '../logic/visibilityRules'
+import { evaluateRules, locationAccessibility } from '../logic/accessibility'
+import { prepareProvider } from '../logic/itemProvider'
+import { callLuaFunction } from '../logic/luaEngine'
+const overworldAreaModules = {}
+const dungeonCoordsDws = []
+const dungeonCoordsCof = []
+const dungeonCoordsRc  = []
+const dungeonCoordsFow = []
+const dungeonCoordsTod = []
+const dungeonCoordsPow = []
+const dungeonCoordsDhc = []
 
 const state    = useStateStore()
 const settings = useSettingsStore()
@@ -224,15 +234,66 @@ onUnmounted(() => {
   window.removeEventListener('click',     closePopup)
 })
 
-// ── Accessibility computation ─────────────────────────────────────────────────
+function levelToPinStatus(level) {
+  if (level === 'normal')                        return 'accessible'
+  if (level === 'sequence-break' || level === 'partial') return 'out_of_logic'
+  if (level === 'cleared')                       return 'checked'
+  return 'inaccessible'
+}
+
 const accessibility = computed(() => {
-  const inv          = buildInventory(state)
-  const entranceMap  = settings.dungeonEntranceShuffle ? state.dungeonEntranceMap : {}
-  return computeAccessibility(inv, settings, entranceMap)
+  // Establish Vue reactive dependencies on settings that feed into Lua has() calls
+  void settings.randoDefines  // LogicSettingsTab writes here (defines → fusion, warps, crests, etc.)
+  void settings.redFusionAccess; void settings.greenFusionAccess
+  void settings.blueFusionAccess; void settings.goldFusionAccess
+  void settings.windCrestCrenel; void settings.windCrestFalls; void settings.windCrestClouds
+  void settings.windCrestCastor; void settings.windCrestSouthField; void settings.windCrestMinishWoods
+  void settings.warpDWS; void settings.warpCoF; void settings.warpFoW
+  void settings.warpToD; void settings.warpPoW; void settings.warpDHC
+  void settings.tricks
+  void settings.dungeonEntranceShuffle; void JSON.stringify(state.dungeonEntranceMap)
+  // Force deep tracking of all manual/autotrack items — items gated behind false conditions
+  // are never read by Lua (short-circuit and), so we must establish the dependency here.
+  void JSON.stringify(state.manualItems)
+  void JSON.stringify(state.autotrackItems)
+  try {
+    const provider = prepareProvider(state, settings)
+    const map    = new Map()
+    const secMap = new Map()
+
+    for (const loc of state.allLocations) {
+      const sections = (loc.sections || []).filter(s => evalRules(s.visibility_rules, settings))
+      if (sections.length === 0) {
+        map.set(loc.id, 'accessible')
+        continue
+      }
+      const level = locationAccessibility(sections, (sec) => {
+        const remaining = (sec.item_count ?? 1) -
+          (state.checkedSections[state.sectionKey(loc.name, sec.name)] ?? 0)
+        const secLevel = remaining <= 0 ? 'cleared' : evaluateRules(sec.access_rules, provider)
+        secMap.set(`${loc.id}/${sec.name}`, secLevel)
+        return secLevel
+      })
+      map.set(loc.id, levelToPinStatus(level))
+    }
+
+    return {
+      get:        (id)           => map.get(id)              ?? 'inaccessible',
+      getSection: (id, secName) => secMap.get(`${id}/${secName}`) ?? 'inaccessible',
+    }
+  } catch (e) {
+    console.error('[accessibility]', e)
+    return { get: () => 'accessible', getSection: () => 'accessible' }
+  }
 })
+
+function secDotColor(locId, secName) {
+  return secLevelColor(accessibility.value.getSection(locId, secName))
+}
 
 // ── Map name + floor selection ────────────────────────────────────────────────
 const mapName = computed(() => {
+  if (props.mapId !== null) return props.mapId
   if (state.activeView === 'overworld') return 'map'
   return DUNGEON_MAP_NAMES[state.activeView] || 'map'
 })
@@ -241,15 +302,21 @@ const currentFloor = ref(null)
 
 const availableFloors = computed(() => DUNGEON_FLOORS[mapName.value] ?? [])
 
-watch(() => state.activeView, (view) => {
+watch([() => state.activeView, () => props.mapId], () => {
   resetView()
-  const dname = DUNGEON_MAP_NAMES[view]
-  currentFloor.value = dname ? (DUNGEON_FLOORS[dname]?.[0] ?? null) : null
-  if (view === 'overworld') currentArea.value = state.activeZone ?? null
+  const floors = DUNGEON_FLOORS[mapName.value]
+  currentFloor.value = floors ? floors[0] : null
+  currentArea.value = (mapName.value === 'map' && props.mapId === null) ? (state.activeZone ?? null) : null
 }, { immediate: true })
 
+watch(() => state.bizhawkFloor, (floor) => {
+  if (floor && useFloors.value && availableFloors.value.includes(floor)) {
+    setFloor(floor)
+  }
+})
+
 watch(() => state.activeZone, (zone) => {
-  if (state.activeView === 'overworld') {
+  if (props.mapId === null && state.activeView === 'overworld') {
     currentArea.value = zone
     resetView()
   }
@@ -269,6 +336,8 @@ function setArea(area) {
 }
 
 // ── Map image path ────────────────────────────────────────────────────────────
+const MAP_IMG_NAME = { mines: 'mine' }
+
 const mapSrc = computed(() => {
   const base = import.meta.env.BASE_URL
   if (mapName.value === 'map') {
@@ -276,7 +345,8 @@ const mapSrc = computed(() => {
     return `${base}images/maps/overworld.png`
   }
   if (useFloors.value && currentFloor.value) return `${base}images/maps/dungeons/${mapName.value}/${currentFloor.value}.png`
-  return `${base}images/maps/${mapName.value}.png`
+  const imgName = MAP_IMG_NAME[mapName.value] ?? mapName.value
+  return `${base}images/maps/${imgName}.png`
 })
 
 // ── Coord indexes ─────────────────────────────────────────────────────────────
@@ -296,6 +366,7 @@ for (const [dname, raw] of Object.entries(DUNGEON_COORDS_RAW)) {
 // ── Build pin groups ──────────────────────────────────────────────────────────
 const pins = computed(() => {
   if (!fittedW.value) return []
+  const _acc = accessibility.value  // ensure provider is initialized before visibility filter
 
   const scaleX   = fittedW.value / naturalW.value
   const scaleY   = fittedH.value / naturalH.value
@@ -312,34 +383,22 @@ const pins = computed(() => {
   for (const [slot, dungeon] of Object.entries(entranceMap)) dungeonToSlot[dungeon] = slot
 
 
+  // map name used in map_locations data (mines image = mine.png but data key = mines)
+  const MAP_DATA_NAME = { map: 'map', mines: 'mines' }
+  const dataMapKey = MAP_DATA_NAME[dname] ?? dname
+
   const byCoord = {}
   for (const loc of state.visibleLocations) {
     if (loc.id == null) continue
+    if (loc.sections?.length > 0 && !(loc.sections).some(s => evalRules(s.visibility_rules, settings))) continue
 
-    // With entrance shuffle: hide dungeon locations whose dungeon has no assigned entrance slot
-    if (entranceShuffle && loc.dungeon && !assignedDungeons.has(loc.dungeon)) continue
+    const mapLocs = loc.map_locations || []
+    let candidates = mapLocs.filter(ml => ml.map === dataMapKey)
+    if (!candidates.length) continue
 
-    let coordList
-    if (!isDungeon && currentArea.value) {
-      // Overworld area zoom
-      const byId = areaCoordById[currentArea.value] || {}
-      coordList = (byId[loc.id] || []).map(c => ({ ...c, map: 'area' }))
-    } else if (!isDungeon) {
-      if (entranceShuffle && loc.dungeon && dungeonToSlot[loc.dungeon]) {
-        // Show dungeon checks at the entrance slot's overworld position
-        const slot = dungeonToSlot[loc.dungeon]
-        const slotCoord = DUNGEON_ENTRANCE_COORDS[slot]
-        coordList = slotCoord ? [{ ...slotCoord, _slot: slot }] : []
-      } else {
-        coordList = overworldCoordById[loc.id] || []
-      }
-    } else if (useFloors.value) {
-      const byId = dungeonCoordById[dname] || {}
-      coordList = (byId[loc.id] || []).filter(c => c.map === floor && c.x > 0 && c.y > 0)
-    } else {
-      // overview mode: use map_coords.json dungeon entries
-      coordList = (coordsByIdAll[loc.id] || []).filter(c => c.map === dname)
-    }
+    const coordList = candidates
+      .filter(ml => evalRules(ml.restrict_visibility_rules, settings, n => callLuaFunction(n).count > 0))
+      .filter(ml => ml.x > 0 && ml.y > 0)
 
     for (const coord of coordList) {
       const key = `${coord.x}:${coord.y}`
@@ -388,20 +447,27 @@ const pins = computed(() => {
   return [...regularPins, ...doorPins]
 })
 
+const doorPinsList    = computed(() => pins.value.filter(p => p.isDoor))
+const regularPinsList = computed(() => pins.value.filter(p => !p.isDoor))
+
 function pinSegments(locs) {
   const unchecked = locs.filter(l => !state.isChecked(l.id))
   if (unchecked.length === 0) return [{ status: 'checked' }]
 
-  const order = ['accessible', 'out_of_logic', 'inaccessible']
-  const counts = { accessible: 0, out_of_logic: 0, inaccessible: 0 }
+  const order  = ['accessible', 'out_of_logic', 'inaccessible', 'checked']
+  const counts = { accessible: 0, out_of_logic: 0, inaccessible: 0, checked: 0 }
   for (const l of unchecked) counts[accessibility.value.get(l.id) ?? 'inaccessible']++
 
   return order.filter(s => counts[s] > 0).map(status => ({ status }))
 }
 
+function isFusionOnly(locs) {
+  return locs.every(l => (l.sections || []).length > 0 && (l.sections || []).every(s => s.hosted_item))
+}
+
 function pinType(locs) {
-  if (locs.some(l => l.name.includes('Fused')))  return 'fused'
-  if (locs.every(l => l.dungeon !== null))        return 'dungeon'
+  if (locs.some(l => l.dungeon != null)) return 'dungeon'
+  if (isFusionOnly(locs)) return 'fused'
   return 'location'
 }
 
@@ -409,21 +475,55 @@ function dungeonPath(x, y) {
   return `M ${x-7},${y+7} H ${x+7} V ${y} A 7,7 0 0 0 ${x-7},${y} Z`
 }
 
+function pinOpacity(pin) {
+  if (pin.allChecked) return 0.4
+  if (pin.segments.length === 1 && pin.segments[0].status === 'checked') return 0.5
+  return 0.9
+}
+
 const PIN_COLOR = {
   accessible:   '#7ac038',
   out_of_logic: '#d4901a',
   inaccessible: '#d82828',
-  checked:      '#3e2408',
+  checked:      '#606060',
+}
+
+const SEC_DOT_COLOR = {
+  accessible:   '#7ac038',
+  out_of_logic: '#d4901a',
+  inaccessible: '#d82828',
+  cleared:      '#4488cc',
+}
+
+function secLevelColor(rawLevel) {
+  if (rawLevel === 'normal')                                             return SEC_DOT_COLOR.accessible
+  if (rawLevel === 'sequence-break' || rawLevel === 'partial'
+    || rawLevel === 'inspect')                                           return SEC_DOT_COLOR.out_of_logic
+  if (rawLevel === 'cleared')                                            return SEC_DOT_COLOR.cleared
+  return SEC_DOT_COLOR.inaccessible
 }
 
 function noteImgSrcForLocs(locs) {
   for (const loc of locs) {
-    const key = state.locationNotes[loc.id] ?? state.apLocationItems[loc.id]
-    if (!key) continue
-    const img = ITEM_IMAGES[key]
-    if (!img) continue
-    const file = Array.isArray(img) ? img[0] : img
-    return `${import.meta.env.BASE_URL}images/items/${file}`
+    // Note de localisation (annotée manuellement)
+    const key = state.locationNotes[loc.id]
+    if (key) {
+      const img = ITEM_IMAGES[key]
+      if (img) {
+        const file = Array.isArray(img) ? img[0] : img
+        return `${import.meta.env.BASE_URL}images/items/${file}`
+      }
+    }
+    // Item sélectionné via picker sur une section capture
+    for (const sec of (loc.sections || [])) {
+      if (!sec.capture_item) continue
+      const secNote = state.locationNotes[state.sectionKey(loc.name, sec.name)]
+      if (!secNote) continue
+      const img = ITEM_IMAGES[secNote]
+      if (!img) continue
+      const file = Array.isArray(img) ? img[0] : img
+      return `${import.meta.env.BASE_URL}images/items/${file}`
+    }
   }
   return null
 }
@@ -624,13 +724,87 @@ function openNotePicker(e, pin) {
 function onNoteSelect(key) {
   if (!notePickerPin.value) return
   for (const loc of notePickerPin.value.locs) state.setLocationNote(loc.id, key)
+  if (notePickerPin.value._captureContext) {
+    const { loc, sec } = notePickerPin.value._captureContext
+    state.setSectionCleared(loc.name, sec.name, 1)
+  }
   notePickerPin.value = null
 }
 
 function onNoteClear() {
   if (!notePickerPin.value) return
   for (const loc of notePickerPin.value.locs) state.clearLocationNote(loc.id)
+  if (notePickerPin.value._captureContext) {
+    const { loc, sec } = notePickerPin.value._captureContext
+    state.setSectionCleared(loc.name, sec.name, 0)
+  }
   notePickerPin.value = null
+}
+
+function toggleGroupPin(group) {
+  const anyPinned = group.locs.some(l => state.isPinned(l.name))
+  for (const loc of group.locs) {
+    if (anyPinned) state.unpinLocation(loc.name)
+    else           state.pinLocation(loc.name)
+  }
+}
+
+// ── Section-based popup (new overworld mode) ──────────────────────────────────
+
+const BASE_URL = import.meta.env.BASE_URL
+
+function secRemaining(loc, sec) {
+  const cleared = state.checkedSections[state.sectionKey(loc.name, sec.name)] ?? 0
+  return (sec.item_count ?? 1) - cleared
+}
+
+function secImg(loc, sec) {
+  const img = secRemaining(loc, sec) <= 0 ? sec.chest_opened_img : sec.chest_unopened_img
+  return img ? `${BASE_URL}${img}` : null
+}
+
+function secFusionImg(loc, sec) {
+  const entry = FUSION_MAP[sec.hosted_item]
+  if (!entry) return null
+  // à faire → kinstone colorée (illuminée) ; fait → kinstone grise (éteinte)
+  return `${BASE_URL}${secRemaining(loc, sec) <= 0 ? entry.img : entry.fused_img}`
+}
+
+function captureNoteImg(loc, sec) {
+  const key = state.locationNotes[state.sectionKey(loc.name, sec.name)]
+  if (!key) return null
+  const img = ITEM_IMAGES[key]
+  if (!img) return null
+  const file = Array.isArray(img) ? img[0] : img
+  return `${BASE_URL}images/items/${file}`
+}
+
+function isLocCleared(loc) {
+  return (loc.sections || []).every(sec => secRemaining(loc, sec) <= 0)
+}
+
+function collectOneSec(loc, sec) { state.stepSection(loc.name, sec.name,  1, sec.item_count ?? 1) }
+function returnOneSec(loc, sec)  { state.stepSection(loc.name, sec.name, -1, sec.item_count ?? 1) }
+function toggleCaptureSec(loc, sec) { state.toggleSection(loc.name, sec.name, 1) }
+
+function openCapturePicker(e, loc, sec) {
+  e.stopPropagation()
+  notePickerPin.value = {
+    locs: [{ id: state.sectionKey(loc.name, sec.name), name: sec.name }],
+    _captureContext: { loc, sec },
+  }
+  notePickerPos.value = { x: e.clientX, y: e.clientY }
+}
+
+function clearCaptureSec(e, loc, sec) {
+  e.preventDefault()
+  state.clearLocationNote(state.sectionKey(loc.name, sec.name))
+  state.setSectionCleared(loc.name, sec.name, 0)
+}
+
+function toggleLocPin(loc) {
+  if (state.isPinned(loc.name)) state.unpinLocation(loc.name)
+  else                          state.pinLocation(loc.name)
 }
 
 </script>
@@ -638,22 +812,8 @@ function onNoteClear() {
 <template>
   <div class="map-view">
 
-    <!-- Overworld area selector -->
-    <div v-if="state.activeView === 'overworld'" class="floor-selector">
-      <button
-        :class="['floor-btn', { active: currentArea === null }]"
-        @click.stop="setArea(null)"
-      >Full Map</button>
-      <button
-        v-for="area in OVERWORLD_AREAS"
-        :key="area"
-        :class="['floor-btn', { active: currentArea === area }]"
-        @click.stop="setArea(area)"
-      >{{ AREA_LABELS[area] }}</button>
-    </div>
-
     <!-- Floor selector (dungeons only, when mode = étage) -->
-    <div v-else-if="useFloors && availableFloors.length > 1" class="floor-selector">
+    <div v-if="useFloors && availableFloors.length > 1" class="floor-selector">
       <button
         v-for="floor in availableFloors"
         :key="floor"
@@ -696,7 +856,7 @@ function onNoteClear() {
           <defs></defs>
           <!-- Door pins (entrance shuffle, unassigned) -->
           <g
-            v-for="pin in pins.filter(p => p.isDoor)"
+            v-for="pin in doorPinsList"
             :key="`door-${pin.slot}`"
             class="pin-group"
             @mouseenter="showTooltip($event, pin)"
@@ -709,7 +869,7 @@ function onNoteClear() {
           </g>
 
           <g
-            v-for="pin in pins.filter(p => !p.isDoor)"
+            v-for="pin in regularPinsList"
             :key="`${pin.x}:${pin.y}`"
             class="pin-group"
             @click="openPinPopup($event, pin)"
@@ -720,7 +880,7 @@ function onNoteClear() {
             <defs>
               <clipPath :id="`pc-${pin.x}-${pin.y}`">
                 <rect
-                  v-if="state.activeView !== 'overworld' || pin.type === 'location'"
+                  v-if="mapName !== 'map' || pin.type === 'location'"
                   :x="pin.x - 7" :y="pin.y - 7" width="14" height="14"
                 />
                 <circle
@@ -731,7 +891,7 @@ function onNoteClear() {
               </clipPath>
             </defs>
 
-            <g :clip-path="`url(#pc-${pin.x}-${pin.y})`" :opacity="pin.allChecked ? 0.4 : 0.9">
+            <g :clip-path="`url(#pc-${pin.x}-${pin.y})`" :opacity="pinOpacity(pin)">
               <template v-if="pin.segments.length === 3">
                 <polygon
                   :points="`${pin.x},${pin.y} ${pin.x},${pin.y-30} ${pin.x+26},${pin.y+15}`"
@@ -765,24 +925,24 @@ function onNoteClear() {
             </g>
 
             <rect
-              v-if="state.activeView !== 'overworld' || pin.type === 'location'"
+              v-if="mapName !== 'map' || pin.type === 'location'"
               :x="pin.x - 7" :y="pin.y - 7" width="14" height="14"
               fill="none" stroke="#000" stroke-width="1.5"
-              :opacity="pin.allChecked ? 0.4 : 0.9"
+              :opacity="pinOpacity(pin)"
               class="pin"
             />
             <circle
               v-else-if="pin.type === 'fused'"
               :cx="pin.x" :cy="pin.y" r="7"
               fill="none" stroke="#000" stroke-width="1.5"
-              :opacity="pin.allChecked ? 0.4 : 0.9"
+              :opacity="pinOpacity(pin)"
               class="pin"
             />
             <path
               v-else
               :d="dungeonPath(pin.x, pin.y)"
               fill="none" stroke="#000" stroke-width="1.5"
-              :opacity="pin.allChecked ? 0.4 : 0.9"
+              :opacity="pinOpacity(pin)"
               class="pin"
             />
 
@@ -804,7 +964,6 @@ function onNoteClear() {
               width="12"
               height="12"
               pointer-events="none"
-              style="image-rendering: pixelated"
             />
           </g>
         </svg>
@@ -839,7 +998,7 @@ function onNoteClear() {
             :class="['popup-row', { 'popup-row--checked': state.isChecked(loc.id) }]"
             @click="state.toggleLocation(loc.id)"
           >
-            <span class="popup-dot" :style="{ background: PIN_COLOR[state.isChecked(loc.id) ? 'checked' : (accessibility.get(loc.id) ?? 'inaccessible')] }"></span>
+            <span class="popup-dot" :style="{ background: PIN_COLOR[state.isChecked(loc.id) ? 'checked' : (accessibility.value.get(loc.id) ?? 'inaccessible')] }"></span>
             <span class="popup-name">{{ tLocation(loc.key, shortPopupName(loc.name, popupSubAreas.regionName)) }}</span>
             <span v-if="state.isChecked(loc.id)" class="popup-check">✓</span>
             <button :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs([loc]) }]"
@@ -866,7 +1025,7 @@ function onNoteClear() {
                 :class="['popup-row', 'popup-row--sub', { 'popup-row--checked': state.isChecked(loc.id) }]"
                 @click="state.toggleLocation(loc.id)"
               >
-                <span class="popup-dot" :style="{ background: PIN_COLOR[state.isChecked(loc.id) ? 'checked' : (accessibility.get(loc.id) ?? 'inaccessible')] }"></span>
+                <span class="popup-dot" :style="{ background: PIN_COLOR[state.isChecked(loc.id) ? 'checked' : (accessibility.value.get(loc.id) ?? 'inaccessible')] }"></span>
                 <span class="popup-name">{{ tLocation(loc.key, shortPopupName(loc.name, popupSubAreas.regionName)) }}</span>
                 <span v-if="state.isChecked(loc.id)" class="popup-check">✓</span>
                 <button :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs([loc]) }]"
@@ -879,25 +1038,73 @@ function onNoteClear() {
 
         </template>
 
-        <!-- Mode normal (overworld, fusions, etc.) -->
+        <!-- Mode normal (overworld) : affichage par section -->
         <template v-else>
           <div
-            v-for="group in popupGroups"
-            :key="group.name"
-            :class="['popup-row', { 'popup-row--checked': group.checked === group.total }]"
-            @click="toggleGroup(group)"
+            v-for="loc in clickedPin.locs.filter(l => (l.sections || []).some(s => evalRules(s.visibility_rules, settings)))"
+            :key="loc.id"
+            :class="['popup-loc-block', { 'loc-cleared': isLocCleared(loc) }]"
           >
-            <span class="popup-dot" :style="{ background: PIN_COLOR[group.status] }"></span>
-            <span class="popup-name">{{ group.name }}</span>
-            <span v-if="group.total > 1" class="popup-count">{{ group.checked }}/{{ group.total }}</span>
-            <span v-else-if="group.checked === 1" class="popup-check">✓</span>
-            <button
-              :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs(group.locs) }]"
-              @click.stop="openNotePicker($event, { locs: group.locs })"
-              title="Annoter un item"
+
+            <!-- Titre location -->
+            <div class="popup-loc-header">
+              <span class="popup-loc-name">{{ tLocation(loc.key, loc.name) }}</span>
+              <button
+                :class="['popup-pin-btn', { 'is-pinned': state.isPinned(loc.name) }]"
+                @click.stop="toggleLocPin(loc)"
+                title="Épingler"
+              >📌</button>
+            </div>
+
+            <!-- Sections -->
+            <div
+              v-for="sec in (loc.sections || []).filter(s => evalRules(s.visibility_rules, settings))"
+              :key="sec.name"
+              class="popup-sec-row"
             >
-              <img v-if="noteImgSrcForLocs(group.locs)" :src="noteImgSrcForLocs(group.locs)" class="popup-note-img" />
-            </button>
+              <div class="sec-controls">
+
+                <!-- Fusion (hosted_item) : kinstone toggle -->
+                <div
+                  v-if="sec.hosted_item"
+                  :class="['sec-chest-btn', { 'sec-fusion-done': secRemaining(loc, sec) <= 0 }]"
+                  @click.stop="toggleCaptureSec(loc, sec)"
+                >
+                  <img v-if="secFusionImg(loc, sec)" :src="secFusionImg(loc, sec)" class="sec-chest-img" />
+                </div>
+
+                <!-- Capture item : picker box + image fixe -->
+                <template v-else-if="sec.capture_item">
+                  <div
+                    :class="['capture-picker-box', { done: captureNoteImg(loc, sec) }]"
+                    @click.stop="openCapturePicker($event, loc, sec)"
+                  >
+                    <img v-if="captureNoteImg(loc, sec)" :src="captureNoteImg(loc, sec)" class="capture-picked-img" />
+                  </div>
+                  <div v-if="sec.chest_unopened_img" class="sec-chest-btn sec-item-icon">
+                    <img :src="`${BASE_URL}${sec.chest_unopened_img}`" class="sec-chest-img" />
+                  </div>
+                </template>
+
+                <!-- Coffre standard -->
+                <div
+                  v-else
+                  class="sec-chest-btn"
+                  @click.stop="collectOneSec(loc, sec)"
+                  @contextmenu.prevent="returnOneSec(loc, sec)"
+                >
+                  <img v-if="secImg(loc, sec)" :src="secImg(loc, sec)" class="sec-chest-img" />
+                  <span
+                    v-if="(sec.item_count ?? 1) > 1 && secRemaining(loc, sec) > 0"
+                    class="sec-chest-count"
+                  >{{ secRemaining(loc, sec) }}</span>
+                </div>
+
+              </div>
+              <span class="sec-label">{{ sec.name }}</span>
+              <span class="sec-dot" :style="{ background: secDotColor(loc.id, sec.name) }"></span>
+            </div>
+
           </div>
         </template>
 
@@ -1153,6 +1360,202 @@ function onNoteClear() {
   width: 14px;
   height: 14px;
   object-fit: contain;
-  image-rendering: pixelated;
+}
+
+:global(.popup-pin-btn) {
+  width: 18px;
+  height: 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  margin-left: 2px;
+  font-size: 11px;
+  line-height: 1;
+  filter: grayscale(1) opacity(0.5);
+}
+:global(.popup-pin-btn:hover) {
+  filter: none;
+  background: rgba(212,136,42,0.2);
+  border-color: var(--accent, #d4882a);
+}
+:global(.popup-pin-btn.is-pinned) {
+  filter: none;
+  background: rgba(212,168,75,0.15);
+  border-color: rgba(212,168,75,0.6);
+}
+
+/* ── Section-based popup ────────────────────────────────────────────────────── */
+
+:global(.popup-loc-block + .popup-loc-block) {
+  border-top: 1px solid var(--border, #5a3a10);
+}
+
+:global(.popup-loc-header) {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 8px 4px;
+}
+
+:global(.popup-loc-name) {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text, #d4a84b);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:global(.popup-sec-row) {
+  display: flex;
+  align-items: center;
+  padding: 4px 10px 4px 8px;
+  gap: 8px;
+  border-top: 1px solid rgba(90,58,16,0.4);
+}
+
+:global(.sec-label) {
+  flex: 1;
+  min-width: 0;
+}
+
+:global(.sec-dot) {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+:global(.sec-controls) {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+:global(.capture-chk) {
+  width: 18px;
+  height: 18px;
+  border: 1px dashed rgba(212,168,75,0.5);
+  border-radius: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:global(.capture-chk.done) {
+  border-color: #7ac038;
+  background: rgba(122,192,56,0.15);
+}
+:global(.capture-chk.done::after) {
+  content: '✓';
+  font-size: 11px;
+  color: #7ac038;
+}
+
+:global(.capture-picker-box) {
+  width: 28px;
+  height: 28px;
+  border: 1px dashed rgba(212,168,75,0.45);
+  border-radius: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+:global(.capture-picker-box:hover) {
+  border-color: var(--accent, #d4882a);
+  background: rgba(212,136,42,0.1);
+}
+:global(.capture-picker-box.done) {
+  border-color: #7ac038;
+  border-style: solid;
+  background: rgba(122,192,56,0.08);
+}
+:global(.capture-picked-img) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+:global(.sec-chest-btn) {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+:global(.sec-chest-btn:hover) { opacity: 0.75; }
+
+:global(.sec-chest-img) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+:global(.sec-chest-count) {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 3px #000, 0 0 3px #000;
+  line-height: 1;
+  pointer-events: none;
+}
+
+:global(.sec-label) {
+  font-size: 11px;
+  color: var(--text-muted, #9a7a3b);
+  white-space: nowrap;
+  flex: 1;
+  text-align: right;
+}
+
+:global(.popup-loc-block.loc-cleared) {
+  opacity: 0.38;
+}
+
+:global(.sec-chest-btn.sec-fusion-done) {
+  opacity: 0.35;
+}
+
+:global(.sec-item-icon) {
+  cursor: default;
+  pointer-events: none;
+}
+
+:global(.sec-capture-btn) {
+  border: 1px dashed rgba(212,168,75,0.4);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:global(.sec-capture-btn:hover) {
+  border-color: var(--accent, #d4882a);
+}
+:global(.sec-capture-btn.sec-capture-done) {
+  border-color: #7ac038;
+  border-style: solid;
+}
+
+:global(.capture-empty-mark) {
+  font-size: 14px;
+  color: rgba(212,168,75,0.4);
+  line-height: 1;
+  pointer-events: none;
 }
 </style>

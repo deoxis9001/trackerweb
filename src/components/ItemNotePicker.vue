@@ -139,7 +139,7 @@ function itemImgSrc(key) {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  image-rendering: pixelated;
+  image-rendering: auto;
 }
 
 .picker-fallback {

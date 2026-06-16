@@ -6,6 +6,7 @@ import { viteSingleFile } from 'vite-plugin-singlefile'
 const outDirs = { alpha: 'dist/alpha', dev: 'dist/dev' }
 
 export default defineConfig(({ mode }) => ({
+  root: 'src',
   base: './',
   plugins: [vue(), viteSingleFile()],
   resolve: {
@@ -14,8 +15,11 @@ export default defineConfig(({ mode }) => ({
     ],
   },
   publicDir: 'public',
+  server: {
+    fs: { allow: ['..'] },
+  },
   build: {
-    outDir: outDirs[mode] ?? 'dist',
+    outDir: '../dist',
     emptyOutDir: true,
   },
 }))

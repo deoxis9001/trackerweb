@@ -1,7 +1,8 @@
 <script setup>
 const props = defineProps({
-  groups:     { type: Array,  required: true },
-  modelValue: { type: Object, default: () => ({}) },
+  groups:     { type: Array,   required: true },
+  modelValue: { type: Object,  default: () => ({}) },
+  yesNoMode:  { type: Boolean, default: false },
 })
 const emit = defineEmits(['update:modelValue'])
 
@@ -26,7 +27,14 @@ function set(defineName, val) {
       <div v-for="dir in group.directives" :key="dir.defineName" class="setting-row">
         <label>{{ dir.label || dir.defineName }}</label>
 
-        <div v-if="dir.type === 'flag'" class="btn-group">
+        <div v-if="yesNoMode && dir.type === 'dropdown' && dir.options.length === 2" class="btn-group">
+          <button :class="['opt-btn', { active: get(dir) === dir.options[0].defineName }]"
+            @click="set(dir.defineName, dir.options[0].defineName)">{{ dir.options[0].label }}</button>
+          <button :class="['opt-btn', { active: get(dir) === dir.options[1].defineName }]"
+            @click="set(dir.defineName, dir.options[1].defineName)">{{ dir.options[1].label }}</button>
+        </div>
+
+        <div v-else-if="dir.type === 'flag'" class="btn-group">
           <button :class="['opt-btn', { active: !get(dir) }]"  @click="set(dir.defineName, false)">No</button>
           <button :class="['opt-btn', { active: !!get(dir) }]" @click="set(dir.defineName, true)">Yes</button>
         </div>
@@ -71,7 +79,6 @@ function set(defineName, val) {
 .setting-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   margin-top: 8px;
   font-size: 13px;
@@ -79,10 +86,10 @@ function set(defineName, val) {
 }
 
 .setting-row label {
+  flex: 1;
+  min-width: 0;
   font-size: 12px;
   color: var(--text);
-  flex-shrink: 0;
-  max-width: 55%;
 }
 
 .btn-group { display: flex; gap: 4px; }

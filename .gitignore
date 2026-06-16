@@ -6,6 +6,10 @@ dist/
 
 # Reference sources (not part of this project)
 src_info/
+src_ref/
+
+# Old scripts (kept locally, not tracked)
+old/
 
 # Env & local config
 .env
