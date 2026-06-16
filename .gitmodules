@@ -9,3 +9,6 @@
 	path = SubModule/randomizer
 	url = https://github.com/minishmaker/randomizer
 	branch = staging
+[submodule "SubModule/EmoTracker-Wiki"]
+	path = SubModule/EmoTracker-Wiki
+	url = https://github.com/EmoTracker-Community/EmoTracker.wiki.git
