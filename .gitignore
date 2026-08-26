@@ -34,3 +34,6 @@ Thumbs.db
 # Test artifacts
 test-results/
 mock_test.log
+
+# Prompts (référence locale, non publiée)
+prompts/

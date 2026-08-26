@@ -77,15 +77,17 @@ function fusionAccess(settingsStore, color) {
 // Build a provider from the current stateStore snapshot.
 // sectionAvailable(code): handles "@Location/Section" refs used by FindObjectForCode.
 function makeProvider(stateStore, settingsStore) {
-  // Dungeon entrance shuffle: `<dungeon>_<entrance>` codes the Lua XxxDungeons()
+  // Dungeon entrance shuffle: `<slot>_<dungeon>` codes the Lua XxxDungeons()
   // functions read. Map slot→dungeon assignments to the active code set.
-  const entranceShuffleOn = !!settingsStore?.dungeonEntranceShuffle
+  const _entrances = settingsStore?.randoDefines?.ENTRANCES
+  const entranceShuffleOn = _entrances === 'ENTRANCES_COUPLED'
+    || (_entrances !== 'ENTRANCES_VANILLA' && !!settingsStore?.dungeonEntranceShuffle)
   const activeEntranceCodes = new Set()
   if (entranceShuffleOn) {
     for (const [slot, dungeon] of Object.entries(stateStore.dungeonEntranceMap ?? {})) {
       const d = ENTRANCE_TOKEN[dungeon]
       const e = ENTRANCE_TOKEN[slot]
-      if (d && e) activeEntranceCodes.add(`${d}_${e}`)
+      if (d && e) activeEntranceCodes.add(`${e}_${d}`)
     }
   }
 
@@ -149,7 +151,7 @@ function makeProvider(stateStore, settingsStore) {
           const enabled = isTrickEnabled(settingsStore, base)
           if (suffix === '_out_on') return enabled ? 1 : 0
           if (suffix === '_off')    return enabled ? 0 : 1
-          return 0  // _on: tricks always out-of-logic in AP, never in-logic
+          return 0  // _on: tricks always out-of-logic in rando, never in-logic
         }
       }
       // Fallback for unmapped settings codes: _off = feature disabled (1), _on/_out_on = inactive (0)

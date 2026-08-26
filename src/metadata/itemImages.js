@@ -148,13 +148,6 @@ export const ITEM_IMAGES = {
   KINSTONE_GENERIC_GREEN: "Generic Green Kinstone.png",
   KINSTONE_GENERIC_GOLD:  "Generic Gold Kinstone.png",
 
-  AP_ITEM:        "Archipelago.svg",
-  AP_ITEM_RED:    "AP_red.svg",
-  AP_ITEM_WHITE:  "AP_white.svg",
-  AP_ITEM_YELLOW: "AP_yellow.svg",
-  AP_ITEM_BLUE:   "AP_blue.svg",
-  AP_ITEM_GREEN:  "AP_green.svg",
-
   BIG_KEY:   "../dungeons/Big Key.png",
   SMALL_KEY: "../dungeons/Small Key.png",
   BUTTERFLY: "overlay_butterfly.png",
@@ -211,7 +204,7 @@ export const ITEM_MAX_COUNT = {
   KINSTONE_GREEN_P: 16,
 }
 
-// Flat list of items available in the location note picker (6 columns × 8 rows)
+// Flat list of items available in the location note picker (6 columns × 7 rows)
 export const PICKER_ITEMS = [
   'PROGRESSIVE_SWORD',    'GUST_JAR',         'CANE_OF_PACCI',     'PROGRESSIVE_BOOMERANG', 'PROGRESSIVE_WALLET', 'KINSTONE_GENERIC_RED',
   'PROGRESSIVE_SHIELD',   'MOLE_MITTS',       'LANTERN',           'BOMB_BAG',              'REMOTE_BOMB',        'KINSTONE_GENERIC_BLUE',
@@ -220,7 +213,6 @@ export const PICKER_ITEMS = [
   'BOTTLE',               'POWER_BRACELETS',  'TINGLE_TROPHY',     'WAKEUP_MUSHROOM',       'GRAVEYARD_KEY',      'BIG_KEY',
   'HEART_TOTAL',          'HEART_PIECE',      'PROGRESSIVE_SCROLL','FLIPPERS',              'BUTTERFLY',          'SMALL_KEY',
   'EARTH_ELEMENT',        'FIRE_ELEMENT',     'WATER_ELEMENT',     'WIND_ELEMENT',          'PROGRESSIVE_BOOK',   'FIGURINE',
-  'AP_ITEM',              'AP_ITEM_RED',      'AP_ITEM_WHITE',     'AP_ITEM_YELLOW',        'AP_ITEM_BLUE',       'AP_ITEM_GREEN',
 ]
 
 // Composite items: left-click toggles left sub-item, right-click toggles right sub-item

@@ -17,7 +17,9 @@
     "chat": "💬 Chat",
     "ap": "AP",
     "faq": "?",
-    "settings": "⚙ Paramètres"
+    "settings": "⚙ Paramètres",
+    "tab_mines": "Mines de Mélari",
+    "tab_dungeon_maps": "Cartes Donjons"
   },
   "ap_connect": {
     "connect": "Connexion AP",
@@ -265,6 +267,16 @@
     "compass": "Boussole",
     "overworld_locations": "Emplacements Monde",
     "dungeon_locations": "Emplacements {dungeon}",
-    "no_locations": "Aucune location"
+    "no_locations": "Aucune location",
+    "inventory": "Inventaire",
+    "pinned_locations": "Locations Épinglées",
+    "pin": "Épingler",
+    "unpin": "Dépingler",
+    "pinned_empty": "Cliquer 📌 sur un pin de la carte pour épingler",
+    "entrances": "Entrées",
+    "ep_toggle_hide": "Cacher les entrances",
+    "ep_toggle_assign": "Assigner les donjons aux entrances",
+    "annotate": "Annoter un item",
+    "remaining": "{n} restant(s) / {total}"
   }
 }

@@ -477,7 +477,7 @@ function _compileTerm(term, helperMap) {
 
 // ─── 5f — Item map ───────────────────────────────────────────────────────────
 
-/** Shorthand: count how many of the named AP item are in the inventory. */
+/** Shorthand: count how many of the named rando item are in the inventory. */
 function _cnt(apName) {
   return { count: inv => inv[apName] || 0 }
 }
@@ -679,7 +679,7 @@ export function settingsToDefines(settings) {
   }
 
   // ── Wind Crests ──────────────────────────────────────────────────────────
-  // LAKE_CREST and TOWN_CREST default to true in rando (no AP toggle)
+  // LAKE_CREST and TOWN_CREST default to true in rando (no toggle)
   d['LAKE_CREST'] = true
   d['TOWN_CREST'] = true
   setFlag('CRENEL_CREST',    settings.windCrestCrenel)
@@ -711,11 +711,11 @@ export function settingsToDefines(settings) {
   else                                  setOption('ENTRANCES', 'ENTRANCES_VANILLA')
 
   // ── Open World ───────────────────────────────────────────────────────────
-  // AP has no open-world traversal mode
+  // rando has no open-world traversal mode
   setOption('OPENWORLD', 'OPENWORLD_OFF')
 
   // ── Shuffle flags ────────────────────────────────────────────────────────
-  setFlag('HEART_RANDO',   true)                       // hearts always shuffled in AP
+  setFlag('HEART_RANDO',   true)                       // hearts always shuffled in rando
   setFlag('DIGGING',       settings.shuffleDigging)
   setFlag('UNDERWATER',    settings.shuffleUnderwater)
   setFlag('SPECIALPOTS',   settings.shufflePots)
@@ -724,7 +724,7 @@ export function settingsToDefines(settings) {
   setFlag('SHOP_BOMBBAG',  settings.extraShopItem)
 
   // ── Element shuffle ──────────────────────────────────────────────────────
-  // AP values: 'vanilla' | 'dungeon_prize' | 'anywhere'
+  // rando values: 'vanilla' | 'dungeon_prize' | 'anywhere'
   const elems = settings.shuffleElements ?? 'dungeon_prize'
   if (elems === 'vanilla')       setOption('SHUFFLE_ELEMENTS', 'SHUFFLE_ELEMENTS_VANILLA')
   else if (elems === 'anywhere') setOption('SHUFFLE_ELEMENTS', 'SHUFFLE_ELEMENTS_ON')
@@ -800,7 +800,7 @@ export function settingsToDefines(settings) {
   setOption('KEYPOWMULTIPLIER', 'POW1KEY')
   setOption('KEYDHCMULTIPLIER', 'DHC1KEY')
 
-  // ── Start inventory kinstones (numberboxes, AP always starts with 0) ──────
+  // ── Start inventory kinstones (numberboxes, rando always starts with 0) ───
   // Resolve `START_KINSTONES_X` backtick refs (e.g. Helpers.StartInv:`START_KINSTONES_GOLD_SWAMP`).
   // Also causes !define - START_KINSTONES_GOLD_SWAMP_`START_KINSTONES_GOLD_SWAMP` → _0 (not _`…`).
   d['START_KINSTONES_GOLD_CLOUD'] = '0'
@@ -814,14 +814,14 @@ export function settingsToDefines(settings) {
   d['START_KINSTONES_GREEN_G']    = '0'
   d['START_KINSTONES_GREEN_P']    = '0'
 
-  // ── Start capacity dropdowns (AP always starts with 0 extra capacity) ─────
+  // ── Start capacity dropdowns (rando always starts with 0 extra capacity) ──
   setOption('START_BOMBBAGS', 'START_BOMBBAGS_0')
   setOption('START_QUIVERS',  'START_QUIVERS_0')
   setOption('START_WALLETS',  'START_WALLETS_0')
   setOption('START_BOTTLES',  'START_BOTTLES_0')
 
   // ── Kinstone Fusions ─────────────────────────────────────────────────────
-  // 'closed' in AP ≡ no fusions in pool (same as rando 'none')
+  // 'closed' ≡ no fusions in pool (same as rando 'none')
   const gold = settings.goldFusionAccess ?? 'vanilla'
   if (gold === 'closed' || gold === 'none') setOption('GOLD_FUSION_SETTING', 'NO_GOLD_FUSIONS')
   else if (gold === 'combined')             setOption('GOLD_FUSION_SETTING', 'COMBINED_GOLD_FUSIONS')
@@ -884,7 +884,7 @@ export function settingsToDefines(settings) {
   setFlag('LAKE_MINISH_TRICKS', hasTrick('lake_minish'))
   setFlag('YESLAKEMINISH',      hasTrick('lake_minish'))
 
-  // ── Logic mode: merge randoDefines on top of AP defaults ──────────────────
+  // ── Logic mode: merge randoDefines on top of rando defaults ───────────────
   const rd = settings.randoDefines
   if (rd && (settings.logicSource === 'default_logic' || settings.logicSource === 'custom')) {
     _mergeRandoDefines(d, rd)
@@ -896,11 +896,11 @@ export function settingsToDefines(settings) {
 /**
  * Merge user-controlled rando defines into an existing defines object.
  * For dropdown settings: writes both key=optionValue AND optionValue=true,
- * replacing whatever the AP mapping had set.
+ * replacing whatever the rando mapping had set.
  */
 function _mergeRandoDefines(d, rd) {
   // First pass: clear old option-level trues for any dropdown keys being overridden
-  // (e.g. if AP set OPEN_GOLD_FUSIONS=true and user wants VANILLA, clear the old one)
+  // (e.g. if rando set OPEN_GOLD_FUSIONS=true and user wants VANILLA, clear the old one)
   for (const [k, v] of Object.entries(rd)) {
     if (typeof v === 'string' && v && k in d) {
       const old = d[k]

@@ -96,7 +96,7 @@ function openBroadcastItems() {
 
     <div class="stats">{{ store.checkedCount }} / {{ store.totalCount }}</div>
 
-    <div class="ap-status">
+    <div class="nav-actions">
       <button class="tab reset-btn" @click="handleReset()">{{ t('navbar.reset') }}</button>
     </div>
 
@@ -235,7 +235,7 @@ function openBroadcastItems() {
 
 .nav-right { margin-left: auto; flex-shrink: 0; }
 
-.ap-status { display: flex; align-items: center; gap: 8px; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
 
 .reset-btn { color: #e04040; border-color: #6a2020; }
 .reset-btn:hover { background: #6a2020; color: var(--text); border-color: #e04040; }

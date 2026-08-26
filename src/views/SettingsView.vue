@@ -3,7 +3,7 @@ import { ref, computed, watch } from 'vue'
 import { useSettingsStore, TRICKS } from '../stores/settingsStore'
 import { useLocale } from '../composables/useLocale'
 import { useFont } from '../composables/useFont'
-import { parseDirectives } from '../logic/logicParser.js'
+import { parseDirectives, settingsToDefines } from '../logic/logicParser.js'
 import { encodeSettingsString, decodeSettingsString } from '../logic/settingsString.js'
 import defaultLogicRaw from '../logic/defaultLogic.js'
 import LogicSettingsTab from '../components/LogicSettingsTab.vue'
@@ -46,15 +46,28 @@ watch(() => s.logicSource, () => initRandoDefines(), { immediate: true })
 
 // ── Settings String ───────────────────────────────────────────────────────────
 
-const settingsString = ref('')
-watch(
-  [allDirectives, () => s.randoDefines],
-  ([dirs, rd]) => {
-    if (!dirs || !rd) { settingsString.value = ''; return }
-    try { settingsString.value = encodeSettingsString(dirs, rd) } catch { settingsString.value = '' }
-  },
-  { immediate: true }
-)
+const settingsString = computed(() => {
+  const dirs = allDirectives.value
+  if (!dirs) return ''
+
+  // Base : valeurs dérivées du settingsStore (crée les dépendances réactives sur tous les champs)
+  const d  = settingsToDefines(s.exportSettings())
+  const rd = {}
+  for (const flag of dirs.flags) {
+    if (flag.optionType === 'Setting') rd[flag.defineName] = !!d[flag.defineName]
+  }
+  for (const dd of dirs.dropdowns) {
+    if (dd.optionType === 'Setting') rd[dd.defineName] = d[dd.defineName] ?? dd.defaultValue
+  }
+  for (const nb of dirs.numberboxes) {
+    if (nb.optionType === 'Setting') rd[nb.defineName] = Number(d[nb.defineName]) || nb.default || 0
+  }
+
+  // Overlay : randoDefines gagne (comme _mergeRandoDefines)
+  Object.assign(rd, s.randoDefines ?? {})
+
+  try { return encodeSettingsString(dirs, rd) } catch { return '' }
+})
 
 const importInput = ref('')
 const importError = ref('')
@@ -119,6 +132,7 @@ const yamlFileInput = ref(null)
 
 function applyBundledPreset(preset) {
   applyPreset(preset.settings, s)
+  s.randoDefines = { ...(s.randoDefines ?? {}), ...preset.settings }
   activePreset.value = preset.name
 }
 
@@ -131,6 +145,7 @@ function handleYamlImport(event) {
       const parsed = loadYaml(e.target.result)
       if (parsed?.settings) {
         applyPreset(parsed.settings, s)
+        s.randoDefines = { ...(s.randoDefines ?? {}), ...parsed.settings }
         activePreset.value = null
       }
     } catch {}

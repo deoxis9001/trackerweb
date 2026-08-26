@@ -79,10 +79,14 @@ jobs:
           python scripts/gen_rules.py
           python scripts/gen_changelog.py
 
-      - name: Install & build
-        run: |
-          npm install
-          npm run build:ci
+      - name: Fetch randomizer branches
+        run: git -C SubModule/randomizer fetch origin master staging --depth=1
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build stable (master)
+        run: npm run build
 
       - name: Generate version
         run: |
@@ -103,19 +107,33 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy to MinishCap_Site
+      - name: Clone site-repo
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git clone --branch officiel --single-branch \
             https://x-access-token:${GH_PAT}@github.com/deoxis9001/MinishCap_Site.git site-repo
+          git -C site-repo config user.email "github-actions[bot]@users.noreply.github.com"
+          git -C site-repo config user.name "github-actions[bot]"
+
+      - name: Deploy stable → tmcr-tracker
+        run: |
           rm -rf site-repo/tmcr-tracker
           mkdir -p site-repo/tmcr-tracker
           cp -r dist/. site-repo/tmcr-tracker/
+
+      - name: Build beta (staging)
+        run: npm run build-dev
+
+      - name: Deploy beta → tmcr-tracker-beta
+        run: |
+          rm -rf site-repo/tmcr-tracker-beta
+          mkdir -p site-repo/tmcr-tracker-beta
+          cp -r dist/. site-repo/tmcr-tracker-beta/
+
+      - name: Push to MinishCap_Site
+        run: |
           cd site-repo
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-          git add tmcr-tracker/
+          git add tmcr-tracker/ tmcr-tracker-beta/
           git diff --staged --quiet && echo "Nothing to deploy" || \
-            git commit -m "deploy: tmcr-tracker ${{ env.VERSION }}" && \
-            git push origin officiel
+            (git commit -m "deploy: tmcr-tracker ${{ env.VERSION }}" && git push origin officiel)

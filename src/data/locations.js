@@ -86,7 +86,18 @@ function derivePools(loc) {
 }
 
 function toKey(name) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')
+  return name.toUpperCase().replace(/[^A-Z0-9]+/g, '_').replace(/^_|_$/g, '')
+}
+
+const MAP_PREFIX_TO_DUNGEON = {
+  cof: 'CoF', dws: 'DWS', fow: 'FoW', tod: 'ToD', pow: 'PoW', dhc: 'DHC', rc: 'RC'
+}
+function dungeonFromMapLocs(mapLocs) {
+  for (const ml of (mapLocs ?? [])) {
+    const base = ml.map.split('_')[0]
+    if (MAP_PREFIX_TO_DUNGEON[base]) return MAP_PREFIX_TO_DUNGEON[base]
+  }
+  return null
 }
 
 export const locationsByFile = {}
@@ -95,21 +106,27 @@ let _id = 0
 
 for (const [path, mod] of Object.entries(modules)) {
   const filename = path.split('/').pop().replace('.json', '')
-  if (filename === 'Maps') continue
 
   for (const loc of mod.default) {
     const dungeon = filename === 'Dungeons'
       ? (loc.short_name ?? DUNGEON_SHORT[loc.name] ?? null)
-      : null
+      : filename === 'Maps'
+        ? dungeonFromMapLocs(loc.map_locations)
+        : null
 
+    const locKey = toKey(loc.name)
     const entry = {
       ...loc,
       id:          _id++,
-      key:         toKey(loc.name),
+      key:         locKey,
       region_key:  filename,
       region_name: REGION_NAMES[filename] ?? filename,
       dungeon,
       pools:       derivePools(loc),
+      sections:    (loc.sections ?? []).map(sec => ({
+        ...sec,
+        key: locKey + '_' + toKey(sec.name),
+      })),
     }
     allLocations.push(entry)
     ;(locationsByFile[filename] ??= []).push(entry)

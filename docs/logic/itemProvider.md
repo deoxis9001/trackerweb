@@ -14,11 +14,11 @@ Le provider est l'interface entre les stores Vue (état du run + paramètres) et
 const STAGE_CODE_MAP = {}  // { [stageCode]: { parentCode, minStage } }
 ```
 
-Construit au chargement depuis `items_spec.json`. Mappe les codes de stade d'un item progressif vers `{ parentCode, minStage }`.
+Construit au chargement depuis `items_spec.json`. Mappe les codes de stade d'un item progressif vers `{ parentCode, minStage }`, où `minStage` est l'index **0-based** du stade dans le tableau `stages`.
 
-**Exemple** : pour une épée progressive avec 5 stades, `sword_1` → `{ parentCode: 'sword', minStage: 1 }`.
+**Exemple** : pour une épée progressive, le premier stade (`stages[0]`) a `minStage: 0`, le deuxième (`stages[1]`) `minStage: 1`, etc. Si `stages[1].codes` contient `sword_1`, alors `sword_1` → `{ parentCode: 'sword', minStage: 1 }`.
 
-Utilisé dans `itemCount()` pour résoudre `has(sword_1)` = `itemCount('sword') >= 1`.
+Utilisé dans `itemCount()` : le stade est résolu quand `itemCount('sword') >= minStage`.
 
 ---
 
@@ -51,6 +51,8 @@ Mappe le nom de base Lua d'un trick → `[defineName, enabledValue, trickKey]`.
 - `defineName` : clé dans `randoDefines` (ex. `BLOWDUST_SETTING`)
 - `enabledValue` : valeur dans `randoDefines` quand le trick est actif (ex. `GUSTBOMBS`)
 - `trickKey` : clé dans `settingsStore.tricks` Set (ex. `bomb_dust`)
+
+Les scripts Lua consomment les tricks via `has()` comme les items (même canal `Tracker:ProviderCountForCode` → `itemCount()`), avec les suffixes `_on` / `_off` / `_out_on` sur le nom de base — ex. `BlowDust()` dans `Common.lua` teste `has("blowdust_on")`, `has("blowdust_off")` et `has("blowdust_out_on")`. La sémantique des suffixes est décrite à l'étape 5 de `itemCount()` ci-dessous.
 
 ---
 

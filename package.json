@@ -5,18 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "git -C SubModule/randomizer checkout master && vite build",
+    "build-dev": "git -C SubModule/randomizer checkout staging && vite build",
     "build:ci": "vite build",
     "alpha": "vite build --mode alpha",
     "devbuild": "vite build --mode dev",
-    "build:all": "npm run build && npm run alpha && npm run devbuild",
+    "build:all": "npm run build && npm run alpha && npm run devbuild && npm run build-dev",
     "all": "npm run build:all && npx serve dist -p 4173",
     "preview": "vite preview",
     "test:e2e": "playwright install && npm run build:ci && playwright test",
     "test:e2e:dev": "playwright install && cross-env DEV=1 playwright test"
   },
   "dependencies": {
-    "archipelago.js": "^2.0.4",
     "bootstrap": "^5.3.8",
     "fengari-web": "^0.1.4",
     "js-yaml": "^4.2.0",

@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useStateStore } from '../stores/stateStore'
+import { useLocale } from '../composables/useLocale'
 import { ITEM_IMAGES } from '../metadata/itemImages'
 import fusionDataRaw from '../../SubModule/tmcrando_maptracker_deoxis/items/items/fusion.json'
 
@@ -12,6 +13,7 @@ for (const item of fusionDataRaw) {
 
 const store = useStateStore()
 const { checkedSections, pinnedLocations } = storeToRefs(store)
+const { t, tLocation } = useLocale()
 const BASE = import.meta.env.BASE_URL
 
 const pinnedLocs = computed(() =>
@@ -56,20 +58,20 @@ function toggleCapture(loc, sec) { store.toggleSection(loc.name, sec.name, 1) }
 
 <template>
   <div class="pinned-panel">
-    <div class="col-title">Pinned Locations</div>
+    <div class="col-title">{{ t('item_grid.pinned_locations') }}</div>
 
     <div class="pinned-list">
       <template v-if="pinnedLocs.length">
         <div v-for="loc in pinnedLocs" :key="loc.name" class="pinned-card">
 
           <div class="card-head">
-            <span class="card-title" :title="loc.name">{{ loc.name }}</span>
-            <button class="unpin-btn" @click="store.unpinLocation(loc.name)" title="Dépingler">✕</button>
+            <span class="card-title" :title="tLocation(loc.key, loc.name)">{{ tLocation(loc.key, loc.name) }}</span>
+            <button class="unpin-btn" @click="store.unpinLocation(loc.name)" :title="t('item_grid.unpin')">✕</button>
           </div>
 
           <div class="card-sections">
             <div v-for="sec in loc.sections" :key="sec.name" class="sec-col">
-              <span class="sec-name" :title="sec.name">{{ sec.name }}</span>
+              <span class="sec-name" :title="tLocation(sec.key, sec.name)">{{ tLocation(sec.key, sec.name) }}</span>
 
               <!-- Fusion (kinstone) -->
               <div
@@ -97,7 +99,7 @@ function toggleCapture(loc, sec) { store.toggleSection(loc.name, sec.name, 1) }
               <div
                 v-else
                 class="chest-cell"
-                :title="`${getRemaining(loc, sec)} restant(s) / ${sec.item_count ?? 1}`"
+                :title="t('item_grid.remaining', { n: getRemaining(loc, sec), total: sec.item_count ?? 1 })"
                 @click="onLeft(loc, sec)"
                 @contextmenu.prevent="onRight(loc, sec)"
               >
@@ -114,7 +116,7 @@ function toggleCapture(loc, sec) { store.toggleSection(loc.name, sec.name, 1) }
       </template>
 
       <div v-else class="empty-hint">
-        Cliquer 📌 sur un pin de la carte pour épingler
+        {{ t('item_grid.pinned_empty') }}
       </div>
     </div>
   </div>

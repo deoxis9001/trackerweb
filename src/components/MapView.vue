@@ -84,8 +84,29 @@ const DUNGEON_ENTRANCE_COORDS = {
   ToD: { x: 2337, y: 1060 },
 }
 
+const CODE_TO_SLOT = { dws: 'DWS', cof: 'CoF', fow: 'FoW', tod: 'ToD', pow: 'PoW', dhc: 'DHC', rc: 'RC' }
+const ENTRANCE_LABELS = {
+  DWS: ['Deepwoods',   'Entrance'],
+  CoF: ['Cave of',     'Flame'],
+  FoW: ['Fortress of', 'Winds'],
+  ToD: ['Temple of',   'Droplets'],
+  RC:  ['Royal',       'Crypt'],
+  PoW: ['Palace of',   'Winds'],
+  DHC: ['Dark Hyrule', 'Castle'],
+}
+const DHC_ALT_COORD = { x: 1060, y: 188 }  // DHC closed/ped/fast_vaati entrance
+const ENTRANCE_COORD_KEYS = new Set([
+  ...Object.values(DUNGEON_ENTRANCE_COORDS).map(c => `${c.x}:${c.y}`),
+  `${DHC_ALT_COORD.x}:${DHC_ALT_COORD.y}`,
+])
+
+function bossImgUrl(slot) {
+  const p = ITEM_IMAGES[slot]
+  return p ? p.replace('../dungeons/', '/images/dungeons/') : ''
+}
+
 const DUNGEON_FLOORS = {
-  dws: ['B2', 'B1', '1F'],
+  dws: ['2F', 'B1', '1F'],
   cof: ['B3', 'B2', 'B1', '1F'],
   rc:  ['rc'],
   fow: ['1F', '2F', '3F'],
@@ -374,7 +395,9 @@ const pins = computed(() => {
   const isDungeon = dname !== 'map'
   const floor    = currentFloor.value
 
-  const entranceShuffle  = !isDungeon && settings.dungeonEntranceShuffle
+  const _e = settings.randoDefines?.ENTRANCES
+  const entranceShuffle  = !isDungeon && (_e === 'ENTRANCES_COUPLED' || (_e !== 'ENTRANCES_VANILLA' && !!settings.dungeonEntranceShuffle))
+  void JSON.stringify(state.dungeonEntranceMap)
   const entranceMap      = state.dungeonEntranceMap
   // Set of dungeons that have an entrance slot assigned to them (values of entranceMap)
   const assignedDungeons = new Set(Object.values(entranceMap))
@@ -385,7 +408,12 @@ const pins = computed(() => {
 
   // map name used in map_locations data (mines image = mine.png but data key = mines)
   const MAP_DATA_NAME = { map: 'map', mines: 'mines' }
-  const dataMapKey = MAP_DATA_NAME[dname] ?? dname
+  const dataMapKey = (useFloors.value && floor && isDungeon && floor !== dname)
+    ? `${dname}_${floor}`
+    : (MAP_DATA_NAME[dname] ?? dname)
+
+  const hasItem = n => callLuaFunction(n).count > 0
+  const extras  = { entranceMap }
 
   const byCoord = {}
   for (const loc of state.visibleLocations) {
@@ -397,7 +425,8 @@ const pins = computed(() => {
     if (!candidates.length) continue
 
     const coordList = candidates
-      .filter(ml => evalRules(ml.restrict_visibility_rules, settings, n => callLuaFunction(n).count > 0))
+      .filter(ml => !(ml.force_invisibility_rules?.length && evalRules(ml.force_invisibility_rules, settings, hasItem, extras)))
+      .filter(ml => evalRules(ml.restrict_visibility_rules, settings, hasItem, extras))
       .filter(ml => ml.x > 0 && ml.y > 0)
 
     for (const coord of coordList) {
@@ -412,35 +441,44 @@ const pins = computed(() => {
     }
   }
 
-  const regularPins = Object.values(byCoord).map(pin => ({
-    ...pin,
-    allChecked: pin.locs.every(l => state.isChecked(l.id)),
-    tooltip:    pin.locs.map(l => tLocation(l.key, l.name)).join('\n'),
-    type:       pinType(pin.locs),
-    segments:   pinSegments(pin.locs),
-    noteImg:    noteImgSrcForLocs(pin.locs),
-  }))
+  // Sur l'overworld (pas en vue donjon), les coordonnées d'entrance sont gérées par les door pins
+  const regularPins = Object.entries(byCoord)
+    .filter(([key]) => isDungeon || currentArea.value || !ENTRANCE_COORD_KEYS.has(key))
+    .map(([, pin]) => ({
+      ...pin,
+      allChecked: pin.locs.every(l => state.isChecked(l.id)),
+      tooltip:    pin.locs.map(l => tLocation(l.key, l.name)).join('\n'),
+      type:       pinType(pin.locs),
+      segments:   pinSegments(pin.locs),
+      noteImg:    noteImgSrcForLocs(pin.locs),
+    }))
 
-  // Door pins for unassigned dungeon entrances (entrance shuffle mode, full overworld only)
+  // Door pins : uniquement sur l'overworld (pas en vue donjon)
   const doorPins = []
-  if (entranceShuffle && !currentArea.value) {
+  if (!isDungeon && !currentArea.value) {
     for (const [slot, coord] of Object.entries(DUNGEON_ENTRANCE_COORDS)) {
-      if (!entranceMap[slot]) {
-        const dungeonLocs = state.visibleLocations.filter(l => l.dungeon === slot && l.id != null)
-        const statuses = dungeonLocs.map(l => accessibility.value.get(l.id) ?? 'inaccessible')
-        let status = 'inaccessible'
-        if (statuses.includes('accessible'))        status = 'accessible'
-        else if (statuses.includes('out_of_logic')) status = 'out_of_logic'
-        doorPins.push({
-          x:       Math.round(coord.x * scaleX),
-          y:       Math.round(coord.y * scaleY),
-          slot,
-          isDoor:  true,
-          status,
-          locs:    [],
-          tooltip: `${slot} — entrance not assigned`,
-        })
-      }
+      const _dhc = settings.randoDefines?.DHC_SETTING
+      const dhcIsOpen = _dhc ? _dhc === 'OPENDHC' : settings.dhcAccess === 'open'
+      const actualCoord = slot === 'DHC' && !dhcIsOpen ? DHC_ALT_COORD : coord
+      const coordKey   = `${actualCoord.x}:${actualCoord.y}`
+      const assigned   = entranceShuffle ? (entranceMap[slot] || null) : slot
+      const dungeonKey = assigned ?? slot
+      const dungeonLocs = state.visibleLocations.filter(l => l.dungeon === dungeonKey && l.id != null)
+      const statuses = dungeonLocs.map(l => accessibility.value.get(l.id) ?? 'inaccessible')
+      let status = 'inaccessible'
+      if (statuses.includes('accessible'))        status = 'accessible'
+      else if (statuses.includes('out_of_logic')) status = 'out_of_logic'
+      doorPins.push({
+        x:        Math.round(actualCoord.x * scaleX),
+        y:        Math.round(actualCoord.y * scaleY),
+        slot,
+        assigned,
+        shuffleOn: entranceShuffle,
+        isDoor:   true,
+        status,
+        locs:     byCoord[coordKey]?.locs ?? [],
+        tooltip:  assigned ? `${slot} → ${assigned}` : `${slot} — not assigned`,
+      })
     }
   }
 
@@ -532,6 +570,35 @@ function noteImgSrcForLocs(locs) {
 // ── Hover pin ─────────────────────────────────────────────────────────────────
 function showTooltip(e, pin) { state.hoveredPinLocs = pin.locs }
 function hideTooltip()       { state.hoveredPinLocs = [] }
+
+function onDropOnEntrance(slot, event) {
+  const _e = settings.randoDefines?.ENTRANCES
+  const shuffleOn = _e === 'ENTRANCES_COUPLED' || (_e !== 'ENTRANCES_VANILLA' && !!settings.dungeonEntranceShuffle)
+  if (!shuffleOn) return
+  const code = event.dataTransfer.getData('dungeon-code')
+  const dungeon = CODE_TO_SLOT[code]
+  if (dungeon) state.setDungeonEntrance(slot, dungeon)
+}
+
+function onSVGDrop(event) {
+  const _e = settings.randoDefines?.ENTRANCES
+  const shuffleOn = _e === 'ENTRANCES_COUPLED' || (_e !== 'ENTRANCES_VANILLA' && !!settings.dungeonEntranceShuffle)
+  if (!shuffleOn) return
+  const code = event.dataTransfer.getData('dungeon-code')
+  const dungeon = CODE_TO_SLOT[code]
+  if (!dungeon) return
+  const svgEl = event.currentTarget
+  const pt = svgEl.createSVGPoint()
+  pt.x = event.clientX
+  pt.y = event.clientY
+  const svgPt = pt.matrixTransform(svgEl.getScreenCTM().inverse())
+  let nearest = null, minDist = 30
+  for (const pin of doorPinsList.value) {
+    const dist = Math.sqrt((svgPt.x - pin.x) ** 2 + (svgPt.y - pin.y) ** 2)
+    if (dist < minDist) { minDist = dist; nearest = pin }
+  }
+  if (nearest) state.setDungeonEntrance(nearest.slot, dungeon)
+}
 
 
 // ── Pin popup ─────────────────────────────────────────────────────────────────
@@ -829,6 +896,8 @@ function toggleLocPin(loc) {
       @mousedown="onMousedown"
       @mousemove="onMousemoveMap"
       @mouseleave="onMouseleaveMap"
+      @dragover.prevent
+      @drop.prevent
     >
 
       <!-- Wrapper explicitly sized to the fitted image dimensions -->
@@ -852,19 +921,33 @@ function toggleLocPin(loc) {
           @error="e => e.target.style.opacity = '0.3'"
         />
 
-        <svg class="pin-overlay" :width="fittedW" :height="fittedH">
+        <svg class="pin-overlay" :width="fittedW" :height="fittedH" @dragover.prevent @drop="onSVGDrop">
           <defs></defs>
-          <!-- Door pins (entrance shuffle, unassigned) -->
+          <!-- Door pins (entrances de donjons) -->
           <g
             v-for="pin in doorPinsList"
             :key="`door-${pin.slot}`"
             class="pin-group"
+            @click="openPinPopup($event, pin)"
             @mouseenter="showTooltip($event, pin)"
             @mouseleave="hideTooltip"
+            @dragover.prevent
+            @drop="onDropOnEntrance(pin.slot, $event)"
+            @contextmenu.prevent="state.clearDungeonEntrance(pin.slot)"
           >
             <path :d="dungeonPath(pin.x, pin.y)" :fill="PIN_COLOR[pin.status]" stroke="#000" stroke-width="1.5" opacity="0.85" />
-            <text :x="pin.x" :y="pin.y+5" text-anchor="middle"
-              font-size="7" font-weight="bold" fill="#fff" pointer-events="none"
+
+            <!-- Assigné (shuffle OFF défaut, ou shuffle ON après DnD) → boss image -->
+            <image
+              v-if="pin.assigned"
+              :href="bossImgUrl(pin.assigned)"
+              :x="pin.x - 7" :y="pin.y - 7"
+              width="14" height="14"
+              pointer-events="none"
+            />
+            <!-- Non assigné (shuffle ON) → ? -->
+            <text v-else :x="pin.x" :y="pin.y + 3" text-anchor="middle"
+              font-size="9" font-weight="bold" fill="#fff" pointer-events="none"
             >?</text>
           </g>
 
@@ -1002,7 +1085,7 @@ function toggleLocPin(loc) {
             <span class="popup-name">{{ tLocation(loc.key, shortPopupName(loc.name, popupSubAreas.regionName)) }}</span>
             <span v-if="state.isChecked(loc.id)" class="popup-check">✓</span>
             <button :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs([loc]) }]"
-              @click.stop="openNotePicker($event, { locs: [loc] })" title="Annoter un item">
+              @click.stop="openNotePicker($event, { locs: [loc] })" :title="t('item_grid.annotate')">
               <img v-if="noteImgSrcForLocs([loc])" :src="noteImgSrcForLocs([loc])" class="popup-note-img" />
             </button>
           </div>
@@ -1014,7 +1097,7 @@ function toggleLocPin(loc) {
               <span class="popup-subarea-name">{{ sg.name }}</span>
               <span class="popup-count">{{ sg.checked }}/{{ sg.total }}</span>
               <button :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs(sg.locs) }]"
-                @click.stop="openNotePicker($event, { locs: sg.locs })" title="Annoter un item">
+                @click.stop="openNotePicker($event, { locs: sg.locs })" :title="t('item_grid.annotate')">
                 <img v-if="noteImgSrcForLocs(sg.locs)" :src="noteImgSrcForLocs(sg.locs)" class="popup-note-img" />
               </button>
             </div>
@@ -1029,7 +1112,7 @@ function toggleLocPin(loc) {
                 <span class="popup-name">{{ tLocation(loc.key, shortPopupName(loc.name, popupSubAreas.regionName)) }}</span>
                 <span v-if="state.isChecked(loc.id)" class="popup-check">✓</span>
                 <button :class="['popup-note-btn', { 'has-note': noteImgSrcForLocs([loc]) }]"
-                  @click.stop="openNotePicker($event, { locs: [loc] })" title="Annoter un item">
+                  @click.stop="openNotePicker($event, { locs: [loc] })" :title="t('item_grid.annotate')">
                   <img v-if="noteImgSrcForLocs([loc])" :src="noteImgSrcForLocs([loc])" class="popup-note-img" />
                 </button>
               </div>
@@ -1052,7 +1135,7 @@ function toggleLocPin(loc) {
               <button
                 :class="['popup-pin-btn', { 'is-pinned': state.isPinned(loc.name) }]"
                 @click.stop="toggleLocPin(loc)"
-                title="Épingler"
+                :title="t('item_grid.pin')"
               >📌</button>
             </div>
 
@@ -1101,7 +1184,7 @@ function toggleLocPin(loc) {
                 </div>
 
               </div>
-              <span class="sec-label">{{ sec.name }}</span>
+              <span class="sec-label">{{ tLocation(sec.key, sec.name) }}</span>
               <span class="sec-dot" :style="{ background: secDotColor(loc.id, sec.name) }"></span>
             </div>
 

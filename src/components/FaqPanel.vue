@@ -32,11 +32,6 @@ const RELEASES_URL   = 'https://github.com/deoxis9001/trackerweb/releases/latest
         <a :href="CONNECTOR_URL" download class="dl-btn">⬇ {{ t('faq.connector_download') }}</a>
       </section>
 
-      <section class="faq-section">
-        <h4>{{ t('faq.ap_title') }}</h4>
-        <p>{{ t('faq.ap_desc') }}</p>
-      </section>
-
     </div>
   </div>
 </template>

@@ -2,14 +2,25 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Working rules
+## Règles projet
 
-- **Jamais de `git commit` ni `git push` sans autorisation explicite de l'utilisateur**, même quand le travail semble "fini". L'autorisation d'un commit ne vaut pas pour les suivants.
-- **Pas de co-auteur dans les messages de commit** (pas de trailer `Co-Authored-By:` ni équivalent).
-- **Auteur des commits** : toujours `Ame <pokemon.triforce@gmail.com>`. Si Claude est détecté comme auteur (`Author: Claude <noreply@anthropic.com>`) sur un commit en tête de branche, faire immédiatement `git commit --amend --author="Ame <pokemon.triforce@gmail.com>" --no-edit` suivi de `git push --force` pour corriger.
-- **Avant toute modification du code/fichiers**, présente d'abord un compte rendu des changements prévus (fichiers touchés, nature de l'édit) et attends validation explicite avant d'éditer.
-- Si ambigu : demande. Ne choisis pas à la place de l'utilisateur.
-- Diff minimal. Touche uniquement ce qui est demandé — pas de cleanup opportuniste, pas de refactor non sollicité.
-- Définis "done" avant de commencer (critères explicites de ce qui valide la tâche).
-- Vérifie dans le code à jour. Jamais d'hypothèses — lis le fichier avant d'affirmer ce qu'il contient.
-- Code minimum. Pas de feature spéculative, pas d'abstraction "au cas où", pas de hook pour un besoin futur hypothétique.
+@prompts/claude.md
+
+## Prompts système de Claude Code
+
+Collection de référence des prompts système de Claude Code (635 fichiers, en anglais), rapatriée localement dans `prompts/`.
+Index commenté en français : [prompts/README.md](prompts/README.md).
+
+Chaque dossier est trié par utilité pour ce projet : `<type>/*.md` = utile, `<type>/passable/` = utile un jour, `<type>/delete/` = hors sujet ici.
+
+| Dossier | Contenu | Utile | Passable | Delete |
+|---|---|---|---|---|
+| [prompts/system-prompt/](prompts/system-prompt/) | Blocs du prompt système principal | 77 | 20 | 43 |
+| [prompts/tool-description/](prompts/tool-description/) | Descriptions des outils intégrés | 72 | 26 | 54 |
+| [prompts/tool-parameter/](prompts/tool-parameter/) | Descriptions de paramètres d'outils | 3 | 2 | 2 |
+| [prompts/data/](prompts/data/) | Données et schémas injectés dans le contexte | 1 | 26 | 79 |
+| [prompts/skill/](prompts/skill/) | Prompts des skills intégrés | 32 | 36 | 16 |
+| [prompts/system-reminder/](prompts/system-reminder/) | Textes des `<system-reminder>` | 51 | 10 | 20 |
+| [prompts/agent-prompt/](prompts/agent-prompt/) | Prompts des sous-agents intégrés | 44 | 15 | 6 |
+
+> `prompts/` est **local et non versionné** (voir [.gitignore](.gitignore)) : le dossier n'est ni commité ni publié. Sur un clone frais du dépôt, l'import `@prompts/claude.md` et les liens ci-dessus ne résolvent rien tant que le dossier n'a pas été recréé.

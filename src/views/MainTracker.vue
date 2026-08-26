@@ -1,14 +1,25 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStateStore } from '../stores/stateStore'
+import { useSettingsStore } from '../stores/settingsStore'
+import { useLocale } from '../composables/useLocale'
 import ItemGrid from '../components/ItemGrid.vue'
 import MapView from '../components/MapView.vue'
 import DungeonMaps from '../components/DungeonMaps.vue'
 import CheckList from '../components/CheckList.vue'
 import PinnedLocations from '../components/PinnedLocations.vue'
+import EntrancePanel from '../components/EntrancePanel.vue'
 
-const store = useStateStore()
-const activeTab = ref('overworld')
+const store    = useStateStore()
+const settings = useSettingsStore()
+const { t }    = useLocale()
+const activeTab      = ref('overworld')
+const showEntrances  = ref(false)
+
+const shuffleOn = computed(() => {
+  const e = settings.randoDefines?.ENTRANCES
+  return e === 'ENTRANCES_COUPLED' || (e !== 'ENTRANCES_VANILLA' && !!settings.dungeonEntranceShuffle)
+})
 </script>
 
 <template>
@@ -21,19 +32,19 @@ const activeTab = ref('overworld')
           <button
             :class="['tab-btn', activeTab === 'overworld' && 'active']"
             @click="activeTab = 'overworld'"
-          >Overworld</button>
+          >{{ t('navbar.overworld') }}</button>
           <button
             :class="['tab-btn', activeTab === 'mines' && 'active']"
             @click="activeTab = 'mines'"
-          >Melari's Mines</button>
+          >{{ t('navbar.tab_mines') }}</button>
           <button
             :class="['tab-btn', activeTab === 'dungeons' && 'active']"
             @click="activeTab = 'dungeons'"
-          >Maps Dungeons</button>
+          >{{ t('navbar.tab_dungeon_maps') }}</button>
         </div>
         <div class="tab-content">
           <MapView v-if="activeTab === 'overworld'" map-id="map" />
-          <MapView v-else-if="activeTab === 'mines'" map-id="mine" />
+          <MapView v-else-if="activeTab === 'mines'" map-id="mines" />
           <DungeonMaps v-else />
         </div>
       </template>
@@ -41,11 +52,20 @@ const activeTab = ref('overworld')
 
     <div class="bottom-bar">
       <div class="items-col">
-        <div class="col-title">Inventory</div>
+        <div class="col-title">
+        {{ t('item_grid.inventory') }}
+        <button
+          v-if="shuffleOn"
+          :class="['ep-toggle', showEntrances && 'ep-toggle--on']"
+          :title="showEntrances ? t('item_grid.ep_toggle_hide') : t('item_grid.ep_toggle_assign')"
+          @click="showEntrances = !showEntrances"
+        >⚙</button>
+      </div>
         <div class="items-scroll">
           <ItemGrid />
         </div>
       </div>
+      <EntrancePanel v-if="showEntrances && shuffleOn" />
       <PinnedLocations />
     </div>
   </div>
@@ -125,7 +145,24 @@ const activeTab = ref('overworld')
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
+
+.ep-toggle {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 3px;
+  padding: 0 4px;
+  font-size: 11px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.ep-toggle:hover { color: var(--text); border-color: var(--accent-soft); }
+.ep-toggle--on   { color: var(--accent); border-color: var(--accent); }
 
 .items-scroll {
   overflow-x: auto;

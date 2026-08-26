@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useStateStore } from '../stores/stateStore'
 import { useSettingsStore } from '../stores/settingsStore'
+import { useLocale } from '../composables/useLocale'
 import itemsSpec from '../data/items_spec.json'
 import trackerLayout from '../../SubModule/tmcrando_maptracker_deoxis/layouts/tracker.json'
 
@@ -12,6 +13,7 @@ const props = defineProps({
 
 const store = useStateStore()
 const { randoDefines } = storeToRefs(useSettingsStore())
+const { tItem } = useLocale()
 
 const BASE = import.meta.env.BASE_URL
 const imgSrc = path => `${BASE}${path}`
@@ -147,6 +149,15 @@ function stepConsumable(def, dir) {
 
 function getVal(code, init = 0) { return store.manualItems[code] ?? init }
 function setVal(code, v) { store.manualItems[code] = v }
+
+// ── Dungeon boss drag (entrance shuffle) ──────────────────────────────────────
+
+const BOSS_CODES = new Set(['dws', 'cof', 'fow', 'tod', 'rc', 'pow', 'dhc'])
+
+function onBossDragStart(code, event) {
+  event.dataTransfer.setData('dungeon-code', code)
+  event.dataTransfer.effectAllowed = 'link'
+}
 
 // ── Click handlers ────────────────────────────────────────────────────────────
 
@@ -289,7 +300,7 @@ function isCountMax(def) {
         <div
           v-else-if="defsMap[code]?.type === 'toggle_badged'"
           :class="['item-cell', 'item-badged', isActive(defsMap[code]) && 'has-item']"
-          :title="defsMap[code]?.name ?? code"
+          :title="tItem(defsMap[code]?.codes, defsMap[code]?.name ?? code)"
           @click="onLeftClick(defsMap[code])"
           @contextmenu.prevent="onRightClick(defsMap[code])"
         >
@@ -301,11 +312,13 @@ function isCountMax(def) {
         <div
           v-else
           :class="['item-cell', isActive(defsMap[code]) && 'has-item']"
-          :title="defsMap[code]?.name ?? code"
+          :title="tItem(defsMap[code]?.codes, defsMap[code]?.name ?? code)"
+          :draggable="BOSS_CODES.has(code)"
+          @dragstart="BOSS_CODES.has(code) && onBossDragStart(code, $event)"
           @click="onLeftClick(defsMap[code])"
           @contextmenu.prevent="onRightClick(defsMap[code])"
         >
-          <img v-if="defsMap[code] && cellImg(defsMap[code])" :src="cellImg(defsMap[code])" :alt="code" />
+          <img v-if="defsMap[code] && cellImg(defsMap[code])" :src="cellImg(defsMap[code])" :alt="code" draggable="false" />
           <div v-else class="item-placeholder">{{ code.slice(0, 4) }}</div>
           <span
             v-if="countBadge(defsMap[code]) !== null"

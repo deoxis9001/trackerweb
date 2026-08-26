@@ -18,7 +18,9 @@
     "chat": "💬 Chat",
     "ap": "AP",
     "faq": "?",
-    "settings": "⚙ Ajustes"
+    "settings": "⚙ Ajustes",
+    "tab_mines": "Melari's Mines",
+    "tab_dungeon_maps": "Maps Dungeons"
   },
   "ap_connect": {
     "connect": "Conectar a AP",
@@ -266,6 +268,16 @@
     "compass": "Brújula",
     "overworld_locations": "Ubicaciones del Overworld",
     "dungeon_locations": "Ubicaciones de {dungeon}",
-    "no_locations": "Sin ubicaciones"
+    "no_locations": "Sin ubicaciones",
+    "inventory": "Inventory",
+    "pinned_locations": "Pinned Locations",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "pinned_empty": "Click 📌 on a map pin to pin a location",
+    "entrances": "Entrances",
+    "ep_toggle_hide": "Hide entrances",
+    "ep_toggle_assign": "Assign dungeons to entrances",
+    "annotate": "Annotate item",
+    "remaining": "{n} remaining / {total}"
   }
 }

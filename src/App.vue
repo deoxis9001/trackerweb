@@ -30,28 +30,68 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, watch, onMounted, onUnmounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import NavBar from './components/NavBar.vue'
 import SettingsView from './views/SettingsView.vue'
 import FaqPanel from './components/FaqPanel.vue'
 import { useStateStore } from './stores/stateStore'
+import { useSettingsStore } from './stores/settingsStore'
+import { parseDirectives, settingsToDefines } from './logic/logicParser.js'
+import { encodeSettingsString, decodeSettingsString } from './logic/settingsString.js'
+import defaultLogicRaw from './logic/defaultLogic.js'
 
-const store = useStateStore()
-const route = useRoute()
+const store  = useStateStore()
+const s      = useSettingsStore()
+const route  = useRoute()
+const router = useRouter()
 
-const isBroadcastRoute = computed(() =>
-  route.name === 'broadcast'
-)
+const isBroadcastRoute = computed(() => route.name === 'broadcast')
+
+// ── Settings string → URL sync ────────────────────────────────────────────────
+
+const _dirs = parseDirectives(defaultLogicRaw)
+
+const settingsString = computed(() => {
+  const d  = settingsToDefines(s.exportSettings())
+  const rd = {}
+  for (const flag of _dirs.flags) {
+    if (flag.optionType === 'Setting') rd[flag.defineName] = !!d[flag.defineName]
+  }
+  for (const dd of _dirs.dropdowns) {
+    if (dd.optionType === 'Setting') rd[dd.defineName] = d[dd.defineName] ?? dd.defaultValue
+  }
+  for (const nb of _dirs.numberboxes) {
+    if (nb.optionType === 'Setting') rd[nb.defineName] = Number(d[nb.defineName]) || nb.default || 0
+  }
+  Object.assign(rd, s.randoDefines ?? {})
+  try { return encodeSettingsString(_dirs, rd) } catch { return '' }
+})
+
+watch(settingsString, val => {
+  router.replace({ query: val ? { s: val } : {} })
+})
+
+// ── Restaurer les settings depuis l'URL au chargement ────────────────────────
+
+onMounted(() => {
+  window.addEventListener('keydown', onKeydown)
+  const b64 = route.query.s
+  if (!b64) return
+  const rd = decodeSettingsString(b64, _dirs)
+  if (rd) s.randoDefines = rd
+})
+
+onUnmounted(() => window.removeEventListener('keydown', onKeydown))
+
+// ── Keyboard shortcuts ────────────────────────────────────────────────────────
 
 function onKeydown(e) {
   if (e.key === 'Escape') {
-    if (store.showSettings)    store.showSettings    = false
-    if (store.showFaq)         store.showFaq         = false
+    if (store.showSettings) store.showSettings = false
+    if (store.showFaq)      store.showFaq      = false
   }
 }
-onMounted(() => window.addEventListener('keydown', onKeydown))
-onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 </script>
 
 <style>

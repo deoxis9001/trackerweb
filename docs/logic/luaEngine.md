@@ -58,12 +58,12 @@ Toujours `false` — désactive les optimisations batch du tracker EmoTracker or
 
 ### `initGlobals()`
 
-Initialise les variables globales Lua attendues par les scripts de logique :
+Initialise (via un bloc `runLua`) les nombreuses tables de cache et variables globales attendues par les scripts de logique. Principales catégories :
 
-- Tables de cache : `has_item_data`, `function_data`, `has_item_data_dev`, etc.
-- Flags de version : `PopVersion = true`, `VERSION_BETA = true`
+- Tables de cache : `has_item_data`, `function_data`, `function_data_fusion`, `function_count`, ainsi que les variantes dev (`has_item_data_dev`, `has_item_option_dev`) et les `setting_preset_data*`
+- Flags de version : `PopVersion = true`, `VERSION_ALPHA = false`, `VERSION_BETA = true`
 - `AccessibilityLevel = { None = 0, SequenceBreak = 2, Inspect = 3 }`
-- Stubs pour les items de fusion combinée (`redW`, `blueL`, etc.) — remplacés ensuite par `setupFusionCombined()`
+- Stubs pour les items de fusion combinée (`redW`, `blueL`, `greenC`, etc.) — remplacés ensuite par `setupFusionCombined()`
 - `swordprogress`, `redflag`, `blueflag` — stubs ou nil
 
 ---
@@ -105,7 +105,7 @@ Injecte le provider courant dans le singleton `_provider`. Doit être appelé av
 
 ### `resetCache()`
 
-Vide les caches Lua (`has_item_data`, `function_data`, `function_data_fusion`, `function_count`).
+Appelle d'abord `ensureInit()` (initialise le moteur au premier appel), puis vide les caches Lua (`has_item_data`, `function_data`, `function_data_fusion`, `function_count`).
 
 **À appeler après chaque changement d'état** (items, settings) pour forcer le recalcul des fonctions Lua. Appelé automatiquement par `prepareProvider()`.
 

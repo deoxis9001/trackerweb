@@ -17,6 +17,27 @@ function get(dir) {
 function set(defineName, val) {
   emit('update:modelValue', { ...(props.modelValue ?? {}), [defineName]: val })
 }
+
+// Regroupe les directives consécutives de même catégorie pour respecter l'ordre du .logic.
+// dropdown/numberbox sont des catégories distinctes (pas sur la même ligne).
+// En yesNoMode, les flags rejoignent la catégorie 'dropdown'.
+function chunks(group) {
+  const result = []
+  let current = null
+  for (const dir of group.directives) {
+    let cat
+    if (dir.type === 'flag' && !props.yesNoMode) cat = 'flag'
+    else if (dir.type === 'numberbox') cat = 'numberbox'
+    else cat = 'dropdown'
+
+    if (!current || current.cat !== cat) {
+      current = { cat, items: [] }
+      result.push(current)
+    }
+    current.items.push(dir)
+  }
+  return result
+}
 </script>
 
 <template>
@@ -24,37 +45,58 @@ function set(defineName, val) {
     <section class="card">
       <h3>{{ group.name }}</h3>
 
-      <div v-for="dir in group.directives" :key="dir.defineName" class="setting-row">
-        <label>{{ dir.label || dir.defineName }}</label>
+      <template v-for="(chunk, ci) in chunks(group)" :key="ci">
 
-        <div v-if="yesNoMode && dir.type === 'dropdown' && dir.options.length === 2" class="btn-group">
-          <button :class="['opt-btn', { active: get(dir) === dir.options[0].defineName }]"
-            @click="set(dir.defineName, dir.options[0].defineName)">{{ dir.options[0].label }}</button>
-          <button :class="['opt-btn', { active: get(dir) === dir.options[1].defineName }]"
-            @click="set(dir.defineName, dir.options[1].defineName)">{{ dir.options[1].label }}</button>
+        <!-- !dropdown (+ flags en yesNoMode) : grille 2 colonnes -->
+        <div v-if="chunk.cat === 'dropdown'" class="controls-grid">
+          <div v-for="dir in chunk.items" :key="dir.defineName" class="control-cell">
+            <label>{{ dir.label || dir.defineName }}</label>
+
+            <div v-if="yesNoMode && dir.type === 'dropdown' && dir.options.length === 2" class="btn-group">
+              <button :class="['opt-btn', { active: get(dir) === dir.options[0].defineName }]"
+                @click="set(dir.defineName, dir.options[0].defineName)">{{ dir.options[0].label }}</button>
+              <button :class="['opt-btn', { active: get(dir) === dir.options[1].defineName }]"
+                @click="set(dir.defineName, dir.options[1].defineName)">{{ dir.options[1].label }}</button>
+            </div>
+
+            <div v-else-if="dir.type === 'flag'" class="btn-group">
+              <button :class="['opt-btn', { active: !get(dir) }]"  @click="set(dir.defineName, false)">No</button>
+              <button :class="['opt-btn', { active: !!get(dir) }]" @click="set(dir.defineName, true)">Yes</button>
+            </div>
+
+            <select v-else
+              class="logic-select"
+              :value="get(dir)"
+              @change="set(dir.defineName, $event.target.value)"
+            >
+              <option v-for="opt in dir.options" :key="opt.defineName" :value="opt.defineName">
+                {{ opt.label }}
+              </option>
+            </select>
+          </div>
         </div>
 
-        <div v-else-if="dir.type === 'flag'" class="btn-group">
-          <button :class="['opt-btn', { active: !get(dir) }]"  @click="set(dir.defineName, false)">No</button>
-          <button :class="['opt-btn', { active: !!get(dir) }]" @click="set(dir.defineName, true)">Yes</button>
+        <!-- !numberbox : grille 2 colonnes séparée -->
+        <div v-else-if="chunk.cat === 'numberbox'" class="controls-grid">
+          <div v-for="dir in chunk.items" :key="dir.defineName" class="control-cell">
+            <label>{{ dir.label || dir.defineName }}</label>
+            <input
+              class="num-input" type="number"
+              :value="get(dir)" :min="dir.min" :max="dir.max"
+              @change="set(dir.defineName, +$event.target.value)"
+            />
+          </div>
         </div>
 
-        <select v-else-if="dir.type === 'dropdown'"
-          class="logic-select"
-          :value="get(dir)"
-          @change="set(dir.defineName, $event.target.value)"
-        >
-          <option v-for="opt in dir.options" :key="opt.defineName" :value="opt.defineName">
-            {{ opt.label }}
-          </option>
-        </select>
+        <!-- !flag : grille 3 colonnes avec cases à cocher -->
+        <div v-else class="flags-grid">
+          <label v-for="dir in chunk.items" :key="dir.defineName" class="flag-cell">
+            <input type="checkbox" :checked="!!get(dir)" @change="set(dir.defineName, $event.target.checked)" />
+            {{ dir.label || dir.defineName }}
+          </label>
+        </div>
 
-        <input v-else-if="dir.type === 'numberbox'"
-          class="num-input" type="number"
-          :value="get(dir)" :min="dir.min" :max="dir.max"
-          @change="set(dir.defineName, +$event.target.value)"
-        />
-      </div>
+      </template>
     </section>
   </template>
 </template>
@@ -76,20 +118,41 @@ function set(defineName, val) {
   letter-spacing: 0.5px;
 }
 
-.setting-row {
+/* !dropdown + !numberbox : grille 2 colonnes */
+.controls-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+  margin-bottom: 8px;
+}
+
+.control-cell {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 8px;
-  font-size: 13px;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.control-cell label {
+  font-size: 12px;
   color: var(--text);
 }
 
-.setting-row label {
-  flex: 1;
-  min-width: 0;
+/* !flag : grille 3 colonnes */
+.flags-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px 12px;
+  margin-bottom: 8px;
+}
+
+.flag-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
   color: var(--text);
+  cursor: pointer;
 }
 
 .btn-group { display: flex; gap: 4px; }
@@ -118,7 +181,7 @@ function set(defineName, val) {
   padding: 3px 6px;
   border-radius: 3px;
   font-size: 12px;
-  min-width: 100px;
+  width: 100%;
   max-width: 260px;
 }
 

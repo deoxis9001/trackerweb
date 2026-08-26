@@ -40,7 +40,7 @@ export const useSettingsStore = defineStore('settings', () => {
 
   // ── Goal ─────────────────────────────────────────────────────────────────────
   const goal        = ref('vaati')     // 'vaati' | 'pedestal'
-  const dhcAccess   = ref('pedestal')  // 'closed' | 'pedestal' | 'open'
+  const dhcAccess   = ref('open')       // 'closed' | 'pedestal' | 'open'
 
   // Pedestal requirements
   const pedElements  = ref(4)   // 0–4
@@ -67,8 +67,8 @@ export const useSettingsStore = defineStore('settings', () => {
   const goronSets         = ref(0)          // 0–5
   const goronJPPrices     = ref(false)
   const extraShopItem     = ref(false)
-  const shuffleSanctuary  = ref(false)      // not yet in AP — disabled by default
-  const pedReward         = ref('none')     // 'none' | 'dhc_big_key' | 'random_item'
+  const shuffleSanctuary  = ref(false)      // not yet in rando — disabled by default
+  const pedReward         = ref('dhc_big_key') // 'none' | 'dhc_big_key' | 'random_item'
 
   // ── Difficulty ────────────────────────────────────────────────────────────────
   const startingHearts    = ref(3)          // 1–20
@@ -122,7 +122,7 @@ export const useSettingsStore = defineStore('settings', () => {
   // Raw text of a user-imported .logic file — not persisted (session only, can be large)
   const customLogicText = ref(null)
   // Rando defines set by the user in logic mode — { [DEFINE_NAME]: bool|string|number }
-  // null = not yet initialized (falls back to AP World logic)
+  // null = not yet initialized (falls back to default rando logic)
   const randoDefines    = ref(null)
 
   // ── Tracker Display ───────────────────────────────────────────────────────────
